@@ -16,7 +16,7 @@
                 <li><a href="{{ url('beranda') }}">Home</a></li>
                 <li><a href="{{ url('beranda') }}">About Us</a></li>
                 <li><a href="{{ url('beranda') }}">Web Guide</a></li>
-                <li><a href="{{ url('beranda') }}">Login</a></li>
+                <li><a href="{{ url('login') }}">Login</a></li>
                 <li><a href="{{ url('beranda') }}">Register</a></li>
                 @if ( Auth::user() != null )
                 <li><span class="text-dark fw-bold d-flex align-items-center h-50 d-flex align-items-center h-50">{{ Auth::user()->name; }}</span></li>
