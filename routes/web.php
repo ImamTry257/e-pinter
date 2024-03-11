@@ -10,6 +10,7 @@ use App\Http\Controllers\console\ResultLearningActivityController;
 use App\Http\Controllers\console\UserController;
 use App\Http\Controllers\front\BerandaController;
 use App\Http\Controllers\front\ContactController;
+use App\Http\Controllers\front\DashboardController as FrontDashboardController;
 use App\Http\Controllers\front\EvaluationController;
 use App\Http\Controllers\front\LearningActivityController;
 use App\Http\Controllers\front\LearningController;
@@ -60,6 +61,11 @@ Route::post('/login', [LoginController::class, 'login'])->name('login.login');
 # Learning
 Route::get('/learning', [LearningController::class, 'index'])->name('learning');
 
+# Dashboard
+Route::middleware([AuthFrontMiddleware::class])->group(function () {
+    Route::get('/dashboard', [FrontDashboardController::class, 'index'])->name('front.dashboard');
+});
+
 # Learning activity
 Route::middleware([AuthFrontMiddleware::class])->group(function () {
     Route::get('/learning-activity', [LearningActivityController::class, 'index'])->name('learning-activity.index');
@@ -97,7 +103,7 @@ Route::middleware([AuthConsoleMiddleware::class])->group(function () {
     Route::match(['get', 'post'], '/logout-admin', [ConsoleLoginController::class, 'logout'])->name('logout.admin');
 
     # Dashboard
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    // Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     # Sains Info
     Route::get('/admin/sains-info', [ConsoleSainsInfoController::class, 'index'])->name('admin.sains-info');

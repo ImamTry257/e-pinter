@@ -44,7 +44,7 @@
             <form action="{{ route('login.login') }}" method="POST" autocomplete="off">
                 @csrf
                 <div class="mb-3 py-2">
-                    <input type="text" class="form-control py-2 @error('name') is-invalid @enderror" name="name" id="name" placeholder="&#61447 Email or Username" value="{{ old('name') }}">
+                    <input type="text" class="form-control py-2 @error('name') is-invalid @enderror" name="name" id="name" placeholder="&#61447 Email or Username" autofocus value="{{ old('name') }}">
                     @error('name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>

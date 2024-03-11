@@ -4,7 +4,7 @@
         <div class="logo">
             <a href="#" class="d-flex align-items-center">
                 <img class="icon-header" src="{{ asset('assets/e-pinter/icon/icon-header.svg') }}" alt="" width="30">
-                <span class="title-header ps-3">Universitas Negeri Yogyakarta</span>
+                <span class="text-white title-header ps-3">Universitas Negeri Yogyakarta</span>
             </a>
         </div>
         <div class="nav-links">
@@ -13,9 +13,22 @@
                 <i class='bx bx-x' ></i>
             </div>
             <ul class="links">
-                <li><a href="{{ url('beranda') }}">Home</a></li>
-                <li><a href="{{ url('beranda') }}">About Us</a></li>
-                <li><a href="{{ url('beranda') }}">Web Guide</a></li>
+                <li><a href="{{ url('beranda') }}" class="text-white">Home</a></li>
+                <li>
+                    <a href="#" class="text-white">Perangkat Pembelajaran</a>
+                    <i class='bx bxs-chevron-down htmlcss-arrow arrow'></i>
+                    <ul class="htmlCss-sub-menu sub-menu" id="wrapper-sub-menu">
+                        <li><a href="{{ route('learning') }}" class="text-white" id="list-sub-menu">CP, TP & ATP</a></li>
+                        <li><a href="{{ route('topic.index') }}" class="text-white" id="list-sub-menu">Topik/Materi</a></li>
+                        <li><a href="{{ route('potential.index') }}" class="text-white" id="list-sub-menu">Potensi Lokal Gudeg</a></li>
+                        @if ( Auth::user() != null )
+                        <li><a href="{{ route('learning-activity.index') }}" class="text-white" id="list-sub-menu">Kegiatan Pembelajaran</a></li>
+                        <li><a href="{{ route('evaluation') }}" class="text-white" id="list-sub-menu">Evaluasi</a></li>
+                        @endif
+                        <li><a href="{{ route('reflection') }}" class="text-white" id="list-sub-menu">Refleksi</a></li>
+                    </ul>
+                </li>
+                <li><a href="{{ url('beranda') }}" class="text-white">Web Guide</a></li>
                 @if ( Auth::user() != null )
                 <li><span class="text-dark fw-bold d-flex align-items-center h-50 d-flex align-items-center h-50">{{ Auth::user()->name; }}</span></li>
                 <li><i class="fa-regular fa-user"></i></li>
