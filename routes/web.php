@@ -8,6 +8,7 @@ use App\Http\Controllers\console\PotentialLocalGudegController as ConsolePotenti
 use App\Http\Controllers\console\RegisterController as ConsoleRegisterController;
 use App\Http\Controllers\console\ResultLearningActivityController;
 use App\Http\Controllers\console\UserController;
+use App\Http\Controllers\front\AboutController;
 use App\Http\Controllers\front\BerandaController;
 use App\Http\Controllers\front\ContactController;
 use App\Http\Controllers\front\DashboardController as FrontDashboardController;
@@ -43,6 +44,8 @@ Route::get('/', function () {
 Route::get('/home', [BerandaController::class, 'index'])->name('home');
 
 Route::get('/beranda', [BerandaController::class, 'index'])->name('beranda');
+
+Route::get('/about-us', [AboutController::class, 'index'])->name('about');
 
 Route::get('/petunjuk', [BerandaController::class, 'information'])->name('information');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');

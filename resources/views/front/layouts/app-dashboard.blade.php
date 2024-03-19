@@ -34,9 +34,7 @@
         box-sizing: border-box;
         font-family: 'Poppins', sans-serif;
         }
-        body{
-        min-height: 100%;
-        }
+
         nav{
         /* position: fixed;
         top: 0;
@@ -335,12 +333,6 @@
 
     </style>
 
-    @yield('css')
-
-    <!-- include summernote css/js-->
-    <script type="text/javascript" src="{{ asset('website/js/bootstrap.bundle.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('website/js/jquery-3.6.0.min.js') }}"></script>
-
     <style>
         html, body {
             height: 100%;
@@ -397,7 +389,13 @@
         /* end header home */
     </style>
 
+    @yield('css')
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" rel="stylesheet"/>
+
+    <!-- include summernote css/js-->
+    <script type="text/javascript" src="{{ asset('website/js/bootstrap.bundle.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('website/js/jquery-3.6.0.min.js') }}"></script>
 </head>
 <body>
     <div id="app" class="h-100">

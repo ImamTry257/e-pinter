@@ -2,6 +2,13 @@
 
 @section('css')
     <style>
+        body {
+            background-image: url('{{ asset("assets/e-pinter/images/bg-home.svg") }}');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position-y: -60px;
+        }
+
         button.btn-register {
             background-color: #B6E0E8;
         }

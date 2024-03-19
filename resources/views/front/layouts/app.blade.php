@@ -337,21 +337,10 @@
 
     @yield('css')
 
-    <!-- include summernote css/js-->
-    <script type="text/javascript" src="{{ asset('website/js/bootstrap.bundle.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('website/js/jquery-3.6.0.min.js') }}"></script>
-
     <style>
         html, body {
             height: 100%;
             margin: 0;
-        }
-
-        body {
-            background-image: url('{{ asset("assets/e-pinter/images/bg-home.svg") }}');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position-y: -60px;
         }
 
         div.wrapper-main-header {
@@ -396,7 +385,9 @@
         /* end header home */
     </style>
 
-
+    <!-- include summernote css/js-->
+    <script type="text/javascript" src="{{ asset('website/js/bootstrap.bundle.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('website/js/jquery-3.6.0.min.js') }}"></script>
 </head>
 <body>
     <div id="app" class="h-100">
