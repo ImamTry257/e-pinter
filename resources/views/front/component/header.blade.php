@@ -7,7 +7,7 @@
                 <span class="title-header ps-3">Universitas Negeri Yogyakarta</span>
             </a>
         </div>
-        <div class="nav-links">
+        <div class="nav-links d-flex align-items-center">
             <div class="sidebar-logo">
                 <span class="logo-name">Logo</span>
                 <i class='bx bx-x' ></i>

@@ -335,8 +335,6 @@
 
     </style>
 
-    @yield('css')
-
     <style>
         html, body {
             height: 100%;
@@ -344,7 +342,7 @@
         }
 
         div.wrapper-main-header {
-            position: fixed;
+            position: relative;
             right: 0;
             left: 0;
         }
@@ -385,6 +383,14 @@
         /* end header home */
     </style>
 
+    <link rel="stylesheet" href="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/assets/owl.carousel.min.css">
+
+    <link rel="stylesheet" href="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/assets/owl.theme.default.min.css">
+
+    <link rel="stylesheet" href="https://owlcarousel2.github.io/OwlCarousel2/assets/css/docs.theme.min.css">
+
+    @yield('css')
+
     <!-- include summernote css/js-->
     <script type="text/javascript" src="{{ asset('website/js/bootstrap.bundle.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('website/js/jquery-3.6.0.min.js') }}"></script>
@@ -395,7 +401,7 @@
             @include('front.component.header')
         </div>
 
-        <div class="wrapper-main-content d-flex justify-content-center align-items-center">
+        <div>
             @yield('content')
         </div>
     </div>
@@ -441,5 +447,9 @@
         //     navLinks.classList.toggle("show3");
         // }
     </script>
+
+    <script src="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/owl.carousel.js"></script>
+
+    @yield('script')
 </body>
 </html>
