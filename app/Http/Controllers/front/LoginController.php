@@ -109,7 +109,7 @@ class LoginController extends Controller
                     dd($th->getMessage());
                 }
 
-                return redirect(url('beranda'))
+                return redirect(route('front.dashboard'))
                     ->withSuccess('Signed in');
             endif;
         }

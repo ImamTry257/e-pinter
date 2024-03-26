@@ -2,6 +2,13 @@
 
 @section('css')
     <style>
+        body {
+            background-image: url('{{ asset("assets/e-pinter/images/bg-home.svg") }}');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position-y: -60px;
+        }
+
         button.btn-register {
             background-color: #B6E0E8;
         }
@@ -36,11 +43,13 @@
 @endsection
 
 @section('content')
-<div class="row p-5 bg-home position-absolute top-50 bottom-0">
-    <div class="title text-center align-items-center">
-        <a href="">
-            <img class="w-100" src="{{ asset('assets/e-pinter/images/button-get-started.svg') }}">
-        </a>
+<div class="wrapper-main-content d-flex justify-content-center align-items-center">
+    <div class="row p-5 bg-home position-absolute top-50 bottom-0">
+        <div class="title text-center align-items-center">
+            <a href="">
+                <img class="w-100" src="{{ asset('assets/e-pinter/images/button-get-started.svg') }}">
+            </a>
+        </div>
     </div>
 </div>
 

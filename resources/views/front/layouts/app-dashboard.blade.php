@@ -34,9 +34,7 @@
         box-sizing: border-box;
         font-family: 'Poppins', sans-serif;
         }
-        body{
-        min-height: 100%;
-        }
+
         nav{
         /* position: fixed;
         top: 0;
@@ -98,7 +96,7 @@
         line-height: 70px;
         text-align: center;
         display: inline-block;
-        color: #5f5b5b;
+        color: #fff;
         transition: all 0.3s ease;
         }
         nav .navbar .links li .sub-menu{
@@ -342,9 +340,17 @@
         }
 
         div.wrapper-main-header {
-            position: relative;
+            position: fixed;
             right: 0;
             left: 0;
+        }
+
+        div.wrapper-main-header, li ul#wrapper-sub-menu {
+            background-color: #004972;
+        }
+
+        li ul a#list-sub-menu:hover {
+            background-color: red;
         }
 
         div.wrapper-main-content {
@@ -383,13 +389,9 @@
         /* end header home */
     </style>
 
-    <link rel="stylesheet" href="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/assets/owl.carousel.min.css">
-
-    <link rel="stylesheet" href="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/assets/owl.theme.default.min.css">
-
-    <link rel="stylesheet" href="https://owlcarousel2.github.io/OwlCarousel2/assets/css/docs.theme.min.css">
-
     @yield('css')
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" rel="stylesheet"/>
 
     <!-- include summernote css/js-->
     <script type="text/javascript" src="{{ asset('website/js/bootstrap.bundle.min.js') }}"></script>
@@ -398,10 +400,10 @@
 <body>
     <div id="app" class="h-100">
         <div class="wrapper-main-header" style="z-index: 1000;">
-            @include('front.component.header')
+            @include('front.component.header-dashboard')
         </div>
 
-        <div>
+        <div class="wrapper-main-content d-flex justify-content-center align-items-center">
             @yield('content')
         </div>
     </div>
@@ -447,9 +449,5 @@
         //     navLinks.classList.toggle("show3");
         // }
     </script>
-
-    <script src="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/owl.carousel.js"></script>
-
-    @yield('script')
 </body>
 </html>
