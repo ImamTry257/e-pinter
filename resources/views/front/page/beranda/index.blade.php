@@ -44,8 +44,8 @@
 
 @section('content')
 <div class="wrapper-main-content d-flex justify-content-center align-items-center">
-    <div class="row p-5 bg-home position-absolute top-50 bottom-0">
-        <div class="title text-center align-items-center">
+    <div class="row p-5 bg-home position-absolute top-50 bottom-0 w-auto">
+        <div class="text-center align-items-center">
             <a href="">
                 <img class="w-100" src="{{ asset('assets/e-pinter/images/button-get-started.svg') }}">
             </a>

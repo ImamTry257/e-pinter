@@ -12,7 +12,7 @@
                 <span class="logo-name">Logo</span>
                 <i class='bx bx-x' ></i>
             </div>
-            <ul class="links">
+            <ul class="links pt-4">
                 <li><a href="{{ url('beranda') }}">Home</a></li>
                 <li><a href="{{ url('about-us') }}">About Us</a></li>
                 <li><a href="{{ url('beranda') }}">Web Guide</a></li>
