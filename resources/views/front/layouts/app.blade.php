@@ -401,7 +401,7 @@
             @include('front.component.header')
         </div>
 
-        <div>
+        <div class="h-100">
             @yield('content')
         </div>
     </div>

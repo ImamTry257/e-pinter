@@ -82,7 +82,7 @@
 @endsection
 
 @section('content')
-    <div class="wrapper-main-content d-flex align-items-center justify-content-center pt-5">
+    <div class="wrapper-main-content d-flex align-items-center justify-content-center h-100">
         <div class="owl-carousel owl-theme">
             {{-- Pengembang 1 --}}
             <div class="row d-flex align-items-center justify-content-center">
