@@ -13,6 +13,7 @@ use App\Http\Controllers\front\BerandaController;
 use App\Http\Controllers\front\ContactController;
 use App\Http\Controllers\front\DashboardController as FrontDashboardController;
 use App\Http\Controllers\front\EvaluationController;
+use App\Http\Controllers\front\ForgotPasswordController;
 use App\Http\Controllers\front\LearningActivityController;
 use App\Http\Controllers\front\LearningController;
 use App\Http\Controllers\front\LoginController;
@@ -60,6 +61,10 @@ Route::get('/success', [RegisterController::class, 'success'])->name('register.s
 # Login
 Route::match(['get'], 'login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login.login');
+
+# Forgot Password Front Page
+Route::get('/forgot-password-student', [ForgotPasswordController::class, 'index'])->name('forgot-password-student');
+Route::get('/send-link-password', [ForgotPasswordController::class, 'success_send_link'])->name('send-link-password');
 
 # Learning
 Route::get('/learning', [LearningController::class, 'index'])->name('learning');

@@ -74,7 +74,7 @@
                 <div class="row">
                     <div class="col-4">
                         <span class="text-white title-forgot-pass">
-                            <a href="{{ route('password.request') }}" class="text-white">Lupa Password?</a>
+                            <a href="{{ route('forgot-password-student') }}" class="text-white">Lupa Password?</a>
                         </span>
                     </div>
 

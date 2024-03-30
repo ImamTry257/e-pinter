@@ -60,6 +60,8 @@ class RegisterController extends Controller
 
     public function success()
     {
-        return view('front.page.register.success');
+        $data['title'] = 'Registration completed successfully';
+
+        return view('front.page.register.success_v2', $data);
     }
 }
