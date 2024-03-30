@@ -4,3 +4,4 @@ bg-color login button : #4CE780
 bg-color register button : #00488A
 bg-color forogot pass button : #134C81
 bg-color link, kirim : #2990F6
+bg-color register : #9BECDA

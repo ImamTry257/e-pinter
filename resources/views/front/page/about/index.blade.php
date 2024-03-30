@@ -101,7 +101,7 @@
                     </div>
                 </div>
 
-                <div class="col-3">
+                <div class="col-4">
                     <img src="{{ asset('assets/pemgembang/pengembang1.svg') }}" class="rounded" width="100" alt="">
                 </div>
             </div>
@@ -124,7 +124,7 @@
                     </div>
                 </div>
 
-                <div class="col-3">
+                <div class="col-4">
                     <img src="{{ asset('assets/pemgembang/pengembang2.svg') }}" class="rounded" width="100" alt="">
                 </div>
             </div>
@@ -146,7 +146,7 @@
                     </div>
                 </div>
 
-                <div class="col-3">
+                <div class="col-4">
                     <img src="{{ asset('assets/pemgembang/pengembang3.svg') }}" class="rounded" width="100" alt="">
                 </div>
             </div>

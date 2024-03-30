@@ -143,21 +143,21 @@
         display: block;
         }
         .navbar .search-box{
-        position: relative;
-        height: 40px;
-        width: 40px;
+            position: relative;
+            height: 40px;
+            width: 40px;
         }
         .navbar .search-box i{
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        line-height: 40px;
-        text-align: center;
-        font-size: 22px;
-        color: #5f5b5b;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s ease;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            line-height: 40px;
+            text-align: center;
+            font-size: 22px;
+            color: #5f5b5b;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
         .navbar .search-box .input-box{
         position: absolute;
@@ -335,8 +335,6 @@
 
     </style>
 
-    @yield('css')
-
     <!-- include summernote css/js-->
     <script type="text/javascript" src="{{ asset('website/js/bootstrap.bundle.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('website/js/jquery-3.6.0.min.js') }}"></script>
@@ -345,14 +343,6 @@
         html, body {
             height: 100%;
             margin: 0;
-        }
-
-        body {
-            background-image: url('{{ asset("assets/bg-login.svg") }}');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position-y: -180px;
-            background-color: #004972;
         }
 
         div.wrapper-main-header {
@@ -397,7 +387,7 @@
         /* end header home */
     </style>
 
-
+    @yield('css')
 </head>
 <body>
     <div id="app" class="h-100">
@@ -405,7 +395,7 @@
             @include('front.component.header')
         </div>
 
-        <div class="wrapper-main-content d-flex justify-content-center align-items-center">
+        <div class="wrapper-main-content">
             @yield('content')
         </div>
     </div>
