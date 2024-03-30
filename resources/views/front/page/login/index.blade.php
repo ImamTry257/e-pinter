@@ -3,6 +3,14 @@
 @section('css')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" rel="stylesheet"/>
     <style>
+        body {
+            background-image: url('{{ asset("assets/bg-login.svg") }}');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position-y: -180px;
+            background-color: #004972;
+        }
+
         button.btn-login {
             background-color: #4CE780;
         }
@@ -34,7 +42,7 @@
 @endsection
 
 @section('content')
-<div style="height: 100vh;" class="d-flex justify-content-center">
+<div style="height: 100vh;" class="d-flex justify-content-center align-items-center">
     <div class="row p-5">
         <div class="wrapper-form col-12 py-3 rounded">
             <div class="pb-3 text-center">
