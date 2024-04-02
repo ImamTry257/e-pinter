@@ -391,9 +391,6 @@
 </head>
 <body>
     <div id="app" class="h-100">
-        <div class="wrapper-main-header d-none" style="z-index: 1000;">
-            @include('front.component.header')
-        </div>
 
         <div class="wrapper-main-content">
             @yield('content')
