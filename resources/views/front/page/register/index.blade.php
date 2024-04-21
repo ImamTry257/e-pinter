@@ -95,7 +95,7 @@
                     <div class="col-8 text-end">
                         <span class="title-register">
                             <span class="child-title">Sudah memiliki akun?</span>
-                            <a href="{{ route('login') }}" class="text-dark">Daftar di sini</a>
+                            <a href="{{ route('login') }}" class="text-dark">Klik di sini</a>
                         </span>
                     </div>
                 </div>

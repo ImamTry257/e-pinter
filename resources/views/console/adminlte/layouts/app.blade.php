@@ -29,7 +29,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       border-top: 3px solid #7BB7C2;
     }
 
-    
+
   </style>
 </head>
 <body class="hold-transition sidebar-mini">

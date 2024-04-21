@@ -1,4 +1,4 @@
-<div class="row wrapper-footer px-4 py-4">
+<div class="row">
     <div class="col-md-4 d-flex justify-content-evenly align-items-center">
         <div class="icon-university">
             <img src="{{ asset('website/images/logo-uny.svg') }}" alt="">
