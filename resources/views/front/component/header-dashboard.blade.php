@@ -32,21 +32,24 @@
                 </li>
                 <li><a href="{{ url('beranda') }}" class="text-white">Web Guide</a></li>
                 @if ( Auth::user() != null )
-                <li><span class="text-dark fw-bold d-flex align-items-center h-50 d-flex align-items-center h-50">{{ Auth::user()->name; }}</span></li>
-                {{-- <li><img src="{{ asset('assets/user-icon.svg') }}" width="20" alt="" data-bs-toggle="dropdown" aria-expanded="false"></li> --}}
-                <div class="dropdown">
-                    {{-- <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-                      Dropdown button
-                    </button> --}}
-                    <img src="{{ asset('assets/user-icon.svg') }}" width="20" alt="" data-bs-toggle="dropdown" aria-expanded="false">
-                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-                      <li style="line-height: 20px;"><a class="dropdown-item active" href="#">Action</a></li>
-                      <li style="line-height: 20px;"><a class="dropdown-item" href="#">Another action</a></li>
-                      <li style="line-height: 20px;"><a class="dropdown-item" href="#">Something else here</a></li>
-                      <li style="line-height: 20px;"><hr class="dropdown-divider"></li>
-                      <li style="line-height: 20px;"><a class="dropdown-item" href="#">Separated link</a></li>
+                <li>
+                    <img src="{{ asset('assets/user-icon.svg') }}" id="profile-icon" class="bg-white profile-arrow" width="30" alt="" style="border-radius: 19px;padding: 5px 5px 5px 5px;">
+                    {{-- <i class='bx bxs-chevron-down htmlcss-arrow arrow'></i> --}}
+                    <ul class="profile-sub-menu sub-menu ps-0" id="wrapper-sub-menu" style="left: -60px;">
+                        <li>
+                            <span class="text-white d-flex align-items-center h-50 d-flex align-items-center h-50">{{ Auth::user()->name; }}</span>
+                        </li>
+                        <li>
+                            <span class="text-white" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();" style="cursor: pointer;">Logout
+                            </span>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </li>
                     </ul>
-                </div>
+                </li>
                 {{-- <li><a class="btn btn-outline-secondary d-flex align-items-center h-50" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                                   document.getElementById('logout-form').submit();">
@@ -57,6 +60,7 @@
                      @csrf
                  </form>
                 </li> --}}
+                {{-- <li><img src="{{ asset('assets/user-icon.svg') }}" width="20" alt="" data-bs-toggle="dropdown" aria-expanded="false"></li> --}}
                 @else
                 <li><a href="{{ url('login') }}">Login</a></li>
                 <li><a href="{{ url('register') }}">Register</a></li>

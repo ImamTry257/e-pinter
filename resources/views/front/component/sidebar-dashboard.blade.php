@@ -1,5 +1,5 @@
 <!-- Main Sidebar Container -->
-<div class="main-sidebar sidebar-dark-primary position-relative my-3" id="sidebar-dashboard" style="z-index: -2;">
+<div class="main-sidebar sidebar-dark-primary position-relative col-lg-2" id="sidebar-dashboard" style="z-index: -2; position: relative;">
     <!-- Brand Logo -->
     <a href="{{ route('home') }}" class="brand-link d-none">
       <img src="{{ asset('assets/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">x

@@ -24,7 +24,7 @@
             @include('front.component.header-dashboard')
         </div>
 
-        <div class="wrapper-main-content my-3">
+        <div class="wrapper-main-content my-3 row">
             @include('front.component.sidebar-dashboard')
 
             @yield('content')
@@ -52,6 +52,7 @@
 
         // sidebar open close js code
         let navLinks = document.querySelector(".nav-links");
+        console.log(navLinks)
         let menuOpenBtn = document.querySelector(".navbar .bx-menu");
         let menuCloseBtn = document.querySelector(".nav-links .bx-x");
         menuOpenBtn.onclick = function() {
