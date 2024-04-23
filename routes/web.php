@@ -71,7 +71,11 @@ Route::get('/learning', [LearningController::class, 'index'])->name('learning');
 
 # Dashboard
 Route::middleware([AuthFrontMiddleware::class])->group(function () {
-    Route::get('/dashboard', [FrontDashboardController::class, 'index'])->name('front.dashboard');
+
+    Route::prefix('/dashboard')->group(function(){
+        Route::get('/', [FrontDashboardController::class, 'index'])->name('front.dashboard');
+        Route::get('/activity/{slug}', [LearningActivityController::class, 'activity'])->name('front.activity');
+    });
 });
 
 # Learning activity
