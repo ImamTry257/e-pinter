@@ -12,7 +12,26 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('front.page.dashboard.index');
+        // list learning activity
+        $data['list_activity'] = [
+            [
+                'title' => 'Gerak Lurus',
+                'slug'  => 'gerak-lurus',
+                'image' => 'list-kinematika-pemb1.svg'
+            ],
+            [
+                'title' => 'Gerak Parabola',
+                'slug'  => 'gerak-parabola',
+                'image' => 'list-kinematika-pemb2.svg'
+            ],
+            [
+                'title' => 'Gerak Melingkar',
+                'slug'  => 'gerak-melingkar',
+                'image' => 'list-kinematika-pemb3.svg'
+            ]
+        ];
+
+        return view('front.page.dashboard.index', $data);
     }
 
     /**

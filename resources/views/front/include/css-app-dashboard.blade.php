@@ -320,7 +320,7 @@
 
     div.wrapper-main-header, li ul#wrapper-sub-menu, div#sidebar-dashboard {
         background-color: #004972;
-        z-index: 0;
+        z-index: 2;
     }
 
     li ul a#list-sub-menu {
