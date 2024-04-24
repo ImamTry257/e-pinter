@@ -14,6 +14,12 @@
 
     @include('front.include.css-head')
 
+    <style>
+        .btn-save {
+            background-color: #00BC29;
+        }
+    </style>
+
     <!-- include summernote css/js-->
     <script type="text/javascript" src="{{ asset('website/js/bootstrap.bundle.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('website/js/jquery-3.6.0.min.js') }}"></script>

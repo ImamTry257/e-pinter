@@ -116,27 +116,146 @@ class LearningActivityController extends Controller
     public function activity(Request $request, $slug)
     {
         // check slug is existing?
+        $data['slug'] = $slug;
 
         // list learning activity
         $data['list_activity'] = [
             [
                 'title' => 'Gerak Lurus',
                 'slug'  => 'gerak-lurus',
-                'image' => 'list-kinematika-pemb1.svg'
+                'image' => 'img-pemb1.svg'
             ],
             [
                 'title' => 'Gerak Parabola',
                 'slug'  => 'gerak-parabola',
-                'image' => 'list-kinematika-pemb2.svg'
+                'image' => 'img-pemb2.svg'
             ],
             [
                 'title' => 'Gerak Melingkar',
                 'slug'  => 'gerak-melingkar',
-                'image' => 'list-kinematika-pemb3.svg'
+                'image' => 'img-pemb3.svg'
             ]
         ];
 
+        $data['image'] = 'img-pemb1.svg';
+        if (  $slug == 'gerak-pola' ) :
+            $data['image'] = 'img-pemb2.svg';
+        elseif (  $slug == 'gerak-melingkar' ) :
+            $data['image'] = 'img-pemb3.svg';
+        endif ;
+
         // return view
         return view('front.page.learning-activity.list_activity', $data);
+    }
+
+    public function introduction (Request $request, $slug)
+    {
+        $data['slug'] = $slug;
+
+        $data['content'] = $this->getContentIntro($slug);
+
+        // return view
+        return view('front.page.learning-activity.introduction_activity', $data);
+    }
+
+    public function step(Request $request, $slug, $step)
+    {
+        $data['slug'] = $slug;
+        $data['step'] = $step;
+
+        $path_view = 'front.page.learning-activity.gerak-lurus.step' . $step;
+
+        if ( $slug == 'gerak-melingkar' ) :
+            $path_view = 'front.page.learning-activity.gerak-melingkar.step' . $step;
+        elseif ( $slug == 'gerak-parabola' ) :
+            $path_view = 'front.page.learning-activity.gerak-parabola.step' . $step;
+        endif ;
+
+        return view($path_view, $data);
+    }
+
+    public function getContentIntro($slug)
+    {
+        $content = '<div class="col-lg-12 pb-3">
+                            <h2 class="text-dark fw-bold">Pengantar Pembelajaran 1<br/>
+                                Gerak Lurus</h2>
+                        </div>
+
+                        <div class="col-lg-12 pb-1">
+                            <span>Pada kegiatan pembelajaran 1, kita akan:</span>
+                            <ol>
+                                <li>Materi Fisika yang akan dibahas adalah GLB dan GLBB</li>
+                                <li>Menggunakan model pembelajaran E-PINTER yang telah dikembangkan</li>
+                                <li>Menggunakan software Tracker untuk mendukung kegiatan pembelajaran</li>
+                                <li>Membuat proyek secara kelompok</li>
+                                <li>Membuat laporan kegiatan fisika</li>
+                            </ol>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <span>Sehingga tagihan yang harus diunggah pada kegiatan ini adalah:</span>
+                            <ol>
+                                <li>Video proyek gerak lurus</li>
+                                <li>Foto langkah-langkah eksperimen menggunakan software Tracker beserta keterangannya</li>
+                                <li>Laporan</li>
+                            </ol>
+                        </div>';
+
+        if (  $slug == 'gerak-parabola' ) :
+           $content = '
+                <div class="col-lg-12 pb-3">
+                    <h2 class="text-dark fw-bold">Pengantar Pembelajaran 2<br/>
+                        Gerak Parabola</h2>
+                </div>
+
+                <div class="col-lg-12 pb-1">
+                    <span>Pada kegiatan pembelajaran 2, kita akan:</span>
+                    <ol>
+                        <li>Materi Fisika yang akan dibahas adalah Gerak Parabola</li>
+                        <li>Menggunakan model pembelajaran E-PINTER yang telah dikembangkan</li>
+                        <li>Menggunakan software Tracker untuk mendukung kegiatan pembelajaran</li>
+                        <li>Membuat proyek secara kelompok</li>
+                        <li>Membuat laporan kegiatan fisika</li>
+                    </ol>
+                </div>
+
+                <div class="col-lg-12">
+                    <span>Sehingga tagihan yang harus diunggah pada kegiatan ini adalah:</span>
+                    <ol>
+                        <li>Video proyek gerak parabola</li>
+                        <li>Foto langkah-langkah eksperimen menggunakan software Tracker beserta keterangannya</li>
+                        <li>Laporan</li>
+                    </ol>
+                </div>
+            ';
+        elseif (  $slug == 'gerak-melingkar' ) :
+           $content = '
+                <div class="col-lg-12 pb-3">
+                    <h2 class="text-dark fw-bold">Pengantar Pembelajaran 3<br/>
+                        Gerak Melingkar</h2>
+                </div>
+
+                <div class="col-lg-12 pb-1">
+                    <span>Pada kegiatan pembelajaran 3, kita akan:</span>
+                    <ol>
+                        <li>Materi Fisika yang akan dibahas adalah Gerak Melingkar</li>
+                        <li>Menggunakan model pembelajaran E-PINTER yang telah dikembangkan</li>
+                        <li>Menggunakan software Tracker untuk mendukung kegiatan pembelajaran</li>
+                        <li>Membuat proyek secara kelompok</li>
+                        <li>Membuat laporan kegiatan fisika</li>
+                    </ol>
+                </div>
+
+                <div class="col-lg-12">
+                    <span>Sehingga tagihan yang harus diunggah pada kegiatan ini adalah:</span>
+                    <ol>
+                        <li>Video proyek gerak melingkar</li>
+                        <li>Foto langkah-langkah eksperimen menggunakan software Tracker beserta keterangannya</li>
+                        <li>Laporan</li>
+                    </ol>
+                </div>
+            ';
+        endif ;
+        return $content;
     }
 }
