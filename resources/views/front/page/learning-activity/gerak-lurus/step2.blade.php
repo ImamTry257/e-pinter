@@ -84,7 +84,7 @@
 
             <div class="col-lg-12 text-start">
                 <a href="javascript:void(0);" class="btn btn-save text-white">Simpan</a>
-                <a href="" class="btn btn-information text-white">Selanjutnya Sintak 2.</a>
+                <a href="{{ route('front.activity.step', ['slug' => $slug, 'step' => 3]) }}" class="btn btn-information text-white">Selanjutnya Sintak 3.</a>
             </div>
         </div>
     </div>

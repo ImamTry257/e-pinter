@@ -11,52 +11,6 @@
         }
 
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-
-        .drag-area{
-            border: 2px dashed #fff;
-            height: 500px;
-            width: 700px;
-            border-radius: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-        }
-        .drag-area.active{
-            border: 2px solid #fff;
-        }
-        .drag-area .icon{
-            font-size: 100px;
-            color: #fff;
-        }
-        .drag-area header{
-            font-size: 30px;
-            font-weight: 500;
-            color: #fff;
-        }
-        .drag-area span{
-            font-size: 25px;
-            font-weight: 500;
-            color: #fff;
-            margin: 10px 0 15px 0;
-        }
-        .drag-area button{
-            padding: 10px 25px;
-            font-size: 20px;
-            font-weight: 500;
-            border: none;
-            outline: none;
-            background: #fff;
-            color: #5256ad;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .drag-area img{
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
-            border-radius: 5px;
-        }
     </style>
 @endsection
 
@@ -81,13 +35,12 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="py-3 row">
-                            <div class="col-lg-12">
+                            <div class="col-lg-12 text-center">
                                 <div class="drag-area">
-                                    <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
-                                    <header>Drag & Drop to Upload File</header>
-                                    <span>OR</span>
-                                    <button>Browse File</button>
-                                    <input type="file" hidden>
+                                    <div class="title-header text-secondary">Drag & Drop to Upload File</div>
+                                    <div class="text-secondary py-3">or</div>
+                                    <a href="javascript:void(0);" class="btn btn-primary text-white">Select File</a>
+                                    <input type="file" class="upload-file" hidden>
                                 </div>
                             </div>
                         </div>
@@ -97,7 +50,7 @@
 
             <div class="col-lg-12 text-start">
                 <a href="javascript:void(0);" class="btn btn-save text-white">Simpan</a>
-                <a href="" class="btn btn-information text-white">Selanjutnya Sintak 2.</a>
+                <a href="{{ route('front.activity.step', ['slug' => $slug, 'step' => 4]) }}" class="btn btn-information text-white">Selanjutnya Sintak 4.</a>
             </div>
         </div>
     </div>
@@ -107,8 +60,8 @@
 <script>
     //selecting all required elements
     const dropArea = document.querySelector(".drag-area"),
-    dragText = dropArea.querySelector("header"),
-    button = dropArea.querySelector("button"),
+    dragText = dropArea.querySelector(".title-header"),
+    button = dropArea.querySelector("a"),
     input = dropArea.querySelector("input");
     let file; //this is a global variable and we'll use it inside multiple functions
 
