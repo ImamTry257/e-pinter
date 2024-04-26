@@ -71,7 +71,7 @@
                         <div class="py-3 row">
                             <label for="desc" class="col-sm-2 col-form-label">Descriptions <span class="text-danger">*</span></label>
                             <div class="col-sm-10">
-                                <textarea name="descriptions" id="desc" class="form-control" cols="30" rows="10"></textarea>
+                                <textarea name="answer-a" id="step-2" class="form-control" cols="30" rows="30"></textarea>
                             </div>
                         </div>
 
@@ -90,4 +90,5 @@
     </div>
 </div>
 
+@include('front.page.learning-activity.gerak-parabola.script.js-gm')
 @endsection

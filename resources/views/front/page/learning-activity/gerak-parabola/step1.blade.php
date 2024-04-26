@@ -37,7 +37,7 @@
                         <p class="text-justify p-3">Pertanyaan 1. Dari ilustrasi tersebut, materi fisika dan besaran fisika apa yang terlibat dalam peristiwa tersebut!</p>
                     </div>
                     <div>
-                        <textarea name="" id="input-form-a-1" cols="30" rows="10"></textarea>
+                        <textarea name="answer-a" id="step-1" cols="30" rows="10"></textarea>
                     </div>
                 </div>
 
@@ -46,7 +46,7 @@
                         <p class="text-justify p-3">Pertanyaan 2. Tuliskan persamaan fisika yang terkait dengan gambar tersebut pada kotak jawaban di bawah ini ya</p>
                     </div>
                     <div>
-                        <textarea name="" id="input-form-a-1" cols="30" rows="10"></textarea>
+                        <textarea name="answer-b" id="step-1" cols="30" rows="10"></textarea>
                     </div>
                 </div>
             </div>
@@ -59,4 +59,5 @@
     </div>
 </div>
 
+@include('front.page.learning-activity.gerak-parabola.script.js-gm')
 @endsection

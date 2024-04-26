@@ -31,7 +31,7 @@
 
                 <div class="question-a pb-3">
                     <div>
-                        <textarea name="" id="input-form-a-1" cols="30" rows="10"></textarea>
+                        <textarea name="answer-a" id="step-6" class="form-control" cols="30" rows="30"></textarea>
                     </div>
                 </div>
             </div>
@@ -44,4 +44,5 @@
     </div>
 </div>
 
+@include('front.page.learning-activity.gerak-parabola.script.js-gm')
 @endsection

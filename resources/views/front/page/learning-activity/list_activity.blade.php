@@ -50,13 +50,15 @@
                         <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">
                     </div>
                     <div class="col-lg-10 p-3">
-                        <div class="py-1">
-                            <h4 class="text-dark">Sintak 1.</h4>
-                            <span class="text-secondary">Memberikan pertanyaan esensial dari fenomena sekitar</span>
-                        </div>
-                        <div>
-                            <span class="text-center w-100 border border-primary px-1 text-secondary d-block">0%</span>
-                        </div>
+                        <a target="_blank" href="{{ route('front.activity.step', ['slug' => $slug, 'step' => 1]) }}">
+                            <div class="py-1">
+                                <h4 class="text-dark">Sintak 1.</h4>
+                                <span class="text-secondary">Memberikan pertanyaan esensial dari fenomena sekitar</span>
+                            </div>
+                            <div>
+                                <span class="text-center w-100 border border-primary px-1 text-secondary d-block">0%</span>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -68,13 +70,15 @@
                         <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">
                     </div>
                     <div class="col-lg-10 p-3">
-                        <div class="py-1">
-                            <h4 class="text-dark">Sintak 2.</h4>
-                            <span class="text-secondary">Menyusun jadwal dan merancang proyek berkelompok</span>
-                        </div>
-                        <div>
-                            <span class="text-center w-100 border border-primary px-1 text-secondary d-block">0%</span>
-                        </div>
+                        <a target="_blank" href="{{ route('front.activity.step', ['slug' => $slug, 'step' => 2]) }}">
+                            <div class="py-1">
+                                <h4 class="text-dark">Sintak 2.</h4>
+                                <span class="text-secondary">Menyusun jadwal dan merancang proyek berkelompok</span>
+                            </div>
+                            <div>
+                                <span class="text-center w-100 border border-primary px-1 text-secondary d-block">0%</span>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -85,49 +89,15 @@
                         <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">
                     </div>
                     <div class="col-lg-10 p-3">
-                        <div class="py-1">
-                            <h4 class="text-dark">Sintak 3.</h4>
-                            <span class="text-secondary">Pembuatan proyek</span>
-                        </div>
-                        <div>
-                            <span class="text-center w-100 border border-primary px-1 text-secondary d-block">0%</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row p-2">
-            <div class="col-lg-6 btn-group">
-                <div class="row px-4 border border-primary w-100">
-                    <div class="col-lg-2 d-flex align-items-center">
-                        <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">
-                    </div>
-                    <div class="col-lg-10 p-3">
-                        <div class="py-1">
-                            <h4 class="text-dark">Sintak 4.</h4>
-                            <span class="text-secondary">Melakukan eksperimen menggunakan teknologi</span>
-                        </div>
-                        <div>
-                            <span class="text-center w-100 border border-primary px-1 text-secondary d-block">0%</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-6 btn-group">
-                <div class="row px-4 border border-primary w-100">
-                    <div class="col-lg-2 d-flex align-items-center">
-                        <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">
-                    </div>
-                    <div class="col-lg-10 p-3">
-                        <div class="py-1">
-                            <h4 class="text-dark">Sintak 5.</h4>
-                            <span class="text-secondary">Penyusunan laporan</span>
-                        </div>
-                        <div>
-                            <span class="text-center w-100 border border-primary px-1 text-secondary d-block">0%</span>
-                        </div>
+                        <a target="_blank" href="{{ route('front.activity.step', ['slug' => $slug, 'step' => 3]) }}">
+                            <div class="py-1">
+                                <h4 class="text-dark">Sintak 3.</h4>
+                                <span class="text-secondary">Pembuatan proyek</span>
+                            </div>
+                            <div>
+                                <span class="text-center w-100 border border-primary px-1 text-secondary d-block">0%</span>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -140,13 +110,55 @@
                         <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">
                     </div>
                     <div class="col-lg-10 p-3">
-                        <div class="py-1">
-                            <h4 class="text-dark">Sintak 6.</h4>
-                            <span class="text-secondary">Refleksi</span>
-                        </div>
-                        <div>
-                            <span class="text-center w-100 border border-primary px-1 text-secondary d-block">0%</span>
-                        </div>
+                        <a target="_blank" href="{{ route('front.activity.step', ['slug' => $slug, 'step' => 4]) }}">
+                            <div class="py-1">
+                                <h4 class="text-dark">Sintak 4.</h4>
+                                <span class="text-secondary">Melakukan eksperimen menggunakan teknologi</span>
+                            </div>
+                            <div>
+                                <span class="text-center w-100 border border-primary px-1 text-secondary d-block">0%</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 btn-group">
+                <div class="row px-4 border border-primary w-100">
+                    <div class="col-lg-2 d-flex align-items-center">
+                        <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">
+                    </div>
+                    <div class="col-lg-10 p-3">
+                        <a target="_blank" href="{{ route('front.activity.step', ['slug' => $slug, 'step' => 5]) }}">
+                            <div class="py-1">
+                                <h4 class="text-dark">Sintak 5.</h4>
+                                <span class="text-secondary">Penyusunan laporan</span>
+                            </div>
+                            <div>
+                                <span class="text-center w-100 border border-primary px-1 text-secondary d-block">0%</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row p-2">
+            <div class="col-lg-6 btn-group">
+                <div class="row px-4 border border-primary w-100">
+                    <div class="col-lg-2 d-flex align-items-center">
+                        <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">
+                    </div>
+                    <div class="col-lg-10 p-3">
+                        <a target="_blank" href="{{ route('front.activity.step', ['slug' => $slug, 'step' => 6]) }}">
+                            <div class="py-1">
+                                <h4 class="text-dark">Sintak 6.</h4>
+                                <span class="text-secondary">Refleksi</span>
+                            </div>
+                            <div>
+                                <span class="text-center w-100 border border-primary px-1 text-secondary d-block">0%</span>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
