@@ -25,12 +25,12 @@
         </div>
 
         <div class="row p-2">
-            <div class="col-lg-6 btn-group">
+            <div class="col-lg-6 btn-group my-3">
                 <div class="row px-4 border border-primary w-100">
-                    <div class="col-lg-2 d-flex align-items-center">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 d-flex align-items-center">
                         <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">
                     </div>
-                    <div class="col-lg-10 p-3">
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xl-10 p-3">
                         <a href="{{ route('front.activity.introduction', ['slug' => $slug]) }}">
                             <div class="py-1">
                                 <h4 class="text-dark">Pengantar Pembelajaran</h4>
@@ -44,12 +44,12 @@
                 </div>
             </div>
 
-            <div class="col-lg-6 btn-group">
+            <div class="col-lg-6 btn-group my-3">
                 <div class="row px-4 border border-primary w-100">
-                    <div class="col-lg-2 d-flex align-items-center">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 d-flex align-items-center">
                         <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">
                     </div>
-                    <div class="col-lg-10 p-3">
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xl-10 p-3">
                         <a target="_blank" href="{{ route('front.activity.step', ['slug' => $slug, 'step' => 1]) }}">
                             <div class="py-1">
                                 <h4 class="text-dark">Sintak 1.</h4>
@@ -64,12 +64,12 @@
             </div>
         </div>
         <div class="row p-2">
-            <div class="col-lg-6 btn-group">
+            <div class="col-lg-6 btn-group my-3">
                 <div class="row px-4 border border-primary w-100">
-                    <div class="col-lg-2 d-flex align-items-center">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 d-flex align-items-center">
                         <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">
                     </div>
-                    <div class="col-lg-10 p-3">
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xl-10 p-3">
                         <a target="_blank" href="{{ route('front.activity.step', ['slug' => $slug, 'step' => 2]) }}">
                             <div class="py-1">
                                 <h4 class="text-dark">Sintak 2.</h4>
@@ -83,12 +83,12 @@
                 </div>
             </div>
 
-            <div class="col-lg-6 btn-group">
+            <div class="col-lg-6 btn-group my-3">
                 <div class="row px-4 border border-primary w-100">
-                    <div class="col-lg-2 d-flex align-items-center">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 d-flex align-items-center">
                         <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">
                     </div>
-                    <div class="col-lg-10 p-3">
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xl-10 p-3">
                         <a target="_blank" href="{{ route('front.activity.step', ['slug' => $slug, 'step' => 3]) }}">
                             <div class="py-1">
                                 <h4 class="text-dark">Sintak 3.</h4>
@@ -104,12 +104,12 @@
         </div>
 
         <div class="row p-2">
-            <div class="col-lg-6 btn-group">
+            <div class="col-lg-6 btn-group my-3">
                 <div class="row px-4 border border-primary w-100">
-                    <div class="col-lg-2 d-flex align-items-center">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 d-flex align-items-center">
                         <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">
                     </div>
-                    <div class="col-lg-10 p-3">
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xl-10 p-3">
                         <a target="_blank" href="{{ route('front.activity.step', ['slug' => $slug, 'step' => 4]) }}">
                             <div class="py-1">
                                 <h4 class="text-dark">Sintak 4.</h4>
@@ -123,12 +123,12 @@
                 </div>
             </div>
 
-            <div class="col-lg-6 btn-group">
+            <div class="col-lg-6 btn-group my-3">
                 <div class="row px-4 border border-primary w-100">
-                    <div class="col-lg-2 d-flex align-items-center">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 d-flex align-items-center">
                         <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">
                     </div>
-                    <div class="col-lg-10 p-3">
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xl-10 p-3">
                         <a target="_blank" href="{{ route('front.activity.step', ['slug' => $slug, 'step' => 5]) }}">
                             <div class="py-1">
                                 <h4 class="text-dark">Sintak 5.</h4>
@@ -144,12 +144,12 @@
         </div>
 
         <div class="row p-2">
-            <div class="col-lg-6 btn-group">
+            <div class="col-lg-6 btn-group my-3">
                 <div class="row px-4 border border-primary w-100">
-                    <div class="col-lg-2 d-flex align-items-center">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 d-flex align-items-center">
                         <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">
                     </div>
-                    <div class="col-lg-10 p-3">
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xl-10 p-3">
                         <a target="_blank" href="{{ route('front.activity.step', ['slug' => $slug, 'step' => 6]) }}">
                             <div class="py-1">
                                 <h4 class="text-dark">Sintak 6.</h4>

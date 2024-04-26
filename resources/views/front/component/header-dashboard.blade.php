@@ -20,7 +20,7 @@
                     <a href="javascript:void(0);" class="text-white" id="parent-menu">Perangkat Pembelajaran</a>
                     <i class='bx bxs-chevron-down htmlcss-arrow arrow'></i>
                     <ul class="htmlCss-sub-menu sub-menu ps-0" id="wrapper-sub-menu">
-                        <li><a href="{{ route('learning') }}" class="" id="list-sub-menu">CP, TP & ATP</a></li>
+                        <li><a href="{{ route('front.learning-info') }}" class="" id="list-sub-menu">CP, TP & ATP</a></li>
                         <li><a href="{{ route('topic.index') }}" class="" id="list-sub-menu">Topik/Materi</a></li>
                         <li><a href="{{ route('potential.index') }}" class="" id="list-sub-menu">Potensi Lokal Gudeg</a></li>
                         @if ( Auth::user() != null )

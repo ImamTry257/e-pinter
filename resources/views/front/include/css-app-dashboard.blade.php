@@ -368,4 +368,12 @@
 
     /* end header home */
 
+    a.btn-information {
+        background-color: #004972;
+    }
+
+    .desc-step {
+        background-color: #D7EDF9;
+    }
+
 </style>

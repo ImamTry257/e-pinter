@@ -16,6 +16,7 @@ use App\Http\Controllers\front\EvaluationController;
 use App\Http\Controllers\front\ForgotPasswordController;
 use App\Http\Controllers\front\LearningActivityController;
 use App\Http\Controllers\front\LearningController;
+use App\Http\Controllers\front\LearningInfoController;
 use App\Http\Controllers\front\LoginController;
 use App\Http\Controllers\front\PotentialLocalGudegController;
 use App\Http\Controllers\front\ProfileController;
@@ -78,6 +79,8 @@ Route::middleware([AuthFrontMiddleware::class])->group(function () {
         Route::get('/activity/introduction/{slug}', [LearningActivityController::class, 'introduction'])->name('front.activity.introduction');
         Route::get('/activity/{slug}/{step}', [LearningActivityController::class, 'step'])->name('front.activity.step');
     });
+
+    Route::get('/learning-info', [LearningInfoController::class, 'index'])->name('front.learning-info');
 });
 
 # Learning activity
