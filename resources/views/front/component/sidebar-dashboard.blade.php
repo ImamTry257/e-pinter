@@ -1,5 +1,5 @@
 <!-- Main Sidebar Container -->
-<div class="main-sidebar sidebar-dark-primary position-relative col-lg-2" id="sidebar-dashboard" style="z-index: -2; position: relative;">
+<div class="main-sidebar sidebar-dark-primary position-relative col-lg-2" id="sidebar-dashboard" style="z-index: 2; position: relative;">
     <!-- Brand Logo -->
     <a href="{{ route('home') }}" class="brand-link d-none">
       <img src="{{ asset('assets/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">x
@@ -36,7 +36,7 @@
             <!-- Add icons to the links using the .nav-icon class
                 with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="" class="nav-link text-white @if (Route::current()->uri == 'dashboard') {{ 'active-menu' }} @endif">
+                    <a href="{{ route('front.dashboard') }}" class="nav-link text-white @if (Route::current()->uri == 'dashboard') {{ 'active-menu' }} @endif">
                         {{-- <i class="nav-icon fas fa-home"></i> --}}
                         <img src="{{ asset('assets/sidebar/sidebar-dashboard.svg') }}" width="25" alt="Dashboard">
                         <p class="ps-3">Dashboard</p>

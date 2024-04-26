@@ -27,9 +27,10 @@
     <div class="list-topic-content ms-2 p-5 col-lg-11 bg-white">
         <div class="row p-2 px-5">
             <div class="wrapper-step-1 pb-4">
-                <h5 class="pb-2 fw-bold">Langkah 3: Pembuatan proyek</h5>
+                <h5 class="pb-2 fw-bold">Langkah 4: Melakukan eksperimen menggunakan teknologi</h5>
+                <h1>Upload foto tiap langkah eksperimen menggunakan software Tracker</h1>
                 <div class="desc-step mt-3">
-                    <p class="text-justify p-3">Upload video proyek kelompok dengan tema “gerak lurus”</p>
+                    <p class="text-justify p-3">Upload foto langkah eksperimen kelompok dengan tema “gerak melingkar”</p>
                 </div>
 
                 <div class="" style="border-style: dashed;">
@@ -50,7 +51,7 @@
 
             <div class="col-lg-12 text-start">
                 <a href="javascript:void(0);" class="btn btn-save text-white">Simpan</a>
-                <a href="{{ route('front.activity.step', ['slug' => $slug, 'step' => 4]) }}" class="btn btn-information text-white">Selanjutnya Sintak 4.</a>
+                <a href="{{ route('front.activity.step', ['slug' => $slug, 'step' => 5]) }}" class="btn btn-information text-white">Selanjutnya Sintak 5.</a>
             </div>
         </div>
     </div>

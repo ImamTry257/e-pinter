@@ -17,7 +17,7 @@
 <div class="wrapper-dahboard-page col-lg-10 row">
     {{-- banner main --}}
     <div class="main-banner ms-2 col-lg-11 d-none">
-        <img src="{{ asset('assets/img-pemb2.svg') }}" alt="" style="width: 100%;">
+        <img src="{{ asset('assets/img-pemb1.svg') }}" alt="" style="width: 100%;">
     </div>
 
     <div class="list-topic-content ms-2 p-5 col-lg-11 bg-white">

@@ -29,7 +29,7 @@
             <div class="wrapper-step-1 pb-4">
                 <h5 class="pb-2 fw-bold">Langkah 3: Pembuatan proyek</h5>
                 <div class="desc-step mt-3">
-                    <p class="text-justify p-3">Upload video proyek kelompok dengan tema “gerak lurus”</p>
+                    <p class="text-justify p-3">Upload video proyek kelompok dengan tema “gerak parabola”</p>
                 </div>
 
                 <div class="" style="border-style: dashed;">

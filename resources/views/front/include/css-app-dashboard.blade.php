@@ -349,7 +349,7 @@
         position: relative;
         left: 0;
         right: 0;
-        z-index: -2;
+        bottom: 0;
     }
 
     div.wrapper-footer h2.title-content-footer {
