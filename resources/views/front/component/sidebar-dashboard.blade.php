@@ -44,7 +44,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="" class="nav-link text-white @if (Route::current()->uri == 'admin/learning-activity') {{ 'active-menu' }} @endif">
+                    <a href="{{ route('site-home.index') }}" class="nav-link text-white @if (Route::current()->uri == 'admin/learning-activity') {{ 'active-menu' }} @endif">
                         {{-- <i class="nav-icon fas fa-book"></i> --}}
                         <img src="{{ asset('assets/sidebar/sidebar-site-home.svg') }}" width="25" alt="Site Home">
                         <p class="ps-3">Site Home</p>
@@ -52,7 +52,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="" class="nav-link text-white @if (Route::current()->uri == 'admin/result-learning-activity') {{ 'active-menu' }} @endif">
+                    <a href="{{ route('physics-info.index') }}" class="nav-link text-white @if (Route::current()->uri == 'admin/result-learning-activity') {{ 'active-menu' }} @endif">
                         {{-- <i class="nav-icon fas fa-table"></i> --}}
                         <img src="{{ asset('assets/sidebar/sidebar-physics-info.svg') }}" width="25" alt="Physics Info">
                         <p class="ps-3">Physics Info</p>

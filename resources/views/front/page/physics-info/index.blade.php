@@ -6,13 +6,8 @@
             text-align: center
         }
 
-        span, li, ol.atp li.sub-list {
-            line-height: 35px;
-            font-size: 19px;
-        }
-
-        ol.atp li.sub-list {
-            list-style-type: disc;
+        span {
+            font-size: 27px;
         }
     </style>
 @endsection
@@ -26,11 +21,11 @@
         <img src="{{ asset('assets/physics-info.svg') }}" alt="" style="width: 100%;">
     </div>
 
-    <div class="list-topic-content ms-2 p-5 col-lg-11 bg-white">
+    <div class="card list-topic-content ms-3 mt-4 p-5 col-lg-11 bg-white">
         <div class="title-list row">
             <div class="col-lg-12">
-                <h2 class="text-center fw-bold py-3">Tracker Video Analysis</h2>
-                <span class="desc-step text-justify d-block">
+                <h1 class="text-center fw-bold py-3">Tracker Video Analysis</h1>
+                <span class="text-justify d-block">
                     <b>Pada akhir fase F, peserta didik mampu menerapkan konsep dan prinsip vektor kedalam kinematika</b> dan dinamika gerak partikel, usaha dan energi, fluida dinamis, getaran harmonis, gelombang bunyi dan gelombang cahaya dalam menyelesaikan masalah, serta menerapkan prinsip dan konsep energi kalor dan termodinamika dengan berbagai perubahannya dalam mesin kalor. Peserta didik mampu menerapkan konsep dan prinsip kelistrikan (baik statis maupun dinamis) dan kemagnetan dalam berbagai penyelesaian masalah dan berbagai produk teknologi, menerapkan konsep dan prinsip gejala gelombang elektromagnetik dalam menyelesaikan masalah. Peserta didik mampu menganalisis keterkaitan antara berbagai besaran fisis pada teori relativitas khusus, gejala kuantum dan menunjukkan penerapan konsep fisika inti dan radioaktivitas dalam kehidupan sehari-hari dan teknologi. Peserta didik mampu memberi penguatan pada aspek fisika sesuai dengan minat untuk ke perguruan tinggi yang berhubungan dengan bidang fisika. Melalui kerja ilmiah juga dibangun sikap ilmiah dan profil pelajar pancasila khususnya mandiri, inovatif, bernalar kritis, kreatif dan bergotong royong.
                 </span>
             </div>

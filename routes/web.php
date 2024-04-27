@@ -25,6 +25,7 @@ use App\Http\Controllers\front\RegisterController;
 use App\Http\Controllers\front\SainsInfoController;
 use App\Http\Controllers\front\TopicController;
 use App\Http\Controllers\PhysicsInfoController;
+use App\Http\Controllers\SiteHomeController;
 use App\Http\Middleware\AuthConsoleMiddleware;
 use App\Http\Middleware\AuthFrontMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -101,6 +102,9 @@ Route::get('/potential/detail/{slug}', [PotentialLocalGudegController::class, 'd
 # Sains Info
 Route::get('/sains-info', [SainsInfoController::class, 'index'])->name('sains-info.index');
 Route::get('/sains-info/detail/{slug}', [SainsInfoController::class, 'detail'])->name('sains-info.detail');
+
+# Site Home
+Route::get('/site-home', [SiteHomeController::class, 'index'])->name('site-home.index');
 
 # Physics Info
 Route::get('/physics-info', [PhysicsInfoController::class, 'index'])->name('physics-info.index');
