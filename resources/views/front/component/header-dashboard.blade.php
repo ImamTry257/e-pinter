@@ -30,14 +30,14 @@
                         <li><a href="{{ route('reflection') }}" class="" id="list-sub-menu">Refleksi</a></li>
                     </ul>
                 </li>
-                <li><a href="{{ url('beranda') }}" class="text-white">Web Guide</a></li>
+                <li><a href="{{ url('beranda') }}" class="text-white d-flex align-items-center h-50">Web Guide</a></li>
                 @if ( Auth::user() != null )
                 <li>
                     <img src="{{ asset('assets/user-icon.svg') }}" id="profile-icon" class="bg-white profile-arrow" width="30" alt="" style="border-radius: 19px;padding: 5px 5px 5px 5px;">
                     {{-- <i class='bx bxs-chevron-down htmlcss-arrow arrow'></i> --}}
                     <ul class="profile-sub-menu sub-menu ps-0" id="wrapper-sub-menu" style="left: -60px;">
                         <li>
-                            <span class="text-white d-flex align-items-center h-50 d-flex align-items-center h-50">{{ Auth::user()->name; }}</span>
+                            <span class="text-white d-flex align-items-center h-50">{{ Auth::user()->name; }}</span>
                         </li>
                         <li>
                             <span class="text-white" onclick="event.preventDefault();

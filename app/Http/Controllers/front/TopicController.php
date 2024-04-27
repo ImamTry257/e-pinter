@@ -12,7 +12,7 @@ class TopicController extends Controller
      */
     public function index()
     {
-        return view('front.page.topics.index');
+        return view('front.page.topics.index_v2');
     }
 
     /**

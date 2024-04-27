@@ -13,9 +13,9 @@
                 <i class='bx bx-x' ></i>
             </div>
             <ul class="links pt-4">
-                <li><a href="{{ url('beranda') }}">Home</a></li>
-                <li><a href="{{ url('about-us') }}">About Us</a></li>
-                <li><a href="{{ url('beranda') }}">Web Guide</a></li>
+                <li><a href="{{ url('beranda') }}" class="d-flex align-items-center h-50">Home</a></li>
+                <li><a href="{{ url('about-us') }}" class="d-flex align-items-center h-50">About Us</a></li>
+                <li><a href="{{ url('beranda') }}" class="d-flex align-items-center h-50">Web Guide</a></li>
                 @if ( Auth::user() != null )
                 <li><span class="text-dark fw-bold d-flex align-items-center h-50 d-flex align-items-center h-50">{{ Auth::user()->name; }}</span></li>
                 <li><i class="fa-regular fa-user"></i></li>
