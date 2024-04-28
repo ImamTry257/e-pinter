@@ -22,7 +22,7 @@
     </div>
 
     <div class="card list-topic-content ms-3 mt-4 p-5 col-lg-11 bg-white">
-        <div class="title-list row">
+        <div class="title-list row d-flex justify-content-center">
             <div class="col-lg-12">
                 <h1 class="text-center fw-bold py-3">Tracker Video Analysis</h1>
                 <span class="text-justify d-block">
@@ -30,12 +30,12 @@
                 </span>
             </div>
 
-            <div class="col-lg-12 text-center pt-5">
-                <a href="https://physlets.org/tracker/" target="_blank" class="btn btn-information px-5 text-white w-50 fs-4">LINK DOWNLOAD SOFTWARE TRACKER</a>
+            <div class="col-lg-8 col-xl-7 col-sm-12 col-md-10 text-center pt-5">
+                <a href="https://physlets.org/tracker/" target="_blank" class="btn btn-information px-5 text-white w-100 fs-4">LINK DOWNLOAD SOFTWARE TRACKER</a>
             </div>
 
-            <div class="col-lg-12 text-center pt-2 pb-5">
-                <a href="" target="_blank" class="btn btn-information px-5 text-white w-50 fs-4">PANDUAN PENGGUNAAN SOFTWARE TRACKER</a>
+            <div class="col-lg-8 col-xl-7 col-sm-12 col-md-10 text-center pt-2 pb-5">
+                <a href="" target="_blank" class="btn btn-information px-5 text-white w-100 fs-4">PANDUAN PENGGUNAAN SOFTWARE TRACKER</a>
             </div>
         </div>
 

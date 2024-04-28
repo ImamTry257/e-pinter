@@ -83,6 +83,12 @@ Route::middleware([AuthFrontMiddleware::class])->group(function () {
     });
 
     Route::get('/learning-info', [LearningInfoController::class, 'index'])->name('front.learning-info');
+
+    # Site Home
+    Route::get('/site-home', [SiteHomeController::class, 'index'])->name('site-home.index');
+
+    # Physics Info
+    Route::get('/physics-info', [PhysicsInfoController::class, 'index'])->name('physics-info.index');
 });
 
 # Learning activity
@@ -102,12 +108,6 @@ Route::get('/potential/detail/{slug}', [PotentialLocalGudegController::class, 'd
 # Sains Info
 Route::get('/sains-info', [SainsInfoController::class, 'index'])->name('sains-info.index');
 Route::get('/sains-info/detail/{slug}', [SainsInfoController::class, 'detail'])->name('sains-info.detail');
-
-# Site Home
-Route::get('/site-home', [SiteHomeController::class, 'index'])->name('site-home.index');
-
-# Physics Info
-Route::get('/physics-info', [PhysicsInfoController::class, 'index'])->name('physics-info.index');
 
 # Topic
 Route::get('/topic', [TopicController::class, 'index'])->name('topic.index');

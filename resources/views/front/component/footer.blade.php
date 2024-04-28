@@ -16,16 +16,7 @@
             <h2 class="title-content-footer text-white">Tentang Kami</h2>
             <ul class="list-unstyled text-white">
                 <li>
-                    <a href="{{ route('learning-activity.index') }}" class="text-decoration-none text-white">Kegiatan Pembelajaran</a>
-                </li>
-                <li>
-                    <a href="{{ route('evaluation') }}" class="text-decoration-none text-white">Evaluasi</a>
-                </li>
-                <li>
-                    <a href="{{ route('reflection') }}" class="text-decoration-none text-white">Refleksi</a>
-                </li>
-                <li>
-                    <a href="{{ route('sains-info.detail', ['slug' => ( !empty ( $link_sains_info ) ) ? $link_sains_info->slug : 'not-found']) }}" class="text-decoration-none text-white">Sains Info</a>
+                    <a href="{{ route('learning-activity.index') }}" class="text-decoration-none text-white">Pengembang Website</a>
                 </li>
             </ul>
         </div>
@@ -34,7 +25,7 @@
     <div class="col-md-3 d-flex justify-content-evenly">
         <div>
             <h2 class="title-content-footer text-white">Hubungi Kami</h2>
-            <p class="desc-content-footer text-white">E-mail: <br/>ragilsaputri.2022@student.uny.ac.id</p>
+            <p class="desc-content-footer text-white">E-mail: <br/>adityayoga.2020@student.uny.ac.id</p>
         </div>
     </div>
 
