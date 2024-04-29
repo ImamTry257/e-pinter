@@ -12,7 +12,7 @@ class EvaluationController extends Controller
      */
     public function index()
     {
-        return view('front.page.evaluation.index');
+        return view('front.page.evaluation.index_v2');
     }
 
     /**

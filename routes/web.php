@@ -82,6 +82,7 @@ Route::middleware([AuthFrontMiddleware::class])->group(function () {
         Route::get('/activity/{slug}/{step}', [LearningActivityController::class, 'step'])->name('front.activity.step');
     });
 
+    # Learning Info
     Route::get('/learning-info', [LearningInfoController::class, 'index'])->name('front.learning-info');
 
     # Site Home
@@ -89,6 +90,21 @@ Route::middleware([AuthFrontMiddleware::class])->group(function () {
 
     # Physics Info
     Route::get('/physics-info', [PhysicsInfoController::class, 'index'])->name('physics-info.index');
+
+    # Learning Activity from header
+    Route::get('/activity', [FrontDashboardController::class, 'index'])->name('front.learning.activity');
+
+    # Evaluation Page
+    Route::get('/evaluation', [EvaluationController::class, 'index'])->name('evaluation');
+
+    # Book Model
+    Route::get('/book-model', [LearningInfoController::class, 'bookModel'])->name('book.model');
+
+    # Info E-Pinter
+    Route::get('/info-epinter', [LearningInfoController::class, 'infoEpinter'])->name('info.epinter');
+
+    # Info Trakcer
+    Route::get('/info-tracker', [LearningInfoController::class, 'infoTracker'])->name('info.trakcer');
 });
 
 # Learning activity
@@ -96,7 +112,6 @@ Route::middleware([AuthFrontMiddleware::class])->group(function () {
     Route::get('/learning-activity', [LearningActivityController::class, 'index'])->name('learning-activity.index');
     Route::post('/learning-activity/store', [LearningActivityController::class, 'store'])->name('learning-activity.store');
     Route::post('/learning-activity/get_answer', [LearningActivityController::class, 'get_answer'])->name('learning-activity.get_answer');
-    Route::get('/evaluation', [EvaluationController::class, 'index'])->name('evaluation');
 });
 
 Route::get('/learning-activity/success', [LearningActivityController::class, 'success'])->name('learning-activity.success');
