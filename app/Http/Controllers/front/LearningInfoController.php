@@ -14,7 +14,7 @@ class LearningInfoController extends Controller
 
     public function bookModel()
     {
-        return view("front.page.learning-info.book-module");
+        return view("front.page.learning-info.book-model");
     }
 
     public function infoEpinter()

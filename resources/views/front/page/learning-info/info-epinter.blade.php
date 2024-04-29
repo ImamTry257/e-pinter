@@ -24,13 +24,11 @@
         <div class="row p-2 px-5">
             <div class="wrapper-step-1 pb-4 text-center">
                 <h2>PETUNJUK PENGGUNAAN E-LEARNING</h2>
-                <div class="text-center">
-                    <img src="{{ asset('assets/peta_konsep.svg') }}" alt="">
-                </div>
+                <div class="text-center" id="file-pdf" aria-label="info-epinter"></div>
             </div>
         </div>
     </div>
 </div>
 
-@include('front.page.learning-activity.gerak-lurus.script.js-gm')
+@include('front.page.learning-info.script.js')
 @endsection
