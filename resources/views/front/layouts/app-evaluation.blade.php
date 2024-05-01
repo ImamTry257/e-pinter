@@ -9,30 +9,15 @@
 
     <title>{{ config('app.name', 'E-Pinter') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    @include('front.include.layouts-dashboard.css-head')
-
-    <style>
-        .btn-save {
-            background-color: #00BC29;
-        }
-    </style>
-
-    <!-- include summernote css/js-->
-    <script type="text/javascript" src="{{ asset('website/js/bootstrap.bundle.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('website/js/jquery-3.6.0.min.js') }}"></script>
+    @include('front.include.layouts-evaluation.css-head')
 </head>
 <body>
     <div id="app" class="h-100">
-        <div class="wrapper-main-header">
-            @include('front.component.header-dashboard')
+        <div class="wrapper-main-header" style="z-index: 1000;">
+            @include('front.component.header')
         </div>
 
-        <div class="wrapper-main-content my-3 row">
-            @include('front.component.sidebar-dashboard')
-
+        <div class="h-100">
             @yield('content')
         </div>
 
@@ -58,7 +43,6 @@
 
         // sidebar open close js code
         let navLinks = document.querySelector(".nav-links");
-        console.log(navLinks)
         let menuOpenBtn = document.querySelector(".navbar .bx-menu");
         let menuCloseBtn = document.querySelector(".nav-links .bx-x");
         menuOpenBtn.onclick = function() {
@@ -70,10 +54,22 @@
 
 
         // sidebar submenu open close js code
-        console.log($(".htmlcss-arrow"))
-        $(".htmlcss-arrow, #parent-menu").on('click', function() {
+        let htmlcssArrow = document.querySelector(".htmlcss-arrow");
+            htmlcssArrow.onclick = function() {
             navLinks.classList.toggle("show1");
-        })
+        }
+        // let moreArrow = document.querySelector(".more-arrow");
+        //     moreArrow.onclick = function() {
+        //     navLinks.classList.toggle("show2");
+        // }
+        // let jsArrow = document.querySelector(".js-arrow");
+        //     jsArrow.onclick = function() {
+        //     navLinks.classList.toggle("show3");
+        // }
     </script>
+
+    <script src="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/owl.carousel.js"></script>
+
+    @yield('script')
 </body>
 </html>

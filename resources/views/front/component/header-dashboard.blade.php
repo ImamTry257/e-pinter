@@ -34,7 +34,6 @@
                 @if ( Auth::user() != null )
                 <li>
                     <img src="{{ asset('assets/user-icon.svg') }}" id="profile-icon" class="bg-white profile-arrow" width="30" alt="" style="border-radius: 19px;padding: 5px 5px 5px 5px;">
-                    {{-- <i class='bx bxs-chevron-down htmlcss-arrow arrow'></i> --}}
                     <ul class="profile-sub-menu sub-menu ps-0" id="wrapper-sub-menu" style="left: -60px;">
                         <li>
                             <span class="text-white d-flex align-items-center h-50">{{ Auth::user()->name; }}</span>

@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css">
 
 {{-- include css --}}
-@include('front.include.css-app-dashboard')
+@include('front.include.layouts-dashboard.css-app-dashboard')
 
 <link href="{{ asset('assets/plugins/summernote/summernote-bs4.css') }}" rel="stylesheet">
 
