@@ -12,6 +12,7 @@ use App\Http\Controllers\front\AboutController;
 use App\Http\Controllers\front\BerandaController;
 use App\Http\Controllers\front\ContactController;
 use App\Http\Controllers\front\DashboardController as FrontDashboardController;
+use App\Http\Controllers\front\DiscussController;
 use App\Http\Controllers\front\EvaluationController;
 use App\Http\Controllers\front\ForgotPasswordController;
 use App\Http\Controllers\front\LearningActivityController;
@@ -105,6 +106,9 @@ Route::middleware([AuthFrontMiddleware::class])->group(function () {
 
     # Info Trakcer
     Route::get('/info-tracker', [LearningInfoController::class, 'infoTracker'])->name('info.trakcer');
+
+    # Disccuss
+    Route::get('/discuss', [DiscussController::class, 'index'])->name('discuss');
 });
 
 # Learning activity

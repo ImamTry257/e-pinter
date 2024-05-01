@@ -75,5 +75,7 @@
             navLinks.classList.toggle("show1");
         })
     </script>
+
+    @yield('script')
 </body>
 </html>

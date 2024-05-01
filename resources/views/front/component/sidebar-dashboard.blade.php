@@ -59,27 +59,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link text-white @if (Route::current()->uri == 'admin/sains-info') {{ 'active-menu' }} @endif">
+                    <a href="{{ route('discuss') }}" class="nav-link text-white @if (Route::current()->uri == 'admin/sains-info') {{ 'active-menu' }} @endif">
                         {{-- <i class="nav-icon fas fa-info"></i> --}}
                         <img src="{{ asset('assets/sidebar/sidebar-diskusi.svg') }}" width="25" alt="Site Home">
                         <p class="ps-3">Diskusi</p>
                     </a>
                 </li>
-
-                {{-- <li class="nav-item">
-                    <a href="" class="nav-link text-white @if (Route::current()->uri == 'admin/potential') {{ 'active-menu' }} @endif">
-                        <i class="nav-icon fas fa-folder"></i>
-                        <p>Potensial Gudeg Lokal</p>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="" class="nav-link text-white @if (Route::current()->uri == 'admin/user') {{ 'active-menu' }} @endif">
-                        <i class="nav-icon fas fa-book"></i>
-                        <p>Data Siswa</p>
-                    </a>
-                </li> --}}
-
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
