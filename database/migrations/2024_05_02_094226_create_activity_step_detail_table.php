@@ -13,7 +13,19 @@ return new class extends Migration
     {
         Schema::create('activity_step_detail', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_group_id');
+            $table->unsignedBigInteger('activity_master_id');
+            $table->unsignedBigInteger('activity_step_id');
+            $table->text('answers');
+            $table->integer('detail_progress');
+            $table->integer('created_by');
+            $table->integer('updated_by');
+            $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('user_group_id')->references('id')->on('user_group');
+            $table->foreign('activity_master_id')->references('id')->on('activity_master');
+            $table->foreign('activity_step_id')->references('id')->on('activity_step');
         });
     }
 

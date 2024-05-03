@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('activity_step', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->text('descriptions');
+            $table->string('status');
+            $table->integer('created_by');
+            $table->integer('updated_by');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

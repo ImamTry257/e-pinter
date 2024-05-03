@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('activity_master', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->text('descriptions');
+            $table->string('images');
+            $table->string('status');
+            $table->integer('created_by');
+            $table->integer('updated_by');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

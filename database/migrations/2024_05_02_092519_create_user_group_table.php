@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('user_group', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->nullable(true);
+            $table->string('status')->nullable(true);
+            $table->integer('created_by');
+            $table->integer('updated_by');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
