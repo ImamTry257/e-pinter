@@ -4,6 +4,7 @@ namespace App\Http\Controllers\front;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -15,21 +16,26 @@ class DashboardController extends Controller
         // list learning activity
         $data['list_activity'] = [
             [
-                'title' => 'Gerak Lurus',
-                'slug'  => 'gerak-lurus',
-                'image' => 'list-kinematika-pemb1.svg'
+                'title'         => 'Gerak Lurus',
+                'slug'          => 'gerak-lurus',
+                'image'         => 'list-kinematika-pemb1.svg',
+                'user_group_id' => 1
             ],
             [
-                'title' => 'Gerak Parabola',
-                'slug'  => 'gerak-parabola',
-                'image' => 'list-kinematika-pemb2.svg'
+                'title'         => 'Gerak Parabola',
+                'slug'          => 'gerak-parabola',
+                'image'         => 'list-kinematika-pemb2.svg',
+                'user_group_id' => 2
             ],
             [
-                'title' => 'Gerak Melingkar',
-                'slug'  => 'gerak-melingkar',
-                'image' => 'list-kinematika-pemb3.svg'
+                'title'         => 'Gerak Melingkar',
+                'slug'          => 'gerak-melingkar',
+                'image'         => 'list-kinematika-pemb3.svg',
+                'user_group_id' => 3
             ]
         ];
+
+        $data['user'] = Auth::user();
 
         return view('front.page.dashboard.index', $data);
     }

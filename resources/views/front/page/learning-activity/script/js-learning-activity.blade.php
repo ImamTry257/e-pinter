@@ -30,7 +30,7 @@
         $(element).addClass('active')
     }
 
-    
+
 
     $('a.btn-save').on('click', function(e){
         e.preventDefault()
@@ -103,7 +103,7 @@
                         window.location.href = "{{ route('learning-activity.success') }}"
                         return false
                     }
-                    
+
                     $('div.wrapper-alert').show()
                     $("html, body").animate({
                         scrollTop: 0
@@ -141,7 +141,7 @@
     });
 
     function get_answer(step_id, list_input){
-        
+
         $.ajax({
             type: "POST", // send ajax with post
             url: "{{ route('learning-activity.get_answer') }}",
@@ -162,7 +162,7 @@
                     list_input.map( ( index, data ) => {
 
                         if ( (response.data).length != 0 ) {
-                            $(data).val(response.data[index].answer)   
+                            $(data).val(response.data[index].answer)
                         }
 
                         $(data).summernote()

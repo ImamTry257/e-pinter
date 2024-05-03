@@ -14,7 +14,7 @@
 
     {{-- banner main --}}
     <div class="main-banner ms-2 col-lg-11">
-        <img src="{{ asset('assets/') . '/' . $image }}" alt="" style="width: 100%;">
+        <img src="{{ asset('assets/') . '/' . $activity_selected['image'] }}" alt="" style="width: 100%;">
     </div>
 
     <div class="list-topic-content ms-2 p-5 col-lg-11 bg-white">
@@ -31,7 +31,7 @@
                         <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">
                     </div>
                     <div class="col-lg-10 col-md-10 col-sm-10 col-xl-10 p-3">
-                        <a href="{{ route('front.activity.introduction', ['slug' => $slug]) }}">
+                        <a href="{{ route('front.activity.introduction', ['slug' => $activity_selected["slug"]]) }}">
                             <div class="py-1">
                                 <h4 class="text-dark">Pengantar Pembelajaran</h4>
                                 <span class="text-secondary">Kemajuan Topik </span>
@@ -50,7 +50,7 @@
                         <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">
                     </div>
                     <div class="col-lg-10 col-md-10 col-sm-10 col-xl-10 p-3">
-                        <a target="_blank" href="{{ route('front.activity.step', ['slug' => $slug, 'step' => 1]) }}">
+                        <a target="_blank" href="{{ route('front.activity.step', ['slug' => $activity_selected["slug"], 'step' => 1]) }}">
                             <div class="py-1">
                                 <h4 class="text-dark">Sintak 1.</h4>
                                 <span class="text-secondary">Memberikan pertanyaan esensial dari fenomena sekitar</span>
@@ -70,7 +70,7 @@
                         <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">
                     </div>
                     <div class="col-lg-10 col-md-10 col-sm-10 col-xl-10 p-3">
-                        <a target="_blank" href="{{ route('front.activity.step', ['slug' => $slug, 'step' => 2]) }}">
+                        <a target="_blank" href="{{ route('front.activity.step', ['slug' => $activity_selected["slug"], 'step' => 2]) }}">
                             <div class="py-1">
                                 <h4 class="text-dark">Sintak 2.</h4>
                                 <span class="text-secondary">Menyusun jadwal dan merancang proyek berkelompok</span>
@@ -89,7 +89,7 @@
                         <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">
                     </div>
                     <div class="col-lg-10 col-md-10 col-sm-10 col-xl-10 p-3">
-                        <a target="_blank" href="{{ route('front.activity.step', ['slug' => $slug, 'step' => 3]) }}">
+                        <a target="_blank" href="{{ route('front.activity.step', ['slug' => $activity_selected["slug"], 'step' => 3]) }}">
                             <div class="py-1">
                                 <h4 class="text-dark">Sintak 3.</h4>
                                 <span class="text-secondary">Pembuatan proyek</span>
@@ -110,7 +110,7 @@
                         <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">
                     </div>
                     <div class="col-lg-10 col-md-10 col-sm-10 col-xl-10 p-3">
-                        <a target="_blank" href="{{ route('front.activity.step', ['slug' => $slug, 'step' => 4]) }}">
+                        <a target="_blank" href="{{ route('front.activity.step', ['slug' => $activity_selected["slug"], 'step' => 4]) }}">
                             <div class="py-1">
                                 <h4 class="text-dark">Sintak 4.</h4>
                                 <span class="text-secondary">Melakukan eksperimen menggunakan teknologi</span>
@@ -129,7 +129,7 @@
                         <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">
                     </div>
                     <div class="col-lg-10 col-md-10 col-sm-10 col-xl-10 p-3">
-                        <a target="_blank" href="{{ route('front.activity.step', ['slug' => $slug, 'step' => 5]) }}">
+                        <a target="_blank" href="{{ route('front.activity.step', ['slug' => $activity_selected["slug"], 'step' => 5]) }}">
                             <div class="py-1">
                                 <h4 class="text-dark">Sintak 5.</h4>
                                 <span class="text-secondary">Penyusunan laporan</span>
@@ -150,7 +150,7 @@
                         <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">
                     </div>
                     <div class="col-lg-10 col-md-10 col-sm-10 col-xl-10 p-3">
-                        <a target="_blank" href="{{ route('front.activity.step', ['slug' => $slug, 'step' => 6]) }}">
+                        <a target="_blank" href="{{ route('front.activity.step', ['slug' => $activity_selected["slug"], 'step' => 6]) }}">
                             <div class="py-1">
                                 <h4 class="text-dark">Sintak 6.</h4>
                                 <span class="text-secondary">Refleksi</span>

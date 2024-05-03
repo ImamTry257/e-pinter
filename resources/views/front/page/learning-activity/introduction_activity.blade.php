@@ -21,10 +21,47 @@
             {!! $content !!}
 
             <div class="col-lg-12 text-end">
-                <a href="{{ route('front.activity.step', ['slug' => $slug, 'step' => 1]) }}" class="btn btn-information text-white">Selanjutnya Sintak 1.</a>
+                <a href="javascript:void(0);" onclick="nextProgress()" class="btn btn-information text-white">Selanjutnya Sintak 1.</a>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    function nextProgress() {
+        $.ajax({
+            type: "POST", // send ajax with post
+            url: "{{ route('front.activity.next-progress') }}",
+            dataType: 'json',
+            data: {
+                "user_group_id"         : "{{ $user->user_group_id }}",
+                "activity_master_id"    : "{{ $user->user_group_id }}",
+                "activity_step_id"      : 0,
+                "detail_progress"       : 100,
+                "intro"                 : true
+            },
+            timeout: 2000,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            beforeSend: function(xhr, obj) {
+
+            },
+            success: function(response) {
+                console.log(response)
+
+            },
+            error: function(error) {
+                // if(error.status == 419 || error.status == 500) {
+                //     location.href = '{{ route("login") }}'
+                // }
+
+                if (error.statusText == 'timeout') {
+                    // save_data();
+                }
+            }
+        })
+    }
+</script>
 
 @endsection

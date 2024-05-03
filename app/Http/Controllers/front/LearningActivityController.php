@@ -118,50 +118,72 @@ class LearningActivityController extends Controller
         // check slug is existing?
         $data['slug'] = $slug;
 
-        // list learning activity
-        $data['list_activity'] = [
-            [
-                'title' => 'Gerak Lurus',
-                'slug'  => 'gerak-lurus',
-                'image' => 'img-pemb1.svg'
-            ],
-            [
-                'title' => 'Gerak Parabola',
-                'slug'  => 'gerak-parabola',
-                'image' => 'img-pemb2.svg'
-            ],
-            [
-                'title' => 'Gerak Melingkar',
-                'slug'  => 'gerak-melingkar',
-                'image' => 'img-pemb3.svg'
-            ]
-        ];
+        // list learning activity selected
+        $data['activity_selected'] = $this->getContentListActivity(Auth::user()->user_group_id);
 
-        $data['image'] = 'img-pemb1.svg';
-        if (  $slug == 'gerak-pola' ) :
-            $data['image'] = 'img-pemb2.svg';
-        elseif (  $slug == 'gerak-melingkar' ) :
-            $data['image'] = 'img-pemb3.svg';
-        endif ;
+        // check validate url parameter slug dengan user_group_id
+        if ( $slug != $data['activity_selected']['slug'] ) :
+            return redirect(route('front.dashboard'));
+        endif;
+
+        $data['user'] = Auth::user();
 
         // return view
         return view('front.page.learning-activity.list_activity', $data);
     }
 
+
     public function introduction (Request $request, $slug)
     {
         $data['slug'] = $slug;
 
+        // list learning activity selected
+        $data['activity_selected'] = $this->getContentListActivity(Auth::user()->user_group_id);
+
+        // check validate url parameter slug dengan user_group_id
+        if ( $slug != $data['activity_selected']['slug'] ) :
+            return redirect(route('front.dashboard'));
+        endif;
+
         $data['content'] = $this->getContentIntro($slug);
+
+        $data['user'] = Auth::user();
 
         // return view
         return view('front.page.learning-activity.introduction_activity', $data);
+    }
+
+    public function nextProgress(Request $request)
+    {
+        // dd($request->all());
+
+        // update progress on step detail
+        $param_update = [
+            'user_group_id'         => $request->user_group_id,
+            'activity_master_id'    => $request->activity_master_id,
+            'activity_step_id'      => $request->activity_step_id,
+            'answer'                => ( $request->intro ) ? null : $request->answer,
+            'detail_progress'       => $request->detail_progress
+        ];
+
+        // check data
+        // $data_step_detail =
+
+        dd($param_update);
     }
 
     public function step(Request $request, $slug, $step)
     {
         $data['slug'] = $slug;
         $data['step'] = $step;
+
+        // list learning activity selected
+        $data['activity_selected'] = $this->getContentListActivity(Auth::user()->user_group_id);
+
+        // check validate url parameter slug dengan user_group_id
+        if ( $slug != $data['activity_selected']['slug'] ) :
+            return redirect(route('front.dashboard'));
+        endif;
 
         $path_view = 'front.page.learning-activity.gerak-lurus.step' . $step;
 
@@ -170,6 +192,8 @@ class LearningActivityController extends Controller
         elseif ( $slug == 'gerak-parabola' ) :
             $path_view = 'front.page.learning-activity.gerak-parabola.step' . $step;
         endif ;
+
+        $data['user'] = Auth::user();
 
         return view($path_view, $data);
     }

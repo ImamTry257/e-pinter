@@ -80,6 +80,7 @@ Route::middleware([AuthFrontMiddleware::class])->group(function () {
         Route::get('/', [FrontDashboardController::class, 'index'])->name('front.dashboard');
         Route::get('/activity/{slug}', [LearningActivityController::class, 'activity'])->name('front.activity');
         Route::get('/activity/introduction/{slug}', [LearningActivityController::class, 'introduction'])->name('front.activity.introduction');
+        Route::post('/next-progress', [LearningActivityController::class, 'nextProgress'])->name('front.activity.next-progress');
         Route::get('/activity/{slug}/{step}', [LearningActivityController::class, 'step'])->name('front.activity.step');
     });
 
