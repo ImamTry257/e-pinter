@@ -36,8 +36,8 @@
                                 <h4 class="text-dark">Pengantar Pembelajaran</h4>
                                 <span class="text-secondary">Kemajuan Topik </span>
                             </div>
-                            <div>
-                                <span class="text-center w-100 border border-primary px-1 text-secondary d-block">0%</span>
+                            <div class="bg-white border border-primary">
+                                <span class="text-start px-1 text-secondary d-block" style="width: 50%;">0%</span>
                             </div>
                         </a>
                     </div>
@@ -55,8 +55,8 @@
                                 <h4 class="text-dark">Sintak 1.</h4>
                                 <span class="text-secondary">Memberikan pertanyaan esensial dari fenomena sekitar</span>
                             </div>
-                            <div>
-                                <span class="text-center w-100 border border-primary px-1 text-secondary d-block">0%</span>
+                            <div class="bg-white border border-primary">
+                                <span class="text-start px-1 text-secondary d-block" style="width: 50%;">0%</span>
                             </div>
                         </a>
                     </div>
@@ -75,8 +75,8 @@
                                 <h4 class="text-dark">Sintak 2.</h4>
                                 <span class="text-secondary">Menyusun jadwal dan merancang proyek berkelompok</span>
                             </div>
-                            <div>
-                                <span class="text-center w-100 border border-primary px-1 text-secondary d-block">0%</span>
+                            <div class="bg-white border border-primary">
+                                <span class="text-start px-1 text-secondary d-block" style="width: 50%;">0%</span>
                             </div>
                         </a>
                     </div>
@@ -94,8 +94,8 @@
                                 <h4 class="text-dark">Sintak 3.</h4>
                                 <span class="text-secondary">Pembuatan proyek</span>
                             </div>
-                            <div>
-                                <span class="text-center w-100 border border-primary px-1 text-secondary d-block">0%</span>
+                            <div class="bg-white border border-primary">
+                                <span class="text-start px-1 text-secondary d-block" style="width: 50%;">0%</span>
                             </div>
                         </a>
                     </div>
@@ -115,8 +115,8 @@
                                 <h4 class="text-dark">Sintak 4.</h4>
                                 <span class="text-secondary">Melakukan eksperimen menggunakan teknologi</span>
                             </div>
-                            <div>
-                                <span class="text-center w-100 border border-primary px-1 text-secondary d-block">0%</span>
+                            <div class="bg-white border border-primary">
+                                <span class="text-start px-1 text-secondary d-block" style="width: 50%;">0%</span>
                             </div>
                         </a>
                     </div>
@@ -134,8 +134,8 @@
                                 <h4 class="text-dark">Sintak 5.</h4>
                                 <span class="text-secondary">Penyusunan laporan</span>
                             </div>
-                            <div>
-                                <span class="text-center w-100 border border-primary px-1 text-secondary d-block">0%</span>
+                            <div class="bg-white border border-primary">
+                                <span class="text-start px-1 text-secondary d-block" style="width: 50%;">0%</span>
                             </div>
                         </a>
                     </div>
@@ -155,8 +155,8 @@
                                 <h4 class="text-dark">Sintak 6.</h4>
                                 <span class="text-secondary">Refleksi</span>
                             </div>
-                            <div>
-                                <span class="text-center w-100 border border-primary px-1 text-secondary d-block">0%</span>
+                            <div class="bg-white border border-primary">
+                                <span class="text-start px-1 text-secondary d-block" style="width: 50%;">0%</span>
                             </div>
                         </a>
                     </div>

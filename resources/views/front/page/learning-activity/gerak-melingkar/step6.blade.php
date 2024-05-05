@@ -38,7 +38,7 @@
 
             <div class="col-lg-12 text-start">
                 <a href="javascript:void(0);" class="btn btn-save text-white">Simpan</a>
-                <a href="{{ route('front.activity', ['slug' => $slug]) }}" class="btn btn-information text-white">Evaluasi Kegiatan Pembelajaran </a>
+                <a href="{{ route('front.activity', ['slug' => $slug]) }}" id="btn-step-6" class="btn btn-information text-white">Evaluasi Kegiatan Pembelajaran </a>
             </div>
         </div>
     </div>

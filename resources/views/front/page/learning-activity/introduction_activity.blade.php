@@ -49,6 +49,9 @@
             },
             success: function(response) {
                 console.log(response)
+                if ( response.status ) {
+                    location.href = '{{ route("front.activity.step", ["slug" => $slug, "step" => 1]) }}'
+                }
 
             },
             error: function(error) {

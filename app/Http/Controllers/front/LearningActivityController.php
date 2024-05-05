@@ -128,6 +128,13 @@ class LearningActivityController extends Controller
 
         $data['user'] = Auth::user();
 
+        // get data progress step detail
+        $data['step_progress_detail'] = DB::table('activity_step_detail')
+                                        ->where('user_group_id', $data['user']->user_group_id)
+                                        ->get();
+
+        // dd($data);
+
         // return view
         return view('front.page.learning-activity.list_activity', $data);
     }
@@ -158,18 +165,78 @@ class LearningActivityController extends Controller
         // dd($request->all());
 
         // update progress on step detail
-        $param_update = [
+        $parameter = [
             'user_group_id'         => $request->user_group_id,
             'activity_master_id'    => $request->activity_master_id,
-            'activity_step_id'      => $request->activity_step_id,
-            'answer'                => ( $request->intro ) ? null : $request->answer,
-            'detail_progress'       => $request->detail_progress
+            'activity_step_id'      => ( $request->intro ) ? 1 : $request->activity_step_id,
+            'answers'               => ( $request->intro ) ? 'intro_step' : $request->answer,
+            'detail_progress'       => $request->detail_progress,
+            'created_by'            => Auth::user()->id,
+            'created_at'            => now()
         ];
 
-        // check data
-        // $data_step_detail =
+        // set structure for string json to parameter answer
+        if ( $request->intro ) :
+            $sjson['type'] = 'intro';
+            $sjson['presentase'] = 100;
+            $sjson['value'] = $parameter['answers'];
 
-        dd($param_update);
+            $parameter['answers'] = json_encode($sjson);
+
+            $parameter['detail_progress'] = $sjson['presentase'];
+        else :
+
+        endif ;
+
+        // check data
+        $data_step_detail = DB::table('activity_step_detail')
+                            ->where([
+                                'user_group_id' => $parameter['user_group_id'],
+                                'activity_master_id' => $parameter['activity_master_id'],
+                                'activity_step_id' => $parameter['activity_step_id']
+                            ])->first();
+
+        try {
+            if ( empty ( $data_step_detail ) ) :
+                // new record
+                $parameter['updated_by'] = 0;
+
+                DB::table('activity_step_detail')
+                    ->insert($parameter);
+            else :
+                // data update
+                $parameter['updated_by'] = Auth::user()->id;
+                $parameter['updated_at'] = now();
+
+                DB::table('activity_step_detail')
+                    ->where([
+                        'user_group_id' => $parameter['user_group_id'],
+                        'activity_master_id' => $parameter['activity_master_id'],
+                        'activity_step_id' => $parameter['activity_step_id']
+                    ])
+                    ->update($parameter);
+
+            endif ;
+
+            $response = [
+                'status'    => true,
+                'message'   => 'Progress Berhasil disimpan!'
+            ];
+
+            $code = 200;
+        } catch (\Throwable $th) {
+            //throw $th;
+            dd($th->getMessage());
+            $response = [
+                'status'    => false,
+                'message'   => 'Progress Gagal disimpan!'
+            ];
+
+            $code = 500;
+        }
+
+        // dd($parameter, $data_step_detail);
+        return response()->json($response, $code);
     }
 
     public function step(Request $request, $slug, $step)
