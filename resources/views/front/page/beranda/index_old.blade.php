@@ -12,7 +12,7 @@
 
 
         div.wrapper-title {
-            background-image: url('{{ asset("website/images/bg-home.svg") }}');
+            background-image: url('{{ asset("website/images/bg-home-new.png") }}');
             background-size: cover;
             background-repeat: no-repeat;
             padding: 30px;
