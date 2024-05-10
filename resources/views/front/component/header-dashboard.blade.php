@@ -30,7 +30,7 @@
                         <li><a href="{{ route('reflection') }}" class="" id="list-sub-menu">Refleksi</a></li>
                     </ul>
                 </li>
-                <li><a href="{{ url('beranda') }}" class="text-white d-flex align-items-center h-50">Web Guide</a></li>
+                <li><a href="{{ url('info-epinter') }}" class="text-white d-flex align-items-center h-50">Web Guide</a></li>
                 @if ( Auth::user() != null )
                 <li>
                     <img src="{{ asset('assets/user-icon.svg') }}" id="profile-icon" class="bg-white profile-arrow" width="30" alt="" style="border-radius: 19px;padding: 5px 5px 5px 5px;">

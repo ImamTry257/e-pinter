@@ -15,7 +15,7 @@
             <ul class="links pt-4">
                 <li><a class="d-flex align-items-center" href="{{ url('beranda') }}">Home</a></li>
                 <li><a class="d-flex align-items-center" href="{{ url('about-us') }}">About Us</a></li>
-                <li><a class="d-flex align-items-center" href="{{ url('beranda') }}">Web Guide</a></li>
+                {{-- <li><a class="d-flex align-items-center d-none" href="{{ url('info-learning') }}">Web Guide</a></li> --}}
                 @if ( Auth::user() != null )
                 <li>
                     <img src="{{ asset('assets/user-icon.svg') }}" id="profile-icon" class="bg-white profile-arrow" width="30" alt="" style="border-radius: 19px;padding: 5px 5px 5px 5px;">

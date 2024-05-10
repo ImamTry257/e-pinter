@@ -36,7 +36,7 @@
         <div class="row p-2 px-5">
             <div class="wrapper-step-1 pb-4 text-center">
                 <h2 class="desc-step mt-5 d-block ps-4 pb-2">Buku Model</h2>
-                <div class="text-center" id="file-pdf" aria-label="book-model"></div>
+                <div class="text-center file-df" id="book-model" aria-label="book-model"></div>
             </div>
         </div>
     </div>

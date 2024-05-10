@@ -23,7 +23,7 @@
     <div class="card list-topic-content p-5 col-12">
         <div class="row p-2 px-5">
             <div class="wrapper-step-1 pb-4 text-center">
-                <div class="text-center" id="file-pdf" aria-label="info-tracker"></div>
+                <div class="text-center file-pdf" id="info-tracker" aria-label="info-tracker"></div>
                 <a href="" class="fs-4 bg-white">Download</a>
             </div>
         </div>
