@@ -169,6 +169,7 @@ class LearningActivityController extends Controller
             'user_group_id'         => $request->user_group_id,
             'activity_master_id'    => $request->activity_master_id,
             'activity_step_id'      => ( $request->intro ) ? 1 : $request->activity_step_id,
+            'is_intro'              => ( $request->intro ) ? 1 : 0,
             'answers'               => ( $request->intro ) ? 'intro_step' : $request->answer,
             'detail_progress'       => $request->detail_progress,
             'created_by'            => Auth::user()->id,
