@@ -2,7 +2,7 @@
 <script>
     function renderPDF(url, canvasContainer, options) {
 
-        options = options || { scale: 1 };
+        options = options || { scale: 2 };
 
         function renderPage(page) {
             var viewport = page.getViewport(options.scale);
