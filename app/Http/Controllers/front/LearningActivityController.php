@@ -123,7 +123,7 @@ class LearningActivityController extends Controller
 
         // check validate url parameter slug dengan user_group_id
         if ( $slug != $data['activity_selected']['slug'] ) :
-            return redirect(route('front.dashboard'));
+            // return redirect(route('front.dashboard'));
         endif;
 
         $data['user'] = Auth::user();

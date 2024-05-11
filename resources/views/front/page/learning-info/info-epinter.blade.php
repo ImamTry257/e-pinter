@@ -24,7 +24,7 @@
         <div class="row p-2 px-5">
             <div class="wrapper-step-1 pb-4 text-center">
                 <h2>PETUNJUK PENGGUNAAN E-LEARNING</h2>
-                <div class="text-center" id="file-pdf" aria-label="info-epinter"></div>
+                <div class="text-center file-pdf" id="info-epinter" aria-label="info-epinter"></div>
             </div>
         </div>
     </div>

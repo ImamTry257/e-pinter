@@ -2,7 +2,7 @@
 <script>
     function renderPDF(url, canvasContainer, options) {
 
-        options = options || { scale: 1 };
+        options = options || { scale: 2 };
 
         function renderPage(page) {
             var viewport = page.getViewport(options.scale);
@@ -33,12 +33,12 @@
 
     }
 
-    var element = $('div#file-pdf')
-    var file_source = 'https://res.cloudinary.com/sivadass/image/upload/v1519136548/hr-sample-pdf.pdf';
-
-    if ( element.attr('arial-label') == 'info-epinter' ) {
-        file_source = 'https://res.cloudinary.com/sivadass/image/upload/v1519136548/hr-sample-pdf.pdf';
-    } else if ( element.attr('arial-label') == 'info-tracker' ) {
+    var element = $('div.file-pdf')
+    var file_source = '{{ asset("assets/e-pinter/ebook/BUKU MODEL E-PINTER.pdf") }}';
+    console.log(element)
+    if ( element.attr('id') == 'info-epinter' ) {
+        file_source = '{{ asset("assets/e-pinter/ebook/Panduan E-PINTER.pdf") }}';
+    } else if ( element.attr('id') == 'info-tracker' ) {
         file_source = 'https://res.cloudinary.com/sivadass/image/upload/v1519136548/hr-sample-pdf.pdf';
     }
 

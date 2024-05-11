@@ -102,15 +102,15 @@ Route::middleware([AuthFrontMiddleware::class])->group(function () {
     # Book Model
     Route::get('/book-model', [LearningInfoController::class, 'bookModel'])->name('book.model');
 
-    # Info E-Pinter
-    Route::get('/info-epinter', [LearningInfoController::class, 'infoEpinter'])->name('info.epinter');
-
     # Info Trakcer
     Route::get('/info-tracker', [LearningInfoController::class, 'infoTracker'])->name('info.trakcer');
 
     # Disccuss
     Route::get('/discuss', [DiscussController::class, 'index'])->name('discuss');
 });
+
+# Info E-Pinter
+Route::get('/info-epinter', [LearningInfoController::class, 'infoEpinter'])->name('info.epinter');
 
 # Learning activity
 Route::middleware([AuthFrontMiddleware::class])->group(function () {

@@ -3,7 +3,7 @@
 @section('css')
     <style>
         body {
-            background-image: url('{{ asset("assets/e-pinter/images/bg-home.svg") }}');
+            background-image: url('{{ asset("assets/e-pinter/images/bg-home-new.png") }}');
             background-size: cover;
             background-repeat: no-repeat;
             background-position-y: -60px;
