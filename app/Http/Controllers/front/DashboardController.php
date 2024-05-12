@@ -18,19 +18,19 @@ class DashboardController extends Controller
             [
                 'title'         => 'Gerak Lurus',
                 'slug'          => 'gerak-lurus',
-                'image'         => 'list-kinematika-pemb1.svg',
+                'image'         => 'list-kinematika-pemb1-new.png',
                 'user_group_id' => 1
             ],
             [
                 'title'         => 'Gerak Parabola',
                 'slug'          => 'gerak-parabola',
-                'image'         => 'list-kinematika-pemb2.svg',
+                'image'         => 'list-kinematika-pemb2-new.png',
                 'user_group_id' => 2
             ],
             [
                 'title'         => 'Gerak Melingkar',
                 'slug'          => 'gerak-melingkar',
-                'image'         => 'list-kinematika-pemb3.svg',
+                'image'         => 'list-kinematika-pemb3-new.png',
                 'user_group_id' => 3
             ]
         ];
