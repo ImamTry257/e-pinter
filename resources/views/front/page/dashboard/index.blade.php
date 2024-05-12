@@ -20,7 +20,7 @@
             @foreach ( $list_activity as $key => $activity )
                 {{-- @if($activity['user_group_id'] == $user->user_group_id) --}}
                     <div class="col-lg-6 pb-4">
-                        <a href="{{ route('front.activity', ['slug' => $activity['slug']]) }}">
+                        <a href="javascript:void(0);" id="project-{{ $activity['user_group_id'] }}" onclick="startProject('{{ $activity['user_group_id'] }}', '{{ route('front.activity', ['slug' => $activity['slug']]) }}')">
                             <img src="{{ asset('assets/dashboard/') .'/'. $activity['image'] }}" alt="" class="w-100">
                             <div class="p-3 shadow-lg bg-body">
                                 <span class="text-dark">Kegiatan Pembelajaran {{ $key + 1 }} <br/> {{ $activity['title'] }}</span>
@@ -37,42 +37,49 @@
 <script>
 
     // when click materi, set data activty
+    function startProject(id, url){
+        var element = $('#project-' + id)
+        console.log(element, url)
 
-    $.ajax({
-        type: "POST", // send ajax with post
-        url: "{{ route('front.activity.next-progress') }}",
-        dataType: 'json',
-        data: {
+        var param = {
             "user_group_id"         : "{{ $user->user_group_id }}",
-            "activity_master_id"    : "{{ $user->user_group_id }}",
-            "activity_step_id"      : 0,
-            "detail_progress"       : 0,
-            "intro"                 : false
-        },
-        timeout: 2000,
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        beforeSend: function(xhr, obj) {
-
-        },
-        success: function(response) {
-            console.log(response)
-            if ( response.status ) {
-                location.href = '{{ route("front.activity.step", ["slug" => $slug, "step" => 1]) }}'
-            }
-
-        },
-        error: function(error) {
-            // if(error.status == 419 || error.status == 500) {
-            //     location.href = '{{ route("login") }}'
-            // }
-
-            if (error.statusText == 'timeout') {
-                // save_data();
-            }
+            "activity_master_id"    : id,
+            "activity_step_id"      : 1,
         }
-    })
+
+        setProject(param)
+    }
+
+    function setProject(param) {
+        $.ajax({
+            type: "POST", // send ajax with post
+            url: "{{ route('front.start.project') }}",
+            dataType: 'json',
+            data: param,
+            timeout: 2000,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            beforeSend: function(xhr, obj) {
+
+            },
+            success: function(response) {
+                console.log(response)
+                if ( response.status ) {
+                }
+
+            },
+            error: function(error) {
+                // if(error.status == 419 || error.status == 500) {
+                //     location.href = '{{ route("login") }}'
+                // }
+
+                if (error.statusText == 'timeout') {
+                    // save_data();
+                }
+            }
+        })
+    }
 
     console.log('js first to choose maateri')
 </script>

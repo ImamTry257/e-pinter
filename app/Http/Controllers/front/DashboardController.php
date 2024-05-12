@@ -37,7 +37,14 @@ class DashboardController extends Controller
 
         $data['user'] = Auth::user();
 
+        // dd($data);
+
         return view('front.page.dashboard.index', $data);
+    }
+
+    public function start(Request $request)
+    {
+        dd($request->all());
     }
 
     /**
