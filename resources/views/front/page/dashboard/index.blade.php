@@ -18,7 +18,7 @@
 
         <div class="row">
             @foreach ( $list_activity as $key => $activity )
-                @if($activity['user_group_id'] == $user->user_group_id)
+                {{-- @if($activity['user_group_id'] == $user->user_group_id) --}}
                     <div class="col-lg-6 pb-4">
                         <a href="{{ route('front.activity', ['slug' => $activity['slug']]) }}">
                             <img src="{{ asset('assets/dashboard/') .'/'. $activity['image'] }}" alt="" class="w-100">
@@ -27,10 +27,54 @@
                             </div>
                         </a>
                     </div>
-                @endif
+                {{-- @endif --}}
             @endforeach
         </div>
     </div>
 </div>
+
+
+<script>
+
+    // when click materi, set data activty
+
+    $.ajax({
+        type: "POST", // send ajax with post
+        url: "{{ route('front.activity.next-progress') }}",
+        dataType: 'json',
+        data: {
+            "user_group_id"         : "{{ $user->user_group_id }}",
+            "activity_master_id"    : "{{ $user->user_group_id }}",
+            "activity_step_id"      : 0,
+            "detail_progress"       : 0,
+            "intro"                 : false
+        },
+        timeout: 2000,
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        beforeSend: function(xhr, obj) {
+
+        },
+        success: function(response) {
+            console.log(response)
+            if ( response.status ) {
+                location.href = '{{ route("front.activity.step", ["slug" => $slug, "step" => 1]) }}'
+            }
+
+        },
+        error: function(error) {
+            // if(error.status == 419 || error.status == 500) {
+            //     location.href = '{{ route("login") }}'
+            // }
+
+            if (error.statusText == 'timeout') {
+                // save_data();
+            }
+        }
+    })
+
+    console.log('js first to choose maateri')
+</script>
 
 @endsection
