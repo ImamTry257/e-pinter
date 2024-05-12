@@ -6,7 +6,7 @@
 
     {{-- banner main --}}
     <div class="main-banner ms-2 col-lg-11">
-        <img src="{{ asset('assets/dashboard/fisika-sma-kinematika.svg') }}" alt="" style="width: 100%;">
+        <img src="{{ asset('assets/dashboard/fisika-sma-kinematika-new.png') }}" alt="" style="width: 100%;">
     </div>
 
     <div class="list-topic-content ms-2 p-5 col-lg-11 bg-white">
