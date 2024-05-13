@@ -15,6 +15,10 @@ return new class extends Migration
         Schema::table('activity_step_detail', function (Blueprint $table) {
             $table->unsignedBigInteger('activity_progress_id')->nullable(true)->after('id');
 
+            $table->dropForeign('activity_step_detail_user_group_id_foreign');
+            $table->dropForeign('activity_step_detail_activity_master_id_foreign');
+            $table->dropForeign('activity_step_detail_activity_step_id_foreign');
+
             $table->dropColumn('user_group_id');
             $table->dropColumn('activity_master_id');
             $table->dropColumn('activity_step_id');
@@ -33,7 +37,7 @@ return new class extends Migration
             $table->unsignedBigInteger('activity_master_id')->after('user_group_id');
             $table->unsignedBigInteger('activity_step_id')->after('activity_master_id');
 
-            $table->dropForeign('activity_step_progress_activity_progress_id_foreign');
+            $table->dropForeign('activity_step_detail_activity_progress_id_foreign');
 
             $table->dropColumn('activity_progress_id');
 
