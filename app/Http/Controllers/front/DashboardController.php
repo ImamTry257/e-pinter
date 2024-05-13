@@ -45,6 +45,53 @@ class DashboardController extends Controller
     public function start(Request $request)
     {
         dd($request->all());
+
+        // check data
+        // $data_step_detail = DB::table('activity_step_detail')
+        //                     ->where([
+        //                         'user_group_id' => $parameter['user_group_id'],
+        //                         'activity_master_id' => $parameter['activity_master_id'],
+        //                         'activity_step_id' => $parameter['activity_step_id']
+        //                     ])->first();
+
+        // try {
+        //     if ( empty ( $data_step_detail ) ) :
+        //         // new record
+        //         $parameter['updated_by'] = 0;
+
+        //         DB::table('activity_step_detail')
+        //             ->insert($parameter);
+        //     else :
+        //         // data update
+        //         $parameter['updated_by'] = Auth::user()->id;
+        //         $parameter['updated_at'] = now();
+
+        //         DB::table('activity_step_detail')
+        //             ->where([
+        //                 'user_group_id' => $parameter['user_group_id'],
+        //                 'activity_master_id' => $parameter['activity_master_id'],
+        //                 'activity_step_id' => $parameter['activity_step_id']
+        //             ])
+        //             ->update($parameter);
+
+        //     endif ;
+
+        //     $response = [
+        //         'status'    => true,
+        //         'message'   => 'Progress Berhasil disimpan!'
+        //     ];
+
+        //     $code = 200;
+        // } catch (\Throwable $th) {
+        //     //throw $th;
+        //     dd($th->getMessage());
+        //     $response = [
+        //         'status'    => false,
+        //         'message'   => 'Progress Gagal disimpan!'
+        //     ];
+
+        //     $code = 500;
+        // }
     }
 
     /**

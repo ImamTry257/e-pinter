@@ -42,7 +42,8 @@
         console.log(element, url)
 
         var param = {
-            "user_group_id"         : "{{ $user->user_group_id }}",
+            "user_id"               : "{{ $user->id }}",
+            "user_group_id"         : id,
             "activity_master_id"    : id,
             "activity_step_id"      : 1,
         }
