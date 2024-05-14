@@ -21,9 +21,11 @@ class Controller extends BaseController
         //     ->first();
 
         // View::share('link_sains_info', $data['link_sains_info']);
+
+        date_default_timezone_set('Asia/Jakarta');
     }
 
-    public function getContentListActivity($user_group_id)
+    public function getContentListActivity($slug)
     {
         // list learning activity
         $list_activity = [
@@ -49,7 +51,7 @@ class Controller extends BaseController
 
         $data_activity = [];
         foreach ( $list_activity as $activity ) :
-            if ( $activity['user_group_id'] == $user_group_id ) :
+            if ( $activity['slug'] == $slug ) :
                 $data_activity = $activity;
             endif ;
         endforeach;

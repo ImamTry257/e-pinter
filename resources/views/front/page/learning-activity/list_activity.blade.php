@@ -25,7 +25,7 @@
         </div>
 
         <div class="row p-2">
-            <div class="col-lg-6 btn-group my-3" id="intro">
+            <div class="col-lg-6 btn-group my-3" id="sintack-0">
                 <div class="row px-4 border border-primary w-100">
                     <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 d-flex align-items-center">
                         <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">

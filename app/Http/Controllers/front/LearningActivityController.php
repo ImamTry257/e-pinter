@@ -119,21 +119,28 @@ class LearningActivityController extends Controller
         $data['slug'] = $slug;
 
         // list learning activity selected
-        $data['activity_selected'] = $this->getContentListActivity(Auth::user()->user_group_id);
+        $data['activity_selected'] = $this->getContentListActivity($slug);
 
         // check validate url parameter slug dengan user_group_id
-        if ( $slug != $data['activity_selected']['slug'] ) :
+        // if ( $slug != $data['activity_selected']['slug'] ) :
             // return redirect(route('front.dashboard'));
-        endif;
+        // endif;
 
         $data['user'] = Auth::user();
 
+        $parameter = [
+            'user_id'               => Auth::user()->id,
+            'user_group_id'         => $data['activity_selected']['user_group_id'],
+            'activity_master_id'    => $data['activity_selected']['user_group_id'],
+        ];
         // get data progress step detail
-        $data['step_progress_detail'] = DB::table('activity_step_detail')
-                                        ->where('user_group_id', $data['user']->user_group_id)
+        $data['step_progress'] = DB::table('activity_step_progress as sp')
+                                        ->join('activity_step as s', 's.id', '=', 'sp.activity_step_id')
+                                        ->where($parameter)
+                                        ->orderBy('activity_step_id', 'desc')
                                         ->get();
 
-        // dd($data);
+        dd($data, $parameter);
 
         // return view
         return view('front.page.learning-activity.list_activity', $data);

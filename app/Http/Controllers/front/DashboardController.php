@@ -5,6 +5,7 @@ namespace App\Http\Controllers\front;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -44,54 +45,59 @@ class DashboardController extends Controller
 
     public function start(Request $request)
     {
-        dd($request->all());
+        # dd($request->all());
+
+        // param
+        $parameter = [
+            'user_id'           => $request['user_id'],
+            'user_group_id'     => $request['user_group_id'],
+            'activity_master_id'=> $request['activity_master_id'],
+            'activity_step_id'  => $request['activity_step_id']
+        ];
 
         // check data
-        // $data_step_detail = DB::table('activity_step_detail')
-        //                     ->where([
-        //                         'user_group_id' => $parameter['user_group_id'],
-        //                         'activity_master_id' => $parameter['activity_master_id'],
-        //                         'activity_step_id' => $parameter['activity_step_id']
-        //                     ])->first();
+        $data_step_progress = DB::table('activity_step_progress')
+                            ->where($parameter)->first();
 
-        // try {
-        //     if ( empty ( $data_step_detail ) ) :
-        //         // new record
-        //         $parameter['updated_by'] = 0;
+        try {
+            if ( empty ( $data_step_progress ) ) :
+                // new record
+                $parameter['created_at'] = now();
 
-        //         DB::table('activity_step_detail')
-        //             ->insert($parameter);
-        //     else :
-        //         // data update
-        //         $parameter['updated_by'] = Auth::user()->id;
-        //         $parameter['updated_at'] = now();
+                DB::table('activity_step_progress')
+                    ->insert($parameter);
+            else :
+                // data update
+                $parameter['updated_at'] = now();
 
-        //         DB::table('activity_step_detail')
-        //             ->where([
-        //                 'user_group_id' => $parameter['user_group_id'],
-        //                 'activity_master_id' => $parameter['activity_master_id'],
-        //                 'activity_step_id' => $parameter['activity_step_id']
-        //             ])
-        //             ->update($parameter);
+                DB::table('activity_step_progress')
+                    ->where([
+                        'user_group_id' => $parameter['user_group_id'],
+                        'activity_master_id' => $parameter['activity_master_id'],
+                        'activity_step_id' => $parameter['activity_step_id']
+                    ])
+                    ->update($parameter);
 
-        //     endif ;
+            endif ;
 
-        //     $response = [
-        //         'status'    => true,
-        //         'message'   => 'Progress Berhasil disimpan!'
-        //     ];
+            $response = [
+                'status'    => true,
+                'message'   => 'Progress Berhasil disimpan!'
+            ];
 
-        //     $code = 200;
-        // } catch (\Throwable $th) {
-        //     //throw $th;
-        //     dd($th->getMessage());
-        //     $response = [
-        //         'status'    => false,
-        //         'message'   => 'Progress Gagal disimpan!'
-        //     ];
+            $code = 200;
+        } catch (\Throwable $th) {
+            // throw $th;
+            # dd($th->getMessage());
+            $response = [
+                'status'    => false,
+                'message'   => 'Progress Gagal disimpan!'
+            ];
 
-        //     $code = 500;
-        // }
+            $code = 500;
+        }
+
+        return response()->json($response, $code);
     }
 
     /**

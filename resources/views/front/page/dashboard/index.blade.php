@@ -37,9 +37,9 @@
 <script>
 
     // when click materi, set data activty
-    function startProject(id, url){
+    function startProject(id, urlRedirect){
         var element = $('#project-' + id)
-        console.log(element, url)
+        // console.log(element, url)
 
         var param = {
             "user_id"               : "{{ $user->id }}",
@@ -48,10 +48,10 @@
             "activity_step_id"      : 1,
         }
 
-        setProject(param)
+        setProject(param, urlRedirect)
     }
 
-    function setProject(param) {
+    function setProject(param, urlRedirect) {
         $.ajax({
             type: "POST", // send ajax with post
             url: "{{ route('front.start.project') }}",
@@ -65,8 +65,9 @@
 
             },
             success: function(response) {
-                console.log(response)
+                // console.log(response)
                 if ( response.status ) {
+                    location.href = urlRedirect
                 }
 
             },
@@ -76,13 +77,11 @@
                 // }
 
                 if (error.statusText == 'timeout') {
-                    // save_data();
+                    setProject(param)
                 }
             }
         })
     }
-
-    console.log('js first to choose maateri')
 </script>
 
 @endsection
