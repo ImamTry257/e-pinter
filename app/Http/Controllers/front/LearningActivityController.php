@@ -136,11 +136,12 @@ class LearningActivityController extends Controller
         // get data progress step detail
         $data['step_progress'] = DB::table('activity_step_progress as sp')
                                         ->join('activity_step as s', 's.id', '=', 'sp.activity_step_id')
+                                        ->join('activity_step_detail as sd', 'sd.activity_progress_id', '=', 'sp.id')
                                         ->where($parameter)
                                         ->orderBy('activity_step_id', 'desc')
-                                        ->get();
+                                        ->get(['*']);
 
-        dd($data, $parameter);
+        // dd($data, $parameter);
 
         // return view
         return view('front.page.learning-activity.list_activity', $data);
