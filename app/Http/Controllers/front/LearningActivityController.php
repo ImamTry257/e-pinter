@@ -141,7 +141,7 @@ class LearningActivityController extends Controller
                                         ->orderBy('activity_step_id', 'desc')
                                         ->get(['*']);
 
-        // dd($data, $parameter);
+        // dd($data);
 
         // return view
         return view('front.page.learning-activity.list_activity', $data);

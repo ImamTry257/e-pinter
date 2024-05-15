@@ -5,6 +5,10 @@
         #progress:after {
             text-align: center
         }
+
+        .disable-step {
+            cursor: auto;
+        }
     </style>
 @endsection
 
@@ -50,13 +54,13 @@
                         <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">
                     </div>
                     <div class="col-lg-10 col-md-10 col-sm-10 col-xl-10 p-3">
-                        <a target="_blank" href="{{ route('front.activity.step', ['slug' => $activity_selected["slug"], 'step' => 1]) }}">
+                        <a href="javascript:void(0);" class="disable-step link-step">
                             <div class="py-1">
                                 <h4 class="text-dark">Sintak 1.</h4>
                                 <span class="text-secondary">Memberikan pertanyaan esensial dari fenomena sekitar</span>
                             </div>
                             <div class="bg-white border border-primary">
-                                <span class="text-start px-1 text-secondary d-block" style="width: 50%;">0%</span>
+                                <span class="text-start px-1 text-secondary d-block bar-presentase" style="width: 50%;">0%</span>
                             </div>
                         </a>
                     </div>
@@ -70,13 +74,13 @@
                         <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">
                     </div>
                     <div class="col-lg-10 col-md-10 col-sm-10 col-xl-10 p-3">
-                        <a target="_blank" href="{{ route('front.activity.step', ['slug' => $activity_selected["slug"], 'step' => 2]) }}">
+                        <a href="javascript:void(0);" class="disable-step link-step">
                             <div class="py-1">
                                 <h4 class="text-dark">Sintak 2.</h4>
                                 <span class="text-secondary">Menyusun jadwal dan merancang proyek berkelompok</span>
                             </div>
                             <div class="bg-white border border-primary">
-                                <span class="text-start px-1 text-secondary d-block" style="width: 50%;">0%</span>
+                                <span class="text-start px-1 text-secondary d-block bar-presentase" style="width: 50%;">0%</span>
                             </div>
                         </a>
                     </div>
@@ -89,13 +93,13 @@
                         <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">
                     </div>
                     <div class="col-lg-10 col-md-10 col-sm-10 col-xl-10 p-3">
-                        <a target="_blank" href="{{ route('front.activity.step', ['slug' => $activity_selected["slug"], 'step' => 3]) }}">
+                        <a href="javascript:void(0);" class="disable-step link-step">
                             <div class="py-1">
                                 <h4 class="text-dark">Sintak 3.</h4>
                                 <span class="text-secondary">Pembuatan proyek</span>
                             </div>
                             <div class="bg-white border border-primary">
-                                <span class="text-start px-1 text-secondary d-block" style="width: 50%;">0%</span>
+                                <span class="text-start px-1 text-secondary d-block bar-presentase" style="width: 50%;">0%</span>
                             </div>
                         </a>
                     </div>
@@ -110,13 +114,13 @@
                         <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">
                     </div>
                     <div class="col-lg-10 col-md-10 col-sm-10 col-xl-10 p-3">
-                        <a target="_blank" href="{{ route('front.activity.step', ['slug' => $activity_selected["slug"], 'step' => 4]) }}">
+                        <a href="javascript:void(0);" class="disable-step link-step">
                             <div class="py-1">
                                 <h4 class="text-dark">Sintak 4.</h4>
                                 <span class="text-secondary">Melakukan eksperimen menggunakan teknologi</span>
                             </div>
                             <div class="bg-white border border-primary">
-                                <span class="text-start px-1 text-secondary d-block" style="width: 50%;">0%</span>
+                                <span class="text-start px-1 text-secondary d-block bar-presentase" style="width: 50%;">0%</span>
                             </div>
                         </a>
                     </div>
@@ -129,13 +133,13 @@
                         <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">
                     </div>
                     <div class="col-lg-10 col-md-10 col-sm-10 col-xl-10 p-3">
-                        <a target="_blank" href="{{ route('front.activity.step', ['slug' => $activity_selected["slug"], 'step' => 5]) }}">
+                        <a href="javascript:void(0);" class="disable-step link-step">
                             <div class="py-1">
                                 <h4 class="text-dark">Sintak 5.</h4>
                                 <span class="text-secondary">Penyusunan laporan</span>
                             </div>
                             <div class="bg-white border border-primary">
-                                <span class="text-start px-1 text-secondary d-block" style="width: 50%;">0%</span>
+                                <span class="text-start px-1 text-secondary d-block bar-presentase" style="width: 50%;">0%</span>
                             </div>
                         </a>
                     </div>
@@ -150,13 +154,13 @@
                         <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">
                     </div>
                     <div class="col-lg-10 col-md-10 col-sm-10 col-xl-10 p-3">
-                        <a target="_blank" href="{{ route('front.activity.step', ['slug' => $activity_selected["slug"], 'step' => 6]) }}">
+                        <a href="javascript:void(0);" class="disable-step link-step">
                             <div class="py-1">
                                 <h4 class="text-dark">Sintak 6.</h4>
                                 <span class="text-secondary">Refleksi</span>
                             </div>
                             <div class="bg-white border border-primary">
-                                <span class="text-start px-1 text-secondary d-block" style="width: 50%;">0%</span>
+                                <span class="text-start px-1 text-secondary d-block bar-presentase" style="width: 50%;">0%</span>
                             </div>
                         </a>
                     </div>
@@ -167,7 +171,17 @@
 </div>
 
 <script>
-    console.log('okeee')
+    @foreach ($step_progress as $progress)
+        var step_element = $('div#step-' + '{{ $progress->step_id }}')
+        var bar_presentase = step_element.find('span').last()
+
+        // binding value presentase
+        bar_presentase.attr('style', 'width:{{ $progress->detail_progress }}%').addClass('bg-primary').text('{{ $progress->detail_progress }}%')
+
+        // enable next step
+        var next_step = $('div#step-' + '{{ $progress->step_id + 1 }}')
+        next_step.find('a').attr('href', "{{ route('front.activity.step', ['slug' => $activity_selected['slug'], 'step' => $progress->step_id + 1]) }}").removeClass('disable-step')
+    @endforeach
 </script>
 
 @endsection
