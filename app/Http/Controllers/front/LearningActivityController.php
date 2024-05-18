@@ -221,60 +221,78 @@ class LearningActivityController extends Controller
 
     public function nextProgress(Request $request)
     {
-        # dd($request->all());
-
-        # update progress on step detail
-        $parameter = [
-            'user_group_id'         => $request->user_group_id,
-            'activity_master_id'    => $request->activity_master_id,
-            'activity_step_id'      => ( $request->intro ) ? 1 : $request->activity_step_id,
-            'is_intro'              => ( $request->intro ) ? 1 : 0,
-            'answers'               => ( $request->intro ) ? 'intro_step' : $request->answer,
-            'detail_progress'       => $request->detail_progress,
-            'created_by'            => Auth::user()->id,
-            'created_at'            => now()
-        ];
-
-        # set structure for string json to parameter answer
-        if ( $request->intro ) :
-            $sjson['type'] = 'intro';
-            $sjson['presentase'] = 100;
-            $sjson['value'] = $parameter['answers'];
-
-            $parameter['answers'] = json_encode($sjson);
-
-            $parameter['detail_progress'] = $sjson['presentase'];
-        else :
-
-        endif ;
-
-        # check data
-        $data_step_detail = DB::table('activity_step_detail')
-                            ->where([
-                                'user_group_id' => $parameter['user_group_id'],
-                                'activity_master_id' => $parameter['activity_master_id'],
-                                'activity_step_id' => $parameter['activity_step_id']
-                            ])->first();
-
         try {
+            # dd($request->all(), json_decode($request->answers));
+
+            # set presentase
+            $count_question = $request->count_question;
+            $count_answer = 0;
+            $data_answers = json_decode($request->answers);
+            foreach ( $data_answers as  $answer) :
+                if ( $answer->value_text != '' ) :
+                    $count_answer++;
+                endif ;
+            endforeach ;
+
+            # set presentase
+            $detail_progress = ( $count_answer == $count_question ) ? 100 : ( ( $count_answer / $count_question ) * 100 );
+
+            # dd($ins_answers);
+
+            # update progress on step detail
+            $parameter = [
+                'activity_progress_id'  => $request->progress_id,
+                'is_intro'              => $request->intro,
+                'detail_progress'       => $detail_progress
+            ];
+
+            # set structure for string json to parameter answer
+            if ( $request->intro ) : # for step introduction
+                $sjson['type'] = 'intro';
+                $sjson['presentase'] = 100;
+                $sjson['value'] = $parameter['answers'];
+
+                $parameter['answers'] = json_encode($sjson);
+
+                $parameter['detail_progress'] = $sjson['presentase'];
+            else :
+                # set format answer for inserting data
+                $ins_answers = [
+                    'type'          => ( $request->intro == 0 ) ? 'non-intro' : 'intro',
+                    'presentase'    => $detail_progress,
+                    'value'         => $request->answers
+                ];
+
+                $parameter['answers'] = ( $request->intro ) ? 'intro_step' : json_encode($ins_answers);
+            endif ;
+
+            # check data
+            $query_step_detail = DB::table('activity_step_detail as sd')
+                                ->join('activity_step_progress as sp', 'sp.id', '=', 'sd.activity_progress_id')
+                                ->join('activity_step as s', 's.id', '=', 'sp.activity_step_id')
+                                ->where([
+                                    'sd.activity_progress_id' => $request->progress_id,
+                                    's.step_id' => $request->step_id
+                                ]);
+            $data_step_detail = $query_step_detail->first();
+
+            # dd($data_step_detail, $request->all(),$parameter);
+
             if ( empty ( $data_step_detail ) ) :
                 # new record
+                $parameter['created_by'] = Auth::user()->id;
+                $parameter['created_at'] = now();
                 $parameter['updated_by'] = 0;
 
+                // dd($parameter);
                 DB::table('activity_step_detail')
                     ->insert($parameter);
             else :
                 # data update
-                $parameter['updated_by'] = Auth::user()->id;
-                $parameter['updated_at'] = now();
-
-                DB::table('activity_step_detail')
-                    ->where([
-                        'user_group_id' => $parameter['user_group_id'],
-                        'activity_master_id' => $parameter['activity_master_id'],
-                        'activity_step_id' => $parameter['activity_step_id']
-                    ])
-                    ->update($parameter);
+                $parameter['sd.updated_by'] = Auth::user()->id;
+                $parameter['sd.updated_at'] = now();
+                // dd($parameter);
+                $query_step_detail->update($parameter);
 
             endif ;
 
@@ -305,7 +323,7 @@ class LearningActivityController extends Controller
         $data['step'] = $step;
 
         # list learning activity selected
-        $data['activity_selected'] = $this->getContentListActivity(Auth::user()->user_group_id);
+        $data['activity_selected'] = $this->getContentListActivity($slug);
 
         $path_view = 'front.page.learning-activity.gerak-lurus.step' . $step;
 
@@ -316,6 +334,65 @@ class LearningActivityController extends Controller
         endif ;
 
         $data['user'] = Auth::user();
+
+        # get data progress activity
+        $parameter = [
+            'b.user_id'               => $data['user']->id,
+            'b.user_group_id'         => $data['user']->user_group_id,
+            'b.activity_master_id'    => $data['activity_selected']['user_group_id'],
+        ];
+
+        $progress_activity = DB::table('activity_step_progress as b')
+                            ->join('activity_step as s', 's.id', '=', 'b.activity_step_id')
+                            ->where($parameter)
+                            ->where('s.step_id', '=', $step)
+                            ->first(['b.id']);
+        # dd($step);
+        # check data
+        if ( empty( $progress_activity ) ) :
+            # new record to progress detail for new step
+
+            # param
+            $parameter = [
+                'user_id'           => $data['user']->id,
+                'user_group_id'     => $data['user']->user_group_id,
+                'activity_master_id'=> $data['activity_selected']['user_group_id']
+            ];
+
+            # get step_id
+            $data_step = DB::table('activity_step as s')
+                        ->where('s.step_id', '=', $step)
+                        ->first(['s.id']);
+
+            $parameter['activity_step_id'] = $data_step->id;
+
+            # check data by param
+            $data_step_progress = DB::table('activity_step_progress')
+                                ->where($parameter)->first();
+
+            if ( empty ( $data_step_progress ) ) :
+                # new record
+                $parameter['created_at'] = now();
+
+                $progress_id = DB::table('activity_step_progress')
+                    ->insertGetId($parameter);
+
+                $data['progress_id'] = $progress_id;
+            else :
+                # update data into step progress
+                DB::table('activity_step_progress')
+                    ->where($parameter)
+                    ->update(['updated_at' => now()]);
+
+                $data['progress_id'] = $data_step_progress->id;
+
+            endif ;
+        else :
+            # set progress_id
+            $data['progress_id'] = $progress_activity->id;
+        endif ;
+
+        # dd($data, $parameter, $progress_activity);
 
         return view($path_view, $data);
     }

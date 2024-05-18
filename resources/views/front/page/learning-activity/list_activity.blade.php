@@ -60,7 +60,7 @@
                                 <span class="text-secondary">Memberikan pertanyaan esensial dari fenomena sekitar</span>
                             </div>
                             <div class="bg-white border border-primary">
-                                <span class="text-start px-1 text-secondary d-block bar-presentase" style="width: 50%;">0%</span>
+                                <span class="text-end px-1 text-secondary d-block bar-presentase" style="width: 50%;">0%</span>
                             </div>
                         </a>
                     </div>
@@ -80,7 +80,7 @@
                                 <span class="text-secondary">Menyusun jadwal dan merancang proyek berkelompok</span>
                             </div>
                             <div class="bg-white border border-primary">
-                                <span class="text-start px-1 text-secondary d-block bar-presentase" style="width: 50%;">0%</span>
+                                <span class="text-end px-1 text-secondary d-block bar-presentase" style="width: 50%;">0%</span>
                             </div>
                         </a>
                     </div>
@@ -99,7 +99,7 @@
                                 <span class="text-secondary">Pembuatan proyek</span>
                             </div>
                             <div class="bg-white border border-primary">
-                                <span class="text-start px-1 text-secondary d-block bar-presentase" style="width: 50%;">0%</span>
+                                <span class="text-end px-1 text-secondary d-block bar-presentase" style="width: 50%;">0%</span>
                             </div>
                         </a>
                     </div>
@@ -120,7 +120,7 @@
                                 <span class="text-secondary">Melakukan eksperimen menggunakan teknologi</span>
                             </div>
                             <div class="bg-white border border-primary">
-                                <span class="text-start px-1 text-secondary d-block bar-presentase" style="width: 50%;">0%</span>
+                                <span class="text-end px-1 text-secondary d-block bar-presentase" style="width: 50%;">0%</span>
                             </div>
                         </a>
                     </div>
@@ -139,7 +139,7 @@
                                 <span class="text-secondary">Penyusunan laporan</span>
                             </div>
                             <div class="bg-white border border-primary">
-                                <span class="text-start px-1 text-secondary d-block bar-presentase" style="width: 50%;">0%</span>
+                                <span class="text-end px-1 text-secondary d-block bar-presentase" style="width: 50%;">0%</span>
                             </div>
                         </a>
                     </div>
@@ -160,7 +160,7 @@
                                 <span class="text-secondary">Refleksi</span>
                             </div>
                             <div class="bg-white border border-primary">
-                                <span class="text-start px-1 text-secondary d-block bar-presentase" style="width: 50%;">0%</span>
+                                <span class="text-end px-1 text-secondary d-block bar-presentase" style="width: 50%;">0%</span>
                             </div>
                         </a>
                     </div>

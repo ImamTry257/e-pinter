@@ -8,34 +8,35 @@
     }, 500);
 
 
-    function setAnswers(){
-        console.log($('textarea#step-1'))
-        // set value answer
-        let input = $('textarea#step-1')
+    function setAnswers(stepId, isNext){
 
-        // get count question
-        let count_question = input.length
+        let progressId = '{{ $progress_id }}'
+        var list_question = $('textarea#step-' + stepId)
 
-        // get count answer
-        let count_answer = 0;
-        input.map( ( index, data ) => {
-            if ( $(data).val() == '' )
-            console.log(index, data, $(data).val() == '')
-        } )
+        // binding data progress_id and intro
+        $('input[name="progress_id"]').val(progressId)
+        $('input[name="intro"]').val(0)
 
-        return false
+        var answers = ''
+        if ( stepId == 1 ) {
+            answers = handleStepOne()
+        }
+
+        var formData = new FormData()
+        formData.append('progress_id', progressId)
+        formData.append('intro', 0)
+        formData.append('answers', JSON.stringify(answers))
+        formData.append('count_question', list_question.length)
+        formData.append('step_id', stepId)
+
         $.ajax({
             type: "POST", // send ajax with post
             url: "{{ route('front.activity.next-progress') }}",
-            dataType: 'json',
-            data: {
-                "user_group_id"         : "{{ $user->user_group_id }}",
-                "activity_master_id"    : "{{ $user->user_group_id }}",
-                "activity_step_id"      : 0,
-                "detail_progress"       : 0,
-                "intro"                 : false
-            },
+            // dataType: 'json',
+            data: formData,
             timeout: 2000,
+            contentType: false,
+            processData: false,
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
@@ -43,9 +44,9 @@
 
             },
             success: function(response) {
-                console.log(response)
+                // console.log(response)
                 if ( response.status ) {
-                    location.href = '{{ route("front.activity.step", ["slug" => $slug, "step" => 1]) }}'
+                    location.href = `{{ route("front.activity.step", ["slug" => $slug, "step" => ( $step + 1 )]) }}`
                 }
 
             },
@@ -60,5 +61,22 @@
             }
         })
     }
+
+    function handleStepOne(){
+        return [
+            {
+                'id' : 'answer-a',
+                'value_text' :  $($('textarea[name="answer-a"]').summernote('code')).text(),
+                'value_html' :  $('textarea[name="answer-a"]').summernote('code')
+            },
+            {
+                'id' : 'answer-b',
+                'value_text' :  $($('textarea[name="answer-b"]').summernote('code')).text(),
+                'value_html' :  $('textarea[name="answer-b"]').summernote('code')
+            }
+        ]
+    }
+
+
 
 </script>

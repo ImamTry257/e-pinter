@@ -78,7 +78,7 @@ Route::middleware([AuthFrontMiddleware::class])->group(function () {
 
     Route::prefix('/dashboard')->group(function(){
         Route::get('/', [FrontDashboardController::class, 'index'])->name('front.dashboard');
-        Route::post('/activity/start', [FrontDashboardController::class, 'start'])->name('front.start.project');
+        Route::post('/activity/project-start', [FrontDashboardController::class, 'start'])->name('front.start.project');
 
         Route::get('/activity/{slug}', [LearningActivityController::class, 'activity'])->name('front.activity');
         Route::post('/activity/start', [LearningActivityController::class, 'start'])->name('front.start.step');
