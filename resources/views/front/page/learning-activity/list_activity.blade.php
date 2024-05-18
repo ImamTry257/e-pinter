@@ -54,7 +54,7 @@
                         <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">
                     </div>
                     <div class="col-lg-10 col-md-10 col-sm-10 col-xl-10 p-3">
-                        <a href="javascript:void(0);" class="disable-step link-step">
+                        <a href="javascript:void(0);" onclick="startStep(1)" class="disable-step link-step">
                             <div class="py-1">
                                 <h4 class="text-dark">Sintak 1.</h4>
                                 <span class="text-secondary">Memberikan pertanyaan esensial dari fenomena sekitar</span>
@@ -74,7 +74,7 @@
                         <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">
                     </div>
                     <div class="col-lg-10 col-md-10 col-sm-10 col-xl-10 p-3">
-                        <a href="javascript:void(0);" class="disable-step link-step">
+                        <a href="javascript:void(0);" onclick="startStep(2)" class="disable-step link-step">
                             <div class="py-1">
                                 <h4 class="text-dark">Sintak 2.</h4>
                                 <span class="text-secondary">Menyusun jadwal dan merancang proyek berkelompok</span>
@@ -93,7 +93,7 @@
                         <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">
                     </div>
                     <div class="col-lg-10 col-md-10 col-sm-10 col-xl-10 p-3">
-                        <a href="javascript:void(0);" class="disable-step link-step">
+                        <a href="javascript:void(0);" onclick="startStep(3)" class="disable-step link-step">
                             <div class="py-1">
                                 <h4 class="text-dark">Sintak 3.</h4>
                                 <span class="text-secondary">Pembuatan proyek</span>
@@ -114,7 +114,7 @@
                         <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">
                     </div>
                     <div class="col-lg-10 col-md-10 col-sm-10 col-xl-10 p-3">
-                        <a href="javascript:void(0);" class="disable-step link-step">
+                        <a href="javascript:void(0);" onclick="startStep(4)" class="disable-step link-step">
                             <div class="py-1">
                                 <h4 class="text-dark">Sintak 4.</h4>
                                 <span class="text-secondary">Melakukan eksperimen menggunakan teknologi</span>
@@ -133,7 +133,7 @@
                         <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">
                     </div>
                     <div class="col-lg-10 col-md-10 col-sm-10 col-xl-10 p-3">
-                        <a href="javascript:void(0);" class="disable-step link-step">
+                        <a href="javascript:void(0);" onclick="startStep(5)" class="disable-step link-step">
                             <div class="py-1">
                                 <h4 class="text-dark">Sintak 5.</h4>
                                 <span class="text-secondary">Penyusunan laporan</span>
@@ -154,7 +154,7 @@
                         <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">
                     </div>
                     <div class="col-lg-10 col-md-10 col-sm-10 col-xl-10 p-3">
-                        <a href="javascript:void(0);" class="disable-step link-step">
+                        <a href="javascript:void(0);" onclick="startStep(6)" class="disable-step link-step">
                             <div class="py-1">
                                 <h4 class="text-dark">Sintak 6.</h4>
                                 <span class="text-secondary">Refleksi</span>
@@ -169,7 +169,6 @@
         </div>
     </div>
 </div>
-
 <script>
     @foreach ($step_progress as $progress)
         var step_element = $('div#step-' + '{{ $progress->step_id }}')
@@ -180,8 +179,57 @@
 
         // enable next step
         var next_step = $('div#step-' + '{{ $progress->step_id + 1 }}')
-        next_step.find('a').attr('href', "{{ route('front.activity.step', ['slug' => $activity_selected['slug'], 'step' => $progress->step_id + 1]) }}").removeClass('disable-step')
+        next_step.find('a').attr('id', "{{ route('front.activity.step', ['slug' => $activity_selected['slug'], 'step' => $progress->step_id + 1]) }}").removeClass('disable-step')
     @endforeach
+
+
+    // when click materi, set data activty
+    function startStep(id){
+        var element = $('#step-' + id)
+        var urlRedirect = element.find('a').attr('id')
+        // console.log(element, url)
+
+        var param = {
+            "user_id"               : "{{ $user->id }}",
+            "user_group_id"         : "{{ $user->user_group_id }}",
+            "activity_master_id"    : "{{ $activity_master_id }}",
+            "activity_step_id"      : ( id + 1 ),
+        }
+
+        setStep(param, urlRedirect)
+    }
+
+    function setStep(param, urlRedirect) {
+        $.ajax({
+            type: "POST", // send ajax with post
+            url: "{{ route('front.start.step') }}",
+            dataType: 'json',
+            data: param,
+            timeout: 2000,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            beforeSend: function(xhr, obj) {
+
+            },
+            success: function(response) {
+
+                if ( response.status ) {
+                    location.href = urlRedirect
+                }
+
+            },
+            error: function(error) {
+                // if(error.status == 419 || error.status == 500) {
+                //     location.href = '{{ route("login") }}'
+                // }
+
+                if (error.statusText == 'timeout') {
+                    setProject(param)
+                }
+            }
+        })
+    }
 </script>
 
 @endsection

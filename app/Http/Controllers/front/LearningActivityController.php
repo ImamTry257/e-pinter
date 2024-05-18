@@ -103,7 +103,7 @@ class LearningActivityController extends Controller
                 'status' => true
             ], 200);
         } catch (\Throwable $th) {
-            //throw $th;
+            #throw $th;
             dd($th->getMessage());
 
             DB::rollBack();
@@ -115,16 +115,11 @@ class LearningActivityController extends Controller
 
     public function activity(Request $request, $slug)
     {
-        // check slug is existing?
+        # check slug is existing?
         $data['slug'] = $slug;
 
-        // list learning activity selected
+        # list learning activity selected
         $data['activity_selected'] = $this->getContentListActivity($slug);
-
-        // check validate url parameter slug dengan user_group_id
-        // if ( $slug != $data['activity_selected']['slug'] ) :
-            // return redirect(route('front.dashboard'));
-        // endif;
 
         $data['user'] = Auth::user();
 
@@ -133,7 +128,8 @@ class LearningActivityController extends Controller
             'user_group_id'         => $data['activity_selected']['user_group_id'],
             'activity_master_id'    => $data['activity_selected']['user_group_id'],
         ];
-        // get data progress step detail
+
+        # get data progress step detail
         $data['step_progress'] = DB::table('activity_step_progress as sp')
                                         ->join('activity_step as s', 's.id', '=', 'sp.activity_step_id')
                                         ->join('activity_step_detail as sd', 'sd.activity_progress_id', '=', 'sp.id')
@@ -141,10 +137,65 @@ class LearningActivityController extends Controller
                                         ->orderBy('activity_step_id', 'desc')
                                         ->get(['*']);
 
-        // dd($data);
+        # data user
+        $data['activity_master_id'] = $parameter['activity_master_id'];
+        # dd($data);
 
-        // return view
+        # return view
         return view('front.page.learning-activity.list_activity', $data);
+    }
+
+    public function start(Request $request)
+    {
+        try {
+            # dd($request->all());
+
+            # param
+            $parameter = [
+                'user_id'           => $request['user_id'],
+                'user_group_id'     => $request['user_group_id'],
+                'activity_master_id'=> $request['activity_master_id'],
+                'activity_step_id'  => $request['activity_step_id']
+            ];
+
+            # check data by param
+            $data_step_progress = DB::table('activity_step_progress')
+                                ->where($parameter)->first();
+
+            if ( empty ( $data_step_progress ) ) :
+                # new record
+                $parameter['created_at'] = now();
+
+                DB::table('activity_step_progress')
+                    ->insert($parameter);
+            else :
+                # data update
+
+                # update data into step progress
+                DB::table('activity_step_progress')
+                    ->where($parameter)
+                    ->update(['updated_at' => now()]);
+
+            endif ;
+
+            $response = [
+                'status'    => true,
+                'message'   => 'Progress Berhasil disimpan!'
+            ];
+
+            $code = 200;
+        } catch (\Throwable $th) {
+            # throw $th;
+            # dd($th->getMessage());
+            $response = [
+                'status'    => false,
+                'message'   => 'Progress Gagal disimpan!'
+            ];
+
+            $code = 500;
+        }
+
+        return response()->json($response, $code);
     }
 
 
@@ -152,10 +203,10 @@ class LearningActivityController extends Controller
     {
         $data['slug'] = $slug;
 
-        // list learning activity selected
+        # list learning activity selected
         $data['activity_selected'] = $this->getContentListActivity(Auth::user()->user_group_id);
 
-        // check validate url parameter slug dengan user_group_id
+        # check validate url parameter slug dengan user_group_id
         if ( $slug != $data['activity_selected']['slug'] ) :
             return redirect(route('front.dashboard'));
         endif;
@@ -164,15 +215,15 @@ class LearningActivityController extends Controller
 
         $data['user'] = Auth::user();
 
-        // return view
+        # return view
         return view('front.page.learning-activity.introduction_activity', $data);
     }
 
     public function nextProgress(Request $request)
     {
-        // dd($request->all());
+        # dd($request->all());
 
-        // update progress on step detail
+        # update progress on step detail
         $parameter = [
             'user_group_id'         => $request->user_group_id,
             'activity_master_id'    => $request->activity_master_id,
@@ -184,7 +235,7 @@ class LearningActivityController extends Controller
             'created_at'            => now()
         ];
 
-        // set structure for string json to parameter answer
+        # set structure for string json to parameter answer
         if ( $request->intro ) :
             $sjson['type'] = 'intro';
             $sjson['presentase'] = 100;
@@ -197,7 +248,7 @@ class LearningActivityController extends Controller
 
         endif ;
 
-        // check data
+        # check data
         $data_step_detail = DB::table('activity_step_detail')
                             ->where([
                                 'user_group_id' => $parameter['user_group_id'],
@@ -207,13 +258,13 @@ class LearningActivityController extends Controller
 
         try {
             if ( empty ( $data_step_detail ) ) :
-                // new record
+                # new record
                 $parameter['updated_by'] = 0;
 
                 DB::table('activity_step_detail')
                     ->insert($parameter);
             else :
-                // data update
+                # data update
                 $parameter['updated_by'] = Auth::user()->id;
                 $parameter['updated_at'] = now();
 
@@ -234,7 +285,7 @@ class LearningActivityController extends Controller
 
             $code = 200;
         } catch (\Throwable $th) {
-            //throw $th;
+            #throw $th;
             dd($th->getMessage());
             $response = [
                 'status'    => false,
@@ -244,7 +295,7 @@ class LearningActivityController extends Controller
             $code = 500;
         }
 
-        // dd($parameter, $data_step_detail);
+        # dd($parameter, $data_step_detail);
         return response()->json($response, $code);
     }
 
@@ -253,13 +304,8 @@ class LearningActivityController extends Controller
         $data['slug'] = $slug;
         $data['step'] = $step;
 
-        // list learning activity selected
+        # list learning activity selected
         $data['activity_selected'] = $this->getContentListActivity(Auth::user()->user_group_id);
-
-        // check validate url parameter slug dengan user_group_id
-        if ( $slug != $data['activity_selected']['slug'] ) :
-            return redirect(route('front.dashboard'));
-        endif;
 
         $path_view = 'front.page.learning-activity.gerak-lurus.step' . $step;
 
