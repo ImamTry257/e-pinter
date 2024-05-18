@@ -38,45 +38,55 @@ class DashboardController extends Controller
 
         $data['user'] = Auth::user();
 
-        // dd($data);
-
         return view('front.page.dashboard.index', $data);
     }
 
     public function start(Request $request)
     {
-        # dd($request->all());
-
-        // param
-        $parameter = [
-            'user_id'           => $request['user_id'],
-            'user_group_id'     => $request['user_group_id'],
-            'activity_master_id'=> $request['activity_master_id'],
-            'activity_step_id'  => $request['activity_step_id']
-        ];
-
-        // check data
-        $data_step_progress = DB::table('activity_step_progress')
-                            ->where($parameter)->first();
-
         try {
+            # dd($request->all());
+
+            # param
+            $parameter = [
+                'user_id'           => $request['user_id'],
+                'user_group_id'     => $request['user_group_id'],
+                'activity_master_id'=> $request['activity_master_id'],
+                'activity_step_id'  => $request['activity_step_id']
+            ];
+
+            # check data user_group di step progress
+            $data_user_group_id = DB::table('activity_step_progress')
+                                    ->where(['user_id' => $request['user_id']])
+                                    ->first();
+
+            # is exist
+            if ( !empty($data_user_group_id) ) :
+                $user_group_id = $data_user_group_id->user_group_id;
+            else :
+                $user_group_id = $parameter['user_group_id'];
+
+                # update data user_group_id to users table by user_id
+                DB::table('users')->where('id', '=', $request['user_id'])
+                                ->update(['user_group_id' => $user_group_id]);
+            endif ;
+
+            # check data by param
+            $data_step_progress = DB::table('activity_step_progress')
+                                ->where($parameter)->first();
+
             if ( empty ( $data_step_progress ) ) :
-                // new record
+                # new record
                 $parameter['created_at'] = now();
 
                 DB::table('activity_step_progress')
                     ->insert($parameter);
             else :
-                // data update
-                $parameter['updated_at'] = now();
+                # data update
 
+                # update data into step progress
                 DB::table('activity_step_progress')
-                    ->where([
-                        'user_group_id' => $parameter['user_group_id'],
-                        'activity_master_id' => $parameter['activity_master_id'],
-                        'activity_step_id' => $parameter['activity_step_id']
-                    ])
-                    ->update($parameter);
+                    ->where($parameter)
+                    ->update(['updated_at' => now()]);
 
             endif ;
 
@@ -87,7 +97,7 @@ class DashboardController extends Controller
 
             $code = 200;
         } catch (\Throwable $th) {
-            // throw $th;
+            # throw $th;
             # dd($th->getMessage());
             $response = [
                 'status'    => false,
