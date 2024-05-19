@@ -34,11 +34,10 @@
             url: "{{ route('front.activity.next-progress') }}",
             dataType: 'json',
             data: {
-                "user_group_id"         : "{{ $user->user_group_id }}",
-                "activity_master_id"    : "{{ $user->user_group_id }}",
-                "activity_step_id"      : 0,
+                "progress_id"  : "{{ $progress->id }}",
+                "step_id"               : 0,
                 "detail_progress"       : 100,
-                "intro"                 : true
+                "intro"                 : 1
             },
             timeout: 2000,
             headers: {

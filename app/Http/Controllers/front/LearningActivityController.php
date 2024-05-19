@@ -204,16 +204,20 @@ class LearningActivityController extends Controller
         $data['slug'] = $slug;
 
         # list learning activity selected
-        $data['activity_selected'] = $this->getContentListActivity(Auth::user()->user_group_id);
-
-        # check validate url parameter slug dengan user_group_id
-        if ( $slug != $data['activity_selected']['slug'] ) :
-            return redirect(route('front.dashboard'));
-        endif;
+        $data['activity_selected'] = $this->getContentListActivity($slug);
 
         $data['content'] = $this->getContentIntro($slug);
 
         $data['user'] = Auth::user();
+
+        # get data progress
+        $data['progress'] = DB::table('activity_step_progress')
+                            ->where([
+                                'user_id'               => $data['user']->id,
+                                'user_group_id'         => $data['user']->user_group_id,
+                                'activity_master_id'    => $data['activity_selected']['user_group_id'],
+                                'activity_step_id'      => 1
+                            ])->first();
 
         # return view
         return view('front.page.learning-activity.introduction_activity', $data);
@@ -224,20 +228,23 @@ class LearningActivityController extends Controller
         try {
             # dd($request->all(), json_decode($request->answers));
 
-            # set presentase
-            $count_question = $request->count_question;
-            $count_answer = 0;
-            $data_answers = json_decode($request->answers);
-            foreach ( $data_answers as  $answer) :
-                if ( $answer->value_text != '' ) :
-                    $count_answer++;
-                endif ;
-            endforeach ;
+            # check is_intro
+            if ( $request->intro == 0 ) :
+                # set presentase
+                $count_question = $request->count_question;
+                $count_answer = 0;
+                $data_answers = json_decode($request->answers);
+                foreach ( $data_answers as  $answer) :
+                    if ( $answer->value_text != '' ) :
+                        $count_answer++;
+                    endif ;
+                endforeach ;
 
-            # set presentase
-            $detail_progress = ( $count_answer == $count_question ) ? 100 : ( ( $count_answer / $count_question ) * 100 );
-
-            # dd($ins_answers);
+                # set presentase
+                $detail_progress = ( $count_answer == $count_question ) ? 100 : ( ( $count_answer / $count_question ) * 100 );
+            else :
+                $detail_progress = 100;
+            endif ;
 
             # update progress on step detail
             $parameter = [
@@ -247,10 +254,10 @@ class LearningActivityController extends Controller
             ];
 
             # set structure for string json to parameter answer
-            if ( $request->intro ) : # for step introduction
+            if ( $request->intro == 1 ) : # for step introduction
                 $sjson['type'] = 'intro';
                 $sjson['presentase'] = 100;
-                $sjson['value'] = $parameter['answers'];
+                $sjson['value'] = 'intro_step';
 
                 $parameter['answers'] = json_encode($sjson);
 
@@ -274,14 +281,17 @@ class LearningActivityController extends Controller
                                     'sd.activity_progress_id' => $request->progress_id,
                                     's.step_id' => $request->step_id
                                 ]);
+
             $data_step_detail = $query_step_detail->first();
 
-            # dd($data_step_detail, $request->all(),$parameter);
+            #dd($data_step_detail, $request->all(), $parameter, $query_step_detail->toSql());
 
+            $user_id = Auth::user()->id;
+            $date_now = now();
             if ( empty ( $data_step_detail ) ) :
                 # new record
-                $parameter['created_by'] = Auth::user()->id;
-                $parameter['created_at'] = now();
+                $parameter['created_by'] = $user_id;
+                $parameter['created_at'] = $date_now;
                 $parameter['updated_by'] = 0;
 
                 // dd($parameter);
@@ -289,8 +299,8 @@ class LearningActivityController extends Controller
                     ->insert($parameter);
             else :
                 # data update
-                $parameter['sd.updated_by'] = Auth::user()->id;
-                $parameter['sd.updated_at'] = now();
+                $parameter['sd.updated_by'] = $user_id;
+                $parameter['sd.updated_at'] = $date_now;
                 // dd($parameter);
                 $query_step_detail->update($parameter);
 
@@ -304,7 +314,7 @@ class LearningActivityController extends Controller
             $code = 200;
         } catch (\Throwable $th) {
             #throw $th;
-            dd($th->getMessage());
+            dd($th);
             $response = [
                 'status'    => false,
                 'message'   => 'Progress Gagal disimpan!'
