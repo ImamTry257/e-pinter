@@ -19,7 +19,6 @@
     <div class="main-banner ms-2 col-lg-11 d-none">
         <img src="{{ asset('assets/img-pemb1.svg') }}" alt="" style="width: 100%;">
     </div>
-
     <div class="card list-topic-content p-5 col-12">
         <div class="row p-2 px-5">
             <form action="javascript:void();" id="form-step-1">
@@ -64,5 +63,13 @@
     </div>
 </div>
 
+@php
+    $value_answers = json_decode($detail_step->answers)->value;
+@endphp
+<script>
+    @foreach (json_decode($value_answers) as $value)
+        $('textarea[name="{{ $value->id }}"]').html('{{ $value->value_html }}')
+    @endforeach
+</script>
 @include('front.page.learning-activity.gerak-lurus.script.js-gl')
 @endsection

@@ -402,6 +402,11 @@ class LearningActivityController extends Controller
             $data['progress_id'] = $progress_activity->id;
         endif ;
 
+        # get data detail step
+        $data['detail_step'] = DB::table('activity_step_detail as sd')
+                                ->where('activity_progress_id', '=', $data['progress_id'])
+                                ->first();
+
         # dd($data, $parameter, $progress_activity);
 
         return view($path_view, $data);
