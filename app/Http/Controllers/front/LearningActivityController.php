@@ -347,13 +347,10 @@ class LearningActivityController extends Controller
         # list learning activity selected
         $data['activity_selected'] = $this->getContentListActivity($slug);
 
-        $path_view = 'front.page.learning-activity.gerak-lurus.step' . $step;
+        $path_view = 'front.page.learning-activity.step' . $step;
 
-        if ( $slug == 'gerak-melingkar' ) :
-            $path_view = 'front.page.learning-activity.gerak-melingkar.step' . $step;
-        elseif ( $slug == 'gerak-parabola' ) :
-            $path_view = 'front.page.learning-activity.gerak-parabola.step' . $step;
-        endif ;
+        # get content
+        $data['content'] = $this->selectContentStep($data['activity_selected']['user_group_id'], $step);
 
         $data['user'] = Auth::user();
 
