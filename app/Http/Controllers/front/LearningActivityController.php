@@ -199,7 +199,7 @@ class LearningActivityController extends Controller
     }
 
 
-    public function introduction (Request $request, $slug)
+    public function introduction(Request $request, $slug)
     {
         $data['slug'] = $slug;
 
@@ -218,6 +218,18 @@ class LearningActivityController extends Controller
                                 'activity_master_id'    => $data['activity_selected']['user_group_id'],
                                 'activity_step_id'      => 1
                             ])->first();
+
+        # if null, new journey for this project
+        if ( empty( $data['progress'] ) ) :
+            # new record
+            $data['progress'] = DB::table('activity_step_progress')
+            ->insertGetId([
+                'user_id'               => $data['user']->id,
+                'user_group_id'         => $data['user']->user_group_id,
+                'activity_master_id'    => $data['activity_selected']['user_group_id'],
+                'activity_step_id'      => 1
+            ]);
+        endif ;
 
         # return view
         return view('front.page.learning-activity.introduction_activity', $data);
