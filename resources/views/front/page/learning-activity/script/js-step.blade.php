@@ -44,9 +44,18 @@
 
             },
             success: function(response) {
-                // console.log(response)
                 if ( response.status ) {
-                    location.href = `{{ route("front.activity.step", ["slug" => $slug, "step" => ( $step + 1 )]) }}`
+                    if ( isNext ) {
+                        location.href = `{{ route("front.activity.step", ["slug" => $slug, "step" => ( $step + 1 )]) }}`
+                    } else {
+                        // show alert
+                        var className = 'btn-save'
+                        showAlert(className, response.message)
+                    }
+                } else {
+                    // show alert
+                    var className = 'alert-danger'
+                    showAlert(className, response.message)
                 }
 
             },
@@ -60,6 +69,19 @@
                 }
             }
         })
+    }
+
+    function showAlert(className, message){
+        $('div.alert-notif').show()
+        $('div.alert-notif').addClass('alert').addClass(className).html(`<span class="text-white">${message}</span>`)
+
+        $("html, body").animate({
+            scrollTop: 0
+        }, 10);
+
+        setTimeout(() => {
+            $('div.alert-notif').hide('slow').removeClass('alert').removeClass(className)
+        }, 3000);
     }
 
     function handleStepOne(){

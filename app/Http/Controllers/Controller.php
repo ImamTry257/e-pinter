@@ -72,7 +72,8 @@ class Controller extends BaseController
 
         if ( $step_id == 1 ) :
             $img = asset('assets/pemb'. $master_id .'-question-img.svg');
-            $content = '<h5 class="pb-2 fw-bold">Langkah 1: Memberikan pertanyaan esensial dari fenomena sekitar</h5>
+            $content = '<div class="alert-notif"></div>
+                        <h5 class="pb-2 fw-bold">Langkah 1: Memberikan pertanyaan esensial dari fenomena sekitar</h5>
                         <h6>Mari Baca artikel dan amati gambar di bawah ini</h6>
                         <div>
                             <img src="' . $img . '" alt="" class="w-50">
@@ -126,24 +127,24 @@ class Controller extends BaseController
                                 <div class="py-3 row">
                                     <label for="date" class="col-sm-2 col-form-label">Tanggal <span class="text-danger">*</span></label>
                                     <div class="col-sm-4">
-                                        <input type="date" class="form-control" id="date">
+                                        <input type="date" name="date" class="form-control" id="step-2">
                                     </div>
                                 </div>
 
                                 <div class="py-3 row">
                                     <label for="hour" class="col-sm-2 col-form-label">Jam <span class="text-danger">*</span></label>
                                     <div class="col-sm-2">
-                                        <input type="time" class="form-control" id="start_time">
+                                        <input type="time" name="start_time" class="form-control" id="step-2">
                                     </div>
                                     <div class="col-sm-2">
-                                        <input type="time" class="form-control" id="end_time">
+                                        <input type="time" name="end_time" class="form-control" id="step-2">
                                     </div>
                                 </div>
 
                                 <div class="py-3 row">
                                     <label for="title" class="col-sm-2 col-form-label">Judul <span class="text-danger">*</span></label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="title">
+                                        <input type="text" name="title" class="form-control" id="step-2">
                                     </div>
                                 </div>
 

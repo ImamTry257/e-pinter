@@ -34,14 +34,13 @@
         </div>
     </div>
 </div>
-
 @php
     if ( $detail_step != null ) :
         $value_answers = json_decode($detail_step->answers)->value;
     endif
 @endphp
 <script>
-    @if ( $detail_step != null ) :
+    @if ( $detail_step != null )
         @foreach (json_decode($value_answers) as $value)
             $('textarea[name="{{ $value->id }}"]').html('{{ $value->value_html }}')
         @endforeach
