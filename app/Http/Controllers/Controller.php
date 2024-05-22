@@ -87,7 +87,7 @@ class Controller extends BaseController
                                 <p class="text-justify p-3">Pertanyaan 1. Dari ilustrasi tersebut, materi fisika dan besaran fisika apa yang terlibat dalam peristiwa tersebut!</p>
                             </div>
                             <div>
-                                <textarea name="answer-a" id="step-1" cols="30" rows="10"></textarea>
+                                <textarea name="answer-a" id="step-' . $step_id . '" cols="30" rows="10"></textarea>
                             </div>
                         </div>
 
@@ -96,14 +96,15 @@ class Controller extends BaseController
                                 <p class="text-justify p-3">Pertanyaan 2. Tuliskan persamaan fisika yang terkait dengan gambar tersebut pada kotak jawaban di bawah ini ya</p>
                             </div>
                             <div>
-                                <textarea name="answer-b" id="step-1" cols="30" rows="10"></textarea>
+                                <textarea name="answer-b" id="step-' . $step_id . '" cols="30" rows="10"></textarea>
                             </div>
                         </div>
 
                         <input type="hidden" name="progress_id">
                         <input type="hidden" name="intro">';
         elseif ( $step_id == 2 ) :
-            $content = '<h5 class="pb-2 fw-bold">Langkah 2: Menyusun jadwal dan merancang proyek berkelompok</h5>
+            $content = '<div class="alert-notif"></div>
+                        <h5 class="pb-2 fw-bold">Langkah 2: Menyusun jadwal dan merancang proyek berkelompok</h5>
                         <div class="desc-step mt-3">
                             <p class="text-justify p-3">Buatlah jadwal dan rancangan untuk menyelesaikan ilustrasi tersebut yang bisa dilakukan untuk mengerjakan</p>
                         </div>
@@ -127,36 +128,36 @@ class Controller extends BaseController
                                 <div class="py-3 row">
                                     <label for="date" class="col-sm-2 col-form-label">Tanggal <span class="text-danger">*</span></label>
                                     <div class="col-sm-4">
-                                        <input type="date" name="date" class="form-control" id="step-2">
+                                        <input type="date" name="date" class="form-control" id="step-' . $step_id . '">
                                     </div>
                                 </div>
 
                                 <div class="py-3 row">
                                     <label for="hour" class="col-sm-2 col-form-label">Jam <span class="text-danger">*</span></label>
                                     <div class="col-sm-2">
-                                        <input type="time" name="start_time" class="form-control" id="step-2">
+                                        <input type="time" name="start_time" class="form-control" id="step-' . $step_id . '">
                                     </div>
                                     <div class="col-sm-2">
-                                        <input type="time" name="end_time" class="form-control" id="step-2">
+                                        <input type="time" name="end_time" class="form-control" id="step-' . $step_id . '">
                                     </div>
                                 </div>
 
                                 <div class="py-3 row">
                                     <label for="title" class="col-sm-2 col-form-label">Judul <span class="text-danger">*</span></label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="title" class="form-control" id="step-2">
+                                        <input type="text" name="title" class="form-control" id="step-' . $step_id . '">
                                     </div>
                                 </div>
 
                                 <div class="py-3 row">
                                     <label for="desc" class="col-sm-2 col-form-label">Descriptions <span class="text-danger">*</span></label>
                                     <div class="col-sm-10">
-                                        <textarea name="answer-a" id="step-2" class="form-control" cols="30" rows="30"></textarea>
+                                        <textarea name="descriptions" id="step-' . $step_id . '" class="form-control" cols="30" rows="30"></textarea>
                                     </div>
                                 </div>
 
                                 <div class="text-end">
-                                    <a href="javascript:void(0);" class="btn btn-information text-white">Create</a>
+                                    <a href="javascript:void(0);" class="btn btn-information text-white" onclick="setAnswers(' . $step_id . ',false)">Create</a>
                                 </div>
                             </div>
                         </div>';
@@ -174,7 +175,7 @@ class Controller extends BaseController
                                             <div class="title-header text-secondary">Drag & Drop to Upload File</div>
                                             <div class="text-secondary py-3">or</div>
                                             <a href="javascript:void(0);" class="btn btn-primary text-white">Select File</a>
-                                            <input type="file" class="upload-file" hidden>
+                                            <input type="file" id="step-' . $step_id . '" class="upload-file" hidden>
                                         </div>
                                     </div>
                                 </div>
@@ -195,7 +196,7 @@ class Controller extends BaseController
                                         <div class="title-header text-secondary">Drag & Drop to Upload File</div>
                                         <div class="text-secondary py-3">or</div>
                                         <a href="javascript:void(0);" class="btn btn-primary text-white">Select File</a>
-                                        <input type="file" class="upload-file" hidden>
+                                        <input type="file" id="step-' . $step_id . '" class="upload-file" hidden>
                                     </div>
                                 </div>
                             </div>
@@ -215,7 +216,7 @@ class Controller extends BaseController
                                             <div class="title-header text-secondary">Drag & Drop to Upload File</div>
                                             <div class="text-secondary py-3">or</div>
                                             <a href="javascript:void(0);" class="btn btn-primary text-white">Select File</a>
-                                            <input type="file" class="upload-file" hidden>
+                                            <input type="file" id="step-' . $step_id . '" class="upload-file" hidden>
                                         </div>
                                     </div>
                                 </div>
@@ -230,7 +231,7 @@ class Controller extends BaseController
 
                         <div class="question-a pb-3">
                             <div>
-                                <textarea name="answer-a" id="step-2" class="form-control" cols="30" rows="30"></textarea>
+                                <textarea name="answer-a" id="step-' . $step_id . '" class="form-control" cols="30" rows="30"></textarea>
                             </div>
                         </div>';
         endif ;

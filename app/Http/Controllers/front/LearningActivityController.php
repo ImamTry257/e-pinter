@@ -285,6 +285,7 @@ class LearningActivityController extends Controller
                 $parameter['answers'] = ( $request->intro ) ? 'intro_step' : json_encode($ins_answers);
             endif ;
 
+            # dd($request->all(), $parameter);
             # check data
             $query_step_detail = DB::table('activity_step_detail as sd')
                                 ->join('activity_step_progress as sp', 'sp.id', '=', 'sd.activity_progress_id')
@@ -296,7 +297,7 @@ class LearningActivityController extends Controller
 
             $data_step_detail = $query_step_detail->first();
 
-            #dd($data_step_detail, $request->all(), $parameter, $query_step_detail->toSql());
+            # dd($data_step_detail, $request->all(), $parameter, $query_step_detail->toSql());
 
             $user_id = Auth::user()->id;
             $date_now = now();

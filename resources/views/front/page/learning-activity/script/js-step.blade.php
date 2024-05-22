@@ -4,29 +4,40 @@
 
     setTimeout(() => {
         // console.log($('textarea[name="answer-a"], textarea[name="answer-b"]'))
-        $('textarea[name="answer-a"], textarea[name="answer-b"]').summernote()
+        $('textarea[name="answer-a"], textarea[name="answer-b"], textarea[name="descriptions"]').summernote()
     }, 500);
 
 
     function setAnswers(stepId, isNext){
 
         let progressId = '{{ $progress_id }}'
-        var list_question = $('textarea#step-' + stepId)
+
 
         // binding data progress_id and intro
         $('input[name="progress_id"]').val(progressId)
         $('input[name="intro"]').val(0)
 
         var answers = ''
+        var list_question = ''
         if ( stepId == 1 ) {
             answers = handleStepOne()
+            list_question = $('textarea#step-' + stepId).length
+        } else  if ( stepId == 2 ) {
+            answers = handleStepTwo()
+            var list_question1 = $('div.card-body').find('input#step-' + stepId).length
+            var list_question2 = $('div.card-body').find('textarea#step-' + stepId).length
+
+            list_question = list_question1 + list_question2
         }
+
+        console.log(answers, list_question)
+        // return false
 
         var formData = new FormData()
         formData.append('progress_id', progressId)
         formData.append('intro', 0)
         formData.append('answers', JSON.stringify(answers))
-        formData.append('count_question', list_question.length)
+        formData.append('count_question', list_question)
         formData.append('step_id', stepId)
 
         $.ajax({
@@ -95,6 +106,36 @@
                 'id' : 'answer-b',
                 'value_text' :  $($('textarea[name="answer-b"]').summernote('code')).text(),
                 'value_html' :  $('textarea[name="answer-b"]').summernote('code')
+            }
+        ]
+    }
+
+    function handleStepTwo(){
+        return [
+            {
+                'id' : 'date',
+                'value_text' :  $('input[name="date"]').val(),
+                'value_html' :  $('input[name="date"]').val()
+            },
+            {
+                'id' : 'start_time',
+                'value_text' :  $('input[name="start_time"]').val(),
+                'value_html' :  $('input[name="start_time"]').val()
+            },
+            {
+                'id' : 'end_time',
+                'value_text' :  $('input[name="end_time"]').val(),
+                'value_html' :  $('input[name="end_time"]').val()
+            },
+            {
+                'id' : 'title',
+                'value_text' :  $('input[name="title"]').val(),
+                'value_html' :  $('input[name="title"]').val()
+            },
+            {
+                'id' : 'descriptions',
+                'value_text' :  $($('textarea[name="descriptions"]').summernote('code')).text(),
+                'value_html' :  $('textarea[name="descriptions"]').summernote('code')
             }
         ]
     }

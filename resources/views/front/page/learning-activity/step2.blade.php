@@ -33,6 +33,21 @@
         </div>
     </div>
 </div>
-
+@php
+    if ( $detail_step != null ) :
+        $value_answers = json_decode($detail_step->answers)->value;
+    endif
+@endphp
+<script>
+    @if ( $detail_step != null )
+        @foreach (json_decode($value_answers) as $value)
+            @if ( $value->id != 'descriptions' )
+                $('input[name="{{ $value->id }}"]').val('{{ $value->value_html }}')
+            @else
+                $('textarea[name="{{ $value->id }}"]').html('{{ $value->value_html }}')
+            @endif
+        @endforeach
+    @endif
+</script>
 @include('front.page.learning-activity.script.js-step')
 @endsection
