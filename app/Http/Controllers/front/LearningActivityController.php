@@ -283,17 +283,47 @@ class LearningActivityController extends Controller
                 ];
 
                 $parameter['answers'] = ( $request->intro ) ? 'intro_step' : json_encode($ins_answers);
+
+                // handle key value for step 3 , 4 and 5
+                if ( in_array($request->step_id, [3, 4, 5]) ) :
+
+                    $fileName = '';
+                    // check request file is exist
+                    if ( $request->file != null ) :
+                        // upload file
+                        $fileName = $detail_progress . '_' . $request->step_id . '_' . date('YmdHis').'.'.$request->file->extension();
+
+                        $request->file->move(public_path('assets/activity/step/'), $fileName);
+
+                        $ins_answers = [
+                            'type'          => 'non-intro',
+                            'presentase'    => $detail_progress,
+                            'value'         => json_encode([['id' => 'file', 'value_text' => $fileName, 'value_html' => $fileName]])
+                        ];
+                        $parameter['answers'] = ( $request->intro ) ? 'intro_step' : json_encode($ins_answers);
+
+                    else :
+                        // check is update or new record
+                        $check_data_step_upload = $this->checkDataProgress($request->progress_id, $request->step_id);
+
+                        if ( empty($check_data_step_upload) ) :
+                            $ins_answers = [
+                                'type'          => 'non-intro',
+                                'presentase'    => $detail_progress,
+                                'value'         => json_encode([['id' => 'file', 'value_text' => $fileName, 'value_html' => $fileName]])
+                            ];
+                            $parameter['answers'] = ( $request->intro ) ? 'intro_step' : json_encode($ins_answers);
+
+                        endif ;
+                    endif ;
+                endif ;
+
+                # dd($request->answers, json_encode([['id' => 'file', 'value_string' => 'sadasd.png']]), $parameter);
             endif ;
 
             # dd($request->all(), $parameter);
             # check data
-            $query_step_detail = DB::table('activity_step_detail as sd')
-                                ->join('activity_step_progress as sp', 'sp.id', '=', 'sd.activity_progress_id')
-                                ->join('activity_step as s', 's.id', '=', 'sp.activity_step_id')
-                                ->where([
-                                    'sd.activity_progress_id' => $request->progress_id,
-                                    's.step_id' => $request->step_id
-                                ]);
+            $query_step_detail = $this->checkDataProgress($request->progress_id, $request->step_id);
 
             $data_step_detail = $query_step_detail->first();
 
@@ -320,8 +350,9 @@ class LearningActivityController extends Controller
             endif ;
 
             $response = [
-                'status'    => true,
-                'message'   => 'Progress Berhasil disimpan!'
+                'status'            => true,
+                'message'           => 'Progress Berhasil disimpan!',
+                'detail_progress'   => $parameter['detail_progress']
             ];
 
             $code = 200;
@@ -338,6 +369,17 @@ class LearningActivityController extends Controller
 
         # dd($parameter, $data_step_detail);
         return response()->json($response, $code);
+    }
+
+    public function checkDataProgress($progress_id, $step_id)
+    {
+        return DB::table('activity_step_detail as sd')
+            ->join('activity_step_progress as sp', 'sp.id', '=', 'sd.activity_progress_id')
+            ->join('activity_step as s', 's.id', '=', 'sp.activity_step_id')
+            ->where([
+                'sd.activity_progress_id' => $progress_id,
+                's.step_id' => $step_id
+            ]);
     }
 
     public function step(Request $request, $slug, $step)

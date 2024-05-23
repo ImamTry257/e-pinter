@@ -162,7 +162,8 @@ class Controller extends BaseController
                             </div>
                         </div>';
         elseif ( $step_id == 3 ) :
-            $content = '<h5 class="pb-2 fw-bold">Langkah 3: Pembuatan proyek</h5>
+            $content = '<div class="alert-notif"></div>
+                        <h5 class="pb-2 fw-bold">Langkah 3: Pembuatan proyek</h5>
                         <div class="desc-step mt-3">
                             <p class="text-justify p-3">Upload video proyek kelompok dengan tema "' . $title . '"</p>
                         </div>
@@ -175,14 +176,15 @@ class Controller extends BaseController
                                             <div class="title-header text-secondary">Drag & Drop to Upload File</div>
                                             <div class="text-secondary py-3">or</div>
                                             <a href="javascript:void(0);" class="btn btn-primary text-white">Select File</a>
-                                            <input type="file" id="step-' . $step_id . '" class="upload-file" hidden>
+                                            <input type="file" id="step-' . $step_id . '" class="upload-file" hidden name="file">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>';
         elseif ( $step_id == 4 ) :
-            $content = '<h5 class="pb-2 fw-bold">Langkah 4: Melakukan eksperimen menggunakan teknologi</h5>
+            $content = '<div class="alert-notif"></div>
+                    <h5 class="pb-2 fw-bold">Langkah 4: Melakukan eksperimen menggunakan teknologi</h5>
                     <h1>Upload foto tiap langkah eksperimen menggunakan software Tracker</h1>
                     <div class="desc-step mt-3">
                         <p class="text-justify p-3">Upload foto langkah eksperimen kelompok dengan tema “' . $title . '”</p>
@@ -196,14 +198,15 @@ class Controller extends BaseController
                                         <div class="title-header text-secondary">Drag & Drop to Upload File</div>
                                         <div class="text-secondary py-3">or</div>
                                         <a href="javascript:void(0);" class="btn btn-primary text-white">Select File</a>
-                                        <input type="file" id="step-' . $step_id . '" class="upload-file" hidden>
+                                        <input type="file" id="step-' . $step_id . '" class="upload-file" hidden name="file">
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>';
         elseif ( $step_id == 5 ) :
-            $content = '<h5 class="pb-2 fw-bold">Langkah 5: Penyusunan laporan</h5>
+            $content = '<div class="alert-notif"></div>
+                        <h5 class="pb-2 fw-bold">Langkah 5: Penyusunan laporan</h5>
                         <div class="desc-step mt-3">
                             <p class="text-justify p-3">Buatlah laporan dari projek yang anda buat</p>
                         </div>
@@ -216,14 +219,15 @@ class Controller extends BaseController
                                             <div class="title-header text-secondary">Drag & Drop to Upload File</div>
                                             <div class="text-secondary py-3">or</div>
                                             <a href="javascript:void(0);" class="btn btn-primary text-white">Select File</a>
-                                            <input type="file" id="step-' . $step_id . '" class="upload-file" hidden>
+                                            <input type="file" id="step-' . $step_id . '" class="upload-file" hidden name="file">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>';
         elseif ( $step_id == 6 ) :
-            $content = '<h5 class="pb-2 fw-bold">Langkah 6: Refleksi</h5>
+            $content = '<div class="alert-notif"></div>
+                        <h5 class="pb-2 fw-bold">Langkah 6: Refleksi</h5>
                         <div class="desc-step mt-3">
                             <p class="text-justify p-3">Silahkan presentasikan hasil proyek dan laporanmu secara bergantian.
                                 Jadi, kesimpulannya apakah anda dapat memvisulisasikan gambar 1 tersebut? dan Apakah teknologi yang digunakan bisa digunakan untuk memvisualisasi ' . $title . '?</p>

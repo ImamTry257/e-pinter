@@ -31,8 +31,10 @@
             </div>
 
             <div class="col-lg-12 text-start">
-                <a href="javascript:void(0);" class="btn btn-save text-white">Simpan</a>
-                <a href="{{ route('front.activity.step', ['slug' => $slug, 'step' => 4]) }}" id="btn-step-3" class="btn btn-information text-white">Selanjutnya Sintak 4.</a>
+                <a href="javascript:void(0);" onclick="setAnswers('{{ $step }}',false)" class="btn btn-save text-white">Simpan</a>
+                <a href="javascript:void(0);" onclick="setAnswers('{{ $step }}',true)" id="btn-step-3" class="btn btn-information text-white">Selanjutnya Sintak 4.</a>
+
+                <input type="hidden" id="is_disabled" value="1">
             </div>
         </div>
     </div>
@@ -58,7 +60,6 @@
             showFile(); //calling function
         });
 
-
         //If user Drag File Over DropArea
         dropArea.addEventListener("dragover", (event)=>{
             event.preventDefault(); //preventing from default behaviour
@@ -82,14 +83,14 @@
 
         function showFile(){
         let fileType = file.type; //getting selected file type
-        let validExtensions = ["image/jpeg", "image/jpg", "image/png"]; //adding some valid image extensions in array
+        let validExtensions = ["image/jpeg", "image/jpg", "image/png", "video/mp4", "video/mkv", "video/flv"]; //adding some valid image extensions in array
         if(validExtensions.includes(fileType)){ //if user selected file is an image file
             let fileReader = new FileReader(); //creating new FileReader object
             fileReader.onload = ()=>{
             let fileURL = fileReader.result; //passing user file source in fileURL variable
             // UNCOMMENT THIS BELOW LINE. I GOT AN ERROR WHILE UPLOADING THIS POST SO I COMMENTED IT
             // let imgTag = `<img src="${fileURL}" alt="image">`; //creating an img tag and passing user selected file source inside src attribute
-            dropArea.innerHTML = imgTag; //adding that created img tag inside dropArea container
+            // dropArea.innerHTML = imgTag; //adding that created img tag inside dropArea container
             }
             fileReader.readAsDataURL(file);
         }else{
@@ -98,7 +99,43 @@
             dragText.textContent = "Drag & Drop to Upload File";
         }
     }
+
+    // set disable for next step
+    $('input#is_disabled').val(1)
+
+    var fileElement = $('input.upload-file')
+    fileElement.on('change', (e) => {
+        // check file
+        const fileUpload = fileElement.prop('files')[0];
+
+        if ( fileUpload != '' ) {
+            $('input#is_disabled').val(0)
+        }
+    })
 </script>
+@php
+    // dd($detail_step);
+    if ( $detail_step != null ) :
+        $value_answers = json_decode($detail_step->answers)->value;
+    endif
+@endphp
+<script>
+    @if ( $detail_step != null )
+        $('input#is_disabled').val(0)
+        @if ($detail_step->detail_progress != 100 )
+            $('input#is_disabled').val(1)
+        @endif
+
+        // @foreach (json_decode($value_answers) as $value)
+        //     @if ( $value->id != 'descriptions' )
+        //         $('input[name="{{ $value->id }}"]').val('{{ $value->value_html }}')
+        //     @else
+        //         $('textarea[name="{{ $value->id }}"]').html('{{ $value->value_html }}')
+        //     @endif
+        // @endforeach
+    @endif
+</script>
+@include('front.page.learning-activity.script.js-step')
 @endsection
 
 

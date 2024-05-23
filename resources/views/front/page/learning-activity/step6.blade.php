@@ -27,8 +27,10 @@
             </div>
 
             <div class="col-lg-12 text-start">
-                <a href="javascript:void(0);" class="btn btn-save text-white">Simpan</a>
-                <a href="{{ route('front.activity', ['slug' => $slug]) }}" id="btn-step-6" class="btn btn-information text-white">Evaluasi Kegiatan Pembelajaran </a>
+                <a href="javascript:void(0);" onclick="setAnswers('{{ $step }}',false)" class="btn btn-save text-white">Simpan</a>
+                <a href="javascript:void(0);" onclick="setAnswers('{{ $step }}',true)" id="btn-step-6" class="btn btn-information text-white">Evaluasi Kegiatan Pembelajaran</a>
+
+                <input type="hidden" id="is_disabled" value="1">
             </div>
         </div>
     </div>
