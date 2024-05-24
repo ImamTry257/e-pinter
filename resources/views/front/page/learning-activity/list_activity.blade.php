@@ -54,7 +54,7 @@
                         <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">
                     </div>
                     <div class="col-lg-10 col-md-10 col-sm-10 col-xl-10 p-3">
-                        <a href="javascript:void(0);" onclick="startStep(1)" class="disable-step link-step">
+                        <a href="javascript:void(0);" onclick="startStep(1)" class="disable-step link-step" id="disable-next">
                             <div class="py-1">
                                 <h4 class="text-dark">Sintak 1.</h4>
                                 <span class="text-secondary">Memberikan pertanyaan esensial dari fenomena sekitar</span>
@@ -74,7 +74,7 @@
                         <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">
                     </div>
                     <div class="col-lg-10 col-md-10 col-sm-10 col-xl-10 p-3">
-                        <a href="javascript:void(0);" onclick="startStep(2)" class="disable-step link-step">
+                        <a href="javascript:void(0);" onclick="startStep(2)" class="disable-step link-step" id="disable-next">
                             <div class="py-1">
                                 <h4 class="text-dark">Sintak 2.</h4>
                                 <span class="text-secondary">Menyusun jadwal dan merancang proyek berkelompok</span>
@@ -93,7 +93,7 @@
                         <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">
                     </div>
                     <div class="col-lg-10 col-md-10 col-sm-10 col-xl-10 p-3">
-                        <a href="javascript:void(0);" onclick="startStep(3)" class="disable-step link-step">
+                        <a href="javascript:void(0);" onclick="startStep(3)" class="disable-step link-step" id="disable-next">
                             <div class="py-1">
                                 <h4 class="text-dark">Sintak 3.</h4>
                                 <span class="text-secondary">Pembuatan proyek</span>
@@ -114,7 +114,7 @@
                         <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">
                     </div>
                     <div class="col-lg-10 col-md-10 col-sm-10 col-xl-10 p-3">
-                        <a href="javascript:void(0);" onclick="startStep(4)" class="disable-step link-step">
+                        <a href="javascript:void(0);" onclick="startStep(4)" class="disable-step link-step" id="disable-next">
                             <div class="py-1">
                                 <h4 class="text-dark">Sintak 4.</h4>
                                 <span class="text-secondary">Melakukan eksperimen menggunakan teknologi</span>
@@ -133,7 +133,7 @@
                         <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">
                     </div>
                     <div class="col-lg-10 col-md-10 col-sm-10 col-xl-10 p-3">
-                        <a href="javascript:void(0);" onclick="startStep(5)" class="disable-step link-step">
+                        <a href="javascript:void(0);" onclick="startStep(5)" class="disable-step link-step" id="disable-next">
                             <div class="py-1">
                                 <h4 class="text-dark">Sintak 5.</h4>
                                 <span class="text-secondary">Penyusunan laporan</span>
@@ -154,7 +154,7 @@
                         <img src="{{ asset('assets/progress-icon.svg') }}" width="100" alt="" class="w-100">
                     </div>
                     <div class="col-lg-10 col-md-10 col-sm-10 col-xl-10 p-3">
-                        <a href="javascript:void(0);" onclick="startStep(6)" class="disable-step link-step">
+                        <a href="javascript:void(0);" onclick="startStep(6)" class="disable-step link-step" id="disable-next">
                             <div class="py-1">
                                 <h4 class="text-dark">Sintak 6.</h4>
                                 <span class="text-secondary">Refleksi</span>
@@ -187,7 +187,15 @@
     function startStep(id){
         var element = $('#step-' + id)
         var urlRedirect = element.find('a').attr('id')
-        // console.log(element, url)
+
+        // check is_disabled step
+        var isDisableStep = element.find('a').hasClass('disable-step link-step')
+        if ( isDisableStep ) {
+            return false
+        }
+        // console.log(element, urlRedirect, isDisableStep)
+
+        return false
 
         var param = {
             "user_id"               : "{{ $user->id }}",
