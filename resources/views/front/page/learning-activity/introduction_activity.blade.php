@@ -34,7 +34,7 @@
             url: "{{ route('front.activity.next-progress') }}",
             dataType: 'json',
             data: {
-                "progress_id"  : "{{ $progress->id }}",
+                "progress_id"  : "{{ $progress_id }}",
                 "step_id"               : 0,
                 "detail_progress"       : 100,
                 "intro"                 : 1

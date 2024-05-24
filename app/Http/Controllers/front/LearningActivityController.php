@@ -227,8 +227,13 @@ class LearningActivityController extends Controller
                 'user_id'               => $data['user']->id,
                 'user_group_id'         => $data['user']->user_group_id,
                 'activity_master_id'    => $data['activity_selected']['user_group_id'],
-                'activity_step_id'      => 1
+                'activity_step_id'      => 1,
+                'created_at'            => now()
             ]);
+
+            $data['progress_id'] = $data['progress'];
+        else :
+            $data['progress_id'] = $data['progress']->id;
         endif ;
 
         # return view
