@@ -1,5 +1,13 @@
 @extends('front.layouts.app-dashboard')
 
+@section('css')
+    <style>
+        .disable-project {
+            cursor: auto;
+        }
+    </style>
+@endsection
+
 @section('content')
 
 <div class="wrapper-dahboard-page col-lg-10 row">
@@ -18,16 +26,14 @@
 
         <div class="row">
             @foreach ( $list_activity as $key => $activity )
-                {{-- @if($activity['user_group_id'] == $user->user_group_id) --}}
-                    <div class="col-lg-6 pb-4">
-                        <a href="javascript:void(0);" id="project-{{ $activity['user_group_id'] }}" onclick="startProject('{{ $activity['user_group_id'] }}', '{{ route('front.activity', ['slug' => $activity['slug']]) }}')">
-                            <img src="{{ asset('assets/dashboard/') .'/'. $activity['image'] }}" alt="" class="w-100">
-                            <div class="p-3 shadow-lg bg-body">
-                                <span class="text-dark">Kegiatan Pembelajaran {{ $key + 1 }} <br/> {{ $activity['title'] }}</span>
-                            </div>
-                        </a>
-                    </div>
-                {{-- @endif --}}
+                <div class="col-lg-6 pb-4">
+                    <a href="javascript:void(0);" id="project-{{ $activity['user_group_id'] }}" onclick="startProject('{{ $activity['user_group_id'] }}', '{{ route('front.activity', ['slug' => $activity['slug']]) }}')">
+                        <img src="{{ asset('assets/dashboard/') .'/'. $activity['image'] }}" alt="" class="w-100">
+                        <div class="p-3 shadow-lg bg-body">
+                            <span class="text-dark">Kegiatan Pembelajaran {{ $key + 1 }} <br/> {{ $activity['title'] }}</span>
+                        </div>
+                    </a>
+                </div>
             @endforeach
         </div>
     </div>

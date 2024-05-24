@@ -14,7 +14,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        // list learning activity
+        # list learning activity
         $data['list_activity'] = [
             [
                 'title'         => 'Gerak Lurus',
@@ -37,6 +37,40 @@ class DashboardController extends Controller
         ];
 
         $data['user'] = Auth::user();
+
+        # check summary project base on user_id
+        $get_summary = DB::table('activity_summary as s')
+                        ->where('s.user_id', '=', $data['user']->id)
+                        ->get();
+
+        # add flaq on every project
+        foreach ($data['list_activity'] as $key => $value) :
+            // project in progress
+            if ( count ( $get_summary ) != 0 ) :
+                foreach ( $get_summary as $k => $v ) :
+
+                    # jika di current project belum completed
+                    if ( $v->is_completed == 0 ) :
+                        $data['list_activity'][$key]['is_completed'] = 0;
+                        $data['list_activity'][$key]['is_disabled'] = 0;
+
+                        # check user group id != master id ( other project )
+                        if ( $value['user_group_id'] != $v->activity_master_id ) :
+                            $data['list_activity'][$key]['is_disabled'] = 1;
+                        endif ;
+
+                        # dump($value, $v);
+                    else :
+                        $data['list_activity'][$key]['is_completed'] = $v->is_completed;
+                        $data['list_activity'][$key]['is_disabled'] = 0;
+                    endif ;
+                endforeach;
+
+            else : # new project / new member for choose project
+                $data['list_activity'][$key]['is_completed'] = 0;
+                $data['list_activity'][$key]['is_disabled'] = 0;
+            endif;
+        endforeach;
 
         return view('front.page.dashboard.index', $data);
     }
@@ -88,6 +122,28 @@ class DashboardController extends Controller
                     ->where($parameter)
                     ->update(['updated_at' => now()]);
 
+            endif ;
+
+            # insert or update data on activity summary when first click project
+            # check data on activity summary
+            $parameter_summary = [
+                'user_id'             => $request['user_id'],
+                'activity_master_id'  => $request['user_group_id'],
+            ];
+
+            # update to activity summary
+            $summary_is_exist = DB::table('activity_summary')
+                                ->where($parameter_summary)
+                                ->first();
+
+            $date_now = now();
+            if ( empty ( $summary_is_exist ) ) :
+                # new record
+                $parameter_summary['created_at'] = $date_now;
+                $parameter_summary['is_completed'] = 0;
+
+                DB::table('activity_summary')
+                    ->insert($parameter_summary);
             endif ;
 
             $response = [
