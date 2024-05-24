@@ -337,17 +337,62 @@ class LearningActivityController extends Controller
                 $parameter['created_at'] = $date_now;
                 $parameter['updated_by'] = 0;
 
-                // dd($parameter);
                 DB::table('activity_step_detail')
                     ->insert($parameter);
             else :
                 # data update
                 $parameter['sd.updated_by'] = $user_id;
                 $parameter['sd.updated_at'] = $date_now;
-                // dd($parameter);
+
                 $query_step_detail->update($parameter);
 
             endif ;
+
+            # check is last step
+            if ( $request->step_id == 6 ) :
+                # get master_id
+                $data_p = DB::table('activity_step_progress as p')
+                            ->where('p.id', '=', $request->progress_id)
+                            ->first('activity_master_id');
+
+                # check detail progress on this project
+                $check_detail_p = DB::table('activity_step_progress as p')
+                                    ->join('activity_step_detail as d', 'd.activity_progress_id', '=', 'p.id')
+                                    ->where([
+                                        'p.user_id'             => $user_id,
+                                        'p.activity_master_id'  => $data_p->activity_master_id
+                                    ])
+                                    ->where('d.detail_progress', '!=', 100)
+                                    ->first(['d.id as detail_id']);
+
+                # check data on activity summary
+                $parameter_summary = [
+                    'user_id'             => $user_id,
+                    'activity_master_id'  => $data_p->activity_master_id,
+                ];
+
+                # update to activity summary
+                $summary_is_exist = DB::table('activity_summary')
+                        ->where([
+                            'user_id' => $user_id,
+                            'activity_master_id'  => $data_p->activity_master_id
+                        ])->first('id as summary_id');
+
+                $parameter_summary['is_completed'] = ( empty ( $check_detail_p ) ? 1 : 0 );
+                if ( empty ( $summary_is_exist ) ) :
+                    # new record
+                    $parameter_summary['created_at'] = $date_now;
+
+                    DB::table('activity_summary')
+                        ->insert($parameter_summary);
+                else :
+                    # update
+                    $parameter_summary['updated_at'] = $date_now;
+
+                    $summary_is_exist->update($parameter_summary);
+                endif ;
+
+            endif;
 
             $response = [
                 'status'            => true,

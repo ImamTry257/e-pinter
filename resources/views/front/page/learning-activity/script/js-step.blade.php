@@ -14,8 +14,10 @@
     function setAnswers(stepId, isNext){
 
         // check is completed on current step when click btn save and next step ( on new record state )
-        if ( $('input#is_disabled').val() == 1 ) {
-            return false
+        if ( stepId != 2 ) {
+            if ( $('input#is_disabled').val() == 1 ) {
+                return false
+            }
         }
 
         // binding data progress_id and intro
