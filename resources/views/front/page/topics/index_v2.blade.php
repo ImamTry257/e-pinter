@@ -31,6 +31,4 @@
         </div>
     </div>
 </div>
-
-@include('front.page.learning-activity.gerak-lurus.script.js-gm')
 @endsection

@@ -24,10 +24,9 @@
                         <li><a href="{{ route('book.model') }}" class="" id="list-sub-menu">Buku Model</a></li>
                         <li><a href="{{ route('topic.index') }}" class="" id="list-sub-menu">Topik/Materi</a></li>
                         @if ( Auth::user() != null )
-                        <li><a href="{{ route('front.learning.activity') }}" class="" id="list-sub-menu">Kegiatan Pembelajaran</a></li>
+                        <li><a href="{{ route('front.dashboard') }}" class="" id="list-sub-menu">Kegiatan Pembelajaran</a></li>
                         <li><a href="{{ route('evaluation') }}" class="" id="list-sub-menu">Evaluasi</a></li>
                         @endif
-                        <li><a href="{{ route('reflection') }}" class="" id="list-sub-menu">Refleksi</a></li>
                     </ul>
                 </li>
                 <li><a href="{{ url('info-epinter') }}" class="text-white d-flex align-items-center h-50">Web Guide</a></li>
