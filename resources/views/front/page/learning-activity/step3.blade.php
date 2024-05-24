@@ -87,10 +87,11 @@
         if(validExtensions.includes(fileType)){ //if user selected file is an image file
             let fileReader = new FileReader(); //creating new FileReader object
             fileReader.onload = ()=>{
-            let fileURL = fileReader.result; //passing user file source in fileURL variable
-            // UNCOMMENT THIS BELOW LINE. I GOT AN ERROR WHILE UPLOADING THIS POST SO I COMMENTED IT
-            // let imgTag = `<img src="${fileURL}" alt="image">`; //creating an img tag and passing user selected file source inside src attribute
-            // dropArea.innerHTML = imgTag; //adding that created img tag inside dropArea container
+                let fileURL = fileReader.result; //passing user file source in fileURL variable
+                // UNCOMMENT THIS BELOW LINE. I GOT AN ERROR WHILE UPLOADING THIS POST SO I COMMENTED IT
+                let videoTag = `<video width="400" controls><source src="${fileURL}" type="video/mp4"></video>`
+                // let imgTag = `<img src="${fileURL}" alt="image" width="400">`; //creating an img tag and passing user selected file source inside src attribute
+                $('div.render-file').html(videoTag); //adding that created img tag inside dropArea container
             }
             fileReader.readAsDataURL(file);
         }else{
@@ -126,13 +127,10 @@
             $('input#is_disabled').val(1)
         @endif
 
-        // @foreach (json_decode($value_answers) as $value)
-        //     @if ( $value->id != 'descriptions' )
-        //         $('input[name="{{ $value->id }}"]').val('{{ $value->value_html }}')
-        //     @else
-        //         $('textarea[name="{{ $value->id }}"]').html('{{ $value->value_html }}')
-        //     @endif
-        // @endforeach
+        @foreach (json_decode($value_answers) as $value)
+            let videoTag = `<video width="400" controls><source src="{{ asset('assets/activity/step/') . '/' . $value->value_text }}" type="video/mp4"></video>`
+            $('div.render-file').html(videoTag); //adding that created img tag inside dropArea container
+        @endforeach
     @endif
 </script>
 @include('front.page.learning-activity.script.js-step')

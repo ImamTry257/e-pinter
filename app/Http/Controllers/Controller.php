@@ -168,6 +168,8 @@ class Controller extends BaseController
                             <p class="text-justify p-3">Upload video proyek kelompok dengan tema "' . $title . '"</p>
                         </div>
 
+                        <div class="render-file pb-3"></div>
+
                         <div class="" style="border-style: dashed;">
                             <div class="card-body">
                                 <div class="py-3 row">
@@ -190,6 +192,8 @@ class Controller extends BaseController
                         <p class="text-justify p-3">Upload foto langkah eksperimen kelompok dengan tema “' . $title . '”</p>
                     </div>
 
+                    <div class="render-file pb-3"></div>
+
                     <div class="" style="border-style: dashed;">
                         <div class="card-body">
                             <div class="py-3 row">
@@ -210,6 +214,8 @@ class Controller extends BaseController
                         <div class="desc-step mt-3">
                             <p class="text-justify p-3">Buatlah laporan dari projek yang anda buat</p>
                         </div>
+
+                        <div class="render-file pb-3"></div>
 
                         <div class="" style="border-style: dashed;">
                             <div class="card-body">

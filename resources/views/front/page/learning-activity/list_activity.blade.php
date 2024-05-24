@@ -195,8 +195,6 @@
         }
         // console.log(element, urlRedirect, isDisableStep)
 
-        return false
-
         var param = {
             "user_id"               : "{{ $user->id }}",
             "user_group_id"         : "{{ $user->user_group_id }}",
