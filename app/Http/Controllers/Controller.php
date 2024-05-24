@@ -235,7 +235,7 @@ class Controller extends BaseController
 
                         <div class="question-a pb-3">
                             <div>
-                                <textarea name="answer-a" id="step-' . $step_id . '" class="form-control" cols="30" rows="30"></textarea>
+                                <textarea name="answer" id="step-' . $step_id . '" class="form-control" cols="30" rows="30"></textarea>
                             </div>
                         </div>';
         endif ;

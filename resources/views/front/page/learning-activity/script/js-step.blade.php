@@ -40,9 +40,12 @@
         } else  if ( [3, 4, 5].includes(Number (stepId)) ) {
             answers = handleObjAnswer(stepId)
             list_question = 1
+        } else {
+            answers = handleObjAnswer(6)
+            list_question = 1
         }
 
-        console.log(answers, list_question)
+        // console.log(answers, list_question)
         // return false
 
         // set form data for data ajax
@@ -79,6 +82,10 @@
             success: function(response) {
                 if ( response.status ) {
                     if ( isNext ) {
+                        if ( stepId == 6 ) {
+                            location.href = `{{ route("evaluation") }}`
+                            return false
+                        }
                         location.href = `{{ route("front.activity.step", ["slug" => $slug, "step" => ( $step + 1 )]) }}`
                     } else {
                         // show alert
@@ -171,9 +178,9 @@
         } else if ( stepId == 6 ) {
             return [
                 {
-                    'id' : 'answer-a',
-                    'value_text' :  $($('textarea[name="answer-a"]').summernote('code')).text(),
-                    'value_html' :  $('textarea[name="answer-a"]').summernote('code')
+                    'id' : 'answer',
+                    'value_text' :  $('textarea[name="answer"]').summernote('code'),
+                    'value_html' :  $('textarea[name="answer"]').summernote('code')
                 }
             ]
         }

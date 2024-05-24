@@ -35,6 +35,50 @@
         </div>
     </div>
 </div>
-
 @include('front.page.learning-activity.script.js-step')
+<script src="{{ asset('assets/plugins/summernote/summernote-bs4.js') }}" defer></script>
+<script>
+    setTimeout(() => {
+        $('textarea[name="answer"]').summernote({
+            focus: true,
+            callbacks: {
+                onInit: function() {
+                    // console.log('Summernote is launched');
+                },
+                onChange: function(contents, editable) {
+                    console.log('onChange:', contents, editable)
+                    // console.log($(contents).text(), contents)
+
+                    // set disabled to 0
+                    $('input#is_disabled').val(0)
+
+                    var isEmpty = $('textarea[name="answer"]').summernote('isEmpty')
+                    if ( isEmpty ) {
+                        $('input#is_disabled').val(1)
+                    }
+
+                }
+            }
+        })
+    }, 500);
+</script>
+@php
+    // dd($detail_step);
+    if ( $detail_step != null ) :
+        $value_answers = json_decode($detail_step->answers)->value;
+    endif
+@endphp
+<script>
+    @if ( $detail_step != null )
+        @if ($detail_step->detail_progress != 100 )
+            $('input#is_disabled').val(1)
+        @else
+            $('input#is_disabled').val(0)
+        @endif
+
+        @foreach (json_decode($value_answers) as $value)
+            $('textarea[name="{{ $value->id }}"]').html('{{ $value->value_html }}')
+        @endforeach
+    @endif
+</script>
 @endsection
