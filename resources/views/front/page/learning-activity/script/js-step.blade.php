@@ -103,12 +103,13 @@
 
             },
             error: function(error) {
+                console.log(error)
                 // if(error.status == 419 || error.status == 500) {
                 //     location.href = '{{ route("login") }}'
                 // }
 
                 if (error.statusText == 'timeout') {
-                    setAnswers(stepId, isNext)
+                    // setAnswers(stepId, isNext)
                 }
             }
         })
