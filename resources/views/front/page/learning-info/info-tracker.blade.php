@@ -24,7 +24,10 @@
         <div class="row p-2 px-5">
             <div class="wrapper-step-1 pb-4 text-center">
                 <div class="text-center file-pdf" id="info-tracker" aria-label="info-tracker"></div>
-                <a href="" class="fs-4 bg-white">Download</a>
+            </div>
+
+            <div class="text-center">
+                <a href="{{ asset('assets/e-pinter/ebook/Panduan E-PINTER.pdf') }}" class="btn bg-white fw-bold" style="font-size: 30px;" download="">DOWNLOAD</a>
             </div>
         </div>
     </div>
