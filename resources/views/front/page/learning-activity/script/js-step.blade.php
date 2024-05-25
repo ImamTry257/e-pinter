@@ -69,14 +69,15 @@
         $.ajax({
             type: "POST", // send ajax with post
             url: "{{ route('front.activity.next-progress') }}",
-            // dataType: 'json',
+            dataType: 'json',
             data: formData,
             timeout: 2000,
             cache: false,
             contentType: false,
             processData: false,
             headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                'Access-Control-Allow-Origin': '*'
             },
             beforeSend: function(xhr, obj) {
 
