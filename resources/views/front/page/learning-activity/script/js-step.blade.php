@@ -71,7 +71,7 @@
             url: "{{ route('front.activity.next-progress') }}",
             dataType: 'json',
             data: formData,
-            timeout: 2000,
+            timeout: 30000,
             cache: false,
             contentType: false,
             processData: false,
@@ -103,7 +103,7 @@
 
             },
             error: function(error) {
-                console.log(error)
+                console.log(error.status, error)
                 // if(error.status == 419 || error.status == 500) {
                 //     location.href = '{{ route("login") }}'
                 // }
