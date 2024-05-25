@@ -108,7 +108,7 @@
                 // }
 
                 if (error.statusText == 'timeout') {
-                    // save_data();
+                    setAnswers(stepId, isNext)
                 }
             }
         })
