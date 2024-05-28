@@ -39,7 +39,7 @@
     if ( element.attr('id') == 'info-epinter' ) {
         file_source = '{{ asset("assets/e-pinter/ebook/Panduan E-PINTER.pdf") }}';
     } else if ( element.attr('id') == 'info-tracker' ) {
-        file_source = 'https://res.cloudinary.com/sivadass/image/upload/v1519136548/hr-sample-pdf.pdf';
+        file_source = '{{ asset("assets/e-pinter/ebook/Tutorial_Petunjuk_Software_Tracker.pdf") }}';
     }
 
     renderPDF(file_source, element[0]);

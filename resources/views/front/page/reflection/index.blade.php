@@ -86,7 +86,7 @@
             </ol>
         </div>
 
-        <div class="title-about py-5 text-center">
+        <div class="title-about py-5 px-2 text-center">
             <p class="fw-bold">CINTAI TUBUHMU, MAKAN DENGAN GIZI SEIMBANG SETIAP HARI!</p>
         </div>
 

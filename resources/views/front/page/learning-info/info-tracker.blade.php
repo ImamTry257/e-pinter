@@ -20,14 +20,14 @@
         <img src="{{ asset('assets/img-pemb1.svg') }}" alt="" style="width: 100%;">
     </div>
 
-    <div class="card list-topic-content p-5 col-12">
+    <div class="card list-topic-content py-5 px-2 col-12">
         <div class="row p-2 px-5">
             <div class="wrapper-step-1 pb-4 text-center">
                 <div class="text-center file-pdf" id="info-tracker" aria-label="info-tracker"></div>
             </div>
 
             <div class="text-center">
-                <a href="{{ asset('assets/e-pinter/ebook/Panduan E-PINTER.pdf') }}" class="btn bg-white fw-bold" style="font-size: 30px;" download="">DOWNLOAD</a>
+                <a href="{{ asset('assets/e-pinter/ebook/Tutorial_Petunjuk_Software_Tracker.pdf') }}" class="btn bg-white fw-bold" style="font-size: 30px;" download="">DOWNLOAD</a>
             </div>
         </div>
     </div>

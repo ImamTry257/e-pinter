@@ -28,7 +28,7 @@
         <h2 class="text-white fw-bold">Tentang E-PINTER</h2>
     </div>
 
-    <div class="card list-topic-content ms-2 mt-4 p-5 col-lg-11 bg-white">
+    <div class="card list-topic-content ms-2 mt-4 py-5 px-2 col-lg-11 bg-white">
         <div class="title-list row">
             <div class="col-lg-12">
                 <h2 class="text-center fw-bold pt-3 pb-5">Tentang E-PINTER</h2>
