@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 
 class LoginController extends Controller
 {
@@ -30,17 +31,38 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'email'     => 'required',
-            'password'  => 'required',
-        ]);
+        try {
+            $this->validate($request, [
+                'email'     => 'required',
+                'password'  => 'required',
+            ]);
 
-        $credentials = $request->only('email', 'password');
+            $credentials = $request->only('email', 'password');
+
+            $data_body = [
+                'email'     => $credentials['email'],
+                'password'  => hash('sha256', $credentials['password'])
+            ];
+
+            $url = route('api.login');
+
+            $request = Http::post($url, $data_body);
+            $d_response = $request->body();
+            // $status = $request->status();
+
+            dd($d_response);
+
+        } catch (\Throwable $th) {
+            //throw $th;
+            dd($th->getMessage());
+        }
+
+        dd($credentials, $url);
 
         # step that running
         if (Auth::getProvider()->retrieveByCredentials($credentials)) {
             $user = Auth::getProvider()->retrieveByCredentials($credentials);
-
+            dd($user);
             # check password
             $check_pass = Hash::check($request->password, $user->password);
             if ($check_pass) :
