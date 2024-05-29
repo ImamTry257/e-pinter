@@ -112,7 +112,7 @@
         <img src="{{ asset('assets/discuss.png') }}" alt="" style="width: 100%;">
     </div>
 
-    <div class="card list-topic-content ms-3 mt-4 p-5 col-lg-11 bg-white">
+    <div class="card list-topic-content ms-3 mt-4 py-5 px-2 col-lg-11 bg-white">
         <div class="title-list row d-flex justify-content-center">
             <div class="col-lg-8 d-flex justify-content-center">
                 <div class="w-100 chat">

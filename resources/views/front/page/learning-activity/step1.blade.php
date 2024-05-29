@@ -19,7 +19,7 @@
     <div class="main-banner ms-2 col-lg-11 d-none">
         <img src="{{ asset('assets/img-pemb1.svg') }}" alt="" style="width: 100%;">
     </div>
-    <div class="card list-topic-content p-5 col-12">
+    <div class="card list-topic-content py-5 px-2 col-12">
         <div class="row p-2 px-5">
             <form action="javascript:void();" id="form-step-1">
                 <div class="wrapper-step-1 pb-4">

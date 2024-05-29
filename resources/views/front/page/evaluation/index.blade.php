@@ -50,7 +50,7 @@
 
 @section('content')
 <div>
-    <div class="row py-5 wrapper-title text-center">
+    <div class="row py-5 px-2 wrapper-title text-center">
         <h1>Evaluasi</h1>
         <h6>Silahkan kerjakan soal evaluasi pada  link google dorm di bawah ini!</h6>
         <h6 class="pt-4"><a href="https://forms.gle/mRPEvGHdRRgy4XwK6" target="_blank">https://forms.gle/mRPEvGHdRRgy4XwK6</a></h6>

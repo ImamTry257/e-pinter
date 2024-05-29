@@ -68,7 +68,7 @@
 
         <div class="row pt-5 wrapper-qoute"></div>
 
-        <div class="row py-5 wrapper-info-step"></div>
+        <div class="row py-5 px-2 wrapper-info-step"></div>
     </div>
 
     {{-- footer --}}

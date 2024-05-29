@@ -21,7 +21,7 @@
         <img src="{{ asset('assets/physics-info.png') }}" alt="" style="width: 100%;">
     </div>
 
-    <div class="card list-topic-content ms-3 mt-4 p-5 col-lg-11 bg-white">
+    <div class="card list-topic-content ms-3 mt-4 py-5 px-2 col-lg-11 bg-white">
         <div class="title-list row d-flex justify-content-center">
             <div class="col-lg-12">
                 <h1 class="text-center fw-bold py-3">Tracker Video Analysis</h1>

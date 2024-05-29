@@ -18,7 +18,7 @@
 <div class="wrapper-dahboard-page col-lg-10 col-md-12 col-sm-12 col-xl-10 row ps-4">
 
     <div class="card col-lg-12">
-        <h2 class="desc-step mt-5 d-block ps-4 pb-2">Capaian Pembelajaran (CP)</h2>
+        <h2 class="desc-step mt-5 d-block ps-4 py-2">Capaian Pembelajaran (CP)</h2>
 
         <div class="px-4 py-2">
             <span>

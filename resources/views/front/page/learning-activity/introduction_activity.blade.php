@@ -16,8 +16,8 @@
         <img src="{{ asset('assets/img-pemb1.svg') }}" alt="" style="width: 100%;">
     </div>
 
-    <div class="list-topic-content ms-2 p-5 col-lg-11 bg-white">
-        <div class="row p-2 px-5">
+    <div class="list-topic-content ms-2 py-5 px-2 col-lg-11 bg-white">
+        <div class="row p-2">
             {!! $content !!}
 
             <div class="col-lg-12 text-end">

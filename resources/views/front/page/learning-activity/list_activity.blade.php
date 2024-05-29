@@ -21,7 +21,7 @@
         <img src="{{ asset('assets/') . '/' . $activity_selected['image'] }}" alt="" style="width: 100%;">
     </div>
 
-    <div class="list-topic-content ms-2 p-5 col-lg-11 bg-white">
+    <div class="list-topic-content ms-2 py-5 px-2 col-lg-11 bg-white">
         <div class="title-list row">
             <div class="col-lg-12">
                 <h2>Kinematika</h2>

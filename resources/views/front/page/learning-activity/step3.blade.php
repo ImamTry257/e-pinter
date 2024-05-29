@@ -24,7 +24,7 @@
 
     {{-- https://codepen.io/fadzrinmadu/pen/VwpzEYL --}}
 
-    <div class="card list-topic-content p-5 col-12">
+    <div class="card list-topic-content py-5 px-2 col-12">
         <div class="row p-2 px-5">
             <div class="wrapper-step-1 pb-4">
                 {!! $content !!}
