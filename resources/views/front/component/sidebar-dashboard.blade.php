@@ -58,11 +58,12 @@
                         <p class="ps-3">Physics Info</p>
                     </a>
                 </li>
+
                 <li class="nav-item">
-                    <a href="{{ route('discuss') }}" class="nav-link text-white @if (Route::current()->uri == 'admin/sains-info') {{ 'active-menu' }} @endif">
+                    <a href="{{ route('info.trakcer') }}" class="nav-link text-white @if (Route::current()->uri == 'admin/info-tracker') {{ 'active-menu' }} @endif">
                         {{-- <i class="nav-icon fas fa-info"></i> --}}
                         <img src="{{ asset('assets/sidebar/sidebar-diskusi.svg') }}" width="25" alt="Site Home">
-                        <p class="ps-3">Diskusi</p>
+                        <p class="ps-3">Trakcer Info</p>
                     </a>
                 </li>
             </ul>
