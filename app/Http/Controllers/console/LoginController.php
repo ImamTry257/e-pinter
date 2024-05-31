@@ -5,8 +5,10 @@ namespace App\Http\Controllers\console;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -39,50 +41,29 @@ class LoginController extends Controller
 
             $credentials = $request->only('email', 'password');
 
-            $data_body = [
+            $parameter = [
                 'email'     => $credentials['email'],
                 'password'  => hash('sha256', $credentials['password'])
             ];
 
-            $url = route('api.login');
+            // check data
+            $teacher = DB::table('teachers')->where($parameter)->first();
 
-            $request = Http::post($url, $data_body);
-            $d_response = $request->body();
-            // $status = $request->status();
+            if ( empty ( $teacher ) ) {
+                return back()->withErrors([
+                    'email' => 'The provided credentials do not match our records.',
+                ])->onlyInput('email');
+            }
 
-            dd($d_response);
+            Session::put('data_user_login', $teacher);
+            Session::save();
+
+            return redirect(route('admin.user'));
 
         } catch (\Throwable $th) {
             //throw $th;
             dd($th->getMessage());
         }
-
-        dd($credentials, $url);
-
-        # step that running
-        if (Auth::getProvider()->retrieveByCredentials($credentials)) {
-            $user = Auth::getProvider()->retrieveByCredentials($credentials);
-            dd($user);
-            # check password
-            $check_pass = Hash::check($request->password, $user->password);
-            if ($check_pass) :
-                try {
-                    Auth::login($user);
-                    $request->session()->regenerate();
-                } catch (\Throwable $th) {
-                    //throw $th;
-
-                    dd($th->getMessage());
-                }
-
-                return redirect(url('dashboard'))
-                    ->withSuccess('Signed in');
-            endif;
-        }
-
-        return back()->withErrors([
-            'name' => 'The provided credentials do not match our records.',
-        ])->onlyInput('name');
     }
 
     /**

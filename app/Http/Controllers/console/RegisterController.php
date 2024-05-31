@@ -33,27 +33,26 @@ class RegisterController extends Controller
     {
         //validate form
         $this->validate($request, [
-            'name'                  => 'required|unique:users,name',
+            'name'                  => 'required|unique:teachers,name',
             'email'                 => 'required',
             'password'              => 'required|confirmed',
             'password_confirmation' => 'required'
         ]);
 
         try {
-            DB::table('users')
+            DB::table('teachers')
                 ->insert([
-                    'name' => $request->name,
-                    'email' => $request->email,
-                    'password' => Hash::make($request->password),
-                    'school' => '-',
-                    'type'  => 'admin',
+                    'name'      => $request->name,
+                    'email'     => $request->email,
+                    'password'  => Hash('sha256', $request->password),
+                    'token'     => Hash('sha256', $request->name . '_' . $request->email),
                     'status' => 1,
-                    'created_by' => 0
+                    'created_at' => now()
                 ]);
 
             return redirect()->route('login.admin.index');
         } catch (\Throwable $th) {
-            # dd($th->getMessage());
+            dd($th->getMessage());
             return redirect()->route('register.admin.index')->with('error', 'Create Data Admin fail!');
         }
     }

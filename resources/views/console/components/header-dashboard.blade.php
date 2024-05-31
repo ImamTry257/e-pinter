@@ -21,7 +21,7 @@
                         <li><a href="{{ route('learning') }}">CP, TP & ATP</a></li>
                         <li><a href="{{ route('topic.index') }}">Topik/Materi</a></li>
                         <li><a href="{{ route('potential.index') }}">Potensi Lokal Gudeg</a></li>
-                        @if ( Auth::user() != null )
+                        @if ( \Session::get('data_user_login') != null )
                         <li><a href="{{ route('learning-activity.index') }}">Kegiatan Pembelajaran</a></li>
                         <li><a href="{{ route('evaluation') }}">Evaluasi</a></li>
                         @endif
@@ -31,8 +31,8 @@
                 <li><a href="{{ route('sains-info.detail', ['slug' => ( !empty ( $link_sains_info ) ) ? $link_sains_info->slug : 'not-found']) }}">SAINS INFO</a></li>
                 <li><a href="{{ route('contact') }}">KONTAK</a></li>
                 <li><a href="{{ route('profile') }}">PROFILE</a></li>
-                @if ( Auth::user() != null )
-                <li><span class="text-dark fw-bold d-flex align-items-center h-50 d-flex align-items-center h-50">{{ Auth::user()->name; }}</span></li>
+                @if ( \Session::get('data_user_login') != null )
+                <li><span class="text-dark fw-bold d-flex align-items-center h-50 d-flex align-items-center h-50">{{ \Session::get('data_user_login')->name }}</span></li>
                 <li><a class="btn btn-outline-secondary d-flex align-items-center h-50" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                                   document.getElementById('logout-form').submit();">

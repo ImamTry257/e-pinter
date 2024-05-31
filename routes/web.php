@@ -151,7 +151,7 @@ Route::middleware([AuthConsoleMiddleware::class])->group(function () {
     Route::match(['get', 'post'], '/logout-admin', [ConsoleLoginController::class, 'logout'])->name('logout.admin');
 
     # Dashboard
-    // Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
     # Sains Info
     Route::get('/admin/sains-info', [ConsoleSainsInfoController::class, 'index'])->name('admin.sains-info');

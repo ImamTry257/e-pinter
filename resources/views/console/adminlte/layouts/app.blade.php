@@ -7,7 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Backoffice Website IPA</title>
+  <title>Backoffice E-PINTER</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -43,7 +43,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none">
-        <a href="{{ route('dashboard') }}" class="nav-link">Dashboard</a>
+        <a href="{{ route('admin.dashboard') }}" class="nav-link">Dashboard</a>
       </li>
       <li class="nav-item d-none">
         <a href="{{ route('logout.admin') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link">Logout</a>
@@ -138,7 +138,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
-          <span>{{ Auth::user()->name }}</span>
+          <span>{{ \Session::get('data_user_login')->name }}</span>
         </a>
 
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
@@ -198,7 +198,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <img src="{{ asset('assets/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info text-center">
-          <a href="#" class="d-block">Website IPA</a>
+          <a href="#" class="d-block">E-PINTER</a>
         </div>
       </div>
 
@@ -220,7 +220,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<!-- Add icons to the links using the .nav-icon class
 				with font-awesome or any other icon font library -->
 				<li class="nav-item">
-					<a href="{{ route('dashboard') }}" class="nav-link text-white @if (Route::current()->uri == 'dashboard') {{ 'active-menu' }} @endif">
+					<a href="{{ route('admin.dashboard') }}" class="nav-link text-white @if (Route::current()->uri == 'dashboard') {{ 'active-menu' }} @endif">
 						<i class="nav-icon fas fa-home"></i>
 						<p>Dashboard</p>
 					</a>

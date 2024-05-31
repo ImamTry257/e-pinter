@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpFoundation\Response;
 
 class AuthConsoleMiddleware
@@ -16,7 +17,7 @@ class AuthConsoleMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::user() == null) :
+        if (Session::get('data_user_login') == null) :
             return redirect(route('login.admin.index'));
         endif;
         return $next($request);

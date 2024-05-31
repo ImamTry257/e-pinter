@@ -18,7 +18,7 @@
 					<h5 class="m-0">Dashboard</h5>
 				</div>
 				<div class="card-body">
-					<h3 class="">Welcome {{ Auth::user()->name }}</h3>
+					<h3 class="">Welcome {{ \Session::get('data_user_login')->name }}</h3>
 
 					<p class="card-text d-none">With supporting text below as a natural lead-in to additional content.</p>
 					<a href="#" class="btn btn-primary d-none">Go somewhere</a>
