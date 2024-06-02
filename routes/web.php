@@ -151,7 +151,7 @@ Route::middleware([AuthConsoleMiddleware::class])->group(function () {
     Route::match(['get', 'post'], '/logout-admin', [ConsoleLoginController::class, 'logout'])->name('logout.admin');
 
     # Dashboard
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
     # Sains Info
     Route::get('/admin/sains-info', [ConsoleSainsInfoController::class, 'index'])->name('admin.sains-info');
@@ -193,6 +193,8 @@ Route::middleware([AuthConsoleMiddleware::class])->group(function () {
     Route::post('/admin/result-learning-activity/add', [ResultLearningActivityController::class, 'store'])->name('admin.result.learning.activity.store');
     Route::get('/admin/result-learning-activity/show/{user_id}', [ResultLearningActivityController::class, 'show'])->name('admin.result.learning.activity.show');
     Route::get('/admin/detail-result-learning-activity/show/{result_id}', [ResultLearningActivityController::class, 'detail_result'])->name('admin.detail.result.learning.activity.show');
+    Route::get('/admin/detail-result-learning-activity/detail-introduction/{user_id}/{slug}', [ResultLearningActivityController::class, 'detail_introduction'])->name('admin.detail.result.learning.activity.detail.introduction');
+    Route::get('/admin/detail-result-learning-activity/detail-step/{user_id}/{slug}/{step}', [ResultLearningActivityController::class, 'detail_step'])->name('admin.detail.result.learning.activity.detail.step');
     Route::get('/admin/result-learning-activity/import', [ResultLearningActivityController::class, 'import'])->name('admin.result.learning.activity.import');
     Route::post('/admin/result-learning-activity/import', [ResultLearningActivityController::class, 'storeImport'])->name('admin.result.learning.activity.store.import');
     Route::get('/admin/result-learning-activity/edit/{id}', [ResultLearningActivityController::class, 'edit'])->name('admin.result.learning.activity.edit');

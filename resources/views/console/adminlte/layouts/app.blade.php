@@ -5,32 +5,36 @@ scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Backoffice E-PINTER</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Backoffice E-PINTER</title>
 
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome-free/css/all.min.css') }}">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{ asset('assets/dist/css/adminlte.min.css') }}">
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome-free/css/all.min.css') }}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ asset('assets/dist/css/adminlte.min.css') }}">
 
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 
-  @yield('css')
+    <link href="{{ asset('assets/plugins/summernote/summernote-bs4.css') }}" rel="stylesheet">
 
-  <style>
-    .bg-console, .active-menu {
-      background-color: #7BB7C2;
-    }
+    @yield('css')
 
-    .card-console.card-outline {
-      border-top: 3px solid #7BB7C2;
-    }
+    <style>
+        .bg-console, .active-menu {
+            background-color: #7BB7C2;
+        }
 
+        .card-console.card-outline {
+            border-top: 3px solid #7BB7C2;
+        }
+    </style>
 
-  </style>
+    <!-- include summernote css/js-->
+    <script type="text/javascript" src="{{ asset('website/js/bootstrap.bundle.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('website/js/jquery-3.6.0.min.js') }}"></script>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -226,14 +230,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					</a>
 				</li>
 
-				<li class="nav-item d-none">
-					<a href="{{ route('admin.learning.activity') }}" class="nav-link text-white @if (Route::current()->uri == 'admin/learning-activity') {{ 'active-menu' }} @endif">
-						<i class="nav-icon fas fa-book"></i>
-						<p>Kegiatan Pembelajaran</p>
-					</a>
-				</li>
-
-        <li class="nav-item">
+                <li class="nav-item">
 					<a href="{{ route('admin.result.learning.activity') }}" class="nav-link text-white @if (Route::current()->uri == 'admin/result-learning-activity') {{ 'active-menu' }} @endif">
 						<i class="nav-icon fas fa-table"></i>
 						<p>Hasil Kegiatan Pemb</p>
@@ -243,21 +240,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				@php
 					# dd(Route::current()->uri);
 				@endphp
-				<li class="nav-item">
+				<li class="nav-item d-none">
 					<a href="{{ route('admin.sains-info') }}" class="nav-link text-white @if (Route::current()->uri == 'admin/sains-info') {{ 'active-menu' }} @endif">
 						<i class="nav-icon fas fa-info"></i>
 						<p>Sains Info</p>
 					</a>
 				</li>
 
-				<li class="nav-item">
+				<li class="nav-item d-none">
 					<a href="{{ route('admin.potential') }}" class="nav-link text-white @if (Route::current()->uri == 'admin/potential') {{ 'active-menu' }} @endif">
 						<i class="nav-icon fas fa-folder"></i>
 						<p>Potensial Gudeg Lokal</p>
 					</a>
 				</li>
 
-        <li class="nav-item">
+                <li class="nav-item d-none">
 					<a href="{{ route('admin.user') }}" class="nav-link text-white @if (Route::current()->uri == 'admin/user') {{ 'active-menu' }} @endif">
 						<i class="nav-icon fas fa-book"></i>
 						<p>Data Siswa</p>

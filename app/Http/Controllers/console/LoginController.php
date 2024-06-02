@@ -58,7 +58,7 @@ class LoginController extends Controller
             Session::put('data_user_login', $teacher);
             Session::save();
 
-            return redirect(route('admin.user'));
+            return redirect(route('admin.dashboard'));
 
         } catch (\Throwable $th) {
             //throw $th;

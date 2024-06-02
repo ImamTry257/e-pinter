@@ -42,8 +42,9 @@
                                             <tr>
                                                 <th width="5%">No</th>
                                                 <th width="35%">Siswa</th>
-                                                <th width="40%">Sekolah</th>
-                                                <th width="20%">Action</th>
+                                                <th width="20%">Kelompok</th>
+                                                <th width="20%">Email</th>
+                                                <th width="10%">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -85,7 +86,8 @@
               columns: [
                     {data: 'DT_RowIndex', name: 'No'},
                     {data: 'nama_siswa', name: 'Siswa'},
-                    {data: 'sekolah', name: 'Sekolah'},
+                    {data: 'nama_kelompok', name: 'Kelompok'},
+                    {data: 'email_siswa', name: 'Email'},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
               ]
           });

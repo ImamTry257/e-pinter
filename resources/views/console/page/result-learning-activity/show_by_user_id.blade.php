@@ -85,20 +85,20 @@
               processing: true,
               serverSide: true,
               data: {
-                
+
               },
               ajax: {
                     "url": "{{ route('admin.get.result.learning.activity') }}",
                     "dataType": "json",
                     "type": "GET",
-                    "data":{ 
+                    "data":{
                         _token: "{{csrf_token()}}",
-                        user_id : '{{ $student->id }}'    
+                        user_id : '{{ $student->id }}'
                     }
                 },
               columns: [
                     {data: 'DT_RowIndex', name: 'No'},
-                    {data: 'title', name: 'Nama'},
+                    {data: 'name', name: 'Nama'},
                     {data: 'status', name: 'status'},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
               ]
