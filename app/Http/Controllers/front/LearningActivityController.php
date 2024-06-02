@@ -125,7 +125,7 @@ class LearningActivityController extends Controller
 
         $parameter = [
             'user_id'               => Auth::user()->id,
-            'user_group_id'         => $data['activity_selected']['user_group_id'],
+            'user_group_id'         => ( $data['user']->user_group_id == null ) ? $data['activity_selected']['user_group_id'] : $data['user']->user_group_id,
             'activity_master_id'    => $data['activity_selected']['user_group_id'],
         ];
 
@@ -139,7 +139,7 @@ class LearningActivityController extends Controller
 
         # data user
         $data['activity_master_id'] = $parameter['activity_master_id'];
-        # dd($data);
+        # ($data, $parameter);
 
         # return view
         return view('front.page.learning-activity.list_activity', $data);
