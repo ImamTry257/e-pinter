@@ -5,6 +5,14 @@
         .border-console {
             border-color: #7BB7C2 !important;
         }
+
+        #progress:after {
+            text-align: center
+        }
+
+        .disable-step {
+            cursor: auto;
+        }
     </style>
 @endsection
 
@@ -199,14 +207,16 @@
         // binding value presentase
         bar_presentase.attr('style', 'width:{{ $progress->detail_progress }}%; text-align: end;').addClass('bg-console').text('{{ $progress->detail_progress }}%')
 
-        // link for introduction step
-        var introduction_step = $('div#step-0')
-        console.log(introduction_step)
-        introduction_step.find('a').attr('id', "{{ route('admin.detail.result.learning.activity.detail.introduction', ['user_id' => Crypt::encryptString($user_id_enc), 'slug' => Crypt::encryptString($activity_selected['slug']) ]) }}").removeClass('disable-step')
-
-        // enable next step
-        var next_step = $('div#step-' + '{{ $progress->step_id + 1 }}')
-        next_step.find('a').attr('id', "{{ route('admin.detail.result.learning.activity.detail.step', ['user_id' => Crypt::encryptString($user_id_enc), 'slug' => Crypt::encryptString($activity_selected['slug']), 'step' => Crypt::encryptString(($progress->step_id + 1))]) }}").removeClass('disable-step')
+        @if ( $progress->step_id == 0 )
+            // link for introduction step
+            var introduction_step = $('div#step-0')
+            introduction_step.find('a').attr('id', "{{ route('admin.detail.result.learning.activity.detail.introduction', ['user_id' => Crypt::encryptString($user_id_enc), 'slug' => Crypt::encryptString($activity_selected['slug']) ]) }}").removeClass('disable-step')
+        @else
+            // enable next step
+            var next_step = $('div#step-' + '{{ $progress->step_id }}')
+            var link_next_step = "{{ route('admin.detail.result.learning.activity.detail.step', ['user_id' => Crypt::encryptString($user_id_enc), 'slug' => Crypt::encryptString($activity_selected['slug']), 'step' => Crypt::encryptString($progress->step_id)]) }}";
+            next_step.find('a').attr('id', link_next_step).removeClass('disable-step')
+        @endif
     @endforeach
 
 

@@ -46,8 +46,10 @@
                                             </div>
 
                                             <div class="text-start">
+                                                @if ( $is_enable_to_next_step )
                                                 <a href="{{ route('admin.detail.result.learning.activity.detail.step', ['user_id' => Crypt::encryptString($user_id_next_step), 'slug' => Crypt::encryptString($slug_next_step), 'step' => Crypt::encryptString(($next_step + 1))]) }}" id="btn-step-1" class="btn btn-information text-white">Selanjutnya Sintak 2.</a>
                                                 <input type="hidden" name="is_disabled" value="1">
+                                                @endif
                                             </div>
                                         </form>
                                     </div>

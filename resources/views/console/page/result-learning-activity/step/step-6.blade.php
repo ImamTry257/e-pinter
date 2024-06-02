@@ -47,6 +47,7 @@
 
                                         <div class="col-lg-12 text-start">
                                             <a href="{{ route('evaluation') }}" id="btn-step-6" class="btn btn-information text-white d-none">Selanjutnya ke Evaluasi Pembelajaran</a>
+
                                             <a href="{{ route('admin.detail.result.learning.activity.detail.step', ['user_id' => Crypt::encryptString($user_id_next_step), 'slug' => Crypt::encryptString($slug_next_step), 'step' => Crypt::encryptString(($next_step - 1))]) }}" id="btn-step-2" class="btn btn-information text-white">Kembali ke Sintak 5.</a>
 
                                             <input type="hidden" id="is_disabled" value="1">

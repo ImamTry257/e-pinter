@@ -287,6 +287,9 @@ class ResultLearningActivityController extends Controller
                                 ->where('activity_progress_id', '=', $data['progress_id'])
                                 ->first();
 
+        # check for next step is enable
+        $data['is_enable_to_next_step'] = $this->is_enable_next_step($data['user']->id, $data['activity_selected']['user_group_id'], $data['step']);
+
         # parameter for next step
         $data['user_id_next_step'] = Crypt::decryptString($user_id);
         $data['slug_next_step'] = $data['slug'];
@@ -295,5 +298,23 @@ class ResultLearningActivityController extends Controller
         # dd($data, $parameter, $progress_activity);
 
         return view($path_view, $data);
+    }
+
+    public function is_enable_next_step($user_id, $master_id, $current_step)
+    {
+        # get data next progress activity
+        $parameter = [
+            'b.user_id'             => $user_id,
+            'b.activity_master_id'  => $master_id
+        ];
+
+        $next_progress_activity = DB::table('activity_step_progress as b')
+                            ->join('activity_step as s', 's.id', '=', 'b.activity_step_id')
+                            ->join('activity_step_detail as asd', 'asd.activity_progress_id', '=', 'b.id')
+                            ->where($parameter)
+                            ->where('s.step_id', '=', ( $current_step + 1 ))
+                            ->first(['b.id']);
+
+        return empty ($next_progress_activity) ? false : true;
     }
 }
