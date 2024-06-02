@@ -205,7 +205,7 @@
         var bar_presentase = step_element.find('span').last()
 
         // binding value presentase
-        bar_presentase.attr('style', 'width:{{ $progress->detail_progress }}%; text-align: end;').addClass('bg-console').text('{{ $progress->detail_progress }}%')
+        bar_presentase.attr('style', 'width:{{ ( $progress->detail_progress == 0 ) ? "5" : $progress->detail_progress }}%; text-align: end;').addClass('bg-console').text('{{ $progress->detail_progress }}%')
 
         @if ( $progress->step_id == 0 )
             // link for introduction step
