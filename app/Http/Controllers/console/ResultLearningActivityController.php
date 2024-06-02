@@ -63,7 +63,6 @@ class ResultLearningActivityController extends Controller
 
     public function getResultLearningActivity(Request $request)
     {
-        // if ($request->ajax()) :
 
         $data = DB::select("SELECT la.`id`, la.`name`, la.`descriptions` FROM activity_master AS la
                         ORDER BY la.`id` ASC");
@@ -81,10 +80,13 @@ class ResultLearningActivityController extends Controller
                     ->where('asp.user_id', '=', $this->user_id_selected)
                     ->get();
 
+                # get count step, for count question
+                $count_step = DB::table("activity_step")->count();
+
                 $counter_progress = 0;
                 if (count($check_answer) != 0) :
 
-                    # flaq process
+                    # flaq progress
                     $count_question = count($check_answer);
                     foreach ($check_answer as $key => $data) {
                         if ( $data->detail_progress == 100 ) {
@@ -95,10 +97,10 @@ class ResultLearningActivityController extends Controller
                     if ($count_question == 0 || $counter_progress == 0) :
                         $status = 'Belum dikerjakan';
                         $class = 'btn-warning';
-                    elseif ($counter_progress > 0 && ( $counter_progress != count($check_answer))) :
+                    elseif ($counter_progress > 0 && ( $counter_progress != $count_step)) :
                         $status = 'Sedang dikerjakan';
                         $class = 'btn-primary';
-                    elseif ($counter_progress == count($check_answer)) : # tidak ada yang kosong
+                    elseif ($counter_progress == $count_step) : # tidak ada yang kosong
                         $status = 'Sudah dikerjakan';
                         $class = 'btn-success';
                     endif;
@@ -115,6 +117,9 @@ class ResultLearningActivityController extends Controller
                     ->where('asp.user_id', '=', $this->user_id_selected)
                     ->get();
 
+                # get count step, for count question
+                $count_step = DB::table("activity_step")->count();
+
                 $this->is_progress = false;
                 $counter_progress = 0;
                 if (count($check_answer) != 0) :
@@ -129,9 +134,9 @@ class ResultLearningActivityController extends Controller
 
                     if ($count_question == 0 || $counter_progress == 0) :
                         $this->is_progress = false;
-                    elseif ($counter_progress > 0 && ( $counter_progress != count($check_answer))) :
+                    elseif ($counter_progress > 0 && ( $counter_progress != $count_step)) :
                         $this->is_progress = true;
-                    elseif ($counter_progress == count($check_answer)) : # tidak ada yang kosong
+                    elseif ($counter_progress == $count_step) : # tidak ada yang kosong
                         $this->is_progress = true;
                     endif;
                 endif;
@@ -146,7 +151,6 @@ class ResultLearningActivityController extends Controller
             })
             ->rawColumns(['action', 'status'])
             ->make(true);
-        // endif;
     }
 
     public function detail_result_old($result_id)
