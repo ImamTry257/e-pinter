@@ -10,14 +10,14 @@
 
 @section('content')
 
-<div class="wrapper-dahboard-page col-lg-10 row">
+<div class="wrapper-dahboard-page col-lg-10 col-md-12 col-sm-12 col-xl-10 row ps-4">
     {{-- banner main --}}
     <div class="main-banner ms-2 col-lg-11 d-none">
         <img src="{{ asset('assets/img-pemb1.svg') }}" alt="" style="width: 100%;">
     </div>
 
-    <div class="list-topic-content ms-2 py-5 px-2 col-lg-11 bg-white">
-        <div class="row p-2">
+    <div class="card list-topic-content py-5 px-2 col-12">
+        <div class="row p-2 px-5">
             {!! $content !!}
 
             <div class="col-lg-12 text-end">
