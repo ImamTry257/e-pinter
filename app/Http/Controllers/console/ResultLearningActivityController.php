@@ -249,6 +249,9 @@ class ResultLearningActivityController extends Controller
                                 'activity_step_id'      => 1
                             ])->first();
 
+        # check for next step is enable
+        $data['is_enable_to_next_step'] = $this->is_enable_next_step($data['user']->id, $data['activity_selected']['user_group_id'], 0);
+
         $data['progress_id'] = $data['progress']->id;
         $data['progress_activity'] = $data['progress'];
 
