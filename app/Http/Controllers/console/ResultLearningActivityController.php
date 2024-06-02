@@ -216,14 +216,14 @@ class ResultLearningActivityController extends Controller
         $data['step_progress'] = DB::table('activity_step_progress as sp')
                                         ->join('activity_step as s', 's.id', '=', 'sp.activity_step_id')
                                         ->join('activity_step_detail as sd', 'sd.activity_progress_id', '=', 'sp.id')
-                                        ->join('user_group as ug', 'ug.id', '=', 'sp.user_id')
+                                        ->join('user_group as ug', 'ug.id', '=', 'sp.user_group_id')
                                         ->where($parameter)
                                         ->orderBy('activity_step_id', 'asc')
                                         ->get(['*']);
 
         # data user
         $data['activity_master_id'] = $parameter['activity_master_id'];
-        dump($parameter);
+        dump($parameter, $data);
         # return view
         return view('console.page.result-learning-activity.detail_activity_v2', $data);
     }
