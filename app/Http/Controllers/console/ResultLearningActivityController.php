@@ -223,7 +223,7 @@ class ResultLearningActivityController extends Controller
 
         # data user
         $data['activity_master_id'] = $parameter['activity_master_id'];
-        dump($parameter, $data);
+
         # return view
         return view('console.page.result-learning-activity.detail_activity_v2', $data);
     }
