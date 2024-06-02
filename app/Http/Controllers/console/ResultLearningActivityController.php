@@ -14,6 +14,11 @@ class ResultLearningActivityController extends Controller
 {
     public $user_id_selected;
     public $is_progress;
+
+    public function __construct() {
+        $this->is_progress = false;
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -82,18 +87,15 @@ class ResultLearningActivityController extends Controller
                     # flaq process
                     $count_question = count($check_answer);
                     foreach ($check_answer as $key => $data) {
-
-                        if ($data->detail_progress == 100) {
+                        if ( $data->detail_progress == 100 ) {
                             $counter_progress++;
                         }
                     }
 
-                    $this->is_progress = true;
                     if ($count_question == 0 || $counter_progress == 0) :
                         $status = 'Belum dikerjakan';
                         $class = 'btn-warning';
-                        $this->is_progress = false;
-                    elseif ($counter_progress > 0) :
+                    elseif ($counter_progress > 0 && ( $counter_progress != count($check_answer))) :
                         $status = 'Sedang dikerjakan';
                         $class = 'btn-primary';
                     elseif ($counter_progress == count($check_answer)) : # tidak ada yang kosong
@@ -106,6 +108,33 @@ class ResultLearningActivityController extends Controller
             })
             ->addColumn('action', function ($row) {
                 $actionBtn = '';
+
+                $check_answer = DB::table('activity_step_progress as asp')
+                    ->join('activity_step_detail as asd', 'asd.activity_progress_id', '=', 'asp.id')
+                    ->where('asp.activity_master_id', '=', $row->id)
+                    ->where('asp.user_id', '=', $this->user_id_selected)
+                    ->get();
+
+                $this->is_progress = false;
+                $counter_progress = 0;
+                if (count($check_answer) != 0) :
+
+                    # flaq process
+                    $count_question = count($check_answer);
+                    foreach ($check_answer as $key => $data) {
+                        if ( $data->detail_progress == 100 ) {
+                            $counter_progress++;
+                        }
+                    }
+
+                    if ($count_question == 0 || $counter_progress == 0) :
+                        $this->is_progress = false;
+                    elseif ($counter_progress > 0 && ( $counter_progress != count($check_answer))) :
+                        $this->is_progress = true;
+                    elseif ($counter_progress == count($check_answer)) : # tidak ada yang kosong
+                        $this->is_progress = true;
+                    endif;
+                endif;
 
                 $p_slug = $row->descriptions;
                 $slug = str_replace(" ", "-", strtolower($p_slug));
