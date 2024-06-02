@@ -40,7 +40,7 @@
                                 </div>
                                 <p class="col-sm-1 col-form-label text-start card-title"><b>Kelompok</b></p>
                                 <div class="col-sm-11">
-                                    <p class="col-sm-12 col-form-label card-title">: {{ $step_progress[0]->name }}</p>
+                                    <p class="col-sm-12 col-form-label card-title">: {{ $group->name }}</p>
                                 </div>
                             </div>
                             <div>

@@ -205,6 +205,9 @@ class ResultLearningActivityController extends Controller
             'activity_master_id'    => $master_id,
         ];
 
+        # get data group
+        $data['group'] = DB::table('user_group')->where(['id' => $data['user_activity']->user_group_id])->first();
+
         # get data progress step detail
         $data['step_progress'] = DB::table('activity_step_progress as sp')
                                         ->join('activity_step as s', 's.id', '=', 'sp.activity_step_id')
