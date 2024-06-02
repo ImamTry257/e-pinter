@@ -51,7 +51,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-12 text-start">
+            <div class="text-start">
                 <a href="javascript:void(0);" class="btn btn-save text-white">Simpan</a>
                 <a href="{{ route('front.activity.step', ['slug' => $slug, 'step' => 2]) }}" id="btn-step-1" class="btn btn-information text-white">Selanjutnya Sintak 2.</a>
             </div>

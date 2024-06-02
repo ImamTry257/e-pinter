@@ -6,7 +6,7 @@
             border-color: #7BB7C2 !important;
         }
 
-        a.btn-information {
+        .btn-information {
             background-color: #004972;
         }
 
@@ -39,17 +39,19 @@
                                     <img src="{{ asset('assets/img-pemb1.svg') }}" alt="" style="width: 100%;">
                                 </div>
 
-                                <div class="list-topic-content ms-2 py-5 px-2 col-lg-11 bg-white">
+                                <div class="list-topic-content ms-2 pb-5 px-2 col-lg-11 bg-white">
                                     <div class="row p-2">
                                         {!! $content !!}
 
-                                        <div class="col-lg-12 text-end">
+                                        <div class="col-lg-12 text-end py-3">
                                             <a href="{{ route('admin.detail.result.learning.activity.detail.step', ['user_id' => Crypt::encryptString($user_id), 'slug' => Crypt::encryptString($slug), 'step' => Crypt::encryptString(1)]) }}" id="btn-step-1" class="btn btn-information text-white">Selanjutnya Sintak 1.</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                        @include('console.components.comment')
                     </div>
                 </div>
             </div>

@@ -26,12 +26,16 @@
                     {!! $content; !!}
                 </div>
 
-                <div class="col-lg-12 text-start">
+                <div class="text-start">
                     <a href="javascript:void(0);" onclick="setAnswers('{{ $step }}',false)" class="btn btn-save text-white">Simpan</a>
                     <a href="javascript:void(0);" onclick="setAnswers('{{ $step }}',true)" id="btn-step-1" class="btn btn-information text-white">Selanjutnya Sintak 2.</a>
                     <input type="hidden" name="is_disabled" value="1">
                 </div>
             </form>
+        </div>
+
+        <div class="row p-2 px-5 pt-5">
+            @include('console.components.comment')
         </div>
     </div>
 </div>

@@ -41,8 +41,8 @@
 
                                 {{-- https://codepen.io/fadzrinmadu/pen/VwpzEYL --}}
 
-                                <div class="card list-topic-content py-5 px-2 col-12">
-                                    <div class="row p-2 px-5">
+                                <div class="list-topic-content pt-4 pb-5 px-2 col-12">
+                                    <div class="row">
                                         <div class="col-12 wrapper-step-1 pb-4">
                                             {!! $content !!}
                                         </div>
@@ -60,6 +60,8 @@
                                 </div>
                             </div>
                         </div>
+
+                        @include('console.components.comment')
                     </div>
                 </div>
             </div>
