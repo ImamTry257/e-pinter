@@ -199,9 +199,6 @@
         </div>
     </div>
 </div>
-@php
-    dump($step_progress);
-@endphp
 <script>
     @foreach ($step_progress as $progress)
         var step_element = $('div#step-' + '{{ $progress->step_id }}')
