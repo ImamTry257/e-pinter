@@ -89,7 +89,7 @@
                 </a>
             </div>
             @if (Route::has('login.admin.index'))
-            <a href="{{ route('login.admin.index') }}" class="text-center">Saya sudah punya akun.</a>
+            <a href="{{ route('login.admin.index') }}" class="text-center d-none">Saya sudah punya akun.</a>
             @endif
         </div>
         <!-- /.form-box -->

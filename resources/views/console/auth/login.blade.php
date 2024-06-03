@@ -72,7 +72,7 @@
                 </p>
             @endif
             @if (Route::has('register.admin.index'))
-                <p class="mb-0 pt-3">
+                <p class="mb-0 pt-3 d-none">
                     <a href="{{ route('register.admin.index') }}" class="text-center">Klik disini jika belum punya akun.</a>
                 </p>
             @endif
