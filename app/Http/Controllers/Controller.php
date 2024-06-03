@@ -214,7 +214,7 @@ class Controller extends BaseController
             $content = '<div class="alert-notif"></div>
                         <h5 class="pb-2 fw-bold">Langkah 5: Penyusunan laporan</h5>
                         <div class="desc-step mt-3">
-                            <p class="text-justify p-3">Buatlah laporan dari projek yang anda buat</p>
+                            <p class="text-justify p-3">Buatlah laporan dari projek yang anda buat. <a href="https://docs.google.com/document/d/1ai29o8fPx9xKWXcWRKoYUsoAnJWYJR_1/edit" class="fw-bold text-dark" target="_blank">Download Template Laporan</a> </p>
                         </div>
 
                         <div class="render-file pb-3"></div>
