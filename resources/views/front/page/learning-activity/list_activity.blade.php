@@ -175,7 +175,10 @@
         var bar_presentase = step_element.find('span').last()
 
         // binding value presentase
-        bar_presentase.attr('style', 'width:{{ $progress->detail_progress }}%').addClass('bg-primary').text('{{ $progress->detail_progress }}%')
+        bar_presentase.attr('style', 'width:{{ $progress->detail_progress }}%').text('{{ $progress->detail_progress }}%')
+        if ( '{{ $progress->detail_progress }}' != 0 ) {
+            bar_presentase.addClass('bg-primary')
+        }
 
         // enable next step
         var next_step = $('div#step-' + '{{ $progress->step_id + 1 }}')

@@ -190,21 +190,38 @@ class Controller extends BaseController
             $content = '<div class="alert-notif"></div>
                     <h5 class="pb-2 fw-bold">Langkah 4: Melakukan eksperimen menggunakan teknologi</h5>
                     <h1>Upload foto tiap langkah eksperimen menggunakan software Tracker</h1>
-                    <div class="desc-step mt-3">
-                        <p class="text-justify p-3">Upload foto langkah eksperimen kelompok dengan tema “' . $title . '”</p>
-                    </div>
+                    <div id="step-tracker">
+                        <div class="desc-step my-3 pb-2">
+                            <p class="text-justify px-3 pt-3">Upload foto langkah eksperimen kelompok dengan tema “' . $title . '” meliputi</p>
+                            <ol>
+                                <li>
+                                    Foto saat import video di software Tracker
+                                    <div class="render-file-p1"></div>
+                                    <input type="file" id="step-' . $step_id . '-1" class="upload-file" onChange="handleInput(this)" hidden name="file_a">
+                                </li>
+                                <li>
+                                    Foto Proses autotracker
+                                    <div class="render-file-p2"></div>
+                                    <input type="file" id="step-' . $step_id . '-2" class="upload-file" onChange="handleInput(this)" hidden name="file_b">
+                                </li>
+                                <li>
+                                    Foto grafik analisis video
+                                    <div class="render-file-p3"></div>
+                                    <input type="file" id="step-' . $step_id . '-3" class="upload-file" onChange="handleInput(this)" hidden name="file_c">
+                                </li>
+                            </ol>
+                        </div>
 
-                    <div class="render-file pb-3"></div>
-
-                    <div class="" style="border-style: dashed;">
-                        <div class="card-body">
-                            <div class="py-3 row">
-                                <div class="col-lg-12 text-center">
-                                    <div class="drag-area">
-                                        <div class="title-header text-secondary">Drag & Drop to Upload File</div>
-                                        <div class="text-secondary py-3">or</div>
-                                        <a href="javascript:void(0);" class="btn btn-primary text-white">Select File</a>
-                                        <input type="file" id="step-' . $step_id . '" class="upload-file" hidden name="file">
+                        <div class="" style="border-style: dashed;">
+                            <div class="card-body">
+                                <div class="py-3 row">
+                                    <div class="col-lg-12 text-center">
+                                        <div class="drag-area">
+                                            <div class="title-header text-secondary">Drag & Drop to Upload File</div>
+                                            <div class="text-secondary py-3">or</div>
+                                            <a href="javascript:void(0);" class="btn btn-primary text-white" id="select_file">Select File</a>
+                                            <input type="file" id="step-' . $step_id . '" class="upload-file" hidden name="file">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -386,7 +403,12 @@ class Controller extends BaseController
                     <h5 class="pb-2 fw-bold">Langkah 4: Melakukan eksperimen menggunakan teknologi</h5>
                     <h1>Upload foto tiap langkah eksperimen menggunakan software Tracker</h1>
                     <div class="desc-step mt-3">
-                        <p class="text-justify p-3">Upload foto langkah eksperimen kelompok dengan tema “' . $title . '”</p>
+                        <p class="text-justify p-3">Upload foto langkah eksperimen kelompok dengan tema “' . $title . '” meliputi</p>
+                        <ul>
+                            <li>Foto saat import video di software Tracker</li>
+                            <li>Foto Proses autotracker</li>
+                            <li>Foto grafik analisis video</li>
+                        </ul>
                     </div>
 
                     <div class="render-file pb-3"></div>
@@ -412,6 +434,7 @@ class Controller extends BaseController
                             <p class="text-justify p-3">Buatlah laporan dari projek yang anda buat</p>
                         </div>
 
+                        <div>Jawaban :</div>
                         <div class="render-file pb-3"></div>
 
                         <div class="d-none" style="border-style: dashed;">

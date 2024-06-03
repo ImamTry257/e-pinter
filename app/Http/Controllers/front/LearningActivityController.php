@@ -296,14 +296,14 @@ class LearningActivityController extends Controller
                     // check request file is exist
                     if ( $request->file != null ) :
                         // upload file
-                        $fileName = $detail_progress . '_' . $request->step_id . '_' . date('YmdHis').'.'.$request->file->extension();
+                        $fileName = date('YmdHis'). '_' . $request->file->getClientOriginalName();
 
                         $request->file->move(public_path('assets/activity/step/'), $fileName);
 
                         $ins_answers = [
                             'type'          => 'non-intro',
                             'presentase'    => $detail_progress,
-                            'value'         => json_encode([['id' => 'file', 'value_text' => $fileName, 'value_html' => $fileName]])
+                            'value'         => json_encode([['id' => 'file', 'value_text' => $request->file->getClientOriginalName(), 'value_html' => $fileName]])
                         ];
                         $parameter['answers'] = ( $request->intro ) ? 'intro_step' : json_encode($ins_answers);
 

@@ -155,8 +155,9 @@
         @endif
 
         @foreach (json_decode($value_answers) as $value)
-            let imgTag = `<img src="{{ asset('assets/activity/step/') . '/' . $value->value_text }}" alt="image" width="400">`; //creating an img tag and passing user selected file source inside src attribute
-            $('div.render-file').html(imgTag); //adding that created img tag inside dropArea container
+            // let imgTag = `<img src="{{ asset('assets/activity/step/') . '/' . $value->value_text }}" alt="image" width="400">`; //creating an img tag and passing user selected file source inside src attribute
+            let fileNameReport = `<p><a href="{{ asset('assets/activity/step/') . '/' . $value->value_html }}" target="_blank">{{ $value->value_text }}</a></p>`
+            $('div.render-file').html(fileNameReport); //adding that created img tag inside dropArea container
         @endforeach
     @endif
 </script>
