@@ -91,13 +91,12 @@
         let validExtensions = ["application/vnd.openxmlformats-officedocument.wordprocessingml.document"]; //adding some valid image extensions in array
         if(validExtensions.includes(fileType)){ //if user selected file is an image file
             let fileReader = new FileReader(); //creating new FileReader object
-            fileReader.onload = ()=>{
+            fileReader.onload = (e) => {
+                console.log(file)
                 let fileURL = fileReader.result; //passing user file source in fileURL variable
-                console.log(fileURL)
-                return false
                 // UNCOMMENT THIS BELOW LINE. I GOT AN ERROR WHILE UPLOADING THIS POST SO I COMMENTED IT
-                let imgTag = `<iframe src="${fileURL}"></iframe>`; //creating an img tag and passing user selected file source inside src attribute
-                $('div.render-file').html(imgTag); //adding that created img tag inside dropArea container
+                let titleFile = `<p class="filename-report">${file.name}</p>`; //creating an img tag and passing user selected file source inside src attribute
+                $('div.render-file').html(titleFile); //adding that created img tag inside dropArea container
             }
             fileReader.readAsDataURL(file);
         }else{
