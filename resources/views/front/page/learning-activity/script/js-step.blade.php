@@ -63,6 +63,15 @@
         // parsing file upload for step 3, 4, 5
         if ( [3, 4, 5].includes(Number (stepId)) ) {
             if ( stepId == 4 ) {
+                // check answer by user
+                var countAnswer = 0;
+                var listAnswer = $('div#wrapper-render-file')
+                listAnswer.map( ( index, data ) => {
+                    if ( $(data).children().length != 0 ) {
+                        countAnswer++
+                    }
+                } )
+
                 var fileUploadA = $('input[name="file_1"]').prop('files')[0]
                 var fileUploadB = $('input[name="file_2"]').prop('files')[0]
                 var fileUploadC = $('input[name="file_3"]').prop('files')[0]
@@ -72,8 +81,10 @@
                 formData.append('file_3', ( fileUploadC != undefined ) ? fileUploadC : '')
                 formData.append('is_upload_file', 1)
                 formData.append('is_multiple_upload', 1)
+                formData.append('count_answer_multiple', countAnswer)
                 // console.log('handle multi image in here', formData, fileUploadA, fileUploadB, fileUploadC)
                 // return false
+
             } else {
                 var fileUpload = $('input[name="file"]').prop('files')[0]
                 formData.append('file', ( fileUpload != undefined ) ? fileUpload : '')

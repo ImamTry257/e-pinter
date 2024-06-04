@@ -44,17 +44,48 @@
     </div>
 </div>
 
+@php
+    // dd($detail_step);
+    // dd(json_decode(json_decode($detail_step->answers)->value));
+    if ( $detail_step != null ) :
+        $value_answers = json_decode($detail_step->answers)->value;
+    endif
+@endphp
+<script>
+    @if ( $detail_step != null )
+        $('input#is_disabled').val(0)
+        @if ($detail_step->detail_progress != 100 )
+            $('input#is_disabled').val(1)
+        @endif
 
+        @foreach (json_decode($value_answers) as $value)
+            @foreach ($value->value_html as $key => $val)
+                @if ( $val != '' )
+                    var imgTag = `<img src="{{ asset('assets/activity/step/') . '/' . $val }}" alt="image" width="400">`; //creating an img tag and passing user selected file source inside src attribute
+                    $('div#render-{{ $key }}').html(imgTag); //adding that created img tag inside dropArea container
+                @endif
+            @endforeach
+        @endforeach
+    @endif
+</script>
 <script>
     //selecting all required elements
     const dropArea = document.querySelector("div#step-tracker"),
     dragText = dropArea.querySelector(".title-header"),
     button = dropArea.querySelector("a#select_file")
 
-    console.log(dropArea)
-
     let file; //this is a global variable and we'll use it inside multiple functions
-    let clickUpload = 0
+    var listAnswer = $('div.wrapper-render-file')
+    var countAnswer = 0;
+    listAnswer.map( ( index, data ) => {
+        if ( $(data).children().length != 0 ) {
+            countAnswer++
+        }
+    } )
+    console.log(countAnswer)
+
+    // jika sudah ada gambar, maka dimulai dari gambar yang kosong
+    let clickUpload = countAnswer
 
     var input;
     button.onclick = ()=>{
@@ -64,7 +95,6 @@
     }
 
     function handleInput(e) {
-        console.log(e, 'dapet e nya gak')
         //getting user select file and [0] this means if user select multiple files then we'll select only the first one
         file = e.files[0];
         dropArea.classList.add("active");
@@ -126,28 +156,6 @@
             $('input#is_disabled').val(0)
         }
     })
-</script>
-@php
-    // dd($detail_step);
-    // dd(json_decode(json_decode($detail_step->answers)->value));
-    if ( $detail_step != null ) :
-        $value_answers = json_decode($detail_step->answers)->value;
-    endif
-@endphp
-<script>
-    @if ( $detail_step != null )
-        $('input#is_disabled').val(0)
-        @if ($detail_step->detail_progress != 100 )
-            $('input#is_disabled').val(1)
-        @endif
-
-        @foreach (json_decode($value_answers) as $value)
-            @foreach ($value->value_html as $key => $val)
-                var imgTag = `<img src="{{ asset('assets/activity/step/') . '/' . $val }}" alt="image" width="400">`; //creating an img tag and passing user selected file source inside src attribute
-                $('div#render-{{ $key }}').html(imgTag); //adding that created img tag inside dropArea container
-            @endforeach
-        @endforeach
-    @endif
 </script>
 @include('front.page.learning-activity.script.js-step')
 @endsection

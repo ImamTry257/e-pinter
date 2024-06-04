@@ -257,6 +257,13 @@ class LearningActivityController extends Controller
                     endif ;
                 endforeach ;
 
+                # handle for step multiple upload image
+                if ( $request->step_id == 4 ) :
+                    $count_answer = $request->count_answer_multiple;
+                    $count_question = 3;
+                endif ;
+                # dd($count_answer, $count_question, $request->all());
+
                 # set presentase
                 $detail_progress = ( $count_answer == $count_question ) ? 100 : ( ( $count_answer / $count_question ) * 100 );
             else :
@@ -283,7 +290,7 @@ class LearningActivityController extends Controller
                 # set format answer for inserting data
                 $ins_answers = [
                     'type'          => ( $request->intro == 0 ) ? 'non-intro' : 'intro',
-                    'presentase'    => $detail_progress,
+                    'presentase'    => round($detail_progress, 2),
                     'value'         => $request->answers
                 ];
 
@@ -296,8 +303,14 @@ class LearningActivityController extends Controller
                     if ( $request->is_upload_file == 1 ) :
                         // check request file is exist
                         if ( $request->file_1 != null || $request->file_2 != null || $request->file_3 != null ) :
+                            $fileNameA = null;
+                            $fileNameB = null;
+                            $fileNameC = null;
 
-                            $filename_arr = [];
+                            $fileNameA_valHtml = null;
+                            $fileNameB_valHtml = null;
+                            $fileNameC_valHtml = null;
+
                             if ( $request->file_1 != null ) :
                                 // upload file
                                 $fileNameA = date('YmdHis'). '_a_' . $request->file_1->getClientOriginalName();
@@ -339,7 +352,7 @@ class LearningActivityController extends Controller
 
                             $ins_answers = [
                                 'type'          => 'non-intro',
-                                'presentase'    => $detail_progress,
+                                'presentase'    => round($detail_progress, 2),
                                 'value'         => json_encode([['id' => 'file', 'value_text' => $value_html_filename_arr, 'value_html'    => $value_filename_arr]])
                             ];
 
@@ -352,7 +365,7 @@ class LearningActivityController extends Controller
                             if ( empty($check_data_step_upload) ) :
                                 $ins_answers = [
                                     'type'          => 'non-intro',
-                                    'presentase'    => $detail_progress,
+                                    'presentase'    => round($detail_progress, 2),
                                     'value'         => json_encode([['id' => 'file', 'value_text' => $fileName, 'value_html' => $fileName]])
                                 ];
                                 $parameter['answers'] = ( $request->intro ) ? 'intro_step' : json_encode($ins_answers);

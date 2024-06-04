@@ -205,21 +205,21 @@ class Controller extends BaseController
                             <ol>
                                 <li class="pb-3">
                                     Foto saat import video di software Tracker
-                                    <div class="render-file-p1"></div>
+                                    <div class="render-file-p1" id="wrapper-render-file"></div>
                                     <input type="file" id="step-' . $step_id . '-1" class="upload-file" onChange="handleInput(this)" hidden name="file_1">
-                                    <div id="render-file_1"></div>
+                                    <div id="render-file_1" class="wrapper-render-file"></div>
                                 </li>
                                 <li class="pb-3">
                                     Foto Proses autotracker
-                                    <div class="render-file-p2"></div>
+                                    <div class="render-file-p2" id="wrapper-render-file"></div>
                                     <input type="file" id="step-' . $step_id . '-2" class="upload-file" onChange="handleInput(this)" hidden name="file_2">
-                                    <div id="render-file_2"></div>
+                                    <div id="render-file_2" class="wrapper-render-file"></div>
                                 </li>
                                 <li class="pb-3">
                                     Foto grafik analisis video
-                                    <div class="render-file-p3"></div>
+                                    <div class="render-file-p3" id="wrapper-render-file"></div>
                                     <input type="file" id="step-' . $step_id . '-3" class="upload-file" onChange="handleInput(this)" hidden name="file_3">
-                                    <div id="render-file_3"></div>
+                                    <div id="render-file_3" class="wrapper-render-file"></div>
                                 </li>
                             </ol>
                         </div>
