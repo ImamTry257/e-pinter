@@ -22,11 +22,11 @@
     </div>
 
     <div class="card list-topic-content ms-3 mt-4 py-5 px-2 col-lg-11 bg-white">
-        <div class="title-list row d-flex justify-content-center">
+        <div class="title-list row d-flex justify-content-center px-5">
             <div class="col-lg-12">
                 <h1 class="text-center fw-bold py-3">Tracker Video Analysis</h1>
                 <span class="text-justify d-block">
-                    <b>Pada akhir fase F, peserta didik mampu menerapkan konsep dan prinsip vektor kedalam kinematika</b> dan dinamika gerak partikel, usaha dan energi, fluida dinamis, getaran harmonis, gelombang bunyi dan gelombang cahaya dalam menyelesaikan masalah, serta menerapkan prinsip dan konsep energi kalor dan termodinamika dengan berbagai perubahannya dalam mesin kalor. Peserta didik mampu menerapkan konsep dan prinsip kelistrikan (baik statis maupun dinamis) dan kemagnetan dalam berbagai penyelesaian masalah dan berbagai produk teknologi, menerapkan konsep dan prinsip gejala gelombang elektromagnetik dalam menyelesaikan masalah. Peserta didik mampu menganalisis keterkaitan antara berbagai besaran fisis pada teori relativitas khusus, gejala kuantum dan menunjukkan penerapan konsep fisika inti dan radioaktivitas dalam kehidupan sehari-hari dan teknologi. Peserta didik mampu memberi penguatan pada aspek fisika sesuai dengan minat untuk ke perguruan tinggi yang berhubungan dengan bidang fisika. Melalui kerja ilmiah juga dibangun sikap ilmiah dan profil pelajar pancasila khususnya mandiri, inovatif, bernalar kritis, kreatif dan bergotong royong.
+                    Tracker Video Analysis adalah aplikasi yang dikembangkan oleh Java Open Source Physics (OSP) yang dapat membantu siswa mempelajari berbagai fenomena gerak dua dimensi. Aplikasi ini memiliki kemampuan untuk melacak gerak suatu objek, yang memungkinkannya mengumpulkan berbagai informasi yang diperlukan untuk analisis gerak dua dimensi. Dalam aktivitas ini, siswa menggunakan perekam video untuk merekam fenomena gerak yang sebenarnya, dan kemudian hasil rekaman tersebut diolah menggunakan aplikasi Analisis Video Tracker. Dengan menggunakan aplikasi ini, siswa dapat memperoleh berbagai informasi seperti posisi benda (x, y) setiap saat (t), yang memudahkan proses analisis gerak.
                 </span>
             </div>
 
@@ -35,7 +35,7 @@
             </div>
 
             <div class="col-lg-8 col-xl-7 col-sm-12 col-md-10 text-center pt-2 pb-5">
-                <a href="" target="_blank" class="btn btn-information px-5 text-white w-100 fs-4">PANDUAN PENGGUNAAN SOFTWARE TRACKER</a>
+                <a href="{{ route('info.trakcer') }}" target="_blank" class="btn btn-information px-5 text-white w-100 fs-4">PANDUAN PENGGUNAAN SOFTWARE TRACKER</a>
             </div>
         </div>
 

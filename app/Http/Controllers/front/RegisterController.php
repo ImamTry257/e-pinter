@@ -24,19 +24,17 @@ class RegisterController extends Controller
                 'username'              => 'required|unique:users,name',
                 'password'              => 'required|confirmed',
                 'password_confirmation' => 'required',
-                // 'school'                => 'required'
+                'school_name'           => 'required'
             ]);
 
             try {
                 DB::table('users')
                     ->insert([
-                        'name' => $request->username,
-                        'email' => $request->email,
-                        'password' => Hash::make($request->password),
-                        // 'school' => $request->school,
-                        // 'type'  => 'siswa',
-                        // 'status' => 1,
-                        // 'created_by' => 0
+                        'name'                  => $request->username,
+                        'email'                 => $request->email,
+                        'password'              => Hash::make($request->password),
+                        'school_name'           => $request->school_name,
+                        'school_name_capital'   => strtoupper($request->school_name)
                     ]);
 
                 return redirect()->route('register.success');

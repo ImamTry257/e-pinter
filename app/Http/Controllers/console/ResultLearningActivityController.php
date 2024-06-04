@@ -30,13 +30,15 @@ class ResultLearningActivityController extends Controller
     public function getStudentLearningActivity(Request $request)
     {
         if ($request->ajax()) :
-            $data = DB::select("SELECT u.`name` AS nama_siswa, ug.`name` AS nama_kelompok, u.`email` AS email_siswa, u.`id` AS user_id
-            FROM `users` AS u,
-            user_group AS ug
-            WHERE u.`user_group_id` = ug.`id`
-            AND u.`id` IN (
-                SELECT DISTINCT(sp.`user_id`) FROM `activity_step_progress` AS sp
-            )");
+            $where_search = '';
+            $keyword = '';
+            if ( $request->search['value'] != '' ) :
+                $keyword = $request->search['value'];
+                $where_search = 'WHERE UPPER(u.`name`) LIKE "%'. strtoupper($keyword) . '%" || UPPER(u.`school_name`) LIKE "%'. strtoupper($keyword) . '%" || UPPER(ug.`name`) LIKE "%'. strtoupper($keyword) . '%" || UPPER(u.`email`)LIKE "%'. strtoupper($keyword) . '%" || UPPER(u.`id`) LIKE "%'. strtoupper($keyword) . '%"';
+            endif ;
+
+
+            $data = DB::select("SELECT u.`name` AS nama_siswa, u.`school_name` AS nama_sekolah, u.`school_name_capital` AS nama_sekolah_kapital, ug.`name` AS nama_kelompok, u.`email` AS email_siswa, u.`id` AS user_id FROM `users` AS u LEFT JOIN user_group AS ug ON u.`user_group_id` = ug.`id` " . $where_search);
 
             return DataTables::of($data)
                 ->addIndexColumn()

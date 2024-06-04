@@ -41,10 +41,11 @@
                                         <thead>
                                             <tr>
                                                 <th width="5%">No</th>
-                                                <th width="35%">Siswa</th>
+                                                <th width="20%">Siswa</th>
+                                                <th width="20%">Nama Sekolah</th>
                                                 <th width="20%">Kelompok</th>
                                                 <th width="20%">Email</th>
-                                                <th width="10%">Action</th>
+                                                <th width="15%">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -84,11 +85,12 @@
               serverSide: true,
               ajax: "{{ route('admin.get.student.learning.activity') }}",
               columns: [
-                    {data: 'DT_RowIndex', name: 'No'},
-                    {data: 'nama_siswa', name: 'Siswa'},
-                    {data: 'nama_kelompok', name: 'Kelompok'},
-                    {data: 'email_siswa', name: 'Email'},
-                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                    {data: 'DT_RowIndex', name: 'No', orderable: false},
+                    {data: 'nama_siswa', name: 'Siswa', orderable: false},
+                    {data: 'nama_sekolah_kapital', name: 'Nama Sekolah', orderable: false},
+                    {data: 'nama_kelompok', name: 'Kelompok', orderable: false},
+                    {data: 'email_siswa', name: 'Email', orderable: false},
+                    {data: 'action', name: 'action', orderable: false, searchable: true},
               ]
           });
 

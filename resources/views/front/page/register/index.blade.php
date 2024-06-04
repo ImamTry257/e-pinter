@@ -67,6 +67,15 @@
                     @enderror
                 </div>
                 <div class="mb-3">
+                    <label for="school_name" class="form-label text-dark">Sekolah</label>
+                    <input type="text" class="form-control @error('school_name') is-invalid @enderror" value="{{ old('school_name') }}" name="school_name" id="school_name" placeholder="Sekolah">
+                    @error('school_name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+                <div class="mb-3">
                     <label for="password" class="form-label text-dark">Password</label>
                     <input type="password" class="form-control @error('password') is-invalid @enderror" value="{{ old('password') }}" name="password" id="password" placeholder="Password">
                     @error('password')
