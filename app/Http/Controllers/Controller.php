@@ -194,19 +194,28 @@ class Controller extends BaseController
                         <div class="desc-step my-3 pb-2">
                             <p class="text-justify px-3 pt-3">Upload foto langkah eksperimen kelompok dengan tema “' . $title . '” meliputi</p>
                             <ol>
-                                <li>
+                                <li>Foto saat import video di software Tracker</li>
+                                <li>Foto Proses autotracker</li>
+                                <li>Foto grafik analisis video</li>
+                            </ol>
+                        </div>
+
+                        <div class="pt-3 px-3">Jawaban :</div>
+                        <div>
+                            <ol>
+                                <li class="pb-3">
                                     Foto saat import video di software Tracker
                                     <div class="render-file-p1"></div>
                                     <input type="file" id="step-' . $step_id . '-1" class="upload-file" onChange="handleInput(this)" hidden name="file_1">
                                     <div id="render-file_1"></div>
                                 </li>
-                                <li>
+                                <li class="pb-3">
                                     Foto Proses autotracker
                                     <div class="render-file-p2"></div>
                                     <input type="file" id="step-' . $step_id . '-2" class="upload-file" onChange="handleInput(this)" hidden name="file_2">
                                     <div id="render-file_2"></div>
                                 </li>
-                                <li>
+                                <li class="pb-3">
                                     Foto grafik analisis video
                                     <div class="render-file-p3"></div>
                                     <input type="file" id="step-' . $step_id . '-3" class="upload-file" onChange="handleInput(this)" hidden name="file_3">
@@ -414,7 +423,7 @@ class Controller extends BaseController
                         </ol>
                     </div>
 
-                    <div class="pt-3">Jawaban :</div>
+                    <div class="pt-3 px-3">Jawaban :</div>
                     <div>
                         <ol>
                             <li class="pb-3">
