@@ -104,6 +104,7 @@
                 // UNCOMMENT THIS BELOW LINE. I GOT AN ERROR WHILE UPLOADING THIS POST SO I COMMENTED IT
                 let imgTag = `<img src="${fileURL}" alt="image" width="400">`; //creating an img tag and passing user selected file source inside src attribute
                 $('div.render-file-p' + clickUpload).html(imgTag).addClass("py-2 pb-4"); //adding that created img tag inside dropArea container
+                $('div#render-file_' + clickUpload).empty()
             }
             fileReader.readAsDataURL(file);
         }else{
@@ -128,6 +129,7 @@
 </script>
 @php
     // dd($detail_step);
+    // dd(json_decode(json_decode($detail_step->answers)->value));
     if ( $detail_step != null ) :
         $value_answers = json_decode($detail_step->answers)->value;
     endif
@@ -140,8 +142,10 @@
         @endif
 
         @foreach (json_decode($value_answers) as $value)
-            let imgTag = `<img src="{{ asset('assets/activity/step/') . '/' . $value->value_text }}" alt="image" width="400">`; //creating an img tag and passing user selected file source inside src attribute
-            $('div.render-file').html(imgTag); //adding that created img tag inside dropArea container
+            @foreach ($value->value_html as $key => $val)
+                var imgTag = `<img src="{{ asset('assets/activity/step/') . '/' . $val }}" alt="image" width="400">`; //creating an img tag and passing user selected file source inside src attribute
+                $('div#render-{{ $key }}').html(imgTag); //adding that created img tag inside dropArea container
+            @endforeach
         @endforeach
     @endif
 </script>

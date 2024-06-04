@@ -293,32 +293,71 @@ class LearningActivityController extends Controller
                 if ( in_array($request->step_id, [3, 4, 5]) ) :
 
                     $fileName = '';
-                    // check request file is exist
-                    if ( $request->file != null ) :
-                        // upload file
-                        $fileName = date('YmdHis'). '_' . $request->file->getClientOriginalName();
+                    if ( $request->is_upload_file == 1 ) :
+                        // check request file is exist
+                        if ( $request->file_1 != null || $request->file_2 != null || $request->file_3 != null ) :
 
-                        $request->file->move(public_path('assets/activity/step/'), $fileName);
+                            $filename_arr = [];
+                            if ( $request->file_1 != null ) :
+                                // upload file
+                                $fileNameA = date('YmdHis'). '_a_' . $request->file_1->getClientOriginalName();
 
-                        $ins_answers = [
-                            'type'          => 'non-intro',
-                            'presentase'    => $detail_progress,
-                            'value'         => json_encode([['id' => 'file', 'value_text' => $request->file->getClientOriginalName(), 'value_html' => $fileName]])
-                        ];
-                        $parameter['answers'] = ( $request->intro ) ? 'intro_step' : json_encode($ins_answers);
+                                $fileNameA_valHtml = $request->file_1->getClientOriginalName();
 
-                    else :
-                        // check is update or new record
-                        $check_data_step_upload = $this->checkDataProgress($request->progress_id, $request->step_id);
+                                $request->file_1->move(public_path('assets/activity/step/'), $fileNameA);
+                            endif ;
 
-                        if ( empty($check_data_step_upload) ) :
+                            if ( $request->file_2 != null ) :
+                                // upload file
+                                $fileNameB = date('YmdHis'). '_b_' . $request->file_2->getClientOriginalName();
+
+                                $fileNameB_valHtml = $request->file_2->getClientOriginalName();
+
+                                $request->file_2->move(public_path('assets/activity/step/'), $fileNameB);
+                            endif ;
+
+                            if ( $request->file_3 != null ) :
+                                // upload file
+                                $fileNameC = date('YmdHis'). '_c_' . $request->file_3->getClientOriginalName();
+
+                                $fileNameC_valHtml = $request->file_3->getClientOriginalName();
+
+                                $request->file_3->move(public_path('assets/activity/step/'), $fileNameC);
+                            endif ;
+
+                            $value_filename_arr = [
+                                'file_1' => ( $fileNameA != null ) ? $fileNameA : "",
+                                'file_2' => ( $fileNameB != null ) ? $fileNameB : "",
+                                'file_3' => ( $fileNameC != null ) ? $fileNameC : ""
+                            ];
+
+                            $value_html_filename_arr = [
+                                'file_1' => ( $fileNameA_valHtml != null ) ? $fileNameA_valHtml : "",
+                                'file_2' => ( $fileNameB_valHtml != null ) ? $fileNameB_valHtml : "",
+                                'file_3' => ( $fileNameC_valHtml != null ) ? $fileNameC_valHtml : ""
+                            ];
+
                             $ins_answers = [
                                 'type'          => 'non-intro',
                                 'presentase'    => $detail_progress,
-                                'value'         => json_encode([['id' => 'file', 'value_text' => $fileName, 'value_html' => $fileName]])
+                                'value'         => json_encode([['id' => 'file', 'value_text' => $value_html_filename_arr, 'value_html'    => $value_filename_arr]])
                             ];
+
                             $parameter['answers'] = ( $request->intro ) ? 'intro_step' : json_encode($ins_answers);
 
+                        else :
+                            // check is update or new record
+                            $check_data_step_upload = $this->checkDataProgress($request->progress_id, $request->step_id);
+
+                            if ( empty($check_data_step_upload) ) :
+                                $ins_answers = [
+                                    'type'          => 'non-intro',
+                                    'presentase'    => $detail_progress,
+                                    'value'         => json_encode([['id' => 'file', 'value_text' => $fileName, 'value_html' => $fileName]])
+                                ];
+                                $parameter['answers'] = ( $request->intro ) ? 'intro_step' : json_encode($ins_answers);
+
+                            endif ;
                         endif ;
                     endif ;
                 endif ;

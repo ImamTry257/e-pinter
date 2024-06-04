@@ -63,13 +63,13 @@
         // parsing file upload for step 3, 4, 5
         if ( [3, 4, 5].includes(Number (stepId)) ) {
             if ( stepId == 4 ) {
-                var fileUploadA = $('input[name="file_a"]').prop('files')[0]
-                var fileUploadB = $('input[name="file_b"]').prop('files')[0]
-                var fileUploadC = $('input[name="file_c"]').prop('files')[0]
+                var fileUploadA = $('input[name="file_1"]').prop('files')[0]
+                var fileUploadB = $('input[name="file_2"]').prop('files')[0]
+                var fileUploadC = $('input[name="file_3"]').prop('files')[0]
 
-                formData.append('file_a', ( fileUploadA != undefined ) ? fileUploadA : '')
-                formData.append('file_b', ( fileUploadB != undefined ) ? fileUploadB : '')
-                formData.append('file_c', ( fileUploadC != undefined ) ? fileUploadC : '')
+                formData.append('file_1', ( fileUploadA != undefined ) ? fileUploadA : '')
+                formData.append('file_2', ( fileUploadB != undefined ) ? fileUploadB : '')
+                formData.append('file_3', ( fileUploadC != undefined ) ? fileUploadC : '')
                 formData.append('is_upload_file', 1)
                 formData.append('is_multiple_upload', 1)
                 // console.log('handle multi image in here', formData, fileUploadA, fileUploadB, fileUploadC)

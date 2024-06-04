@@ -197,17 +197,20 @@ class Controller extends BaseController
                                 <li>
                                     Foto saat import video di software Tracker
                                     <div class="render-file-p1"></div>
-                                    <input type="file" id="step-' . $step_id . '-1" class="upload-file" onChange="handleInput(this)" hidden name="file_a">
+                                    <input type="file" id="step-' . $step_id . '-1" class="upload-file" onChange="handleInput(this)" hidden name="file_1">
+                                    <div id="render-file_1"></div>
                                 </li>
                                 <li>
                                     Foto Proses autotracker
                                     <div class="render-file-p2"></div>
-                                    <input type="file" id="step-' . $step_id . '-2" class="upload-file" onChange="handleInput(this)" hidden name="file_b">
+                                    <input type="file" id="step-' . $step_id . '-2" class="upload-file" onChange="handleInput(this)" hidden name="file_2">
+                                    <div id="render-file_2"></div>
                                 </li>
                                 <li>
                                     Foto grafik analisis video
                                     <div class="render-file-p3"></div>
-                                    <input type="file" id="step-' . $step_id . '-3" class="upload-file" onChange="handleInput(this)" hidden name="file_c">
+                                    <input type="file" id="step-' . $step_id . '-3" class="upload-file" onChange="handleInput(this)" hidden name="file_3">
+                                    <div id="render-file_3"></div>
                                 </li>
                             </ol>
                         </div>
@@ -402,13 +405,37 @@ class Controller extends BaseController
             $content = '<div class="alert-notif"></div>
                     <h5 class="pb-2 fw-bold">Langkah 4: Melakukan eksperimen menggunakan teknologi</h5>
                     <h1>Upload foto tiap langkah eksperimen menggunakan software Tracker</h1>
-                    <div class="desc-step mt-3">
-                        <p class="text-justify p-3">Upload foto langkah eksperimen kelompok dengan tema “' . $title . '” meliputi</p>
-                        <ul>
+                    <div class="desc-step mt-3 pb-1">
+                        <p class="text-justify pt-3 px-3">Upload foto langkah eksperimen kelompok dengan tema “' . $title . '” meliputi</p>
+                        <ol>
                             <li>Foto saat import video di software Tracker</li>
                             <li>Foto Proses autotracker</li>
                             <li>Foto grafik analisis video</li>
-                        </ul>
+                        </ol>
+                    </div>
+
+                    <div class="pt-3">Jawaban :</div>
+                    <div>
+                        <ol>
+                            <li class="pb-3">
+                                Foto saat import video di software Tracker
+                                <div class="render-file-p1"></div>
+                                <input type="file" id="step-' . $step_id . '-1" class="upload-file" onChange="handleInput(this)" hidden name="file_1">
+                                <div id="render-file_1"></div>
+                            </li>
+                            <li class="pb-3">
+                                Foto Proses autotracker
+                                <div class="render-file-p2"></div>
+                                <input type="file" id="step-' . $step_id . '-2" class="upload-file" onChange="handleInput(this)" hidden name="file_2">
+                                <div id="render-file_2"></div>
+                            </li>
+                            <li class="pb-3">
+                                Foto grafik analisis video
+                                <div class="render-file-p3"></div>
+                                <input type="file" id="step-' . $step_id . '-3" class="upload-file" onChange="handleInput(this)" hidden name="file_3">
+                                <div id="render-file_3"></div>
+                            </li>
+                        </ol>
                     </div>
 
                     <div class="render-file pb-3"></div>
