@@ -40,7 +40,7 @@ class RegisterController extends Controller
                 return redirect()->route('register.success');
             } catch (\Throwable $th) {
                 # dd($th->getMessage());
-                return redirect()->route('register')->with('error', 'Create Data Rows fail!');
+                return redirect()->route('register')->with('error', 'Registrasi Akun gagal. Silakan coba lagi.');
             }
         else :
             return redirect()->route('register');
