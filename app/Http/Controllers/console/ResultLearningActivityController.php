@@ -43,8 +43,11 @@ class ResultLearningActivityController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $actionBtn = '<a href="' . route('admin.result.learning.activity.show', ['user_id' => Crypt::encryptString($row->user_id)]) . '" class="edit btn bg-console text-dark btn-sm">Lihat Detail</a>';
+                    $actionBtn = '';
 
+                    if ( $row->nama_kelompok != '' ) :
+                        $actionBtn = '<a href="' . route('admin.result.learning.activity.show', ['user_id' => Crypt::encryptString($row->user_id)]) . '" class="edit btn bg-console text-dark btn-sm" id="' . $row->nama_kelompok . '">Lihat Detail</a>';
+                    endif ;
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])
