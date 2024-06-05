@@ -21,6 +21,7 @@ use App\Http\Controllers\front\LearningInfoController;
 use App\Http\Controllers\front\LoginController;
 use App\Http\Controllers\front\PotentialLocalGudegController;
 use App\Http\Controllers\front\ProfileController;
+use App\Http\Controllers\front\QuestionController;
 use App\Http\Controllers\front\ReflectionController;
 use App\Http\Controllers\front\RegisterController;
 use App\Http\Controllers\front\SainsInfoController;
@@ -110,6 +111,9 @@ Route::middleware([AuthFrontMiddleware::class])->group(function () {
 
     # Disccuss
     Route::get('/discuss', [DiscussController::class, 'index'])->name('discuss');
+
+    # Question
+    Route::get('/question', [QuestionController::class, 'index'])->name('question');
 });
 
 # Info E-Pinter

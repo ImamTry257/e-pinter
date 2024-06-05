@@ -66,6 +66,14 @@
                         <p class="ps-3">Trakcer Info</p>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('question') }}" class="nav-link text-white @if (Route::current()->uri == 'question') {{ 'active-menu' }} @endif">
+                        <i class="nav-icon fas fa-book"></i>
+                        {{-- <img src="{{ asset('assets/sidebar/sidebar-diskusi.svg') }}" width="25" alt="Site Home"> --}}
+                        <p class="ps-3">Question</p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
