@@ -157,11 +157,17 @@
 
                     <div class="wrapper-btn d-flex justify-content-evenly pb-4">
                         <div>
-                            <a href="" class="btn text-white rounded" style="background-color: #004972;">Soal Sebelumnya</a>
+                            <a href="" class="btn text-white rounded" style="background-color: #004972;">
+                                <i class="fa-solid fa-chevron-left"></i>
+                                Soal Sebelumnya
+                            </a>
                         </div>
 
                         <div>
-                            <a href="" class="btn text-white rounded" style="background-color: #004972;">Soal Selanjutnya</a>
+                            <a href="" class="btn text-white rounded" style="background-color: #004972;">
+                                Soal Selanjutnya
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -176,13 +182,13 @@
                     <span style="font-size: 30px;" id="countdown" class="fw-bold"></span>
                 </div>
 
-                <div class="wrapper-question-title pt-4 pb-2 text-start" style="margin-top: 45px;">
+                <div class="wrapper-question-title pt-4 pb-2 text-center" style="margin-top: 45px;">
                     <span class="question-title fw-bold" style="font-size: 22px;">Nomor Soal</span>
                     <hr>
                 </div>
 
-                <div class="wrapper-list-question row">
-                    <div class="row">
+                <div class="wrapper-list-question">
+                    <div class="row d-none">
                         @foreach ( $question_no as $key => $q)
                             @php
                                 $selection_q = ''
@@ -201,6 +207,9 @@
 
                         @endforeach
                     </div>
+
+                    {{-- add question number --}}
+                    @include('front.page.question.includes.question_number')
                 </div>
             </div>
         </div>
