@@ -34,12 +34,12 @@
 
         <div class="px-4 py-2">
             <ol class="border border-primary">
-                <li>Memahami konsep gerak lurus melalui percobaan proyek.....</li>
-                <li>Menerapkan gerak lurus melalui eksperimen....</li>
-                <li>Memahami konsep gerak parabola melalui percobaan proyek</li>
-                <li>Menerapakan gerak parabola melalui eksperimen</li>
-                <li>Memahami konsep gerak melingkar melalui percobaan proyek.....</li>
-                <li>Menerapkan gerak melingkar melalui eksperimen....</li>
+                <li>Peserta didik dapat memahami konsep dan menguraikan besaran-besaran fisis pada gerak lurus melalui proyek fisika</li>
+                <li>Peserta didik dapat menganalisis gerak lurus melalui eksperimen fisika</li>
+                <li>Peserta didik dapat memahami konsep dan menguraikan besaran-besaran fisis pada gerak parabola melalui proyek fisika</li>
+                <li>Peserta didik dapat menganalisis gerak parabola melalui eksperimen fisika</li>
+                <li>Peserta didik dapat memahami konsep dan menguraikan besaran-besaran fisis pada gerak melingkar melalui proyek fisika.</li>
+                <li>Peserta didik dapat menganalisis gerak melingkar melalui eksperimen fisika.</li>
             </ol>
         </div>
 
