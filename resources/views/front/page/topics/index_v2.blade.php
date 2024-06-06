@@ -14,18 +14,13 @@
 
 @section('content')
 
-<div class="wrapper-dahboard-page col-lg-10 col-md-12 col-sm-12 col-xl-10 row ps-4">
-    {{-- banner main --}}
-    <div class="main-banner ms-2 col-lg-11 d-none">
-        <img src="{{ asset('assets/img-pemb1.svg') }}" alt="" style="width: 100%;">
-    </div>
-
+<div class="wrapper-dahboard-page col-lg-10 col-md-12 col-sm-12 col-xl-10 row ps-4" style="height: 1000px;">
     <div class="card list-topic-content py-5 px-2 col-12">
         <div class="row p-2 px-5">
             <div class="wrapper-step-1 pb-4">
-                <h2>Peta Konsep</h2>
+                <h2 class="ps-5 fw-bold">Peta Konsep</h2>
                 <div class="text-center">
-                    <img src="{{ asset('assets/peta_konsep.svg') }}" alt="">
+                    <img src="{{ asset('assets/peta_konsep_new.png') }}" alt="">
                 </div>
             </div>
         </div>

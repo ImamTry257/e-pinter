@@ -1,4 +1,4 @@
-@extends('front.layouts.app-evaluation')
+@extends('front.layouts.app-dashboard')
 
 @section('css')
     <style>
@@ -17,18 +17,27 @@
         }
 
         a.link-evalution {
-            border-radius: 2.25rem !important;
+            border-radius: 50px !important;
             background-color: #4CE780;
-            font-size: 40px;
+            font-size: 35px;
+        }
+
+        a.link-evalution:hover{
+            background-color: #1D773B;
         }
     </style>
 @endsection
 
 @section('content')
-<div style="height: 100vh; margin-top: 250px;" class="bg-evaluation pt-5">
-    <div class="row p-5 d-flex justify-content-center">
-        <div class="wrapper-form col-xl-6 col-lg-6 col-md-12 col-sm-12 py-5 px-2 mt-5">
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSerfY8aU433LCEi7fsOk0tbRqNvRrbpwxUgQNGM9sN-v_AHlQ/viewform" target="_blank" class="btn btn-success w-100 fw-bold px-5 py-3 rounded link-evalution">Klik Disini</a>
+<div class="wrapper-dahboard-page col-lg-10 row">
+    <div class="card list-topic-content ms-3 mt-4 py-5 px-2 col-lg-11 bg-white" style="height: 1000px;">
+        <div class="title-list row d-flex justify-content-center">
+            <div class="col-lg-8 d-flex justify-content-center">
+                <div class="wrapper-form col-12 px-2 mt-5 text-center">
+                    <h1 class="pb-5 fw-bold">EVALUASI PEMBELAJARAN</h1>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSerfY8aU433LCEi7fsOk0tbRqNvRrbpwxUgQNGM9sN-v_AHlQ/viewform" target="_blank" class="btn w-50 fw-bold px-5 py-3 text-white link-evalution">Klik Disini</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
