@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class QuestionController extends Controller
 {
-    public function index()
+    public function index($questionNo)
     {
         $question_no = [];
         for ( $i = 1; $i <= 30; $i++ ) :
@@ -16,6 +16,13 @@ class QuestionController extends Controller
 
         $data['question_no'] = $question_no;
 
+        $data['question_no_selected'] = $questionNo;
+
         return view('front.page.question.index', $data);
+    }
+
+    public function store(Request $request)
+    {
+        dd($request->all());
     }
 }

@@ -68,7 +68,7 @@
                 </li>
 
                 <li class="nav-item d-none">
-                    <a href="{{ route('question') }}" class="nav-link text-white @if (Route::current()->uri == 'question') {{ 'active-menu' }} @endif">
+                    <a href="{{ route('question', ['questionNo' => 1]) }}" class="nav-link text-white @if (Route::current()->uri == 'question') {{ 'active-menu' }} @endif">
                         <i class="nav-icon fas fa-book"></i>
                         {{-- <img src="{{ asset('assets/sidebar/sidebar-diskusi.svg') }}" width="25" alt="Site Home"> --}}
                         <p class="ps-3">Question</p>

@@ -113,7 +113,7 @@ Route::middleware([AuthFrontMiddleware::class])->group(function () {
     Route::get('/discuss', [DiscussController::class, 'index'])->name('discuss');
 
     # Question
-    Route::get('/question', [QuestionController::class, 'index'])->name('question');
+    Route::get('/question/{questionNo}', [QuestionController::class, 'index'])->name('question');
 });
 
 # Info E-Pinter

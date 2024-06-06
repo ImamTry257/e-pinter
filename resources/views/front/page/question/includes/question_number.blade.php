@@ -1,8 +1,15 @@
 <div class="row">
     <div class="col-4 mb-2 text-end">
-        <a href="" id="question-no" class="p-2 fw-bold border border-dark btn selected-question" style="width: 45px;">
-            1
-        </a>
+        <div class="pb-2">
+            <a href="" id="question-no" class="p-2 fw-bold border border-dark btn selected-question" style="width: 45px;">
+                1
+            </a>
+        </div>
+        <div>
+            <a href="" id="question-no" class="p-2 fw-bold border border-dark btn " style="width: 45px;">
+            2
+            </a>
+        </div>
     </div>
     <div class="col-4 mb-2 text-center">
         <a href="" id="question-no" class="p-2 fw-bold border border-dark btn " style="width: 45px;">
