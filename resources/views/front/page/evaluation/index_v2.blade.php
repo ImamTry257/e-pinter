@@ -30,7 +30,7 @@
 
 @section('content')
 <div class="wrapper-dahboard-page col-lg-10 row">
-    <div class="card list-topic-content ms-3 mt-4 py-5 px-2 col-lg-11 bg-white" style="height: 1000px;">
+    <div class="card list-topic-content ms-3 py-5 px-2 col-lg-11 bg-white" style="height: 1000px;">
         <div class="title-list row d-flex justify-content-center">
             <div class="col-lg-8 d-flex justify-content-center">
                 <div class="wrapper-form col-12 px-2 mt-5 text-center">
