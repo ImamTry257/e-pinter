@@ -16,12 +16,12 @@
             </div>
             <ul class="links ps-0">
                 <li><a href="{{ url('beranda') }}" class="text-white">Home</a></li>
+                <li><a href="{{ route('book.model') }}" class="text-white">Buku Model</a></li>
                 <li>
                     <a href="javascript:void(0);" class="text-white" id="parent-menu">Perangkat Pembelajaran</a>
                     <i class='bx bxs-chevron-down htmlcss-arrow arrow'></i>
                     <ul class="htmlCss-sub-menu sub-menu ps-0" id="wrapper-sub-menu">
                         <li><a href="{{ route('front.learning-info') }}" class="" id="list-sub-menu">CP, TP & ATP</a></li>
-                        <li><a href="{{ route('book.model') }}" class="" id="list-sub-menu">Buku Model</a></li>
                         <li><a href="{{ route('topic.index') }}" class="" id="list-sub-menu">Topik/Materi</a></li>
                         @if ( Auth::user() != null )
                         <li><a href="{{ route('front.dashboard') }}" class="" id="list-sub-menu">Kegiatan Pembelajaran</a></li>
