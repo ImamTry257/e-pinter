@@ -23,6 +23,7 @@
                     <ul class="htmlCss-sub-menu sub-menu ps-0" id="wrapper-sub-menu">
                         <li><a href="{{ route('front.learning-info') }}" class="" id="list-sub-menu">CP, TP & ATP</a></li>
                         <li><a href="{{ route('topic.index') }}" class="" id="list-sub-menu">Topik/Materi</a></li>
+                        <li><a href="{{ asset('assets/e-pinter/ebook/MODUL AJAR KINEMATIKA.docx') }}" class="" id="list-sub-menu">Modul Ajar</a></li>
                         @if ( Auth::user() != null )
                         <li><a href="{{ route('front.dashboard') }}" class="" id="list-sub-menu">Kegiatan Pembelajaran</a></li>
                         <li><a href="{{ route('evaluation') }}" class="" id="list-sub-menu">Evaluasi</a></li>

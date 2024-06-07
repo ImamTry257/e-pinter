@@ -34,7 +34,8 @@ class RegisterController extends Controller
                         'email'                 => $request->email,
                         'password'              => Hash::make($request->password),
                         'school_name'           => $request->school_name,
-                        'school_name_capital'   => strtoupper($request->school_name)
+                        'school_name_capital'   => strtoupper($request->school_name),
+                        'created_at'            => now()
                     ]);
 
                 return redirect()->route('register.success');
