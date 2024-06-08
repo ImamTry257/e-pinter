@@ -114,6 +114,7 @@ Route::middleware([AuthFrontMiddleware::class])->group(function () {
 
     # Question
     Route::get('/question/{questionNo}', [QuestionController::class, 'index'])->name('question');
+    Route::post('/question/{questionNo}', [QuestionController::class, 'store'])->name('question.store');
 });
 
 # Info E-Pinter
