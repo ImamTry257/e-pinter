@@ -95,62 +95,51 @@
                         <div class="wrapper-answer-by-reason py-3">
                             <div class="d-flex justify-content-start pb-2">
                                 <div>
-                                    <input type="radio" name="answer-reason" value="A" id="" class="me-3">
+                                    <input type="radio" name="answer-reason" value="A" id="A" class="me-3">
                                 </div>
                                 <div>
                                     <span>
-                                        Selama satu kali sesi latihan jarak minimal yang ditempuh Ricky 22000 m dan jarak maksimal yang ditempuhnya adalah 44000 m
+                                        <label for="A" class="fw-normal">Jarak merupakan total panjang lintasan yang ditempuh oleh suatu objek yang bergerak tanpa memandang arah lintasan</label>
                                     </span>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-start pb-2">
                                 <div>
-                                    <input type="radio" name="answer-reason" value="B" id="" class="me-3">
+                                    <input type="radio" name="answer-reason" value="B" id="B" class="me-3">
                                 </div>
                                 <div>
                                     <span>
-                                        jarak diartikan sebagai perubahan total posisi benda dari posisi akhir terhadap posisi awalnya
+                                        <label for="B" class="fw-normal">Jarak diartikan sebagai perubahan total posisi benda dari posisi akhir terhadap posisi awalnya</label>
                                     </span>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-start pb-2">
                                 <div>
-                                    <input type="radio" name="answer-reason" value="C" id="" class="me-3">
+                                    <input type="radio" name="answer-reason" value="C" id="C" class="me-3">
                                 </div>
                                 <div>
                                     <span>
-                                        jarak adalah panjang lintasan yang ditempuh tanpa pengulangan rute
+                                        <label for="C" class="fw-normal">Jarak adalah panjang lintasan yang ditempuh tanpa pengulangan rute</label>
                                     </span>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-start pb-2">
                                 <div>
-                                    <input type="radio" name="answer-reason" value="D" id="" class="me-3">
+                                    <input type="radio" name="answer-reason" value="D" id="D" class="me-3">
                                 </div>
                                 <div>
                                     <span>
-                                        jarak merupakan total panjang lintasan yang berada dalam arah yang sama saja
+                                        <label for="D" class="fw-normal">Jarak merupakan total panjang lintasan yang berada dalam arah yang sama saja</label>
                                     </span>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-start pb-2">
                                 <div>
-                                    <input type="radio" name="answer-reason" value="E" id="" class="me-3">
+                                    <input type="radio" name="answer-reason" value="E" id="E" class="me-3">
                                 </div>
                                 <div>
-                                    <span>
-                                        Selama satu kali sesi latihan jarak minimal yang ditempuh Ricky 2200 m dan jarak maksimal yang ditempuhnya adalah 22000 m.
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div class="d-flex justify-content-start pb-2">
-                                <div>
-                                    <input type="radio" name="answer-reason" value="F" id="" class="me-3">
-                                </div>
-                                <div>
-                                    <span>
-                                        jarak adalah besaran vector sehingga tidak perlu menyebutkan arah pada total jarak yang ditempuh
+                                    <span >
+                                        <label for="E" class="fw-normal">Jarak adalah besaran vector sehingga tidak perlu menyebutkan arah pada total jarak yang ditempuh</label>
                                     </span>
                                 </div>
                             </div>
