@@ -466,7 +466,6 @@ class QuestionController extends Controller
                 'user_id'               => Auth::user()->id,
                 'question_master_id'    => $question->id
             ];
-
             # dd($param, $request->all());
 
             # check data answer by user
@@ -475,10 +474,13 @@ class QuestionController extends Controller
             $answer_by_u = $query_answer_by_u->first();
 
             # param to insert or update data
-            $param['answer']                = $request->answer;
-            $param['answer_with_reason']    = $request->answer_reason;
+            $answer = ( $request->answer == null ) ? '-' : $request->answer;
+            $answer_reason = ( $request->answer_reason == null ) ? '-' : $request->answer_reason;
+            $param['answer']                = $answer;
+            $param['answer_with_reason']    = $answer_reason;
             $param['is_answered']           = 1;
-            $param['score']                 = $this->calculated_score($request->answer, $request->answer_reason, $question->id);
+            $param['score']                 = $this->calculated_score($answer, $answer_reason, $question->id);
+            # dd($param, $answer, $answer_reason);
 
             if ( empty ( $answer_by_u ) ) :
                 $param['created_by']            = Auth::user()->id;
@@ -506,38 +508,51 @@ class QuestionController extends Controller
         return redirect(route('question', ['questionNo' => $question_after_action]));
     }
 
-    public function calculated_score($answer, $ranswer_reason, $question_master_id)
+    public function calculated_score($answer, $answer_reason, $question_master_id)
     {
         # get answer key
         $key_ans = DB::table('question_answer_key')->where('question_master_id', $question_master_id)->first();
         # dump($key_ans);
 
         if ( !empty ( $key_ans ) ) :
+
             # compare answer by user with answer key
-            if ( $answer == $key_ans->key_answer && $ranswer_reason == $key_ans->key_answer_with_reason ) :
-                return 4;
+            if ( $answer == '-' || $answer_reason == '-' ) :
+                if ( $answer == '-' && $answer_reason == '-' ) :
+                    $score = 0;
 
-            elseif ( $answer == $key_ans->key_answer && $ranswer_reason != $key_ans->key_answer_with_reason ) :
-                return 3;
+                else :
+                    if ( $answer == $key_ans->key_answer && $answer_reason == '-' ) :
+                        $score = 2;
 
-            elseif ( $answer != $key_ans->key_answer && $ranswer_reason == $key_ans->key_answer_with_reason ) :
-                return 2;
+                    elseif ( $answer != $key_ans->key_answer && $answer_reason == '-' ) :
+                        $score = 1;
 
-            elseif ( $answer != $key_ans->key_answer && $ranswer_reason != $key_ans->key_answer_with_reason ) :
-                return 1;
+                    elseif ( $answer == '-' && $answer_reason == $key_ans->key_answer_with_reason ) :
+                        $score = 1;
 
-            elseif ( $answer == $key_ans->key_answer && $ranswer_reason == '-' ) :
-                return 2;
+                    elseif ( $answer == '-' && $answer_reason != $key_ans->key_answer_with_reason ) :
+                        $score = 0;
 
-            elseif ( $answer != $key_ans->key_answer && $ranswer_reason == '-' ) :
-                return 1;
+                    endif ;
 
-            elseif ( $answer == '-' && $ranswer_reason == $key_ans->key_answer_with_reason ) :
-                return 1;
+                endif ;
+            else :
+                if ( $answer == $key_ans->key_answer && $answer_reason == $key_ans->key_answer_with_reason ) :
+                    $score = 4;
 
-            elseif ( $answer == '-' && $ranswer_reason == '-' ) :
-                return 0;
-            endif;
+                elseif ( $answer == $key_ans->key_answer && $answer_reason != $key_ans->key_answer_with_reason ) :
+                    $score = 3;
+
+                elseif ( $answer != $key_ans->key_answer && $answer_reason == $key_ans->key_answer_with_reason ) :
+                    $score = 2;
+
+                elseif ( $answer != $key_ans->key_answer && $answer_reason != $key_ans->key_answer_with_reason ) :
+                    $score = 1;
+                endif ;
+            endif ;
+
+            return $score;
         endif ;
     }
 }
