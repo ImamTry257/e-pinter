@@ -23,7 +23,8 @@
                 @csrf
                     <div class="wrapper-countdown text-center pt-3 fw-bold" style="font-size: 30px;">
                         {{-- <span style="font-size: 30px;" id="countdown" class="fw-bold">Sisa waktu: 00:30:00</span> --}}
-                        Sisa Waktu: <input type="text" name="countdown" id="countdown" class="fw-bold col-2" value="00:30:00" style="font-size: 30px; border: none;" readonly>
+                        Sisa Waktu: <input type="text" name="countdown" id="overall_times" class="fw-bold col-2" value="--:--:--" style="font-size: 30px; border: none;" readonly>
+                        <input type="hidden" name="countdown_str" id="overall_time" value="">
                     </div>
 
                     <div class="wrapper-question-title py-4">
@@ -41,7 +42,6 @@
                             @php
                                 $d_options = $question_and_answer->options;
                                 $options = json_decode($d_options, true);
-                                // dd($options);
                             @endphp
 
                             @foreach ( $options as $op)
@@ -139,6 +139,83 @@
 
         // only seconds
         // https://jsfiddle.net/satyasrinivaschekuri/y03m54Le/
+
+        var calculatedTime = new Date(null);
+        calculatedTime.setSeconds( ( $('#overall_time').val() == 0 ) ? '{{ Session::get("current_duration") }}' : $('#overall_time').val() ); //setting value in seconds
+        var newTime = calculatedTime.toISOString().substr(11, 8);
+
+        var speaking_ms = newTime;
+        var speaking_ms_arr = speaking_ms.split(":");
+        var speaking_time_min_sec = (+speaking_ms_arr[0]) * 60 * 60 + (+speaking_ms_arr[1]) * 60 + (+speaking_ms_arr[2]);
+        var speaking_time_min_sec = parseInt(speaking_time_min_sec) + 1;
+        console.log(speaking_ms);
+        var speaking_value;
+
+        if (localStorage.getItem("speaking_counter")) {
+            if (localStorage.getItem("speaking_counter") <= 0) {
+                speaking_value = speaking_time_min_sec;
+            } else {
+                speaking_value = localStorage.getItem("speaking_counter");
+            }
+        } else {
+            speaking_value = speaking_time_min_sec;
+        }
+
+        document.getElementById('overall_time').value = speaking_value;
+
+        var speaking_counter = function() {
+            if (speaking_value <= 0) {
+                localStorage.setItem("speaking_counter", speaking_time_min_sec);
+            } else {
+                speaking_value = parseInt(speaking_value) - 1;
+                localStorage.setItem("speaking_counter", speaking_value);
+            }
+            document.getElementById('overall_time').value = speaking_value;
+            if (speaking_value == 0) {
+                localStorage.setItem("speaking_counter", speaking_value);
+                setTimeout(function() {
+                    clearInterval(interval);
+                }, 1000);
+            }
+
+            var hours = Math.floor(speaking_value / 3600);
+            hours = ( hours < 10 ) ? '0' + hours : hours
+
+            var minutes = Math.floor(speaking_value % 3600 / 60);
+            minutes = ( minutes < 10 ) ? '0' + minutes : minutes
+
+            var seconds = Math.floor(speaking_value % 3600 % 60);
+            seconds = ( seconds < 10 ) ? '0' + seconds : seconds
+
+            var red_time = hours + ':' + minutes + ':' + seconds;
+            document.getElementById('overall_times').value = red_time;
+        };
+
+        var interval = setInterval(function() {
+            speaking_counter();
+        }, 1000);
+
+
+        var Clock = {
+            pause: function() {
+                    clearInterval(interval);
+                    delete interval;
+                },
+
+                resume: function() {
+
+                        interval = setInterval(function() {
+                            speaking_counter();
+                        }, 1000);
+
+                }
+        };
+
+        window.addEventListener("beforeunload", function(event) {
+            // myFunction();
+            console.log('{{ \Request::get("questionNo") }}')
+            return false
+        });
 
     </script>
 @endsection

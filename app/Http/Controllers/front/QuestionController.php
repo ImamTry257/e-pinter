@@ -5,7 +5,9 @@ namespace App\Http\Controllers\front;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 use function PHPSTORM_META\map;
 
@@ -13,40 +15,47 @@ class QuestionController extends Controller
 {
     public function index($questionNo)
     {
-        $duration = 30 * 60;
-        $ex = [
-                [
-                    "value_key"     => "A",
-                    "value_text"    => "perpindahan merupakan total panjang lintasan yang ditempuh oleh suatu objek yang bergerak tanpa memandang arah lintasan"
-                ],
-                [
-                    "value_key"     => "B",
-                    "value_text"    => "Perpindahan diartikan sebagai perubahan total posisi benda dari posisi akhir terhadap posisi awalnya"
-                ],
-                [
-                    "value_key"     => "C",
-                    "value_text"    => "Perpindahan merupakan total panjang lintasan yang berada dalam arah yang sama saja"
-                ],
-                [
-                    "value_key"     => "D",
-                    "value_text"    => "Tidak terjadi perpindahan karena tongkat estafet kembali ke posisi semula"
-                ],
-                [
-                    "value_key"     => "E",
-                    "value_text"    => "Perpindahan tidak dapat ditentukan karena tongkat estafet melalui arah yang berbeda beda"
-                ]
-        ];
+        # dd($questionNo);
+
+        # get question no and current duration
+        $data_get = explode('-', $questionNo);
+
+        $question_no = Crypt::decryptString($data_get[0]);
+
+        # get duration
+        $data['duration'] = DB::table('question_setting')->first();
+
+        # first, set current duration based on table
+        $current_duration = $data['duration']->duration;
+
+        # add flaq
+        $is_before_session_exist = false;
+
+        # jika tidak ada param current duration di URL, maka user baru akan start
+        if ( count ( $data_get ) > 1 ) :
+            $current_duration = $data_get[1];
+            $is_before_session_exist = true;
+        endif ;
+
+        if ( $is_before_session_exist ) :
+            Session::put('current_duration', $current_duration);
+            Session::save();
+        else :
+            if ( Session::get('current_duration') == null ) :
+                Session::put('current_duration', $current_duration);
+                Session::save();
+            endif;
+        endif ;
+        $data['is_before_session_exist'] = $is_before_session_exist;
 
         # get data selected question and question of user answer
         $data['question_and_answer'] = DB::table('question_master as qm')
                             ->leftJoin('question_answer_user as qau', 'qau.question_master_id', '=', 'qm.id')
-                            ->where('qm.number', '=', $questionNo)->first();
+                            ->where('qm.number', '=', $question_no)->first();
 
         if ( empty( $data['question_and_answer'] ) ) :
             return redirect(route('front.dashboard'));
         endif ;
-
-        # dd($data);
 
         # # inject data
         # DB::table('question_master')->insert($this->getListParam());
@@ -68,7 +77,7 @@ class QuestionController extends Controller
         # for right side
         $data['q_no_right'] = [3, 6, 9, 12, 15, 18, 21, 24, 27, 30];
 
-        $data['question_no_selected'] = $questionNo;
+        $data['question_no_selected'] = $question_no;
 
         return view('front.page.question.index', $data);
     }
@@ -454,6 +463,14 @@ class QuestionController extends Controller
 
     public function store(Request $request)
     {
+        # dd($param, $request->all());
+
+        # set sisa durasi ke session untuk dishow ke soal lainnya
+        if ( $request->countdown_str != null ) :
+            Session::put('current_duration', $request->countdown_str);
+            Session::save();
+        endif ;
+
         $question_after_action = 1;
         try {
 
