@@ -33,59 +33,29 @@
                     <div class="border border-dark p-3">
                         <div class="wrapper-question-content">
                             <div class="question-content pb-3">
-                                <span class="text-justify d-block">Indonesia pada bulan Juni tahun 2024 akan menjalani pertandingan kualifikasi Piala Dunia, guna menjaga kebugaran fisiknya salah satu punggawa tim nasional yaitu Ricky Kambuaya menjalani latihan dengan berlari. Ricky memulai dengan titik awal di halaman rumahnya.Ricky mengawali lari dengan jarak 1200 m ke arah utara dan di lanjutkan 300 m ke arah barat, setelahnya Ricky menambah lagi dengan berlari 700 m ke arah utara menuju suatu Tugu. Sesampainya di Tugu, Ricky kemudian kembali lagi ke rumahnya. Rutinitas dalam satu kali sesi latihan Ricky melakukan minimal lima kali bolak balik dari rumahnya ke Tugu dan maksimal sepuluh kali bolak balik. Berdasarkan narasi tersebut dapat diketahui bahwa ...</span>
+                                <span class="text-justify d-block">{!! $question_and_answer->description !!}.</span>
                             </div>
                         </div>
 
                         <div class="wrapper-answer-by-choose">
+                            @php
+                                $d_options = $question_and_answer->options;
+                                $options = json_decode($d_options, true);
+                                // dd($options);
+                            @endphp
+
+                            @foreach ( $options as $op)
                             <div class="d-flex justify-content-start pb-2">
                                 <div>
-                                    <input type="radio" name="answer" value="A" id="" class="me-3">
-                                </div>
-                                <div>
-                                    <span>Selama satu kali sesi latihan jarak minimal yang ditempuh Ricky 22000 m dan jarak maksimal yang ditempuhnya adalah 44000 m.</span>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-start pb-2">
-                                <div>
-                                    <input type="radio" name="answer" value="B" id="" class="me-3">
+                                    <input type="radio" name="answer" value="{{ $op['value_key'] }}" id="{{ $op['value_key'] }}" class="me-3" {{ ( $op['value_key'] == $question_and_answer->answer ) ? 'checked' : '' }}>
                                 </div>
                                 <div>
                                     <span>
-                                        Selama satu kali sesi latihan jarak minimal yang ditempuh Ricky 4400 m dan jarak maksimal yang ditempuhnya adalah 22000 m.
+                                        <label for="{{ $op['value_key'] }}" class="fw-normal">{{ $op['value_key'] . '. ' . $op['value_text'] }}</label>
                                     </span>
                                 </div>
                             </div>
-                            <div class="d-flex justify-content-start pb-2">
-                                <div>
-                                    <input type="radio" name="answer" value="C" id="" class="me-3">
-                                </div>
-                                <div>
-                                    <span>
-                                        Selama satu kali sesi latihan jarak minimal yang ditempuh Ricky 4400 m dan jarak maksimal yang ditempuhnya adalah 44000 m.
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-start pb-2">
-                                <div>
-                                    <input type="radio" name="answer" value="D" id="" class="me-3">
-                                </div>
-                                <div>
-                                    <span>
-                                        Selama satu kali sesi latihan jarak minimal yang ditempuh Ricky 2200 m dan jarak maksimal yang ditempuhnya adalah 4400 m.
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-start pb-2">
-                                <div>
-                                    <input type="radio" name="answer" value="E" id="" class="me-3">
-                                </div>
-                                <div>
-                                    <span>
-                                        Selama satu kali sesi latihan jarak minimal yang ditempuh Ricky 2200 m dan jarak maksimal yang ditempuhnya adalah 22000 m.
-                                    </span>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
 
                         <div class="wrapper-btn-reason px-3 pt-5 pb-3 col-12">
@@ -93,64 +63,29 @@
                         </div>
 
                         <div class="wrapper-answer-by-reason py-3">
-                            <div class="d-flex justify-content-start pb-2">
-                                <div>
-                                    <input type="radio" name="answer-reason" value="A" id="A" class="me-3">
-                                </div>
-                                <div>
-                                    <span>
-                                        <label for="A" class="fw-normal">Jarak merupakan total panjang lintasan yang ditempuh oleh suatu objek yang bergerak tanpa memandang arah lintasan</label>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-start pb-2">
-                                <div>
-                                    <input type="radio" name="answer-reason" value="B" id="B" class="me-3">
-                                </div>
-                                <div>
-                                    <span>
-                                        <label for="B" class="fw-normal">Jarak diartikan sebagai perubahan total posisi benda dari posisi akhir terhadap posisi awalnya</label>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-start pb-2">
-                                <div>
-                                    <input type="radio" name="answer-reason" value="C" id="C" class="me-3">
-                                </div>
-                                <div>
-                                    <span>
-                                        <label for="C" class="fw-normal">Jarak adalah panjang lintasan yang ditempuh tanpa pengulangan rute</label>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-start pb-2">
-                                <div>
-                                    <input type="radio" name="answer-reason" value="D" id="D" class="me-3">
-                                </div>
-                                <div>
-                                    <span>
-                                        <label for="D" class="fw-normal">Jarak merupakan total panjang lintasan yang berada dalam arah yang sama saja</label>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-start pb-2">
-                                <div>
-                                    <input type="radio" name="answer-reason" value="E" id="E" class="me-3">
-                                </div>
-                                <div>
-                                    <span >
-                                        <label for="E" class="fw-normal">Jarak adalah besaran vector sehingga tidak perlu menyebutkan arah pada total jarak yang ditempuh</label>
-                                    </span>
-                                </div>
-                            </div>
+                            @php
+                                $d_options = $question_and_answer->options_with_reason;
+                                $options_w_r = json_decode($d_options, true);
+                            @endphp
 
-
+                            @foreach ( $options as $op)
+                            <div class="d-flex justify-content-start pb-2">
+                                <div>
+                                    <input type="radio" name="answer_reason" value="{{ $op['value_key'] }}" id="{{ $op['value_key'] . '_wr' }}" class="me-3" {{ ( $op['value_key'] == $question_and_answer->answer_with_reason ) ? 'checked' : '' }}>
+                                </div>
+                                <div>
+                                    <span>
+                                        <label for="{{ $op['value_key'] . '_wr' }}" class="fw-normal">{{ $op['value_key'] . '. ' . $op['value_text'] }}</label>
+                                    </span>
+                                </div>
+                            </div>
+                            @endforeach
                         </div>
 
                         <div class="wrapper-btn d-flex justify-content-evenly pb-4">
                             @if ( $question_no_selected != 1 )
                             <div>
-                                <button type="submit" name="before" value="before" class="btn text-white rounded" style="background-color: #004972;">
+                                <button type="submit" name="action_user" value="before" class="btn text-white rounded" style="background-color: #004972;">
                                     <i class="fa-solid fa-chevron-left"></i>
                                     Soal Sebelumnya
                                 </button>
@@ -159,7 +94,7 @@
 
                             @if ( $question_no_selected != 30 )
                                 <div>
-                                    <button type="submit" name="next" value="next" class="btn text-white rounded" style="background-color: #004972;">
+                                    <button type="submit" name="action_user" value="next" class="btn text-white rounded" style="background-color: #004972;">
                                         Soal Selanjutnya
                                         <i class="fa-solid fa-chevron-right"></i>
                                     </button>
@@ -186,26 +121,6 @@
                 </div>
 
                 <div class="wrapper-list-question">
-                    <div class="row d-none">
-                        @foreach ( $question_no as $key => $q)
-                            @php
-                                $selection_q = ''
-                            @endphp
-                            @if ( ( $key + 1 ) == 1 )
-                                @php
-                                    $selection_q = 'selected-question'
-                                @endphp
-                            @endif
-
-                            <div class="col-4 mb-2 text-center">
-                                <a href="" id="question-no" class="p-2 fw-bold border border-dark btn {{ $selection_q }}" style="width: 45px;">
-                                    {{ $q }}
-                                </a>
-                            </div>
-
-                        @endforeach
-                    </div>
-
                     {{-- add question number --}}
                     @include('front.page.question.includes.question_number')
                 </div>

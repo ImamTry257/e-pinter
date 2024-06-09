@@ -1,13 +1,43 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="{{ asset('assets/plugins/summernote/summernote-bs4.js') }}" defer></script>
 <script>
+    // untuk membuat table didalam editor bisa diatur sizenya, maka bisa menggunakan referensi ini
+    // https://jsfiddle.net/froala/thxesmg4/ berbayar
+    // https://jsfiddle.net/froala/712aLrfp/ free
 
     setTimeout(() => {
         // check validation for btn next step
         checkInputStepTwo()
 
         // console.log($('textarea[name="answer-a"], textarea[name="answer-b"]'))
-        $('textarea[name="answer-a"], textarea[name="answer-b"], textarea[name="descriptions"]').summernote()
+        $('textarea[name="answer-a"], textarea[name="answer-b"], textarea[name="descriptions"]').summernote({
+            popover: {
+            image: [
+                ['image', ['resizeFull', 'resizeHalf', 'resizeQuarter', 'resizeNone']],
+                ['float', ['floatLeft', 'floatRight', 'floatNone']],
+                ['remove', ['removeMedia']]
+            ],
+            link: [
+                ['link', ['linkDialogShow', 'unlink']]
+            ],
+            table: [
+                ['add', ['addRowDown', 'addRowUp', 'addColLeft', 'addColRight']],
+                ['delete', ['deleteRow', 'deleteCol', 'deleteTable']],
+                ['table', ['resizeQuarter']]
+            ],
+            air: [
+                ['color', ['color']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['para', ['ul', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture']]
+            ],
+            tableClassName: function() {
+                this.className = 'table table-bordered w-25';
+                this.style.cssText = '';
+            }
+            }
+        })
     }, 500);
 
 

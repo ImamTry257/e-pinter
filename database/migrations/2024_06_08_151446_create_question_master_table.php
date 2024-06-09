@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('question_master', function (Blueprint $table) {
             $table->id();
             $table->integer('number')->comment('nomor soal');
-            $table->text('description')->comment('isi soal');
-            $table->text('options')->comment('pilihan ganda, data sting json');
-            $table->text('options_with_reason')->comment('pilihan ganda yang digunakan untuk mengetahui jawaban alasan, data sting json');
+            $table->longText('description')->comment('isi soal');
+            $table->longText('options')->comment('pilihan ganda, data sting json');
+            $table->longText('options_with_reason')->comment('pilihan ganda yang digunakan untuk mengetahui jawaban alasan, data sting json');
             $table->integer('status')->default(1);
             $table->integer('created_by');
             $table->integer('updated_by');

@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('question_answer_key', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('question_master_id');
-            $table->text('key_answer')->comment('kunci jawaban, data string json');
-            $table->text('key_answer_with_reason')->comment('pilihan ganda yang digunakan untuk mengetahui jawaban alasan, data sting json');
+            $table->longText('key_answer')->comment('kunci jawaban, data string json');
+            $table->longText('key_answer_with_reason')->comment('pilihan ganda yang digunakan untuk mengetahui jawaban alasan, data sting json');
             $table->integer('status')->default(1);
             $table->integer('created_by');
             $table->integer('updated_by');

@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('question_master_id');
-            $table->text('answer')->comment('jawaban siswa, data string json');
-            $table->text('answer_with_reason')->comment('jawaban siswa untuk pilihan ganda alasan, data sting json');
+            $table->longText('answer')->comment('jawaban siswa, data string json');
+            $table->longText('answer_with_reason')->comment('jawaban siswa untuk pilihan ganda alasan, data sting json');
             $table->integer('is_answered')->comment('flaq untuk apakah sudah dijawab atau belum');
             $table->integer('score')->comment('nilai dari hasil jawaban dibandingkan dengan kunci jawaban siswa');
             $table->integer('status')->default(1);
