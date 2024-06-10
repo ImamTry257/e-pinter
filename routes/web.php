@@ -5,6 +5,7 @@ use App\Http\Controllers\console\DashboardController;
 use App\Http\Controllers\console\LearningActivityController as ConsoleLearningActivityController;
 use App\Http\Controllers\console\LoginController as ConsoleLoginController;
 use App\Http\Controllers\console\PotentialLocalGudegController as ConsolePotentialLocalGudegController;
+use App\Http\Controllers\console\question\ManageController;
 use App\Http\Controllers\console\RegisterController as ConsoleRegisterController;
 use App\Http\Controllers\console\ResultLearningActivityController;
 use App\Http\Controllers\console\UserController;
@@ -192,7 +193,7 @@ Route::middleware([AuthConsoleMiddleware::class])->group(function () {
     Route::get('/admin/learning-activity/delete/{id}', [ConsoleLearningActivityController::class, 'destroy'])->name('admin.learning.activity.destroy');
     Route::get('/getLearningActivity', [ConsoleLearningActivityController::class, 'getLearningActivity'])->name('admin.get.learning.activity');
 
-    # Learning Activity
+    # Result Learning Activity
     Route::get('/admin/result-learning-activity', [ResultLearningActivityController::class, 'index'])->name('admin.result.learning.activity');
     Route::get('/admin/result-learning-activity/add', [ResultLearningActivityController::class, 'create'])->name('admin.result.learning.activity.add');
     Route::post('/admin/result-learning-activity/add', [ResultLearningActivityController::class, 'store'])->name('admin.result.learning.activity.store');
@@ -217,4 +218,16 @@ Route::middleware([AuthConsoleMiddleware::class])->group(function () {
     Route::post('/admin/user/update/{id}', [UserController::class, 'update'])->name('admin.user.update');
     Route::get('/admin/user/delete/{id}', [UserController::class, 'destroy'])->name('admin.user.destroy');
     Route::get('/getUsers', [UserController::class, 'getUsers'])->name('admin.get.user');
+
+    # Manage Question
+    Route::prefix('admin/question/manage')->group(function(){
+        Route::get('/', [ManageController::class, 'index'])->name('admin.question.manage');
+        Route::get('/add', [ManageController::class, 'create'])->name('admin.question.manage.add');
+        Route::post('/add', [ManageController::class, 'store'])->name('admin.question.manage.store');
+        Route::get('/show/{id}', [ManageController::class, 'show'])->name('admin.question.manage.show');
+        Route::get('/edit/{id}', [ManageController::class, 'edit'])->name('admin.question.manage.edit');
+        Route::post('/update/{id}', [ManageController::class, 'update'])->name('admin.question.manage.update');
+        Route::get('/delete/{id}', [ManageController::class, 'destroy'])->name('admin.question.manage.destroy');
+        Route::get('/getUsers', [ManageController::class, 'getUsers'])->name('admin.question.manage.get.user');
+    });
 });

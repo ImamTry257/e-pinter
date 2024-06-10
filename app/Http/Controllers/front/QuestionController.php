@@ -25,6 +25,10 @@ class QuestionController extends Controller
         # get duration
         $data['duration'] = DB::table('question_setting')->first();
 
+        if ( empty( $data['duration'] ) ) :
+            return redirect(route('front.dashboard'));
+        endif ;
+
         # first, set current duration based on table
         $current_duration = $data['duration']->duration;
 

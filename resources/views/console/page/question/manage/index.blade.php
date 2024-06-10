@@ -4,7 +4,7 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    @include('console.components.breadcrumb', ['title' => 'Siswa'])
+    @include('console.components.breadcrumb', ['title' => 'Kelola Soal'])
 
     <div class="content">
         <div class="container-fluid">
@@ -29,12 +29,12 @@
                     @endif
                 </div>
                 <div class="col-md-12 pb-2">
-                    <a href="{{ route('admin.user.add') }}" class="btn bg-console text-dark"><i class="fas fa-plus-circle"></i> Tambah</a>
+                    <a href="{{ route('admin.question.manage.add') }}" class="btn bg-console text-dark"><i class="fas fa-plus-circle"></i> Tambah</a>
                 </div>
                 <div class="col-md-12">
                     <div class="card border-0">
                         <div class="card-header bg-console text-dark">
-                            <h3 class="card-title">Data Siswa</h3>
+                            <h3 class="card-title">Data Soal</h3>
                         </div>
 
                         <div class="card-body">
@@ -84,12 +84,12 @@
           var table = $('.content-datatable').DataTable({
               processing: true,
               serverSide: true,
-              ajax: "{{ route('admin.get.user') }}",
+              ajax: "{{ route('admin.question.manage.get.user') }}",
               columns: [
                     {data: 'DT_RowIndex', name: 'No'},
-                    {data: 'name', name: 'Username'},
-                    {data: 'school', name: 'Sekolah'},
-                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                    {data: 'number', name: 'No'},
+                    {data: 'description', name: 'Soal'},
+                    {data: 'action', name: 'action', orderable: false, searchable: true},
               ]
           });
 
