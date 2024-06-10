@@ -1,7 +1,10 @@
 @extends('console.adminlte.layouts.app')
 
 @section('css')
-<link href="{{ asset('assets/plugins/summernote/summernote-bs4.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/plugins/summernote/summernote-bs4.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/froala_editor.pkgd.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/froala_style.min.css') }}">
 @endsection
 
 @section('content')
@@ -94,6 +97,10 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div id="froala-editor">
+
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -106,10 +113,19 @@
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="{{ asset('assets/plugins/summernote/summernote-bs4.js') }}" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
+<script src="{{ asset('assets/js/froala_editor.pkgd.min.js') }}"></script>
+
 <script>
     console.log('add content Potensial Gudeg Local')
     $(document).ready(function() {
-        $('#descriptions').summernote()
+        // $('#descriptions').summernote()
+        setTimeout(() => {
+            console.log($('#froala-editor').froalaEditor())
+            // $('#froala-editor').froalaEditor({
+            //     toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', '|', 'fontFamily', 'fontSize', 'color', 'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', '-', 'insertLink', 'insertImage', 'insertVideo', 'insertFile', 'insertTable', '|', 'emoticons', 'specialCharacters', 'insertHR', 'selectAll', 'clearFormatting', '|', 'print', 'help', 'html', '|', 'undo', 'redo']
+            // })
+        }, 1000);
     });
 
     $('input#images').on('change', (e) => {

@@ -1,5 +1,11 @@
 @extends('console.adminlte.layouts.app')
 
+@section('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
+    <link rel="stylesheet" href="https://editor-latest.s3.amazonaws.com/css/froala_editor.pkgd.min.css">
+    <link rel="stylesheet" href="https://editor-latest.s3.amazonaws.com/css/froala_style.min.css">
+@endsection
+
 @section('content')
 
   <!-- Content Wrapper. Contains page content -->
@@ -43,10 +49,10 @@
                                     <table class="table table-bordered content-datatable w-100">
                                         <thead>
                                             <tr>
-                                                <th>No</th>
-                                                <th>Username</th>
-                                                <th>Sekolah</th>
-                                                <th>Action</th>
+                                                <th width="10%">No</th>
+                                                <th width="10%">Nomor Soal</th>
+                                                <th width="70%">Soal</th>
+                                                <th width="10%">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -77,6 +83,10 @@
     <script src="{{  asset('vendor/template/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
     <!-- Tempusdominus Bootstrap 4 -->
     <script src="{{  asset('vendor/template/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>
+    <script src="https://editor-latest.s3.amazonaws.com/js/froala_editor.pkgd.min.js"></script>
 
     <script type="text/javascript">
         $(function () {

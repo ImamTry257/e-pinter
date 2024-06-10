@@ -18,15 +18,18 @@ class ManageController extends Controller
     public function getUsers(Request $request)
     {
         if ($request->ajax()) :
-            $data = DB::table('question_master')->orderByDesc('id')->get();
+            $data = DB::table('question_master')->orderBy('id', 'asc')->get();
 
             return DataTables::of($data)
                 ->addIndexColumn()
+                ->editColumn('description', function($row) {
+                    return '<div>' . $row->description . '</div>';
+                })
                 ->addColumn('action', function ($row) {
                     $actionBtn = '<a href="' . route('admin.user.show', ['id' => Crypt::encryptString($row->id)]) . '" class="edit btn bg-console text-dark btn-sm">Ubah</a> <a href="" class="delete btn btn-danger btn-sm delete-user" id="' . $row->id . '">Hapus</a>';
                     return $actionBtn;
                 })
-                ->rawColumns(['action', 'descriptions'])
+                ->rawColumns(['action', 'description'])
                 ->make(true);
         endif;
     }
