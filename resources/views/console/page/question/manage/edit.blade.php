@@ -6,6 +6,7 @@
 
     <!--Include the JS & CSS-->
 	<link rel="stylesheet" href="{{ asset('assets/richtexteditor/rte_theme_default.css') }}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source%20Sans%20Pro">
 	<script type="text/javascript" src="{{ asset('assets/richtexteditor/rte.js') }}"></script>
     <script>RTE_DefaultConfig.url_base='richtexteditor'</script>
 	<script type="text/javascript" src='{{ asset('assets/richtexteditor/plugins/all_plugins.js') }}'></script>
@@ -21,13 +22,13 @@
                 <div class="col-md-12">
                     <div class="card border-0">
                         <div class="card-header bg-console text-dark">
-                            <h3 class="card-title">Tambah Soal</h3>
+                            <h3 class="card-title">Ubah Soal</h3>
                         </div>
                         @php
                             # dd($question);
                         @endphp
                         <div class="card-body">
-                            <form action="{{ route('admin.question.manage.store') }}" method="POST">
+                            <form action="{{ route('admin.question.manage.update', ['id' => $id]) }}" method="POST">
                                 @csrf
                                 <div class="card-body">
                                     <div class="row">
@@ -75,68 +76,19 @@
                                         @php
                                             # dd($question);
                                             $options = json_decode($question->options, true);
-                                            dd($options);
                                         @endphp
                                         <div class="col-10">
-                                            @foreach ($options as $opt )
+                                            @foreach ($options as $key => $opt )
                                             <div class="form-group pt-2">
-                                                <span class="pe-3">{{ $opt->value_key }}.</span>
-                                                <textarea id="option_{{ $opt->value_key }}" class="form-control" name="{{ $opt->value_key }}" value="{{ old('A') }}"></textarea>
-                                                @error('{{ $opt->value_key }}')
+                                                <span class="pe-3">{{ $opt['value_key'] }}.</span>
+                                                <textarea id="option_{{ $opt['value_key'] }}" class="form-control" name="{{ $opt['value_key'] }}">{{ $opt['value_text'] }}</textarea>
+                                                @error('value_key')
                                                     <span class="invalid-feedback d-inline" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
                                                 @enderror
                                             </div>
                                             @endforeach
-                                            <div class="form-group pt-2">
-                                                <span class="pe-3">A.</span>
-                                                <textarea id="option_A" class="form-control" name="A" value="{{ old('A') }}"></textarea>
-                                                @error('A')
-                                                    <span class="invalid-feedback d-inline" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                            <div class="form-group pt-2">
-                                                <span class="pe-3">B.</span>
-                                                <textarea id="option_B" class="form-control" name="B" value="{{ old('B') }}"></textarea>
-                                                @error('A')
-                                                    <span class="invalid-feedback d-inline" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-
-                                            <div class="form-group pt-2">
-                                                <span class="pe-3">C.</span>
-                                                <textarea id="option_C" class="form-control" name="C" value="{{ old('C') }}"></textarea>
-                                                @error('A')
-                                                    <span class="invalid-feedback d-inline" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-
-                                            <div class="form-group pt-2">
-                                                <span class="pe-3">D.</span>
-                                                <textarea id="option_D" class="form-control" name="D" value="{{ old('D') }}"></textarea>
-                                                @error('A')
-                                                    <span class="invalid-feedback d-inline" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-
-                                            <div class="form-group pt-2">
-                                                <span class="pe-3">E.</span>
-                                                <textarea id="option_E" class="form-control" name="E" value="{{ old('E') }}"></textarea>
-                                                @error('A')
-                                                    <span class="invalid-feedback d-inline" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
                                         </div>
                                     </div>
 
@@ -146,7 +98,7 @@
                                         </div>
                                         <div class="col-10">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" name="key_answer" value="{{ old('key_answer') }}" id="">
+                                                <input type="text" class="form-control" name="key_answer" value="{{ $question->key_answer }}" id="">
                                                 @error('key_answer')
                                                     <span class="invalid-feedback d-inline" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -163,54 +115,22 @@
                                             <span for="" class="">Pilihan Ganda dengan alasan</span>
                                         </div>
                                         <div class="col-10">
-                                            <div class="form-group pt-2">
-                                                <span class="pe-3">A.</span>
-                                                <textarea id="option_A_with_reason" class="form-control" name="A_with_reason" value="{{ old('A_with_reason') }}"></textarea>
-                                                @error('A')
-                                                    <span class="invalid-feedback d-inline" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                            <div class="form-group pt-2">
-                                                <span class="pe-3">B.</span>
-                                                <textarea id="option_B_with_reason" class="form-control" name="B_with_reason" value="{{ old('B_with_reason') }}"></textarea>
-                                                @error('A')
-                                                    <span class="invalid-feedback d-inline" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
+                                            @php
+                                                # dd($question);
+                                                $options = json_decode($question->options, true);
+                                            @endphp
+                                            @foreach ( $options as $key => $opt )
 
                                             <div class="form-group pt-2">
-                                                <span class="pe-3">C.</span>
-                                                <textarea id="option_C_with_reason" class="form-control" name="C_with_reason" value="{{ old('C_with_reason') }}"></textarea>
-                                                @error('A')
+                                                <span class="pe-3">{{ $opt['value_key'] }}.</span>
+                                                <textarea id="option_{{ $opt['value_key'] }}_with_reason" class="form-control" name="{{ $opt['value_key'] }}_with_reason">{{ $opt['value_text'] }}</textarea>
+                                                @error('options_' . $opt['value_key'] .'_with_reason')
                                                     <span class="invalid-feedback d-inline" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
                                                 @enderror
                                             </div>
-
-                                            <div class="form-group pt-2">
-                                                <span class="pe-3">D.</span>
-                                                <textarea id="option_D_with_reason" class="form-control" name="D_with_reason" value="{{ old('D_with_reason') }}"></textarea>
-                                                @error('A')
-                                                    <span class="invalid-feedback d-inline" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-
-                                            <div class="form-group pt-2">
-                                                <span class="pe-3">E.</span>
-                                                <textarea id="option_E_with_reason" class="form-control" name="E_with_reason" value="{{ old('E_with_reason') }}"></textarea>
-                                                @error('A')
-                                                    <span class="invalid-feedback d-inline" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
+                                            @endforeach
                                         </div>
                                     </div>
 
@@ -220,7 +140,7 @@
                                         </div>
                                         <div class="col-10">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" name="key_answer_w_reason" value="{{ old('key_answer_w_reason') }}" id="">
+                                                <input type="text" class="form-control" name="key_answer_w_reason" value="{{ $question->key_answer_with_reason }}" id="">
                                                 @error('key_answer_w_reason')
                                                     <span class="invalid-feedback d-inline" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -258,7 +178,9 @@
 <script src="{{ asset('assets/res/patch.js') }}"></script>
 
 <script>
-    var editorDesc = new RichTextEditor("#descriptions");
+    var editorCong = {}
+    editorCong.fontNameItems = 'Arial,Arial Black,Comic Sans MS, Courier New,Tahoma, Georgia, Helvetica, Poppins, Segoe UI, Source Sans Pro, Sans-Serif, Impact, Times New Roman,Verdana'
+    var editorDesc = new RichTextEditor("#descriptions", editorCong);
 
     var editorOptionA = new RichTextEditor("#option_A");
     var editorOptionB = new RichTextEditor("#option_B");

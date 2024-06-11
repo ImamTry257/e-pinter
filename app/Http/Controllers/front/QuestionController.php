@@ -54,7 +54,7 @@ class QuestionController extends Controller
 
         # get data selected question and question of user answer
         $data['question_and_answer'] = DB::table('question_master as qm')
-                            ->leftJoin('question_answer_user as qau', 'qau.question_master_id', '=', 'qm.id')
+                            ->join('question_answer_user as qau', 'qau.question_master_id', '=', 'qm.id')
                             ->where('qm.number', '=', $question_no)->first();
 
         if ( empty( $data['question_and_answer'] ) ) :
