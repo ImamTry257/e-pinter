@@ -2,9 +2,13 @@
 
 @section('css')
     <link href="{{ asset('assets/plugins/summernote/summernote-bs4.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
-    <link rel="stylesheet" href="{{ asset('assets/css/froala_editor.pkgd.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/froala_style.min.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('assets/res/style.css') }}"> --}}
+
+    <!--Include the JS & CSS-->
+	<link rel="stylesheet" href="{{ asset('assets/richtexteditor/rte_theme_default.css') }}" />
+	<script type="text/javascript" src="{{ asset('assets/richtexteditor/rte.js') }}"></script>
+    <script>RTE_DefaultConfig.url_base='richtexteditor'</script>
+	<script type="text/javascript" src='{{ asset('assets/richtexteditor/plugins/all_plugins.js') }}'></script>
 @endsection
 
 @section('content')
@@ -21,17 +25,17 @@
                         </div>
 
                         <div class="card-body">
-                            <form action="{{ route('admin.user.store') }}" method="POST">
+                            <form action="{{ route('admin.question.manage.store') }}" method="POST">
                                 @csrf
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-2 form-display-as-box col-sm-2 control-label text-right pt-2">
-                                            <label for="" class=""><small>No Soal</small></label>
+                                        <div class="col-2 form-display-as-box col-sm-2 control-label text- pt-2">
+                                            <span for="" class="">No Soal</span>
                                         </div>
                                         <div class="col-10">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" name="name" value="{{ old('name') }}" id="">
-                                                @error('name')
+                                                <input type="text" class="form-control" name="number" value="{{ old('number') }}" id="">
+                                                @error('number')
                                                     <span class="invalid-feedback d-inline" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -40,9 +44,11 @@
                                         </div>
                                     </div>
 
+                                    <hr>
+
                                     <div class="row">
-                                        <div class="col-2 form-display-as-box col-sm-2 control-label text-right pt-2">
-                                            <label for="" class=""><small>Soal</small></label>
+                                        <div class="col-2 form-display-as-box col-sm-2 control-label text- pt-2">
+                                            <span for="" class="">Soal</span>
                                         </div>
                                         <div class="col-10">
                                             <div class="form-group">
@@ -56,14 +62,56 @@
                                         </div>
                                     </div>
 
+                                    <hr>
+
                                     <div class="row">
-                                        <div class="col-2 form-display-as-box col-sm-2 control-label text-right pt-2">
-                                            <label for="" class=""><small>Password</small></label>
+                                        <div class="col-2 form-display-as-box col-sm-2 control-label text- pt-2">
+                                            <span for="" class="">Pilihan Ganda</span>
                                         </div>
                                         <div class="col-10">
-                                            <div class="form-group">
-                                                <input type="password" class="form-control" name="password" value="{{ old('password') }}" id="">
-                                                @error('password')
+                                            <div class="form-group pt-2">
+                                                <span class="pe-3">A.</span>
+                                                <textarea id="option_A" class="form-control" name="A" value="{{ old('A') }}"></textarea>
+                                                @error('A')
+                                                    <span class="invalid-feedback d-inline" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group pt-2">
+                                                <span class="pe-3">B.</span>
+                                                <textarea id="option_B" class="form-control" name="B" value="{{ old('B') }}"></textarea>
+                                                @error('A')
+                                                    <span class="invalid-feedback d-inline" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+
+                                            <div class="form-group pt-2">
+                                                <span class="pe-3">C.</span>
+                                                <textarea id="option_C" class="form-control" name="C" value="{{ old('C') }}"></textarea>
+                                                @error('A')
+                                                    <span class="invalid-feedback d-inline" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+
+                                            <div class="form-group pt-2">
+                                                <span class="pe-3">D.</span>
+                                                <textarea id="option_D" class="form-control" name="D" value="{{ old('D') }}"></textarea>
+                                                @error('A')
+                                                    <span class="invalid-feedback d-inline" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+
+                                            <div class="form-group pt-2">
+                                                <span class="pe-3">E.</span>
+                                                <textarea id="option_E" class="form-control" name="E" value="{{ old('E') }}"></textarea>
+                                                @error('A')
                                                     <span class="invalid-feedback d-inline" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -73,13 +121,87 @@
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-2 form-display-as-box col-sm-2 control-label text-right pt-2">
-                                            <label for="" class=""><small>Ulangi Password</small></label>
+                                        <div class="col-2 form-display-as-box col-sm-2 control-label text- pt-2">
+                                            <span for="" class="">Kunci Jawaban</span>
                                         </div>
                                         <div class="col-10">
                                             <div class="form-group">
-                                                <input type="password" class="form-control" name="password_confirmation" value="{{ old('password_confirmation') }}" id="">
-                                                @error('password_confirmation')
+                                                <input type="text" class="form-control" name="key_answer" value="{{ old('key_answer') }}" id="">
+                                                @error('key_answer')
+                                                    <span class="invalid-feedback d-inline" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <hr>
+
+                                    <div class="row">
+                                        <div class="col-2 form-display-as-box col-sm-2 control-label text- pt-2">
+                                            <span for="" class="">Pilihan Ganda dengan alasan</span>
+                                        </div>
+                                        <div class="col-10">
+                                            <div class="form-group pt-2">
+                                                <span class="pe-3">A.</span>
+                                                <textarea id="option_A_with_reason" class="form-control" name="A_with_reason" value="{{ old('A_with_reason') }}"></textarea>
+                                                @error('A')
+                                                    <span class="invalid-feedback d-inline" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group pt-2">
+                                                <span class="pe-3">B.</span>
+                                                <textarea id="option_B_with_reason" class="form-control" name="B_with_reason" value="{{ old('B_with_reason') }}"></textarea>
+                                                @error('A')
+                                                    <span class="invalid-feedback d-inline" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+
+                                            <div class="form-group pt-2">
+                                                <span class="pe-3">C.</span>
+                                                <textarea id="option_C_with_reason" class="form-control" name="C_with_reason" value="{{ old('C_with_reason') }}"></textarea>
+                                                @error('A')
+                                                    <span class="invalid-feedback d-inline" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+
+                                            <div class="form-group pt-2">
+                                                <span class="pe-3">D.</span>
+                                                <textarea id="option_D_with_reason" class="form-control" name="D_with_reason" value="{{ old('D_with_reason') }}"></textarea>
+                                                @error('A')
+                                                    <span class="invalid-feedback d-inline" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+
+                                            <div class="form-group pt-2">
+                                                <span class="pe-3">E.</span>
+                                                <textarea id="option_E_with_reason" class="form-control" name="E_with_reason" value="{{ old('E_with_reason') }}"></textarea>
+                                                @error('A')
+                                                    <span class="invalid-feedback d-inline" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-2 form-display-as-box col-sm-2 control-label text- pt-2">
+                                            <span for="" class="">Kunci Jawaban 2</span>
+                                        </div>
+                                        <div class="col-10">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" name="key_answer_w_reason" value="{{ old('key_answer_w_reason') }}" id="">
+                                                @error('key_answer_w_reason')
                                                     <span class="invalid-feedback d-inline" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -89,10 +211,10 @@
                                     </div>
 
                                     <div class="row pt-2">
-                                        <div class="col-4 form-display-as-box col-sm-2 control-label text-right"></div>
+                                        <div class="col-4 form-display-as-box col-sm-2 control-label text-"></div>
                                         <div class="col-4">
                                             <div>
-                                                <a href="{{ route('admin.user') }}" class="btn bg-danger text-dark">Kembali</a>
+                                                <a href="{{ route('admin.question.manage') }}" class="btn bg-danger text-dark">Kembali</a>
                                                 <button type="submit" class="btn bg-primary text-dark">Simpan</button>
                                             </div>
                                         </div>
@@ -113,23 +235,25 @@
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="{{ asset('assets/plugins/summernote/summernote-bs4.js') }}" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
-<script src="{{ asset('assets/js/froala_editor.pkgd.min.js') }}"></script>
+<script src="{{ asset('assets/res/patch.js') }}"></script>
 
 <script>
-    console.log('add content Potensial Gudeg Local')
-    $(document).ready(function() {
-        // $('#descriptions').summernote()
-        setTimeout(() => {
-            console.log($('#froala-editor').froalaEditor())
-            // $('#froala-editor').froalaEditor({
-            //     toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', '|', 'fontFamily', 'fontSize', 'color', 'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', '-', 'insertLink', 'insertImage', 'insertVideo', 'insertFile', 'insertTable', '|', 'emoticons', 'specialCharacters', 'insertHR', 'selectAll', 'clearFormatting', '|', 'print', 'help', 'html', '|', 'undo', 'redo']
-            // })
-        }, 1000);
-    });
+    var editorDesc = new RichTextEditor("#descriptions");
+
+    var editorOptionA = new RichTextEditor("#option_A");
+    var editorOptionB = new RichTextEditor("#option_B");
+    var editorOptionC = new RichTextEditor("#option_C");
+    var editorOptionD = new RichTextEditor("#option_D");
+    var editorOptionE = new RichTextEditor("#option_E");
+
+    var editorOptionAWithReason = new RichTextEditor("#option_A_with_reason");
+    var editorOptionBWithReason = new RichTextEditor("#option_B_with_reason");
+    var editorOptionCWithReason = new RichTextEditor("#option_C_with_reason");
+    var editorOptionDWithReason = new RichTextEditor("#option_D_with_reason");
+    var editorOptionEWithReason = new RichTextEditor("#option_E_with_reason");
+    console.log('add content Potensial Gudeg Local');
 
     $('input#images').on('change', (e) => {
-        console.log($(e.target).val())
         if ( $(e.target).attr('id') == 'images' ) {
             $('div#wrapper-images').show()
             $('img#img-content').attr('src', URL.createObjectURL(e.target.files[0]))

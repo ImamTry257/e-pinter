@@ -4,8 +4,10 @@ namespace App\Http\Controllers\console\question;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Yajra\DataTables\Facades\DataTables;
 
 class ManageController extends Controller
@@ -26,7 +28,7 @@ class ManageController extends Controller
                     return '<div>' . $row->description . '</div>';
                 })
                 ->addColumn('action', function ($row) {
-                    $actionBtn = '<a href="' . route('admin.user.show', ['id' => Crypt::encryptString($row->id)]) . '" class="edit btn bg-console text-dark btn-sm">Ubah</a> <a href="" class="delete btn btn-danger btn-sm delete-user" id="' . $row->id . '">Hapus</a>';
+                    $actionBtn = '<a href="' . route('admin.question.manage.show', ['id' => Crypt::encryptString($row->id)]) . '" class="edit btn bg-console text-dark btn-sm">Ubah</a> <a href="" class="delete btn btn-danger btn-sm delete-user" id="' . $row->id . '">Hapus</a>';
                     return $actionBtn;
                 })
                 ->rawColumns(['action', 'description'])
@@ -44,34 +46,95 @@ class ManageController extends Controller
         if ($request->method() == 'POST') :
             //validate form
             $this->validate($request, [
-                'name'                  => 'required|unique:users,name',
-                'password'              => 'required|confirmed',
-                'password_confirmation' => 'required',
-                'school'                => 'required'
+                'number'            => 'required',
+                'descriptions'      => 'required',
+                'A'      => 'required',
+                'B'      => 'required',
+                'C'      => 'required',
+                'D'      => 'required',
+                'E'      => 'required',
+                'key_answer'      => 'required',
+                'A_with_reason'      => 'required',
+                'B_with_reason'      => 'required',
+                'C_with_reason'      => 'required',
+                'D_with_reason'      => 'required',
+                'E_with_reason'      => 'required',
+                'key_answer_w_reason'      => 'required'
             ]);
-            dd('xczxc');
-            // $name = $request->name;
-            // $email = str::random(10) . '@example.com';
 
-            // try {
-            //     DB::table('users')
-            //         ->insert([
-            //             'name' => $name,
-            //             'email' => $email,
-            //             'password' => Hash::make($request->password),
-            //             'school' => $request->school,
-            //             'type'  => 'siswa',
-            //             'status' => 1,
-            //             'created_by' => Auth::user()->id
-            //         ]);
+            try {
 
-            //     return redirect()->route('admin.user')->with('success', 'User berhasil ditambahkan');
-            // } catch (\Throwable $th) {
-            //     # dd($th->getMessage());
-            //     return redirect()->route('admin.user')->with('error', 'Create Data Rows fail!');
-            // }
+                # set param option
+                $param_option = [
+                    [
+                        "value_key"     => "A",
+                        "value_text"    => $request->A
+                    ],
+                    [
+                        "value_key"     => "B",
+                        "value_text"    => $request->B
+                    ],
+                    [
+                        "value_key"     => "C",
+                        "value_text"    => $request->C
+                    ],
+                    [
+                        "value_key"     => "D",
+                        "value_text"    => $request->D
+                    ],
+                    [
+                        "value_key"     => "E",
+                        "value_text"    => $request->E
+                    ]
+                ];
+
+                # set param option with reason
+                $param_option_w_r = [
+                    [
+                        "value_key"     => "A",
+                        "value_text"    => $request->A_with_reason
+                    ],
+                    [
+                        "value_key"     => "B",
+                        "value_text"    => $request->B_with_reason
+                    ],
+                    [
+                        "value_key"     => "C",
+                        "value_text"    => $request->C_with_reason
+                    ],
+                    [
+                        "value_key"     => "D",
+                        "value_text"    => $request->D_with_reason
+                    ],
+                    [
+                        "value_key"     => "E",
+                        "value_text"    => $request->E_with_reason
+                    ]
+                ];
+
+                # dd(Session::get('data_user_login'));
+
+                # param all
+                $paramAdd = [
+                    'number'        => $request->number,
+                    'description'   => $request->descriptions,
+                    'options'       => json_encode($param_option),
+                    'options_with_reason' => json_encode($param_option_w_r),
+                    'created_by'    => Session::get('data_user_login')->id,
+                    'updated_by'    => 0,
+                    'created_at'    => now()
+                ];
+
+                # dd($request->all(), $param_option, $param_option_w_r, $paramAdd);
+                DB::table('question_master')->insert($paramAdd);
+
+                return redirect()->route('admin.question.manage')->with('success', 'Soal berhasil ditambahkan');
+            } catch (\Throwable $th) {
+                dd($th->getMessage());
+                return redirect()->route('admin.question.manage')->with('error', 'Soal gagal ditambahkan');
+            }
         else :
-            return redirect()->route('admin.user');
+            return redirect()->route('admin.question.manage');
         endif;
     }
 
@@ -79,12 +142,12 @@ class ManageController extends Controller
     {
         $dec_id = Crypt::decryptString($id);
 
-        $data['user'] = DB::table('users as u')
-            ->where('status', '=', 1)
-            ->where('id', '=', $dec_id)
+        $data['question'] = DB::table('question_master as u')
+            ->join('question_answer_key as qak', 'qak.question_master_id', '=', 'u.id')
+            ->where('u.id', '=', $dec_id)
             ->first();
 
-        return view('console.page.user.edit', $data);
+        return view('console.page.question.manage.edit', $data);
     }
 
     public function update(Request $request, $id)

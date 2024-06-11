@@ -51,7 +51,7 @@
                                 </div>
                                 <div>
                                     <span>
-                                        <label for="{{ $op['value_key'] }}" class="fw-normal">{{ $op['value_key'] . '. ' . $op['value_text'] }}</label>
+                                        <label for="{{ $op['value_key'] }}" class="fw-normal">{!! $op['value_key'] . '. ' . $op['value_text'] !!}</label>
                                     </span>
                                 </div>
                             </div>
@@ -75,7 +75,7 @@
                                 </div>
                                 <div>
                                     <span>
-                                        <label for="{{ $op['value_key'] . '_wr' }}" class="fw-normal">{{ $op['value_key'] . '. ' . $op['value_text'] }}</label>
+                                        <label for="{{ $op['value_key'] . '_wr' }}" class="fw-normal">{!! $op['value_key'] . '. ' . $op['value_text'] !!}</label>
                                     </span>
                                 </div>
                             </div>
