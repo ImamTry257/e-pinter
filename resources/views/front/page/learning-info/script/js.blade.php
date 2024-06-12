@@ -31,7 +31,10 @@
         PDFJS.disableWorker = true;
         PDFJS.getDocument(url).then(renderPages);
 
+        $('.wrapper-loading').attr('style', 'display:none')
     }
+
+    $('.wrapper-loading').attr('style', 'display:auto')
 
     var element = $('div.file-pdf')
     var file_source = '{{ asset("assets/e-pinter/ebook/v4/BUKU MODEL E-PINTER.pdf") }}';

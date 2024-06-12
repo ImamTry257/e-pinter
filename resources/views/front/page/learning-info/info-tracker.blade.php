@@ -23,6 +23,11 @@
     <div class="card list-topic-content py-5 px-2 col-12">
         <div class="row p-2 px-5">
             <div class="wrapper-step-1 pb-4 text-center">
+                <div class="wrapper-loading" style="display: auto;">
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
                 <div class="text-center file-pdf" id="info-tracker" aria-label="info-tracker"></div>
             </div>
 

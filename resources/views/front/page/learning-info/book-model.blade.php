@@ -36,6 +36,11 @@
         <div class="row p-2 px-5">
             <div class="wrapper-step-1 pb-4 text-center">
                 <h2 class="desc-step mt-5 d-block ps-4 pb-2 mb-5">Buku Model</h2>
+                <div class="wrapper-loading" style="display: auto;">
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
                 <div class="text-center file-pdf" id="book-model" aria-label="book-model"></div>
             </div>
         </div>
