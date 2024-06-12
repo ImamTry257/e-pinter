@@ -35,7 +35,7 @@
     <div class="card list-topic-content py-5 px-2 col-12">
         <div class="row p-2 px-5">
             <div class="wrapper-step-1 pb-4 text-center">
-                <h2 class="desc-step mt-5 d-block ps-4 pb-2">Buku Model</h2>
+                <h2 class="desc-step mt-5 d-block ps-4 pb-2 mb-5">Buku Model</h2>
                 <div class="text-center file-pdf" id="book-model" aria-label="book-model"></div>
             </div>
         </div>
