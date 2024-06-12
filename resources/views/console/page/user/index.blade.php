@@ -101,7 +101,7 @@
             let id = $(e.target).attr('id')
 
             var ans = confirm('Apakah Anda yakin?')
-            
+
             if ( ans ) {
                 delete_user(id)
             }

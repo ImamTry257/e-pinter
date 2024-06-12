@@ -10,7 +10,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <title>Backoffice E-PINTER</title>
 
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    {{-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"> --}}
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Theme style -->
@@ -236,6 +236,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<p>Hasil Kegiatan Pemb</p>
 					</a>
 				</li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-file"></i>
+                    <p> Soal
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                    </a>
+                    <ul class="nav nav-treeview" style="display: none;">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.question.manage') }}" class="nav-link">
+                                <i class="fas fa-book nav-icon"></i>
+                                <p>Kelola Soal</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.question.manage') }}" class="nav-link">
+                                <i class="fas fa-table nav-icon"></i>
+                                <p>Hasil Pengerjaan Soal</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
 				@php
 					# dd(Route::current()->uri);

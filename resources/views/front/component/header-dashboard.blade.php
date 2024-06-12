@@ -38,8 +38,13 @@
                         <li>
                             <span class="text-white d-flex align-items-center h-50">{{ Auth::user()->name; }}</span>
                         </li>
-                        <li onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();" style="cursor: pointer;">
+                        <li onclick="
+                        event.preventDefault();
+                        localStorage.removeItem('speaking_counter');
+
+                        setTimeout(function(){
+                            document.getElementById('logout-form').submit();
+                        }, 200)" style="cursor: pointer;">
                             <span class="text-white">Logout</span>
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

@@ -50,10 +50,10 @@
 
 
         // sidebar submenu open close js code
-        let htmlcssArrow = document.querySelector(".htmlcss-arrow");
-            htmlcssArrow.onclick = function() {
-            navLinks.classList.toggle("show1");
-        }
+        // let htmlcssArrow = document.querySelector(".htmlcss-arrow");
+        //     htmlcssArrow.onclick = function() {
+        //     navLinks.classList.toggle("show1");
+        // }
         // let moreArrow = document.querySelector(".more-arrow");
         //     moreArrow.onclick = function() {
         //     navLinks.classList.toggle("show2");
@@ -62,6 +62,12 @@
         //     jsArrow.onclick = function() {
         //     navLinks.classList.toggle("show3");
         // }
+        console.log('{{ Auth::user() }}', 'coaoao')
+        if ( '{{ Auth::user() }}' == 'undefined' ) {
+            console.log('asdasd', localStorage.removeItem("speaking_counter"))
+            localStorage.removeItem('speaking_counter');
+            localStorage.clear()
+        }
     </script>
 
     <script src="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/owl.carousel.js"></script>

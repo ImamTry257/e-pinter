@@ -70,10 +70,14 @@
 
 
         // sidebar submenu open close js code
-        console.log($(".htmlcss-arrow"))
         $(".htmlcss-arrow, #parent-menu").on('click', function() {
             navLinks.classList.toggle("show1");
         })
+
+        if ( '{{ Auth::user() }}' == 'undefined' ) {
+            localStorage.removeItem('speaking_counter');
+            localStorage.clear()
+        }
     </script>
 
     @yield('script')
