@@ -34,12 +34,12 @@
     }
 
     var element = $('div.file-pdf')
-    var file_source = '{{ asset("assets/e-pinter/ebook/BUKU MODEL E-PINTER.pdf") }}';
+    var file_source = '{{ asset("assets/e-pinter/ebook/v2/BUKU MODEL E-PINTER.pdf") }}';
     console.log(element)
     if ( element.attr('id') == 'info-epinter' ) {
-        file_source = '{{ asset("assets/e-pinter/ebook/Panduan E-PINTER.pdf") }}';
+        file_source = '{{ asset("assets/e-pinter/ebook/v2/Panduan E-PINTER.pdf") }}';
     } else if ( element.attr('id') == 'info-tracker' ) {
-        file_source = '{{ asset("assets/e-pinter/ebook/Tutorial_Petunjuk_Software_Tracker.pdf") }}';
+        file_source = '{{ asset("assets/e-pinter/ebook/v2/TUTORIAL PENGGUNAAN SOFTWARE TRACKER FIX.pdf") }}';
     }
 
     renderPDF(file_source, element[0]);
