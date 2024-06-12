@@ -187,7 +187,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #343a40">
     <!-- Brand Logo -->
     <a href="{{ route('home') }}" class="brand-link d-none">
       <img src="{{ asset('assets/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -226,21 +226,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				<li class="nav-item">
 					<a href="{{ route('admin.dashboard') }}" class="nav-link text-white @if (Route::current()->uri == 'admin/dashboard') {{ 'active-menu' }} @endif">
 						<i class="nav-icon fas fa-home"></i>
-						<p>Dashboard</p>
+						<p style="color: #c2c7d0">Dashboard</p>
 					</a>
 				</li>
 
                 <li class="nav-item">
 					<a href="{{ route('admin.result.learning.activity') }}" class="nav-link text-white @if (Route::current()->uri == 'admin/result-learning-activity') {{ 'active-menu' }} @endif">
 						<i class="nav-icon fas fa-table"></i>
-						<p>Hasil Kegiatan Pemb</p>
+						<p style="color: #c2c7d0">Hasil Kegiatan Pemb</p>
 					</a>
 				</li>
 
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-file"></i>
-                    <p> Soal
+                    <p style="color: #c2c7d0"> Soal
                         <i class="fas fa-angle-left right"></i>
                     </p>
                     </a>
@@ -248,13 +248,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <li class="nav-item">
                             <a href="{{ route('admin.question.manage') }}" class="nav-link">
                                 <i class="fas fa-book nav-icon"></i>
-                                <p>Kelola Soal</p>
+                                <p style="color: #c2c7d0">Kelola Soal</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('admin.question.manage') }}" class="nav-link">
                                 <i class="fas fa-table nav-icon"></i>
-                                <p>Hasil Pengerjaan Soal</p>
+                                <p style="color: #c2c7d0">Hasil Pengerjaan Soal</p>
                             </a>
                         </li>
                     </ul>

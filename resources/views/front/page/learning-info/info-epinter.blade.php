@@ -24,7 +24,7 @@
         <div class="row p-2 px-5">
             <div class="wrapper-step-1 pb-4 text-center">
                 <h2>PETUNJUK PENGGUNAAN E-LEARNING</h2>
-                <div class="wrapper-loading" style="display: auto;">
+                <div class="wrapper-loading" style="display: hide;">
                     <div class="spinner-border" role="status">
                         <span class="visually-hidden">Loading...</span>
                     </div>

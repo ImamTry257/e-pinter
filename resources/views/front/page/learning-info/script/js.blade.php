@@ -29,9 +29,11 @@
         }
 
         PDFJS.disableWorker = true;
-        PDFJS.getDocument(url).then(renderPages);
-
-        $('.wrapper-loading').attr('style', 'display:none')
+        PDFJS.getDocument(url)
+        .then(renderPages)
+        .then(() => {
+            $('.wrapper-loading').attr('style', 'display:none')
+        });
     }
 
     $('.wrapper-loading').attr('style', 'display:auto')
