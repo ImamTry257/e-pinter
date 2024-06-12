@@ -34,7 +34,7 @@
     }
 
     var element = $('div.file-pdf')
-    var file_source = '{{ asset("assets/e-pinter/ebook/v3/BUKU MODEL E-PINTER.pdf") }}';
+    var file_source = '{{ asset("assets/e-pinter/ebook/v4/BUKU MODEL E-PINTER.pdf") }}';
     if ( element.attr('id') == 'info-epinter' ) {
         file_source = '{{ asset("assets/e-pinter/ebook/v2/Panduan E-PINTER.pdf") }}';
     } else if ( element.attr('id') == 'info-tracker' ) {
