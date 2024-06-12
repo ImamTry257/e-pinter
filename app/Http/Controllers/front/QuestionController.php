@@ -55,6 +55,7 @@ class QuestionController extends Controller
         # get data selected question and question of user answer
         $data['question_and_answer'] = DB::table('question_master as qm')
                             ->join('question_answer_key as qak', 'qak.question_master_id', '=', 'qm.id')
+                            ->leftJoin('question_answer_user as qau', 'qau.question_master_id', '=', 'qm.id')
                             ->where('qm.number', '=', $question_no)->first();
 
         if ( empty( $data['question_and_answer'] ) ) :
@@ -467,7 +468,7 @@ class QuestionController extends Controller
 
     public function store(Request $request)
     {
-        # dd($param, $request->all());
+        # dd($request->all());
 
         # set sisa durasi ke session untuk dishow ke soal lainnya
         if ( $request->countdown_str != null ) :
@@ -526,7 +527,7 @@ class QuestionController extends Controller
             return redirect(route('front.dashboard'));
         }
 
-        return redirect(route('question', ['questionNo' => $question_after_action]));
+        return redirect(route('question', ['questionNo' => Crypt::encryptString($question_after_action)]). '-' . $request->countdown_str);
     }
 
     public function calculated_score($answer, $answer_reason, $question_master_id)

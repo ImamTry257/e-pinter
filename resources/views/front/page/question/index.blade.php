@@ -19,7 +19,7 @@
     <div class="card list-topic-content col-8 mx-3 bg-white">
         <div class="title-list row d-flex justify-content-center">
             <div class="col-lg-11">
-                <form action="{{ route('question.store', ['questionNo' => $question_no_selected]) }}" method="POST">
+                <form action="{{ route('question.store', ['questionNo' => Crypt::encryptString($question_no_selected)]) . '-'.Session::get('current_duration') }}" method="POST">
                 @csrf
                     <div class="wrapper-countdown text-center pt-3 fw-bold" style="font-size: 30px;">
                         {{-- <span style="font-size: 30px;" id="countdown" class="fw-bold">Sisa waktu: 00:30:00</span> --}}
@@ -47,7 +47,7 @@
                             @foreach ( $options as $op)
                             <div class="d-flex justify-content-start pb-2">
                                 <div>
-                                    <input type="radio" name="answer" value="{{ $op['value_key'] }}" id="{{ $op['value_key'] }}" class="me-3" {{ ( $op['value_key'] == $question_and_answer->answer ) ? 'checked' : '' }}>
+                                    <input type="radio" name="answer" value="{{ $op['value_key'] }}" id="{{ $op['value_key'] }}" class="me-3" {{ ( $op['value_key'] == ( property_exists($question_and_answer, 'answer') ? $question_and_answer->answer : '' ) ) ? 'checked' : '' }}>
                                 </div>
                                 <div>
                                     <span>
@@ -71,7 +71,7 @@
                             @foreach ( $options as $op)
                             <div class="d-flex justify-content-start pb-2">
                                 <div>
-                                    <input type="radio" name="answer_reason" value="{{ $op['value_key'] }}" id="{{ $op['value_key'] . '_wr' }}" class="me-3" {{ ( $op['value_key'] == $question_and_answer->answer_with_reason ) ? 'checked' : '' }}>
+                                    <input type="radio" name="answer_reason" value="{{ $op['value_key'] }}" id="{{ $op['value_key'] . '_wr' }}" class="me-3" {{ ( $op['value_key'] == ( property_exists($question_and_answer, 'answer_with_reason') ? $question_and_answer->answer_with_reason : '' ) ) ? 'checked' : '' }}>
                                 </div>
                                 <div>
                                     <span>
