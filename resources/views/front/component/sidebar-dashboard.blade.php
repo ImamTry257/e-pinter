@@ -36,7 +36,7 @@
             <!-- Add icons to the links using the .nav-icon class
                 with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="{{ route('front.dashboard') }}" class="nav-link text-white @if (Route::current()->uri == 'dashboard') {{ 'active-menu' }} @endif">
+                    <a href="{{ route('front.dashboard') }}" class="nav-link text-white" id="@if(Route::current()->uri == 'dashboard') {{'active-menu'}}@endif">
                         {{-- <i class="nav-icon fas fa-home"></i> --}}
                         <img src="{{ asset('assets/sidebar/sidebar-dashboard.svg') }}" width="25" alt="Dashboard">
                         <p class="ps-3">Dashboard</p>
@@ -72,6 +72,13 @@
                         <i class="nav-icon fas fa-book"></i>
                         {{-- <img src="{{ asset('assets/sidebar/sidebar-diskusi.svg') }}" width="25" alt="Site Home"> --}}
                         <p class="ps-3">Question</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="javascript:void(0);" class="nav-link text-white @if (Route::current()->uri == 'kuisioner') {{ 'active-menu' }} @endif">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p class="ps-3">Kuisioner</p>
                     </a>
                 </li>
             </ul>

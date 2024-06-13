@@ -18,6 +18,10 @@
         .btn-save {
             background-color: #00BC29;
         }
+
+        a#active-menu {
+            background-color: rgba(255,255,255,.1);
+        }
     </style>
 
     <!-- include summernote css/js-->
