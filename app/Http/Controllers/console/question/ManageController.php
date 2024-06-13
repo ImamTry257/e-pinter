@@ -293,4 +293,66 @@ class ManageController extends Controller
 
         return redirect(route('admin.question.manage'))->with($type_with, $data);
     }
+
+    public function convertToSecond($time_duration)
+    {
+        $str_time = preg_replace("/^([\d]{1,2})\:([\d]{2})$/", "00:$1:$2", $time_duration);
+
+        sscanf($str_time, "%d:%d:%d", $hours, $minutes, $seconds);
+
+        return $hours * 3600 + $minutes * 60 + $seconds;
+    }
+
+    public function time(Request $request)
+    {
+        # userId
+        $user_id = Session::get('data_user_login')->id;
+
+        $data['setting_duration'] = [];
+        if ( $request->isMethod('POST') ) :
+
+            //validate form
+            $this->validate($request, [
+                'duration'  => 'required'
+            ]);
+
+            try {
+                # check data question setting
+                $query_question_setting = DB::table('question_setting');
+                $setting = $query_question_setting->first();
+
+                # param to insert or update data
+                $param['duration']              = $this->convertToSecond($request->duration);
+                # dd($param, $setting);
+
+                if ( empty ( $setting ) ) :
+                    $param['created_by']            = $user_id;
+                    $param['updated_by']            = 0;
+                    $param['created_at']            = now();
+
+                    // insert data
+                    DB::table('question_setting')->insert($param);
+                else :
+                    $param['updated_by']            = $user_id;
+                    $param['updated_at']            = now();
+
+                    # dd($param, $setting);
+                    $query_question_setting->update($param);
+                endif ;
+
+                $data = 'Setting Waktu Pengerjaan berhasil diubah';
+                $type_with = 'success';
+
+                return redirect()->route('admin.question.manage.time')->with($type_with, $data);
+            } catch (\Throwable $th) {
+                dd($th->getMessage());
+                return redirect()->route('admin.question.manage.time')->with('error', 'Setting Waktu Pengerjaan gagal diubah');
+            }
+
+        else :
+            $data['setting_duration'] = DB::table('question_setting')->first();
+        endif ;
+
+        return view('console.page.question.manage.time', $data);
+    }
 }

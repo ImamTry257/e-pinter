@@ -228,6 +228,8 @@ Route::middleware([AuthConsoleMiddleware::class])->group(function () {
         Route::get('/edit/{id}', [ManageController::class, 'edit'])->name('admin.question.manage.edit');
         Route::post('/update/{id}', [ManageController::class, 'update'])->name('admin.question.manage.update');
         Route::get('/delete/{id}', [ManageController::class, 'destroy'])->name('admin.question.manage.destroy');
+        Route::get('/time', [ManageController::class, 'time'])->name('admin.question.manage.time');
+        Route::post('/time', [ManageController::class, 'time'])->name('admin.question.manage.time');
         Route::get('/getUsers', [ManageController::class, 'getUsers'])->name('admin.question.manage.get.user');
     });
 });

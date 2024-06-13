@@ -252,6 +252,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ route('admin.question.manage.time') }}" class="nav-link">
+                                <i class="fas fa-clock nav-icon"></i>
+                                <p style="color: #c2c7d0">Kelola Waktu Pengerjaan</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ route('admin.question.manage') }}" class="nav-link">
                                 <i class="fas fa-table nav-icon"></i>
                                 <p style="color: #c2c7d0">Hasil Pengerjaan Soal</p>
