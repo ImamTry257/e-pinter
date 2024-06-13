@@ -35,9 +35,6 @@
                         <div class="card-header bg-console text-dark">
                             <h3 class="card-title">Kelola Waktu Pengerjaan</h3>
                         </div>
-                        @php
-                            // dd($user);
-                        @endphp
                         <div class="card-body">
                             <form action="{{ route('admin.question.manage.time') }}" method="POST">
                                 @csrf
@@ -48,7 +45,7 @@
                                         </div>
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <input type="text" class="form-control html-duration-picker" name="duration" value="{{ ( !empty($setting_duration) ? $setting_duration->duration : '' ) }}" style="width: 100px;" id="" data-duration-min="00:01:00">
+                                                <input type="text" class="form-control html-duration-picker" name="duration" value="{{ ( !empty($setting_duration) ? $setting_duration->duration : '' ) }}" style="width: 100px;" id="" data-duration-min="{{( !empty($setting_duration) ? gmdate('H:i:s', $setting_duration->duration) : '00:00:00' ) }}">
                                                 @error('duration')
                                                     <span class="invalid-feedback d-inline" role="alert">
                                                         <strong>{{ $message }}</strong>
