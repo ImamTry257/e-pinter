@@ -4,7 +4,7 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    @include('console.components.breadcrumb', ['title' => 'Siswa'])
+    @include('console.components.breadcrumb', ['title' => 'Siswa Kegiatan Pembelajaran'])
 
     <div class="content">
         <div class="container-fluid">
@@ -29,24 +29,26 @@
                     @endif
                 </div>
                 <div class="col-md-12 pb-2">
-                    <a href="{{ route('admin.user.add') }}" class="btn bg-console text-dark"><i class="fas fa-plus-circle"></i> Tambah</a>
+                    <a href="{{ route('admin.question.result.download') }}" class="btn bg-console text-dark"><i class="fas fa-download"></i> Download Hasil</a>
                 </div>
                 <div class="col-md-12">
                     <div class="card border-0">
                         <div class="card-header bg-console text-dark">
-                            <h3 class="card-title">Data Siswa</h3>
+                            <h3 class="card-title">Data Siswa Kegiatan Pengerjaan Soal</h3>
                         </div>
 
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12 table-responsive">
-                                    <table class="table table-bordered content-datatable w-100">
+                                    <table class="table table-bordered la-datatable w-100">
                                         <thead>
                                             <tr>
-                                                <th>No</th>
-                                                <th>Username</th>
-                                                <th>Sekolah</th>
-                                                <th>Action</th>
+                                                <th width="5%">No</th>
+                                                <th width="20%">Siswa</th>
+                                                <th width="20%">Nama Sekolah</th>
+                                                <th width="10%">Kelompok</th>
+                                                <th width="15%">Email</th>
+                                                <th width="20%">Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -81,34 +83,44 @@
     <script type="text/javascript">
         $(function () {
 
-          var table = $('.content-datatable').DataTable({
+          var table = $('.la-datatable').DataTable({
               processing: true,
               serverSide: true,
-              ajax: "{{ route('admin.get.user') }}",
+              ajax: "{{ route('admin.question.result.get.user') }}",
               columns: [
-                    {data: 'DT_RowIndex', name: 'No'},
-                    {data: 'name', name: 'Username'},
-                    {data: 'school', name: 'Sekolah'},
-                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                    {data: 'DT_RowIndex', name: 'No', orderable: false},
+                    {data: 'nama_siswa', name: 'Siswa', orderable: false},
+                    {data: 'nama_sekolah_kapital', name: 'Nama Sekolah', orderable: false},
+                    {data: 'nama_kelompok', name: 'Kelompok', orderable: false},
+                    {data: 'email_siswa', name: 'Email', orderable: false},
+                    {data: 'action', name: 'Status', orderable: false, searchable: true}
               ]
           });
 
         });
 
         // add event setelah data dirender
-        $('body').on('click', 'a.delete-user', (e) => {
+        $('body').on('click', 'a.delete-content', (e) => {
             e.preventDefault();
             let id = $(e.target).attr('id')
 
-            var ans = confirm('Apakah Anda yakin?')
-            
-            if ( ans ) {
-                delete_user(id)
-            }
+            swal({
+                title: "Apakah kamu yakin?",
+                text: "Datamu akan hilang dan tidak bisa dikembalikan!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                })
+                .then((willDelete) => {
+                if (willDelete) {
+                    deleteResult(id)
+                    console.log(id)
+                }
+            });
         })
 
-        function delete_user(id) {
-            window.location.href = '{{ url("admin/user/delete") }}'+'/'+id;
+        function deleteResult(id) {
+            window.location.href = '{{ url("admin/result-learning-activity/delete") }}'+'/'+id;
         }
     </script>
 

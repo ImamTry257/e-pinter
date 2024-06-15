@@ -6,6 +6,7 @@ use App\Http\Controllers\console\LearningActivityController as ConsoleLearningAc
 use App\Http\Controllers\console\LoginController as ConsoleLoginController;
 use App\Http\Controllers\console\PotentialLocalGudegController as ConsolePotentialLocalGudegController;
 use App\Http\Controllers\console\question\ManageController;
+use App\Http\Controllers\console\question\ResultController;
 use App\Http\Controllers\console\RegisterController as ConsoleRegisterController;
 use App\Http\Controllers\console\ResultLearningActivityController;
 use App\Http\Controllers\console\UserController;
@@ -231,5 +232,13 @@ Route::middleware([AuthConsoleMiddleware::class])->group(function () {
         Route::get('/time', [ManageController::class, 'time'])->name('admin.question.manage.time');
         Route::post('/time', [ManageController::class, 'time'])->name('admin.question.manage.time');
         Route::get('/getUsers', [ManageController::class, 'getUsers'])->name('admin.question.manage.get.user');
+    });
+
+    # Result Question
+    Route::prefix('admin/question/result')->group(function(){
+        Route::get('/', [ResultController::class, 'index'])->name('admin.question.result');
+        Route::get('/show/{user_id}', [ResultController::class, 'show'])->name('admin.question.result.show');
+        Route::get('/download', [ResultController::class, 'download'])->name('admin.question.result.download');
+        Route::get('/getStudentQuestion', [ResultController::class, 'getStudentQuestion'])->name('admin.question.result.get.user');
     });
 });
