@@ -46,7 +46,6 @@
                                                 <th width="5%">No</th>
                                                 <th width="20%">Siswa</th>
                                                 <th width="20%">Nama Sekolah</th>
-                                                <th width="10%">Kelompok</th>
                                                 <th width="15%">Email</th>
                                                 <th width="20%">Status</th>
                                             </tr>
@@ -91,7 +90,6 @@
                     {data: 'DT_RowIndex', name: 'No', orderable: false},
                     {data: 'nama_siswa', name: 'Siswa', orderable: false},
                     {data: 'nama_sekolah_kapital', name: 'Nama Sekolah', orderable: false},
-                    {data: 'nama_kelompok', name: 'Kelompok', orderable: false},
                     {data: 'email_siswa', name: 'Email', orderable: false},
                     {data: 'action', name: 'Status', orderable: false, searchable: true}
               ]
