@@ -7,6 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Backoffice E-PINTER</title>
 
     <!-- Google Font: Source Sans Pro -->
@@ -258,7 +259,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.question.manage') }}" class="nav-link">
+                            <a href="{{ route('admin.question.result') }}" class="nav-link">
                                 <i class="fas fa-table nav-icon"></i>
                                 <p style="color: #c2c7d0">Hasil Pengerjaan Soal</p>
                             </a>
