@@ -19,13 +19,19 @@ class RegisterController extends Controller
     {
 
         if ($request->method() == 'POST') :
+            # custom error validated message
+            $message = [
+                'required' => 'Silakan isi :attribute'
+            ];
+
             //validate form
             $this->validate($request, [
                 'username'              => 'required|unique:users,name',
+                'email'                 => 'required',
                 'password'              => 'required|confirmed',
                 'password_confirmation' => 'required',
                 'school_name'           => 'required'
-            ]);
+            ], $message);
 
             try {
                 DB::table('users')
