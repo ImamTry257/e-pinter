@@ -42,7 +42,11 @@
                 </div>
 
                 <div class="wrapper-autosave">
-                    <span>Kuisioner ini </span>
+                    <span>Kuisioner ini terdapat fitur <b>auto save</b> yang memudahkan Anda untuk meneruskan di lain waktu</span>
+                </div>
+
+                <div class="wrapper-info-color">
+                    <small>Ketarangan warna : <i class="fas fa-circle text-warning"></i> Belum diisi, <i class="fas fa-circle text-success"></i> Sudah diisi</small>
                 </div>
             </div>
         </div>
