@@ -16,6 +16,9 @@ class Controller extends BaseController
     public function __construct()
     {
         date_default_timezone_set('Asia/Jakarta');
+
+        $duration = DB::table('question_setting')->first();
+        View::share('current_duration', ( $duration == null ) ? 0 : $duration->duration);
     }
 
     public function getContentListActivity($slug)

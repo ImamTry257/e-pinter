@@ -68,7 +68,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ route('question', ['questionNo' => Crypt::encryptString(1)]) . '-6000' }} " class="nav-link text-white @if (Route::current()->uri == 'question') {{ 'active-menu' }} @endif">
+                    <a href="{{ route('question', ['questionNo' => Crypt::encryptString(1)]) .'-'. $current_duration }} " class="nav-link text-white @if (Route::current()->uri == 'question') {{ 'active-menu' }} @endif">
                         <i class="nav-icon fas fa-book"></i>
                         {{-- <img src="{{ asset('assets/sidebar/sidebar-diskusi.svg') }}" width="25" alt="Site Home"> --}}
                         <p class="ps-3">Question</p>

@@ -38,6 +38,9 @@ class QuestionController extends Controller
         # jika tidak ada param current duration di URL, maka user baru akan start
         if ( count ( $data_get ) > 1 ) :
             $current_duration = $data_get[1];
+            if ( $current_duration == 0 ) :
+                return redirect(route('front.dashboard'));
+            endif;
             $is_before_session_exist = true;
         endif ;
 
@@ -83,7 +86,7 @@ class QuestionController extends Controller
         $data['q_no_right'] = [3, 6, 9, 12, 15, 18, 21, 24, 27, 30];
 
         $data['question_no_selected'] = $question_no;
-
+        # dd($data, Session::get('current_duration'));
         return view('front.page.question.index', $data);
     }
 

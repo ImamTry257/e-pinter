@@ -9,6 +9,10 @@
         #question-no:hover {
             background-color: #93FFC4;
         }
+
+        .bg-popup {
+            background-color: #004972;
+        }
     </style>
 @endsection
 
@@ -129,6 +133,31 @@
     </div>
 </div>
 
+<!-- Button trigger modal -->
+<div class="d-none">
+    <button type="button" class="btn btn-primary" id="trigger_btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        Launch static backdrop modal
+    </button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+        <div class="modal-header bg-popup">
+            <h5 class="modal-title text-white" id="staticBackdropLabel">Notifikasi Waktu</h5>
+        </div>
+        <div class="modal-body text-center">
+            <span style="font-size: 45px;">SELESAI</span>
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+            <a href="{{ route('front.dashboard') }}" class="btn bg-popup text-white">Kembali ke Halaman Dashboard</a>
+        </div>
+        </div>
+    </div>
+</div>
+
+
 @endsection
 
 @section('script')
@@ -166,6 +195,8 @@
         var speaking_counter = function() {
             if (speaking_value <= 0) {
                 localStorage.setItem("speaking_counter", speaking_time_min_sec);
+
+                checkCurrentDuration()
             } else {
                 speaking_value = parseInt(speaking_value) - 1;
                 localStorage.setItem("speaking_counter", speaking_value);
@@ -200,16 +231,22 @@
             pause: function() {
                     clearInterval(interval);
                     delete interval;
-                },
+            },
 
-                resume: function() {
+            resume: function() {
 
-                        interval = setInterval(function() {
-                            speaking_counter();
-                        }, 1000);
+                    interval = setInterval(function() {
+                        speaking_counter();
+                    }, 1000);
 
-                }
+            }
         };
+
+        function checkCurrentDuration(){
+            console.log('show modal selesai')
+            // show popup after current duration == 0
+            $('button#trigger_btn').click()
+        }
 
         window.addEventListener("beforeunload", function(event) {
             // myFunction();
