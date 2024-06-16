@@ -7,6 +7,7 @@ use App\Http\Controllers\console\LoginController as ConsoleLoginController;
 use App\Http\Controllers\console\PotentialLocalGudegController as ConsolePotentialLocalGudegController;
 use App\Http\Controllers\console\question\ManageController;
 use App\Http\Controllers\console\question\ResultController;
+use App\Http\Controllers\console\questionniare\ManageController as QuestionniareManageController;
 use App\Http\Controllers\console\RegisterController as ConsoleRegisterController;
 use App\Http\Controllers\console\ResultLearningActivityController;
 use App\Http\Controllers\console\UserController;
@@ -245,5 +246,17 @@ Route::middleware([AuthConsoleMiddleware::class])->group(function () {
         Route::get('/show/{user_id}', [ResultController::class, 'show'])->name('admin.question.result.show');
         Route::get('/download', [ResultController::class, 'download'])->name('admin.question.result.download');
         Route::get('/getStudentQuestion', [ResultController::class, 'getStudentQuestion'])->name('admin.question.result.get.user');
+    });
+
+    # Manage Questionniare
+    Route::prefix('admin/questionniare/manage')->group(function(){
+        Route::get('/', [QuestionniareManageController::class, 'index'])->name('admin.questionniare.manage');
+        Route::get('/add', [QuestionniareManageController::class, 'create'])->name('admin.questionniare.manage.add');
+        Route::post('/add', [QuestionniareManageController::class, 'store'])->name('admin.questionniare.manage.store');
+        Route::get('/show/{id}', [QuestionniareManageController::class, 'show'])->name('admin.questionniare.manage.show');
+        Route::get('/edit/{id}', [QuestionniareManageController::class, 'edit'])->name('admin.questionniare.manage.edit');
+        Route::post('/update/{id}', [QuestionniareManageController::class, 'update'])->name('admin.questionniare.manage.update');
+        Route::get('/delete/{id}', [QuestionniareManageController::class, 'destroy'])->name('admin.questionniare.manage.destroy');
+        Route::get('/getQuestionniare', [QuestionniareManageController::class, 'getQuestionniare'])->name('admin.questionniare.manage.get.user');
     });
 });

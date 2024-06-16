@@ -17,23 +17,34 @@ class QuestionnaireController extends Controller
         $data['current_page'] = $page;
 
         # get data by page and user_id
+        // $data['data_questionniare'] = DB::table('questionniare_master as qm')
+        // ->leftJoin('questionniare_user_answer as qua', 'qua.questionniare_master_id', '=', 'qm.id')
+        // ->where('qm.page', '=', $page)
+        // ->where('qua.user_id', '=', $user_id)
+        // ->orderBy('qm.number', 'asc')
+        // ->get(['qm.number', 'qm.number_string', 'qm.description', 'qm.id', 'qua.answer']);
         $data['data_questionniare'] = DB::table('questionniare_master as qm')
+            ->where('qm.page', '=', $page)
+            ->orderBy('qm.number', 'asc')
+            ->get(['qm.number', 'qm.number_string', 'qm.description', 'qm.id']);
+
+        $data['user_answer'] = DB::table('questionniare_master as qm')
         ->leftJoin('questionniare_user_answer as qua', 'qua.questionniare_master_id', '=', 'qm.id')
         ->where('qm.page', '=', $page)
         ->where('qua.user_id', '=', $user_id)
         ->orderBy('qm.number', 'asc')
-        ->get(['qm.number', 'qm.number_string', 'qm.description', 'qm.id', 'qua.answer']);
+        ->get(['qm.number', 'qua.answer']);
+
+        $list_answer = [];
+        if ( count ( $data['user_answer'] ) != 0 ) :
+            foreach ( $data['user_answer'] as $ua ) :
+                $list_answer [$ua->number] = $ua->answer;
+            endforeach ;
+        endif ;
+        $data['list_answer'] = $list_answer;
 
         # check data
         $count_questionniare = count ( $data['data_questionniare'] );
-
-        # get data by only current page
-        if ( $count_questionniare == 0 ) :
-            $data['data_questionniare'] = DB::table('questionniare_master as qm')
-            ->where('qm.page', '=', $page)
-            ->orderBy('qm.number', 'asc')
-            ->get(['qm.number', 'qm.number_string', 'qm.description', 'qm.id']);
-        endif;
 
         # get max page
         $data['max_page'] = DB::table('questionniare_master as qm')

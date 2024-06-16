@@ -98,18 +98,18 @@
                             @foreach ( $data_questionniare as $data )
                             <tr class="bg-light">
                                 <td style="text-align: center;">{{ $data->number }}.</td>
-                                <td>{{ $data->description }}</td>
+                                <td>{!! $data->description !!}</td>
                                 <td align="center">
-                                    <input type="radio" class="SI" name="{{ $data->number_string }}" id="{{ $data->number }}" @if ( property_exists($data, 'answer') ) @if( $data->answer == 4 ) checked @endif @endif value="4" onchange="return saveAnswer(this)">
+                                    <input type="radio" class="SI" name="{{ $data->number_string }}" id="{{ $data->number }}" @if ( property_exists($data, 'answer') ) @if( $list_answer[$data->number] == 4 ) checked @endif @endif value="4" onchange="return saveAnswer(this)">
                                 </td>
                                 <td align="center">
-                                    <input type="radio" class="SR" name="{{ $data->number_string }}" id="{{ $data->number }}" @if ( property_exists($data, 'answer') ) @if( $data->answer == 3 ) checked @endif @endif value="3" onchange="return saveAnswer(this)">
+                                    <input type="radio" class="SR" name="{{ $data->number_string }}" id="{{ $data->number }}" @if ( property_exists($data, 'answer') ) @if( $list_answer[$data->number] == 3 ) checked @endif @endif value="3" onchange="return saveAnswer(this)">
                                 </td>
                                 <td align="center">
-                                    <input type="radio" class="KD" name="{{ $data->number_string }}" id="{{ $data->number }}" @if ( property_exists($data, 'answer') ) @if( $data->answer == 2 ) checked @endif @endif value="2" onchange="return saveAnswer(this)">
+                                    <input type="radio" class="KD" name="{{ $data->number_string }}" id="{{ $data->number }}" @if ( property_exists($data, 'answer') ) @if( $list_answer[$data->number] == 2 ) checked @endif @endif value="2" onchange="return saveAnswer(this)">
                                 </td>
                                 <td align="center">
-                                    <input type="radio" class="TP" name="{{ $data->number_string }}" id="{{ $data->number }}" @if ( property_exists($data, 'answer') ) @if( $data->answer == 1 ) checked @endif @endif value="1" onchange="return saveAnswer(this)">
+                                    <input type="radio" class="TP" name="{{ $data->number_string }}" id="{{ $data->number }}" @if ( property_exists($data, 'answer') ) @if( $list_answer[$data->number] == 1 ) checked @endif @endif value="1" onchange="return saveAnswer(this)">
                                 </td>
                             </tr>
                             @endforeach

@@ -267,6 +267,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </ul>
                 </li>
 
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-file"></i>
+                    <p style="color: #c2c7d0"> Kuisioner
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                    </a>
+                    <ul class="nav nav-treeview" style="display: none;">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.questionniare.manage') }}" class="nav-link">
+                                <i class="fas fa-book nav-icon"></i>
+                                <p style="color: #c2c7d0">Kelola Kuisioner</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
 				@php
 					# dd(Route::current()->uri);
 				@endphp
