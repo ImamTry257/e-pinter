@@ -120,7 +120,7 @@ Route::middleware([AuthFrontMiddleware::class])->group(function () {
 });
 
 # Info E-Pinter
-Route::get('/info-epinter', [LearningInfoController::class, 'infoEpinter'])->name('info.epinter');
+Route::get('/web-guide', [LearningInfoController::class, 'infoEpinter'])->name('info.epinter');
 
 # Learning activity
 Route::middleware([AuthFrontMiddleware::class])->group(function () {
