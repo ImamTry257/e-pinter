@@ -24,6 +24,7 @@ use App\Http\Controllers\front\LoginController;
 use App\Http\Controllers\front\PotentialLocalGudegController;
 use App\Http\Controllers\front\ProfileController;
 use App\Http\Controllers\front\QuestionController;
+use App\Http\Controllers\front\QuestionnaireController;
 use App\Http\Controllers\front\ReflectionController;
 use App\Http\Controllers\front\RegisterController;
 use App\Http\Controllers\front\SainsInfoController;
@@ -117,6 +118,10 @@ Route::middleware([AuthFrontMiddleware::class])->group(function () {
     # Question
     Route::get('/question/{questionNo}', [QuestionController::class, 'index'])->name('question');
     Route::post('/question/{questionNo}', [QuestionController::class, 'store'])->name('question.store');
+
+    # Questionnaire
+    Route::get('/questionnaire/{page}', [QuestionnaireController::class, 'index'])->name('questionnaire');
+    Route::post('/questionnaire', [QuestionnaireController::class, 'store'])->name('questionnaire.store');
 });
 
 # Info E-Pinter
