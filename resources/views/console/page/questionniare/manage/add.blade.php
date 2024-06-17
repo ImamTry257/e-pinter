@@ -68,7 +68,7 @@
                                         </div>
                                         <div class="col-10">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" name="number" value="{{ old('number') }}" id="">
+                                                <input type="text" class="form-control" name="number" value="{{ old('number') }}" id="" readonly>
                                                 @error('number')
                                                     <span class="invalid-feedback d-inline" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -129,24 +129,37 @@
 <script>
     var editorDesc = new RichTextEditor("#descriptions");
 
-    var editorOptionA = new RichTextEditor("#option_A");
-    var editorOptionB = new RichTextEditor("#option_B");
-    var editorOptionC = new RichTextEditor("#option_C");
-    var editorOptionD = new RichTextEditor("#option_D");
-    var editorOptionE = new RichTextEditor("#option_E");
-
-    var editorOptionAWithReason = new RichTextEditor("#option_A_with_reason");
-    var editorOptionBWithReason = new RichTextEditor("#option_B_with_reason");
-    var editorOptionCWithReason = new RichTextEditor("#option_C_with_reason");
-    var editorOptionDWithReason = new RichTextEditor("#option_D_with_reason");
-    var editorOptionEWithReason = new RichTextEditor("#option_E_with_reason");
-    console.log('add content Potensial Gudeg Local');
-
-    $('input#images').on('change', (e) => {
-        if ( $(e.target).attr('id') == 'images' ) {
-            $('div#wrapper-images').show()
-            $('img#img-content').attr('src', URL.createObjectURL(e.target.files[0]))
-        }
+    $(document).ready(function() {
+        getMaxNumber()
     })
+
+    function getMaxNumber() {
+        $.ajax({
+            type: "POST", // send ajax with post
+            url: "{{ route('admin.questionniare.get.max_number') }}",
+            dataType: 'json',
+            timeout: 3000,
+            cache: false,
+            contentType: false,
+            processData: false,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                'Access-Control-Allow-Origin': '*'
+            },
+            beforeSend: function(xhr, obj) {
+
+            },
+            success: function(response) {
+                if ( response.status ) {
+                    $('input[name="number"]').val( ( response.data + 1 ) )
+                }
+                console.log(response)
+            },
+            error: function(error) {
+                if (error.statusText == 'timeout') {
+                }
+            }
+        })
+    }
 </script>
 @endsection

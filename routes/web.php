@@ -252,6 +252,7 @@ Route::middleware([AuthConsoleMiddleware::class])->group(function () {
     # Manage Questionniare
     Route::prefix('admin/questionniare/manage')->group(function(){
         Route::get('/', [QuestionniareManageController::class, 'index'])->name('admin.questionniare.manage');
+        Route::post('/getMaxNumber', [QuestionniareManageController::class, 'getMaxNumber'])->name('admin.questionniare.get.max_number');
         Route::get('/add', [QuestionniareManageController::class, 'create'])->name('admin.questionniare.manage.add');
         Route::post('/add', [QuestionniareManageController::class, 'store'])->name('admin.questionniare.manage.store');
         Route::get('/show/{id}', [QuestionniareManageController::class, 'show'])->name('admin.questionniare.manage.show');

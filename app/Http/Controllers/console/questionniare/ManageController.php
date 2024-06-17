@@ -139,4 +139,22 @@ class ManageController extends Controller
             return redirect()->route('admin.questionniare.manage');
         endif;
     }
+
+    public function getMaxNumber()
+    {
+        try {
+            $getMaxNumber = DB::table('questionniare_master')->max('number');
+
+            return response()->json([
+                'status'=> true,
+                'data'  => $getMaxNumber
+            ]);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json([
+                'status'=> false,
+                'data'  => 0
+            ]);
+        }
+    }
 }
