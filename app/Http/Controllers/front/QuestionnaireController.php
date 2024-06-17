@@ -45,15 +45,14 @@ class QuestionnaireController extends Controller
         $data['max_page'] = DB::table('questionniare_master as qm')
         ->max('qm.page');
 
-        # check questionniare is already
-        if ( $count_questionniare == 0 ) :
-            return redirect(route('front.dashboard'));
-        endif;
-
         # check page is valid
         if ( $page > $data['max_page'] && $count_questionniare != 0 ) :
             return redirect(route('questionnaire', ['page' => 1]));
         endif;
+
+        # check is valid for kuisioner
+        $data['is_valid'] = $count_questionniare;
+
         # dd($data);
 
         return view('front.page.questionnaire.index', $data);

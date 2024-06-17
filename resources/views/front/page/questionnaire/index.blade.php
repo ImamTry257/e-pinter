@@ -17,11 +17,18 @@
         .bg-unfilled {
             background-color: #ffdd79 !important;
         }
+
+        .bg-popup {
+            background-color: #004972;
+        }
     </style>
 @endsection
 
 @section('content')
 <div class="wrapper-dahboard-page col-lg-10 px-2 row">
+
+    {{-- check kuisioner --}}
+    <input type="hidden" name="" id="is_valid" value="{{ $is_valid }}" onchange="return questionnaireValidated(this)">
 
     <div class="card list-topic-content col-11 mx-3 bg-white">
         <div class="title-list row d-flex justify-content-center">
@@ -193,6 +200,30 @@
     </div>
 </div>
 
+<!-- Button trigger modal -->
+<div class="d-none">
+    <button type="button" class="btn btn-primary" id="trigger_btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        Launch static backdrop modal
+    </button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+        <div class="modal-header bg-popup">
+            <h5 class="modal-title text-white" id="staticBackdropLabel">Info Kuisioner</h5>
+        </div>
+        <div class="modal-body text-center">
+            <span style="font-size: 18px;">Silakan hubungi Admin Backoffice untuk mengerjakan Kuisioner</span>
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+            <a href="{{ route('front.dashboard') }}" class="btn bg-popup text-white">Kembali ke Halaman Dashboard</a>
+        </div>
+        </div>
+    </div>
+</div>
+
 <script>
 
     function saveAnswer(e){
@@ -240,5 +271,14 @@
             }
         })
     }
+
+    function questionnaireValidated(e){
+        var getValue = $(e).val()
+
+        if ( getValue == 0 ) {
+            $('button#trigger_btn').click()
+        }
+    }
+
 </script>
 @endsection

@@ -243,7 +243,6 @@
         };
 
         function checkCurrentDuration(){
-            console.log('show modal selesai')
             // show popup after current duration == 0
             $('button#trigger_btn').click()
         }
