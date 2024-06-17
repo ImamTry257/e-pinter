@@ -76,7 +76,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="javascript:void(0);" class="nav-link text-white @if (Route::current()->uri == 'kuisioner') {{ 'active-menu' }} @endif">
+                    <a href="{{ route('questionnaire', ['page' => 1]) }}" class="nav-link text-white @if (Route::current()->uri == 'kuisioner') {{ 'active-menu' }} @endif">
                         <i class="nav-icon fas fa-table"></i>
                         <p class="ps-3">Kuisioner</p>
                     </a>
