@@ -1,7 +1,7 @@
 <table>
     <thead>
         <tr>
-            <td colspan="5">DATA HASIL KUISIONER SISWA</td>
+            <td colspan="5">DATA HASIL KUISIONER SISWA SESI {{ strtoupper($type) }}</td>
         </tr>
     </thead>
 

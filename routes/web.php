@@ -265,8 +265,11 @@ Route::middleware([AuthConsoleMiddleware::class])->group(function () {
     # Result Question
     Route::prefix('admin/questionniare/result')->group(function(){
         Route::get('/', [QuestionniareResultController::class, 'index'])->name('admin.questionniare.result');
+        Route::get('/{type}', [QuestionniareResultController::class, 'list'])->name('admin.questionniare.result.type');
         Route::get('/show/{user_id}', [QuestionniareResultController::class, 'show'])->name('admin.questionniare.result.show');
         Route::get('/download', [QuestionniareResultController::class, 'download'])->name('admin.questionniare.result.download');
+        Route::get('/download/{type}', [QuestionniareResultController::class, 'downloadType'])->name('admin.questionniare.result.download.type');
         Route::get('/getStudentQuestionniare', [QuestionniareResultController::class, 'getStudentQuestionniare'])->name('admin.questionniare.result.get.user');
+        Route::get('/getStudentQuestionniare/{type}', [QuestionniareResultController::class, 'getStudentQuestionniareType'])->name('admin.questionniare.result.get.user.type');
     });
 });

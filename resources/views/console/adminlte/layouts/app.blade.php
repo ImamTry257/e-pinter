@@ -281,11 +281,34 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <p style="color: #c2c7d0">Kelola Kuisioner</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item d-none">
                             <a href="{{ route('admin.questionniare.result') }}" class="nav-link">
                                 <i class="fas fa-table nav-icon"></i>
                                 <p style="color: #c2c7d0">Hasil Kuisioner</p>
                             </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-table"></i>
+                            <p style="color: #c2c7d0">
+                                Hasil Kuisioner
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                            </a>
+                            <ul class="nav nav-treeview" style="display: none;">
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.questionniare.result.type', ['type' => 'pre-test']) }}" class="nav-link">
+                                        <i class="fas fa-table nav-icon"></i>
+                                        <p>Pre Test</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.questionniare.result.type', ['type' => 'post-test']) }}" class="nav-link">
+                                        <i class="fas fa-table nav-icon"></i>
+                                        <p>Post Test</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </li>
