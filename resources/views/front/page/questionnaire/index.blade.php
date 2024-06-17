@@ -238,7 +238,7 @@
         formData.append('number', $(e).attr('id'))
         formData.append('answer', $(e).val())
         formData.append('answer_code', $(e).attr('class'))
-        console.log(formData, $(e).parent().parent())
+
         $.ajax({
             type: "POST", // send ajax with post
             url: "{{ route('questionnaire.store') }}",

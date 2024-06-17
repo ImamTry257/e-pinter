@@ -68,7 +68,11 @@ class ManageController extends Controller
                 # dd($request->all(), $param_option, $param_option_w_r, $paramAdd);
                 DB::table('questionniare_master')->insert($paramAdd);
 
-                return redirect()->route('admin.questionniare.manage')->with('success', 'Soal Kuisioner berhasil ditambahkan');
+                if ( array_key_exists('create', $request->all()) ) :
+                    return redirect()->route('admin.questionniare.manage')->with('success', 'Soal Kuisioner berhasil ditambahkan');
+                else :
+                    return redirect()->route('admin.questionniare.manage.add')->with('success', 'Soal Kuisioner berhasil ditambahkan');
+                endif ;
             } catch (\Throwable $th) {
                 dd($th->getMessage());
                 return redirect()->route('admin.questionniare.manage')->with('error', 'Soal Kuisioner gagal ditambahkan');

@@ -17,6 +17,25 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
+                <div class="col-md-12 pb-2">
+                    @if(Session::has('success'))
+                        <div class="alert alert-success">
+                            {{ Session::get('success') }}
+                            @php
+                                Session::forget('success');
+                            @endphp
+                        </div>
+                    @endif
+
+                    @if(Session::has('error'))
+                        <div class="alert alert-danger">
+                            {{ Session::get('error') }}
+                            @php
+                                Session::forget('error');
+                            @endphp
+                        </div>
+                    @endif
+                </div>
                 <div class="col-md-12">
                     <div class="card border-0">
                         <div class="card-header bg-console text-dark">
@@ -84,7 +103,8 @@
                                         <div class="col-4">
                                             <div>
                                                 <a href="{{ route('admin.questionniare.manage') }}" class="btn bg-danger text-dark">Kembali</a>
-                                                <button type="submit" class="btn bg-primary text-dark">Simpan</button>
+                                                <button type="submit" name="create" class="btn bg-primary text-dark">Simpan</button>
+                                                <button type="submit" name="create_again" class="btn bg-primary text-dark">Simpan dan buat soal kembali</button>
                                             </div>
                                         </div>
                                     </div>

@@ -25,7 +25,7 @@
                 <td>{{ $user_answer['school_name'] }}</td>
                 <td>{{ $user_answer['student_name'] }}</td>
                 @foreach ($user_answer['result'] as $result)
-                    <td>{{ $result->answer }}</td>
+                    <td>{{ $result['answer'] }}</td>
                 @endforeach
             </tr>
         @endforeach

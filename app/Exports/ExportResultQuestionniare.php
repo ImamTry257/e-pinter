@@ -30,6 +30,13 @@ class ExportResultQuestionniare implements FromView, WithEvents, WithStyles, Wit
         ->orderBy('u.name', 'asc')
         ->get(['u.id', 'u.name as student_name', 'u.school_name', 'u.created_at']);
 
+        # generate number questionniare
+        $number_questionniare = [];
+        for ( $i = 1; $i <= 30; $i++ ) :
+            $number_questionniare [$i] = $i;
+        endfor ;
+        $data['number_questionniare'] = $number_questionniare;
+
         # set to new format
         $data['detail_user_answer'] = [];
         if ( count ( $get_detail_user ) != 0 ) :
@@ -37,22 +44,52 @@ class ExportResultQuestionniare implements FromView, WithEvents, WithStyles, Wit
 
                 # get data user answer
                 $data_user_answer = DB::table('questionniare_user_answer as qua')
-                                    ->join('questionniare_master as qm', 'qm.id', '=', 'qua.questionniare_master_id')
+                                    ->leftJoin('questionniare_master as qm', 'qm.id', '=', 'qua.questionniare_master_id')
                                     ->where('qua.user_id', '=', $val->id)
                                     ->orderBy('qm.number', 'asc')
-                                    ->get(['qm.number', 'qua.answer']);
+                                    ->get(['qm.number', 'qua.answer'])
+                                    ->toArray();
 
+                # set to new array
+                $data_selected = [];
+                foreach ( $data_user_answer as $dd ) :
+                    $data_selected [$dd->number] = $dd->answer;
+                endforeach;
+
+                # set to new array
+                $number_selected = [];
+                foreach ( $data_user_answer as $duans ) :
+                    $number_selected [] = $duans->number;
+                endforeach;
+
+                # set new format for collect user answer
+                $d_user_answer = [];
+                foreach ( $number_questionniare as $number ) :
+                    if ( in_array( $number, $number_selected ) ) :
+                        $d_user_answer[] = [
+                            'number' => $number,
+                            'answer' => $data_selected[$number]
+                        ];
+                    else :
+                        $d_user_answer[] = [
+                            'number' => $number,
+                            'answer' => ''
+                        ];
+                    endif ;
+                endforeach ;
+
+                # dd($d_user_answer);
                 $data['detail_user_answer'] [] = [
                     'user_id'       => $val->id,
                     'student_name'  => $val->student_name,
                     'school_name'   => $val->school_name,
                     'progress_date' => $val->created_at,
-                    'result'        => $data_user_answer
+                    'result'        => $d_user_answer
                 ];
             endforeach;
         endif;
 
-        dd($data);
+        # dd($data);
         return view('console.page.questionniare.result.export', $data);
     }
 
