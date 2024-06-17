@@ -1,5 +1,25 @@
 @extends('front.layouts.app-dashboard')
 
+@section('css')
+    <style>
+        .text-filled {
+            color: #9fe6af;
+        }
+
+        .bg-filled {
+            background-color: #9fe6af !important;
+        }
+
+        .text-unfilled {
+            color: #ffdd79;
+        }
+
+        .bg-unfilled {
+            background-color: #ffdd79 !important;
+        }
+    </style>
+@endsection
+
 @section('content')
 <div class="wrapper-dahboard-page col-lg-10 px-2 row">
 
@@ -7,7 +27,7 @@
         <div class="title-list row d-flex justify-content-center">
             <div class="col-lg-12 p-4">
 
-                <div class="prolog pb-3 mb-3 px-3" style="background-color: #e3e7ea !important;">
+                <div class="prolog pb-3 mb-3 px-3" style="background-color: #f3f6f9 !important;">
                     {{-- Say Welcome and Detial Informasi --}}
                     <div class="wrapper-detail-info pb-4 pt-3">
                         <span>Selamat Datang, <b>{{ Auth::user()->name; }}</b> </span>
@@ -49,8 +69,8 @@
                     <div class="wrapper-info-color">
                         <small>Ketarangan warna :
                             <ul>
-                                <li><i class="fas fa-circle text-warning"></i> Belum diisi</li>
-                                <li><i class="fas fa-circle text-success"></i> Sudah diisi</li>
+                                <li><i class="fas fa-circle text-unfilled"></i> Belum diisi</li>
+                                <li><i class="fas fa-circle text-filled"></i> Sudah diisi</li>
                             </ul>
                         </small>
                     </div>
@@ -96,20 +116,52 @@
                             </tr>
 
                             @foreach ( $data_questionniare as $data )
-                            <tr class="bg-light">
+                            <tr class="@if( array_key_exists($data->number, $list_answer) ) bg-filled @else bg-unfilled @endif">
                                 <td style="text-align: center;">{{ $data->number }}.</td>
                                 <td>{!! $data->description !!}</td>
                                 <td align="center">
-                                    <input type="radio" class="SI" name="{{ $data->number_string }}" id="{{ $data->number }}" @if ( property_exists($data, 'answer') ) @if( $list_answer[$data->number] == 4 ) checked @endif @endif value="4" onchange="return saveAnswer(this)">
+                                    <input
+                                        type="radio"
+                                        class="SI"
+                                        name="{{ $data->number }}"
+                                        id="{{ $data->number }}"
+                                        @if ( array_key_exists($data->number, $list_answer) ) @if( $list_answer[$data->number] == 4 ) checked @endif @endif
+                                        value="4"
+                                        onchange="return saveAnswer(this)"
+                                    >
                                 </td>
                                 <td align="center">
-                                    <input type="radio" class="SR" name="{{ $data->number_string }}" id="{{ $data->number }}" @if ( property_exists($data, 'answer') ) @if( $list_answer[$data->number] == 3 ) checked @endif @endif value="3" onchange="return saveAnswer(this)">
+                                    <input
+                                        type="radio"
+                                        class="SR"
+                                        name="{{ $data->number }}"
+                                        id="{{ $data->number }}"
+                                        @if ( array_key_exists($data->number, $list_answer) ) @if( $list_answer[$data->number] == 3 ) checked @endif @endif
+                                        value="3"
+                                        onchange="return saveAnswer(this)"
+                                    >
                                 </td>
                                 <td align="center">
-                                    <input type="radio" class="KD" name="{{ $data->number_string }}" id="{{ $data->number }}" @if ( property_exists($data, 'answer') ) @if( $list_answer[$data->number] == 2 ) checked @endif @endif value="2" onchange="return saveAnswer(this)">
+                                    <input
+                                        type="radio"
+                                        class="KD"
+                                        name="{{ $data->number }}"
+                                        id="{{ $data->number }}"
+                                        @if ( array_key_exists($data->number, $list_answer) ) @if( $list_answer[$data->number] == 2 ) checked @endif @endif
+                                        value="2"
+                                        onchange="return saveAnswer(this)"
+                                    >
                                 </td>
                                 <td align="center">
-                                    <input type="radio" class="TP" name="{{ $data->number_string }}" id="{{ $data->number }}" @if ( property_exists($data, 'answer') ) @if( $list_answer[$data->number] == 1 ) checked @endif @endif value="1" onchange="return saveAnswer(this)">
+                                    <input
+                                        type="radio"
+                                        class="TP"
+                                        name="{{ $data->number }}"
+                                        id="{{ $data->number }}"
+                                        @if ( array_key_exists($data->number, $list_answer) ) @if( $list_answer[$data->number] == 1 ) checked @endif @endif
+                                        value="1"
+                                        onchange="return saveAnswer(this)"
+                                    >
                                 </td>
                             </tr>
                             @endforeach
@@ -150,7 +202,7 @@
         formData.append('number', $(e).attr('id'))
         formData.append('answer', $(e).val())
         formData.append('answer_code', $(e).attr('class'))
-
+        console.log(formData, $(e).parent().parent())
         $.ajax({
             type: "POST", // send ajax with post
             url: "{{ route('questionnaire.store') }}",
@@ -168,7 +220,12 @@
 
             },
             success: function(response) {
-                // console.log(response)
+
+                if ( response.status ) {
+                    console.log($(e).parent().parent())
+                    $(e).parent().parent().removeClass('bg-unfilled').addClass('bg-filled')
+                }
+                console.log(response)
 
             },
             error: function(error) {

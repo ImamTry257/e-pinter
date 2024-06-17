@@ -97,10 +97,10 @@
               serverSide: true,
               ajax: "{{ route('admin.questionniare.manage.get.user') }}",
               columns: [
-                    {data: 'DT_RowIndex', name: 'No'},
-                    {data: 'page', name: 'Halaman'},
-                    {data: 'number', name: 'No'},
-                    {data: 'description', name: 'Soal'},
+                    {data: 'DT_RowIndex', name: 'No', orderable: false},
+                    {data: 'page', name: 'Halaman', orderable: false},
+                    {data: 'number', name: 'No', orderable: false},
+                    {data: 'description', name: 'Soal', orderable: false},
                     {data: 'action', name: 'action', orderable: false, searchable: true},
               ]
           });

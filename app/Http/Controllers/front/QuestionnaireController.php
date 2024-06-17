@@ -17,16 +17,13 @@ class QuestionnaireController extends Controller
         $data['current_page'] = $page;
 
         # get data by page and user_id
-        // $data['data_questionniare'] = DB::table('questionniare_master as qm')
-        // ->leftJoin('questionniare_user_answer as qua', 'qua.questionniare_master_id', '=', 'qm.id')
-        // ->where('qm.page', '=', $page)
-        // ->where('qua.user_id', '=', $user_id)
-        // ->orderBy('qm.number', 'asc')
-        // ->get(['qm.number', 'qm.number_string', 'qm.description', 'qm.id', 'qua.answer']);
         $data['data_questionniare'] = DB::table('questionniare_master as qm')
             ->where('qm.page', '=', $page)
             ->orderBy('qm.number', 'asc')
             ->get(['qm.number', 'qm.number_string', 'qm.description', 'qm.id']);
+
+        # check data
+        $count_questionniare = count ( $data['data_questionniare'] );
 
         $data['user_answer'] = DB::table('questionniare_master as qm')
         ->leftJoin('questionniare_user_answer as qua', 'qua.questionniare_master_id', '=', 'qm.id')
@@ -35,6 +32,7 @@ class QuestionnaireController extends Controller
         ->orderBy('qm.number', 'asc')
         ->get(['qm.number', 'qua.answer']);
 
+        # get user answer
         $list_answer = [];
         if ( count ( $data['user_answer'] ) != 0 ) :
             foreach ( $data['user_answer'] as $ua ) :
@@ -43,30 +41,17 @@ class QuestionnaireController extends Controller
         endif ;
         $data['list_answer'] = $list_answer;
 
-        # check data
-        $count_questionniare = count ( $data['data_questionniare'] );
-
         # get max page
         $data['max_page'] = DB::table('questionniare_master as qm')
         ->max('qm.page');
 
-        # get user answer by user id login
-        $data['user_answer'] = [];
-        if ( $count_questionniare != 0 ) :
-            foreach ( $data['data_questionniare'] as $value ) :
-                $get_data = DB::table('questionniare_user_answer as qua')
-                ->where([
-                    'qua.user_id'   => Auth::user()->id,
-                    'qua.questionniare_master_id'   => $value->id,
-                ])
-                ->first();
-
-                $data['user_answer'][] = $get_data;
-            endforeach ;
-        endif ;
+        # check questionniare is already
+        if ( $count_questionniare == 0 ) :
+            return redirect(route('front.dashboard'));
+        endif;
 
         # check page is valid
-        if ( $page > $data['max_page'] ) :
+        if ( $page > $data['max_page'] && $count_questionniare != 0 ) :
             return redirect(route('questionnaire', ['page' => 1]));
         endif;
         # dd($data);

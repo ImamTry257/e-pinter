@@ -1,7 +1,7 @@
 <table>
     <thead>
         <tr>
-            <td colspan="5">DATA HASIL PENGERJAAN SOAL SISWA</td>
+            <td colspan="5">DATA HASIL KUISIONER SISWA</td>
         </tr>
     </thead>
 
@@ -25,7 +25,7 @@
                 <td>{{ $user_answer['school_name'] }}</td>
                 <td>{{ $user_answer['student_name'] }}</td>
                 @foreach ($user_answer['result'] as $result)
-                    <td>{{ $result->score }}</td>
+                    <td>{{ $result->answer }}</td>
                 @endforeach
             </tr>
         @endforeach

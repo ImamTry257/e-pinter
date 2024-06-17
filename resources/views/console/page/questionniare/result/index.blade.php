@@ -29,7 +29,7 @@
                     @endif
                 </div>
                 <div class="col-md-12 pb-2">
-                    <a href="{{ route('admin.question.result.download') }}" class="btn bg-console text-dark"><i class="fas fa-download"></i> Download Hasil</a>
+                    <a href="{{ route('admin.questionniare.result.download') }}" class="btn bg-console text-dark"><i class="fas fa-download"></i> Download Hasil</a>
                 </div>
                 <div class="col-md-12">
                     <div class="card border-0">
@@ -85,7 +85,7 @@
           var table = $('.la-datatable').DataTable({
               processing: true,
               serverSide: true,
-              ajax: "{{ route('admin.question.result.get.user') }}",
+              ajax: "{{ route('admin.questionniare.result.get.user') }}",
               columns: [
                     {data: 'DT_RowIndex', name: 'No', orderable: false},
                     {data: 'nama_siswa', name: 'Siswa', orderable: false},

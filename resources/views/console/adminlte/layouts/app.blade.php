@@ -281,6 +281,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <p style="color: #c2c7d0">Kelola Kuisioner</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.questionniare.result') }}" class="nav-link">
+                                <i class="fas fa-table nav-icon"></i>
+                                <p style="color: #c2c7d0">Hasil Kuisioner</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 
