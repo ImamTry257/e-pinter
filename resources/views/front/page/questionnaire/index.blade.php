@@ -28,7 +28,7 @@
 <div class="wrapper-dahboard-page col-lg-10 px-2 row">
 
     {{-- check kuisioner --}}
-    <input type="hidden" name="" id="is_valid" value="{{ $is_valid }}" onchange="return questionnaireValidated(this)">
+    <input type="hidden" name="" id="is_valid" value="{{ $is_valid }}">
 
     <div class="card list-topic-content col-11 mx-3 bg-white">
         <div class="title-list row d-flex justify-content-center">
@@ -225,6 +225,11 @@
 </div>
 
 <script>
+    $(document).ready(function () {
+        console.log('asdas')
+        questionnaireValidated($('input#is_valid'))
+    })
+
 
     function saveAnswer(e){
 
@@ -273,7 +278,7 @@
     }
 
     function questionnaireValidated(e){
-        var getValue = $(e).val()
+        var getValue = e.attr('value')
 
         if ( getValue == 0 ) {
             $('button#trigger_btn').click()
