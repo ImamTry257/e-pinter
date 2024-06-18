@@ -183,21 +183,24 @@
         // https://jsfiddle.net/satyasrinivaschekuri/y03m54Le/
 
         var calculatedTime = new Date(null);
-        calculatedTime.setSeconds( ( $('#overall_time').val() == 0 ) ? '{{ Session::get("current_duration") }}' : $('#overall_time').val() ); //setting value in seconds
+        var sessionSetData = ( '{{ $type_selected }}' == 'pre-test' ) ? '{{ Session::get("current_duration_pre_test") }}' : '{{ Session::get("current_duration_post_test") }}'
+        calculatedTime.setSeconds( ( $('#overall_time').val() == 0 ) ? sessionSetData : $('#overall_time').val() ); //setting value in seconds
         var newTime = calculatedTime.toISOString().substr(11, 8);
 
         var speaking_ms = newTime;
         var speaking_ms_arr = speaking_ms.split(":");
         var speaking_time_min_sec = (+speaking_ms_arr[0]) * 60 * 60 + (+speaking_ms_arr[1]) * 60 + (+speaking_ms_arr[2]);
         var speaking_time_min_sec = parseInt(speaking_time_min_sec) + 1;
-        console.log(speaking_ms);
         var speaking_value;
 
-        if (localStorage.getItem("speaking_counter")) {
-            if (localStorage.getItem("speaking_counter") <= 0) {
+        var getLocalStorage = ( '{{ $type_selected }}' == 'pre-test' ) ? localStorage.getItem("speaking_counter_pre_test") : localStorage.getItem("speaking_counter_post_test")
+        var keySetLocalStorage = ( '{{ $type_selected }}' == 'pre-test' ) ? "speaking_counter_pre_test" : "speaking_counter_post_test"
+
+        if (getLocalStorage) {
+            if (getLocalStorage <= 0) {
                 speaking_value = speaking_time_min_sec;
             } else {
-                speaking_value = localStorage.getItem("speaking_counter");
+                speaking_value = getLocalStorage;
             }
         } else {
             speaking_value = speaking_time_min_sec;
@@ -207,16 +210,16 @@
 
         var speaking_counter = function() {
             if (speaking_value <= 0) {
-                localStorage.setItem("speaking_counter", speaking_time_min_sec);
+                localStorage.setItem(keySetLocalStorage, speaking_time_min_sec);
 
                 checkCurrentDuration()
             } else {
                 speaking_value = parseInt(speaking_value) - 1;
-                localStorage.setItem("speaking_counter", speaking_value);
+                localStorage.setItem(keySetLocalStorage, speaking_value);
             }
             document.getElementById('overall_time').value = speaking_value;
             if (speaking_value == 0) {
-                localStorage.setItem("speaking_counter", speaking_value);
+                localStorage.setItem(keySetLocalStorage, speaking_value);
                 setTimeout(function() {
                     clearInterval(interval);
                 }, 1000);
