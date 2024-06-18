@@ -203,7 +203,8 @@ class QuestionnaireController extends Controller
             $user_answer = DB::table('questionniare_user_answer');
             $query_check = $user_answer->where([
                 'user_id'                   => Auth::user()->id,
-                'questionniare_master_id'   => $q_m_id->id
+                'questionniare_master_id'   => $q_m_id->id,
+                'type'                      => $request->type_selected
             ])->first();
 
             # set param
