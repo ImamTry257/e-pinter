@@ -133,8 +133,8 @@
                                         class="{{ $option_type }}"
                                         name="{{ $data->number }}"
                                         id="{{ $data->number }}"
-                                        @if ( array_key_exists($data->number, $list_answer) ) @if( $list_answer[$data->number] == ( ( $data->statement_type ) == 'P' ? $list_positive_value[$index] : $list_negative_value[$index] ) ) checked @endif @endif
-                                        value="{{ ( $data->statement_type ) == 'P' ? $list_positive_value[$index] : $list_negative_value[$index] }}"
+                                        @if ( array_key_exists($data->number, $list_answer) ) @if( $list_answer[$data->number] == ( ( $data->statement_type ) == 'positive' ? $list_positive_value[$index] : $list_negative_value[$index] ) ) checked @endif @endif
+                                        value="{{ ( $data->statement_type ) == 'positive' ? $list_positive_value[$index] : $list_negative_value[$index] }}"
                                         onchange="return saveAnswer(this)"
                                     >
                                 </td>
