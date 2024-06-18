@@ -78,6 +78,25 @@
                                         </div>
                                     </div>
 
+                                    <div class="row">
+                                        <div class="col-2 form-display-as-box col-sm-2 control-label text- pt-2">
+                                            <span for="" class="">Tipe Pernyataan</span>
+                                        </div>
+                                        <div class="col-10">
+                                            <div class="form-group">
+                                                <select name="statement_type" id="" class="form-control">
+                                                    <option value="positive">Positive</option>
+                                                    <option value="negative">Negative</option>
+                                                </select>
+                                                @error('statement_type')
+                                                    <span class="invalid-feedback d-inline" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <hr>
 
                                     <div class="row">

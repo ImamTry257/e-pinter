@@ -20,6 +20,7 @@ class ManageController extends Controller
     {
         if ($request->ajax()) :
             $data = DB::table('questionniare_master as qm')
+                        ->where('qm.deleted_at', '=', null)
                         ->orderBy('qm.id', 'asc')->get();
 
             return DataTables::of($data)
@@ -47,9 +48,10 @@ class ManageController extends Controller
 
             //validate form
             $this->validate($request, [
-                'page'            => 'required',
+                'page'              => 'required',
                 'number'            => 'required',
-                'descriptions'      => 'required'
+                'descriptions'      => 'required',
+                'statement_type'    => 'required'
             ]);
 
             try {
@@ -59,6 +61,7 @@ class ManageController extends Controller
                     'number'        => $request->number,
                     'number_string' => '-',
                     'description'   => $request->descriptions,
+                    'statement_type'   => $request->statement_type,
 
                     'created_by'    => Session::get('data_user_login')->id,
                     'updated_by'    => 0,
@@ -74,7 +77,7 @@ class ManageController extends Controller
                     return redirect()->route('admin.questionniare.manage.add')->with('success', 'Soal Kuisioner berhasil ditambahkan');
                 endif ;
             } catch (\Throwable $th) {
-                dd($th->getMessage());
+                # dd($th->getMessage());
                 return redirect()->route('admin.questionniare.manage')->with('error', 'Soal Kuisioner gagal ditambahkan');
             }
         else :

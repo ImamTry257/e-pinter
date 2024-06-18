@@ -22,6 +22,10 @@
         a#active-menu {
             background-color: rgba(255,255,255,.1);
         }
+
+        .bg-popup {
+            background-color: #004972;
+        }
     </style>
 
     <!-- include summernote css/js-->
@@ -45,7 +49,44 @@
         </div>
     </div>
 
+    <!-- Button trigger modal -->
+    <div class="d-none">
+        <button type="button" class="btn btn-primary" id="trigger_intro_test" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Launch static backdrop modal
+        </button>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            <div class="modal-header bg-popup">
+                <h5 class="modal-title text-white" id="staticBackdropLabel">Info Kuisioner</h5>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <span class="pb-3" style="font-size: 18px;">Silakan pilih Sesi untuk mengerjakan kuisioner berikut :</span>
+                </div>
+
+                <div class="d-flex justify-content-evenly mt-3">
+                    <a href="{{ route('front.dashboard') }}" class="btn bg-popup text-white">Pre Test</a>
+                    <a href="{{ route('front.dashboard') }}" class="btn bg-popup text-white">Post Test</a>
+                </div>
+            </div>
+            {{-- <div class="modal-footer d-flex justify-content-center">
+                <a href="{{ route('front.dashboard') }}" class="btn bg-popup text-white">Pre Test</a>
+                <a href="{{ route('front.dashboard') }}" class="btn bg-popup text-white">Post Test</a>
+            </div> --}}
+            </div>
+        </div>
+    </div>
+
     <script>
+
+        function triggerIntroTest(){
+            $('button#trigger_intro_test').click()
+        }
+
         // search-box open close js code
         let navbar = document.querySelector(".navbar");
         let searchBox = document.querySelector(".search-box .bx-search");

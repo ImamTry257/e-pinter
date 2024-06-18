@@ -75,8 +75,15 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item d-none">
                     <a href="{{ route('questionnaire', ['page' => 1]) }}" class="nav-link text-white @if (Route::current()->uri == 'kuisioner') {{ 'active-menu' }} @endif">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p class="ps-3">Kuisioner</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('questionnaire.introduction') }}" id="btn-kuisioner" class="nav-link text-white @if (Route::current()->uri == 'kuisioner') {{ 'active-menu' }} @endif">
                         <i class="nav-icon fas fa-table"></i>
                         <p class="ps-3">Kuisioner</p>
                     </a>

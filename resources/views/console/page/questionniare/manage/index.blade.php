@@ -52,7 +52,8 @@
                                                 <th width="5%">No</th>
                                                 <th width="10%">Halaman</th>
                                                 <th width="5%">Nomor Soal</th>
-                                                <th width="70%">Soal</th>
+                                                <th width="10%">Tipe Pernyataan</th>
+                                                <th width="60%">Soal</th>
                                                 <th width="10%">Action</th>
                                             </tr>
                                         </thead>
@@ -100,6 +101,7 @@
                     {data: 'DT_RowIndex', name: 'No', orderable: false},
                     {data: 'page', name: 'Halaman', orderable: false},
                     {data: 'number', name: 'No', orderable: false},
+                    {data: 'statement_type', name: 'Tipe Pernyataan', orderable: false},
                     {data: 'description', name: 'Soal', orderable: false},
                     {data: 'action', name: 'action', orderable: false, searchable: true},
               ]

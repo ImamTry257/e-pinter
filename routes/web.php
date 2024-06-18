@@ -122,8 +122,11 @@ Route::middleware([AuthFrontMiddleware::class])->group(function () {
     Route::post('/question/{questionNo}', [QuestionController::class, 'store'])->name('question.store');
 
     # Questionnaire
+    Route::get('/questionnaire/introduction', [QuestionnaireController::class, 'introduction'])->name('questionnaire.introduction');
     Route::get('/questionnaire/{page}', [QuestionnaireController::class, 'index'])->name('questionnaire');
+    Route::get('/questionnaire/{type}/{page}', [QuestionnaireController::class, 'start'])->name('questionnaire.type');
     Route::post('/questionnaire', [QuestionnaireController::class, 'store'])->name('questionnaire.store');
+    Route::post('/questionnaire', [QuestionnaireController::class, 'store_type'])->name('questionnaire.store.type');
 });
 
 # Info E-Pinter
