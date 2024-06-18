@@ -39,7 +39,7 @@
                 </div>
 
                 <div class="wrapper-btn-success py-5">
-                    <a href="{{ route('beranda') }}" class="btn btn-success">Continue</a>
+                    <a href="{{ route('login') }}" class="btn btn-success">Continue</a>
                 </div>
             </div>
         </div>

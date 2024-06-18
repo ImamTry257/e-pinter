@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="wrapper-btn-success py-5">
-                    <a href="{{ route('beranda') }}" class="btn btn-success">Selesai</a>
+                    <a href="{{ route('dashboard') }}" class="btn btn-success">Selesai</a>
                 </div>
             </div>
         </div>

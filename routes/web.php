@@ -35,6 +35,7 @@ use App\Http\Controllers\PhysicsInfoController;
 use App\Http\Controllers\SiteHomeController;
 use App\Http\Middleware\AuthConsoleMiddleware;
 use App\Http\Middleware\AuthFrontMiddleware;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,6 +50,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    if ( Auth::user() != null ) :
+        return redirect(route('front.dashboard'));
+    endif ;
     return redirect(route('beranda'));
 });
 
@@ -118,8 +122,11 @@ Route::middleware([AuthFrontMiddleware::class])->group(function () {
     Route::get('/discuss', [DiscussController::class, 'index'])->name('discuss');
 
     # Question
+    Route::get('/question/introduction', [QuestionController::class, 'introduction'])->name('question.introduction');
     Route::get('/question/{questionNo}', [QuestionController::class, 'index'])->name('question');
     Route::post('/question/{questionNo}', [QuestionController::class, 'store'])->name('question.store');
+    Route::get('/question/{type}/{questionNo}', [QuestionController::class, 'index_type'])->name('question.type');
+    Route::post('/question/{type}/{questionNo}', [QuestionController::class, 'store_type'])->name('question.store.type');
 
     # Questionnaire
     Route::get('/questionnaire/introduction', [QuestionnaireController::class, 'introduction'])->name('questionnaire.introduction');

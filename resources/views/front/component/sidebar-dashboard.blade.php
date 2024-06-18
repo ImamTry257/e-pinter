@@ -1,7 +1,7 @@
 <!-- Main Sidebar Container -->
 <div class="main-sidebar sidebar-dark-primary position-relative col-lg-2" id="sidebar-dashboard" style="z-index: 2; position: relative;">
     <!-- Brand Logo -->
-    <a href="{{ route('home') }}" class="brand-link d-none">
+    <a href="{{ route('beranda') }}" class="brand-link d-none">
       <img src="{{ asset('assets/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">x
       <span class="brand-text font-weight-light">{{ $title ?? "Laradminlte" }}</span>
     </a>
@@ -67,8 +67,16 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item d-none">
                     <a href="{{ route('question', ['questionNo' => Crypt::encryptString(1)]) .'-'. $current_duration }} " class="nav-link text-white @if (Route::current()->uri == 'question') {{ 'active-menu' }} @endif">
+                        <i class="nav-icon fas fa-book"></i>
+                        {{-- <img src="{{ asset('assets/sidebar/sidebar-diskusi.svg') }}" width="25" alt="Site Home"> --}}
+                        <p class="ps-3">Question</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('question.introduction') }} " class="nav-link text-white @if (Route::current()->uri == 'question') {{ 'active-menu' }} @endif">
                         <i class="nav-icon fas fa-book"></i>
                         {{-- <img src="{{ asset('assets/sidebar/sidebar-diskusi.svg') }}" width="25" alt="Site Home"> --}}
                         <p class="ps-3">Question</p>
