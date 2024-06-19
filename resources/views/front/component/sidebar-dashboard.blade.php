@@ -75,7 +75,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item d-none">
+                <li class="nav-item">
                     <a href="{{ route('question.introduction') }} " class="nav-link text-white @if (Route::current()->uri == 'question') {{ 'active-menu' }} @endif">
                         <i class="nav-icon fas fa-book"></i>
                         {{-- <img src="{{ asset('assets/sidebar/sidebar-diskusi.svg') }}" width="25" alt="Site Home"> --}}
@@ -90,7 +90,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item d-none">
+                <li class="nav-item">
                     <a href="{{ route('questionnaire.introduction') }}" id="btn-kuisioner" class="nav-link text-white @if (Route::current()->uri == 'kuisioner') {{ 'active-menu' }} @endif">
                         <i class="nav-icon fas fa-table"></i>
                         <p class="ps-3">Kuisioner</p>
