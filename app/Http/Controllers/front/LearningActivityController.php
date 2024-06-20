@@ -558,6 +558,7 @@ class LearningActivityController extends Controller
 
         $data['user_id_enc'] = $data['user']->id;
         $data['user_login'] = Auth::user()->id;
+        $data['is_from_bo'] = 0;
 
         # dd($data, $parameter, $progress_activity);
 

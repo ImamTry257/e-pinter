@@ -311,6 +311,7 @@ class ResultLearningActivityController extends Controller
         $data['slug_next_step'] = $data['slug'];
         $data['next_step'] = $data['step'];
         $data['user_login'] = Session::get('data_user_login')->id;
+        $data['is_from_bo'] = 1;
 
         # dd($data, $parameter, $progress_activity);
 

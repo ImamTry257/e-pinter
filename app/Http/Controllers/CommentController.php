@@ -18,12 +18,12 @@ class CommentController extends Controller
         // endif ;
 
         # get data list comment
-        $res_json = $this->getComment($request->progress_id);
+        $res_json = $this->getComment($request->progress_id, $request->user_id_login);
 
         return $res_json;
     }
 
-    public function getComment($progress_id)
+    public function getComment($progress_id, $user_id_login)
     {
         $get_list_comment = DB::table('comment_master as cm')
             ->where('cm.activity_progress_id', '=', $progress_id)
@@ -37,9 +37,16 @@ class CommentController extends Controller
         ];
         if ( count ( $get_list_comment ) != 0 ) :
             # binding data to html
-            $html_list_comment = '';
             $id_list = [];
+            $last_comment = 0;
+            $html_list_comment = '';
             foreach ( $get_list_comment as $index => $comment ) :
+                # get created name
+                if ( $comment->commented_from == 'backoffice' ) :
+                    $data_created = DB::table('teachers')->where('id', '=', $comment->created_by)->first(['name']);
+                else :
+                    $data_created = DB::table('users')->where('id', '=', $comment->created_by)->first(['name']);
+                endif;
 
                 # get data comment child
                 $html_list_comment .= '<div class="col-12 row">
@@ -52,31 +59,36 @@ class CommentController extends Controller
                                             </div>
                                             <div class="col-11" id="wrapper-data-comment">
                                                 <div class="content-comment2">
-                                                    <div id="created_by-comment" class=""><b>' . $comment->created_by . '</b></div>
+                                                    <div id="created_by-comment" class=""><b>' . $data_created->name . '</b></div>
                                                     <div id="crated_at-comment" class="pb-1" style="font-size: 10px;">'. $this->convertToTimeAgo($comment->created_at) .'</div>
                                                     <div id="desc-comment" class="pb-3">' . $comment->content . '</div>
 
-                                                    '. $this->getChildComment($comment->id, $index)['html'] .'
+                                                    '. $this->getChildComment($comment->id, $index, $user_id_login)['html'] .'
                                                 </div>
                                             </div>
                                         </div>';
 
-                $id_list [] = $this->getChildComment($comment->id, $index)['list_id'];
+                $id_list [] = $this->getChildComment($comment->id, $index, $user_id_login)['list_id'];
+
+                $last_comment = $comment->id;
             endforeach ;
 
             $html_list_comment .= '<div class="col-12 row">
-                                            <div class="col-1"></div>
-                                            <div class="col-11">
-                                                <div id="replay-comment" class="pt-3">
-                                                    <div class="" id="">
-                                                        <textarea name="input-replay-comment" class="form-control" id="input-replay-comment" cols="30" rows="2" placeholder="Tulis komentar Balasa Anda"></textarea>
-                                                    </div>
-                                                    <div class="text-left col-12 mt-3">
-                                                        <a href="javascript:void(0);" id="submit-comment" class="btn btn-information text-white px-5">Kirim</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>';
+                                <div class="col-1"></div>
+                                <div class="col-11">
+                                    <div id="replay-comment" class="pt-3">
+                                        <div class="" id="">
+                                            <input type="hidden" name="user_id_login" value="' . $user_id_login . '">
+                                            <input type="hidden" name="comment_master_id" value="'. $last_comment .'">
+                                            <input type="hidden" name="progress_id" value="'. $progress_id .'">
+                                            <textarea name="input-replay-comment" class="form-control" id="input-replay-comment" cols="30" rows="2" placeholder="Tulis komentar Balasa Anda"></textarea>
+                                        </div>
+                                        <div class="text-left col-12 mt-3">
+                                            <a href="javascript:void(0);" id="submit-comment" onclick="submitCommentChild()" class="btn btn-information text-white px-5">Kirim</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>';
 
             $res_json = [
                 'status'    => true,
@@ -88,7 +100,7 @@ class CommentController extends Controller
         return $res_json;
     }
 
-    public function getChildComment($content_master_id, $index)
+    public function getChildComment($content_master_id, $index, $user_id_login)
     {
         $html_cc = '';
         $list_id_text = [];
@@ -124,10 +136,12 @@ class CommentController extends Controller
                                 <div class="col-11">
                                     <div id="replay-comment" class="pt-3">
                                         <div class="" id="">
+                                            <input type="hidden" name="user_id_login" value="' . $user_id_login . '">
+                                            <input type="hidden" name="comment_master_id" value="'. $content_master_id .'">
                                             <textarea name="input-replay-comment-child-' . $index . '" class="form-control" id="input-replay-comment-child-' . $index . '" cols="30" rows="2" placeholder="Tulis komentar Balasa Anda"></textarea>
                                         </div>
                                         <div class="text-left col-12 mt-3">
-                                            <a href="javascript:void(0);" id="submit-comment" class="btn btn-information text-white px-5">Kirim</a>
+                                            <a href="javascript:void(0);" id="submit-comment" onclick="submitCommentChild()" class="btn btn-information text-white px-5">Kirim</a>
                                         </div>
                                     </div>
                                 </div>
@@ -153,7 +167,7 @@ class CommentController extends Controller
                 'content'               => $request->content,
                 'user_id'               => 0,
                 'teacher_id'            => 0,
-                'commented_from'        => 0,
+                'commented_from'        => ( $request->is_from_bo == 1 ) ? 'backoffice' : 'frontoffice',
                 'created_by'            => $request->user_login,
                 'created_at'            => now()
             ];
@@ -162,7 +176,46 @@ class CommentController extends Controller
             ->insert($param_comment);
 
             # get new list data
-            $res_json = $this->getComment($request->progress_id);
+            $res_json = $this->getComment($request->progress_id, $request->user_login);
+
+            return response()->json($res_json);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json([
+                'status'    => false,
+                'data'      => [],
+                'error_m'   => $th->getMessage()
+            ]);
+        }
+    }
+
+    public function store_child(Request $request)
+    {
+        try {
+            $content_master_id = $request->comment_master_id;
+
+            # check parent id
+            $check_parent = DB::table('comment_detail')
+            ->where('content_master_id', '=', $content_master_id)
+            ->orderByDesc('created_by')
+            ->first();
+
+            # set param comment
+            $param_comment = [
+                'content_master_id'     => $content_master_id,
+                'parent_id'             => ( $check_parent == null ) ? 0 : $check_parent->id,
+                'content'               => $request->content,
+                'replayed_by'           => $request->user_login,
+                'created_by'            => $request->user_login,
+                'created_at'            => now()
+            ];
+
+            # dd($param_comment);
+            DB::table('comment_detail')
+            ->insert($param_comment);
+
+            # get new list data
+            $res_json = $this->getComment($request->progress_id, $request->user_login);
 
             return response()->json($res_json);
         } catch (\Throwable $th) {

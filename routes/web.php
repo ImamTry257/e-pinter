@@ -145,6 +145,7 @@ Route::prefix('/comment')->group(function() {
     Route::post('/get-list', [CommentController::class, 'list'])->name('comment.list');
     Route::post('/comment-master', [CommentController::class, 'store_master'])->name('comment.store.master');
     Route::post('/get-detail', [CommentController::class, 'detail'])->name('comment.detail');
+    Route::post('/comment-child', [CommentController::class, 'store_child'])->name('comment.store.child');
 });
 
 # Learning activity
