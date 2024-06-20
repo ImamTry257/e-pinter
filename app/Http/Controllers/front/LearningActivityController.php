@@ -556,6 +556,9 @@ class LearningActivityController extends Controller
                                 ->where('activity_progress_id', '=', $data['progress_id'])
                                 ->first();
 
+        $data['user_id_enc'] = $data['user']->id;
+        $data['user_login'] = Auth::user()->id;
+
         # dd($data, $parameter, $progress_activity);
 
         return view($path_view, $data);

@@ -31,6 +31,13 @@
     <!-- include summernote css/js-->
     <script type="text/javascript" src="{{ asset('website/js/bootstrap.bundle.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('website/js/jquery-3.6.0.min.js') }}"></script>
+
+    <!--Include the JS & CSS-->
+    <link rel="stylesheet" href="{{ asset('assets/richtexteditor/rte_theme_default.css') }}" />
+    <script type="text/javascript" src="{{ asset('assets/richtexteditor/rte.js') }}"></script>
+    <script type="text/javascript" src='{{ asset('assets/richtexteditor/plugins/all_plugins.js') }}'></script>
+
+    <script src="{{ asset('assets/res/patch.js') }}"></script>
 </head>
 <body>
     <div id="app" class="h-100">
