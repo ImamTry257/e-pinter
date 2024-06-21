@@ -9,19 +9,23 @@
         $('#replay-comment').hide()
 
         // get list comment
-        getComment()
+        getComment(false)
 
        // https://jsfiddle.net/onigetoc/mu6j5k61/
     }, 500);
 
-    function getComment(){
+    setInterval(() => {
+        getComment(true)
+    }, 5000);
+
+    function getComment(is_auto_get){
         let paramGetContent = {
             "user_id" : "{{ $user_id_enc }}",
             "progress_id" : "{{ $progress_id }}",
             "is_from_front" : 0,
             "user_id_login" : $('input[name="user_login"]').val()
         }
-
+        console.log(paramGetContent)
         $.ajax({
             type: "POST", // send ajax with post
             url: "{{ route('comment.list') }}",
@@ -33,14 +37,32 @@
                 'Access-Control-Allow-Origin': '*'
             },
             beforeSend: function(xhr, obj) {
-                $('#loading').html(getHTMLloader())
+                if ( !is_auto_get ) {
+                    $('#loading').html(getHTMLloader())
+                }
             },
             success: function(response) {
                 // console.log(response)
                 if ( response.status ) {
                     setTimeout(() => {
                         $('#loading').empty()
-                        $('#wrapper-list-comment').html(response.data)
+
+                        if ( $('#count_comment').text() != response.count ) {
+                            $('#wrapper-list-comment').html(response.data)
+
+                            if ( response.count > 0 ) {
+                                $('#content-comment').empty()
+                                $('#count_comment').text(`${response.count}`)
+                                $('#replay-comment').show()
+
+                                if ( !is_auto_get ) {
+                                    editorComment = new RichTextEditor("textarea#comment")
+                                }
+                            }
+
+                            $("#list-comment").scroll()
+                            $("#list-comment").animate({ scrollTop: 50000 }, 2000);
+                        }
 
                         setTimeout(() => {
                             // console.log(response.list_id)
@@ -54,17 +76,6 @@
                             } )
 
                         }, 1000);
-
-                        if ( response.count > 0 ) {
-                            $('#content-comment').empty()
-                            $('#count_comment').text(`(${response.count})`)
-                            $('#replay-comment').show()
-
-                            editorComment = new RichTextEditor("textarea#comment")
-                        }
-
-                        $("#list-comment").scroll()
-                        $("#list-comment").animate({ scrollTop: 50000 }, 2000);
                     }, 1000);
                 } else {
                     $('#loading').empty()

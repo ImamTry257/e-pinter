@@ -3,7 +3,7 @@
         <div class="col-12 py-2">
             <h3>
                 Komentar
-                <span id="count_comment"></span>
+                (<span id="count_comment"></span>)
             </h3>
         </div>
         <div class="col-12" id="content-comment">
