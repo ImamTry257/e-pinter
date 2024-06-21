@@ -88,4 +88,5 @@
     @endif
 </script>
 @include('console.page.result-learning-activity.script.js-step')
+@include('console.page.result-learning-activity.script.js-content')
 @endsection

@@ -3,24 +3,25 @@
         <div class="col-12 py-2">
             <h3>
                 Komentar
-                {{-- <span>(1)</span> --}}
+                <span id="count_comment"></span>
             </h3>
         </div>
         <div class="col-12" id="content-comment">
             <input type="hidden" name="user_login" value="{{ $user_login }}">
             <input type="hidden" name="progress_id" value="{{ $progress_id }}">
             <textarea name="comment" class="form-control" id="comment" cols="30" rows="4" placeholder="Tulis komentar Anda"></textarea>
-        </div>
-        <div class="text-left col-12 mt-3">
-            <a href="javascript:void(0);" id="submit-comment" onclick="submitCommentMaster()" class="btn btn-information text-white px-5">Kirim</a>
+
+            <div class="text-left mt-3">
+                <a href="javascript:void(0);" id="submit-comment" onclick="submitCommentMaster()" class="btn btn-information text-white px-5">Kirim</a>
+            </div>
         </div>
     </div>
 
-    <div class="col-6">
+    <div class="col-7">
         <hr>
     </div>
 
-    <div class="col-6">
+    <div class="col-7">
         <div class="d-flex justify-content-center" id="loading">
             {{-- <div class="spinner-grow text-secondary" role="status">
                 <span class="visually-hidden"></span>
@@ -34,7 +35,7 @@
         </div>
     </div>
 
-    <div class="col-6 row" id="wrapper-list-comment">
+    <div class="col-7 row" id="wrapper-list-comment">
         {{-- <div class="col-1">
             <div class="d-flex justify-content-center" style="">
                 <div style="">
@@ -76,5 +77,18 @@
                 </div>
             </div>
         </div> --}}
+    </div>
+
+    <div class="col-7">
+        <div id="replay-comment" class="pt-3">
+            <div class="" id="">
+                <input type="hidden" name="user_login" value="{{ $user_login }}">
+                <input type="hidden" name="progress_id" value="{{ $progress_id }}">
+                <textarea name="comment" class="form-control" id="comment" cols="30" rows="2" placeholder="Tulis komentar Balasa Anda"></textarea>
+            </div>
+            <div class="text-left col-12 mt-3">
+                <a href="javascript:void(0);" id="submit-comment" onclick="submitCommentMaster()" class="btn btn-information text-white px-5">Kirim</a>
+            </div>
+        </div>
     </div>
 </div>

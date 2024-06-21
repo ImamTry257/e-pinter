@@ -61,4 +61,5 @@
     @endif
 </script>
 @include('front.page.learning-activity.script.js-step')
+@include('console.page.result-learning-activity.script.js-content')
 @endsection

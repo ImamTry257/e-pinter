@@ -3,7 +3,7 @@
     var editorCommentReplay;
     setTimeout(() => {
         editorComment = new RichTextEditor("textarea#comment");
-
+        $('#replay-comment').hide()
         getComment()
        // https://jsfiddle.net/onigetoc/mu6j5k61/
     }, 500);
@@ -32,23 +32,38 @@
             success: function(response) {
                 console.log(response)
                 if ( response.status ) {
-                    $('#wrapper-list-comment').html(response.data)
-
                     setTimeout(() => {
-                        // console.log(response.list_id)
-                        editorCommentReplay = new RichTextEditor("textarea#input-replay-comment");
+                        $('#loading').empty()
+                        $('#wrapper-list-comment').html(response.data)
 
-                        var listID = response.list_id
-                        listID.map( ( data, index ) => {
-                            if ( data != "" ) {
-                                var editorCommentReplayChild = new RichTextEditor("textarea#"+data);
-                            }
-                        } )
+                        setTimeout(() => {
+                            // console.log(response.list_id)
+                            // editorCommentReplay = new RichTextEditor("textarea#input-replay-comment");
 
+                            var listID = response.list_id
+                            listID.map( ( data, index ) => {
+                                if ( data != "" ) {
+                                    var editorCommentReplayChild = new RichTextEditor("textarea#"+data);
+                                }
+                            } )
+
+                        }, 1000);
+
+                        console.log(response.count, 'asdasd')
+                        if ( response.count > 0 ) {
+                            console.log($("textarea#comment"))
+                            $('#content-comment').empty()
+                            $('#count_comment').text(`(${response.count})`)
+                            console.log($('#replay-comment'))
+                            $('#replay-comment').show()
+
+                            editorComment = new RichTextEditor("textarea#comment")
+                        }
+
+                        $("#list-comment").scroll()
+                        $("#list-comment").animate({ scrollTop: 50000 }, 2000);
                     }, 1000);
                 }
-
-                $('#loading').empty()
             },
             error: function(error) {
                 console.log(error.status, error)
@@ -64,7 +79,7 @@
     }
 
     function submitCommentMaster(){
-        let userLogin = $('input[name="user_login"]').val()
+        let userLogin = '{{ $user_login }}'
         let progressID = '{{ $progress_id }}'
         let isFromBO = '{{ $is_from_bo }}'
         let comment = editorComment.getHTMLCode()
@@ -76,6 +91,9 @@
             "content"     : comment,
             "is_from_bo"  : isFromBO
         }
+
+        console.log(editorComment, paramComment, editorComment.getHTMLCode())
+        // return false
 
         console.log(paramComment)
         $.ajax({
@@ -98,24 +116,33 @@
 
                 console.log(response)
                 if ( response.status ) {
-                    $('#wrapper-list-comment').html(response.data)
-
                     setTimeout(() => {
-                        // console.log(response.list_id)
-                        editorCommentReplay = new RichTextEditor("textarea#input-replay-comment");
+                        $('#loading').empty()
+                        $('#content-comment').empty()
+                        $('#count_comment').text(`(${response.count})`)
 
-                        var listID = response.list_id
-                        listID.map( ( data, index ) => {
-                            // console.log(data)
-                            if ( data != "" ) {
-                                var editorCommentReplayChild = new RichTextEditor("textarea#"+data);
-                            }
-                        } )
+                        $('#wrapper-list-comment').html(response.data)
+                        // editorComment = new RichTextEditor("textarea#comment");
 
+                        // setTimeout(() => {
+                        //     // console.log(response.list_id)
+                        //     editorCommentReplay = new RichTextEditor("textarea#input-replay-comment");
+
+                        //     var listID = response.list_id
+                        //     listID.map( ( data, index ) => {
+                        //         // console.log(data)
+                        //         if ( data != "" ) {
+                        //             var editorCommentReplayChild = new RichTextEditor("textarea#"+data);
+                        //         }
+                        //     } )
+
+                        // }, 1000);
+
+
+                        $("#list-comment").scroll()
+                        $("#list-comment").animate({ scrollTop: 50000 }, 2000);
                     }, 1000);
                 }
-
-                $('#loading').empty()
             },
             error: function(error) {
                 console.log(error.status, error)
