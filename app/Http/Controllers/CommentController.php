@@ -76,10 +76,9 @@ class CommentController extends Controller
                                                     <div id="created_by-comment" class=""><b>' . $data_created->name . '</b></div>
                                                     <div id="crated_at-comment" class="pb-1" style="font-size: 10px;">'. $this->convertToTimeAgo($comment->created_at) .'</div>
                                                     <div id="desc-comment" class="pb-3">' . $comment->content . '</div>
-
-                                                    <div class="d-none">'. $this->getChildComment($comment->id, $index, $user_id_login)['html'] .'</div>
                                                 </div>
                                             </div>';
+                                            // <div class="d-none">'. $this->getChildComment($comment->id, $index, $user_id_login)['html'] .'</div>
 
                 if ( $is_right ) :
                 $html_list_comment .= '<div class="col-1">

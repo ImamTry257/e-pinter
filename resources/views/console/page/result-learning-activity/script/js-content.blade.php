@@ -2,9 +2,15 @@
     var editorComment;
     var editorCommentReplay;
     setTimeout(() => {
-        editorComment = new RichTextEditor("textarea#comment");
+        // set up
+        editorComment = new RichTextEditor("textarea#comment")
+
+        // hide menu replay
         $('#replay-comment').hide()
+
+        // get list comment
         getComment()
+
        // https://jsfiddle.net/onigetoc/mu6j5k61/
     }, 500);
 
@@ -30,7 +36,7 @@
                 $('#loading').html(getHTMLloader())
             },
             success: function(response) {
-                console.log(response)
+                // console.log(response)
                 if ( response.status ) {
                     setTimeout(() => {
                         $('#loading').empty()
@@ -50,10 +56,8 @@
                         }, 1000);
 
                         if ( response.count > 0 ) {
-                            console.log($("textarea#comment"))
                             $('#content-comment').empty()
                             $('#count_comment').text(`(${response.count})`)
-                            console.log($('#replay-comment'))
                             $('#replay-comment').show()
 
                             editorComment = new RichTextEditor("textarea#comment")
