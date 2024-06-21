@@ -25,7 +25,7 @@
             "is_from_front" : 0,
             "user_id_login" : $('input[name="user_login"]').val()
         }
-        console.log(paramGetContent)
+
         $.ajax({
             type: "POST", // send ajax with post
             url: "{{ route('comment.list') }}",
@@ -108,10 +108,9 @@
             "is_from_bo"  : isFromBO
         }
 
-        console.log(editorComment, paramComment, editorComment.getHTMLCode())
+        // console.log(editorComment, paramComment, editorComment.getHTMLCode())
         // return false
 
-        console.log(paramComment)
         $.ajax({
             type: "POST", // send ajax with post
             url: "{{ route('comment.store.master') }}",
@@ -130,7 +129,7 @@
                 // reset data
                 editorComment.setHTMLCode("<p></p>")
 
-                console.log(response)
+                // console.log(response)
                 if ( response.status ) {
                     setTimeout(() => {
                         $('#loading').empty()
@@ -189,7 +188,7 @@
             "progress_id" : progressID,
         }
 
-        console.log(paramComment)
+        // console.log(paramComment)
         // return false
         $.ajax({
             type: "POST", // send ajax with post

@@ -42,7 +42,7 @@ class CommentController extends Controller
             $id_list = [];
             $last_comment = 0;
 
-            $html_list_comment = '<div id="parent-list-comment"></div><div id="list-comment" style="height: 400px; width: 100%; overflow: scroll;">';
+            $html_list_comment = '<div id="parent-list-comment"></div><div id="list-comment" style="height: 600px; width: 100%; overflow: scroll;">';
             foreach ( $get_list_comment as $index => $comment ) :
                 # get created name
                 if ( $comment->commented_from == 'backoffice' ) :
