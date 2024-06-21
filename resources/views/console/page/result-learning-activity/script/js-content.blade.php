@@ -134,7 +134,7 @@
                     setTimeout(() => {
                         $('#loading').empty()
                         $('#content-comment').empty()
-                        $('#count_comment').text(`(${response.count})`)
+                        $('#count_comment').text(`${response.count}`)
 
                         $('#wrapper-list-comment').html(response.data)
                         // editorComment = new RichTextEditor("textarea#comment");
