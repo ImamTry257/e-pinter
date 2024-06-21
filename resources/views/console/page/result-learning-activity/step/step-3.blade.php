@@ -143,9 +143,14 @@
 </script>
 @php
     // dd($detail_step);
+    // dd(json_decode($detail_step->answers));
     if ( $detail_step != null ) :
-        $value_answers = json_decode($detail_step->answers)->value;
-    endif
+        if ( json_decode($detail_step->answers) != null ) :
+            $value_answers = json_decode($detail_step->answers)->value;
+        else :
+            $value_answers = '{}';
+        endif ;
+    endif ;
 @endphp
 <script>
     @if ( $detail_step != null )

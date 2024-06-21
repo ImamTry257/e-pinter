@@ -49,7 +49,6 @@
 
                         }, 1000);
 
-                        console.log(response.count, 'asdasd')
                         if ( response.count > 0 ) {
                             console.log($("textarea#comment"))
                             $('#content-comment').empty()
@@ -63,6 +62,8 @@
                         $("#list-comment").scroll()
                         $("#list-comment").animate({ scrollTop: 50000 }, 2000);
                     }, 1000);
+                } else {
+                    $('#loading').empty()
                 }
             },
             error: function(error) {
@@ -138,7 +139,7 @@
 
                         // }, 1000);
 
-
+                        $('#replay-comment').show()
                         $("#list-comment").scroll()
                         $("#list-comment").animate({ scrollTop: 50000 }, 2000);
                     }, 1000);
