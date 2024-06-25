@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\console\SainsInfoController as ConsoleSainsInfoController;
 use App\Http\Controllers\console\DashboardController;
 use App\Http\Controllers\console\LearningActivityController as ConsoleLearningActivityController;
@@ -138,6 +139,14 @@ Route::middleware([AuthFrontMiddleware::class])->group(function () {
 
 # Info E-Pinter
 Route::get('/web-guide', [LearningInfoController::class, 'infoEpinter'])->name('info.epinter');
+
+# Comment
+Route::prefix('/comment')->group(function() {
+    Route::post('/get-list', [CommentController::class, 'list'])->name('comment.list');
+    Route::post('/comment-master', [CommentController::class, 'store_master'])->name('comment.store.master');
+    Route::post('/get-detail', [CommentController::class, 'detail'])->name('comment.detail');
+    Route::post('/comment-child', [CommentController::class, 'store_child'])->name('comment.store.child');
+});
 
 # Learning activity
 Route::middleware([AuthFrontMiddleware::class])->group(function () {

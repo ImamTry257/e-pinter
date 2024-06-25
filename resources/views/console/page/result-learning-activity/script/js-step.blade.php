@@ -2,8 +2,6 @@
 <script src="{{ asset('assets/plugins/summernote/summernote-bs4.js') }}" defer></script>
 <script>
 
-    setTimeout(() => {
-        // $('textarea[name="answer-a"], textarea[name="answer-b"], textarea[name="descriptions"]').summernote()
-    }, 500);
+
 
 </script>

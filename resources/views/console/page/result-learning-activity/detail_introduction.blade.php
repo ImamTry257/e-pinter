@@ -52,8 +52,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        @include('console.components.comment')
                     </div>
                 </div>
             </div>

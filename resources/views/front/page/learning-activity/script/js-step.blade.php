@@ -250,6 +250,7 @@
 
 
     }
+
     function checkInputStepTwo(){
         // form completed to fill
         if ( $('input[name="date"]').length != 0 ) {
@@ -263,7 +264,5 @@
             return false
         }
     }
-
-
 
 </script>

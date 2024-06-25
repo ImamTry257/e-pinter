@@ -38,11 +38,11 @@
                                 <div class="main-banner ms-2 col-lg-11 d-none">
                                     <img src="{{ asset('assets/img-pemb1.svg') }}" alt="" style="width: 100%;">
                                 </div>
-                                <div class="list-topic-content pt-4 pb-5 px-2 col-12">
+                                <div class="list-topic-content pt-4 pb-2 px-2 col-12">
                                     <div class="row">
                                         <form action="javascript:void();" id="form-step-1">
                                             <div class="wrapper-step-1 pb-4">
-                                                {!! $content; !!}
+                                                {!! $content !!}
                                             </div>
 
                                             <div class="text-start">
@@ -82,4 +82,5 @@
     @endif
 </script>
 @include('console.page.result-learning-activity.script.js-step')
+@include('console.page.result-learning-activity.script.js-content')
 @endsection

@@ -21,6 +21,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <link href="{{ asset('assets/plugins/summernote/summernote-bs4.css') }}" rel="stylesheet">
 
+    {{-- <link href="{{ asset('assets/plugins/summernote/summernote-bs4.css') }}" rel="stylesheet"> --}}
+    <link rel="stylesheet" href="{{ asset('assets/res/style.css') }}">
+
     @yield('css')
 
     <style>
@@ -34,8 +37,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </style>
 
     <!-- include summernote css/js-->
-    <script type="text/javascript" src="{{ asset('website/js/bootstrap.bundle.min.js') }}"></script>
+    {{-- <script type="text/javascript" src="{{ asset('website/js/bootstrap.bundle.min.js') }}"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="{{ asset('website/js/jquery-3.6.0.min.js') }}"></script>
+
+    <!--Include the JS & CSS-->
+    <link rel="stylesheet" href="{{ asset('assets/richtexteditor/rte_theme_default.css') }}" />
+    <script type="text/javascript" src="{{ asset('assets/richtexteditor/rte.js') }}"></script>
+    <script type="text/javascript" src='{{ asset('assets/richtexteditor/plugins/all_plugins.js') }}'></script>
+
+    <script src="{{ asset('assets/res/patch.js') }}"></script>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -374,7 +385,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- jQuery -->
 <script src="{{ asset('assets/plugins/jquery/jquery.min.js') }}"></script>
 <!-- Bootstrap 4 -->
-<script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+{{-- <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script> --}}
+{{-- Bootstrap 5.3 --}}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('assets/dist/js/adminlte.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>

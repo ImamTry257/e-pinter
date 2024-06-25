@@ -23,7 +23,7 @@
         <div class="row p-2 px-5">
             <form action="javascript:void();" id="form-step-1">
                 <div class="wrapper-step-1 pb-4">
-                    {!! $content; !!}
+                    {!! $content !!}
                 </div>
 
                 <div class="text-start">
@@ -56,4 +56,5 @@
     @endif
 </script>
 @include('front.page.learning-activity.script.js-step')
+@include('console.page.result-learning-activity.script.js-content')
 @endsection

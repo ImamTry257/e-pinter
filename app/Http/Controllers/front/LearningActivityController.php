@@ -354,18 +354,25 @@ class LearningActivityController extends Controller
                             $parameter['answers'] = ( $request->intro ) ? 'intro_step' : json_encode($ins_answers);
 
                         else :
+
                             // check is update or new record
                             $check_data_step_upload = $this->checkDataProgress($request->progress_id, $request->step_id);
 
-                            if ( empty($check_data_step_upload) ) :
+                             // upload file
+                             $fileName = date('YmdHis'). '_' . $request->file->getClientOriginalName();
+
+                             $fileName_valHtml = $request->file->getClientOriginalName();
+
+                             $request->file->move(public_path('assets/activity/step/'), $fileName);
+
+                            // if ( empty($check_data_step_upload) ) :
                                 $ins_answers = [
                                     'type'          => 'non-intro',
                                     'presentase'    => round($detail_progress, 2),
-                                    'value'         => json_encode([['id' => 'file', 'value_text' => $fileName, 'value_html' => $fileName]])
+                                    'value'         => json_encode([['id' => 'file', 'value_text' => $fileName, 'value_html' => $fileName_valHtml]])
                                 ];
                                 $parameter['answers'] = ( $request->intro ) ? 'intro_step' : json_encode($ins_answers);
-
-                            endif ;
+                            // endif ;
                         endif ;
                     endif ;
                 endif ;
@@ -555,6 +562,10 @@ class LearningActivityController extends Controller
         $data['detail_step'] = DB::table('activity_step_detail as sd')
                                 ->where('activity_progress_id', '=', $data['progress_id'])
                                 ->first();
+
+        $data['user_id_enc'] = $data['user']->id;
+        $data['user_login'] = Auth::user()->id;
+        $data['is_from_bo'] = 0;
 
         # dd($data, $parameter, $progress_activity);
 
