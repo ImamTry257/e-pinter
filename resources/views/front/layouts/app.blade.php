@@ -50,21 +50,11 @@
 
 
         // sidebar submenu open close js code
-        // let htmlcssArrow = document.querySelector(".htmlcss-arrow");
-        //     htmlcssArrow.onclick = function() {
-        //     navLinks.classList.toggle("show1");
-        // }
-        // let moreArrow = document.querySelector(".more-arrow");
-        //     moreArrow.onclick = function() {
-        //     navLinks.classList.toggle("show2");
-        // }
-        // let jsArrow = document.querySelector(".js-arrow");
-        //     jsArrow.onclick = function() {
-        //     navLinks.classList.toggle("show3");
-        // }
-        console.log('{{ Auth::user() }}', 'coaoao')
+        $(".htmlcss-arrow, #parent-menu").on('click', function() {
+            navLinks.classList.toggle("show1");
+        })
+
         if ( '{{ Auth::user() }}' == 'undefined' ) {
-            console.log('asdasd', localStorage.removeItem("speaking_counter"))
             localStorage.removeItem('speaking_counter');
             localStorage.clear()
         }
