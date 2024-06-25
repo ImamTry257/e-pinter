@@ -2,13 +2,23 @@
     var editorComment;
     var editorCommentReplay;
     setTimeout(() => {
-        editorComment = new RichTextEditor("textarea#comment");
+        // set up
+        editorComment = new RichTextEditor("textarea#comment")
+
+        // hide menu replay
         $('#replay-comment').hide()
-        getComment()
+
+        // get list comment
+        getComment(false)
+
        // https://jsfiddle.net/onigetoc/mu6j5k61/
     }, 500);
 
-    function getComment(){
+    setInterval(() => {
+        getComment(true)
+    }, 5000);
+
+    function getComment(is_auto_get){
         let paramGetContent = {
             "user_id" : "{{ $user_id_enc }}",
             "progress_id" : "{{ $progress_id }}",
@@ -27,14 +37,32 @@
                 'Access-Control-Allow-Origin': '*'
             },
             beforeSend: function(xhr, obj) {
-                $('#loading').html(getHTMLloader())
+                if ( !is_auto_get ) {
+                    $('#loading').html(getHTMLloader())
+                }
             },
             success: function(response) {
-                console.log(response)
+                // console.log(response)
                 if ( response.status ) {
                     setTimeout(() => {
                         $('#loading').empty()
-                        $('#wrapper-list-comment').html(response.data)
+
+                        if ( $('#count_comment').text() != response.count ) {
+                            $('#wrapper-list-comment').html(response.data)
+
+                            if ( response.count > 0 ) {
+                                $('#content-comment').empty()
+                                $('#count_comment').text(`${response.count}`)
+                                $('#replay-comment').show()
+
+                                if ( !is_auto_get ) {
+                                    editorComment = new RichTextEditor("textarea#comment")
+                                }
+                            }
+
+                            $("#list-comment").scroll()
+                            $("#list-comment").animate({ scrollTop: 50000 }, 2000);
+                        }
 
                         setTimeout(() => {
                             // console.log(response.list_id)
@@ -48,19 +76,6 @@
                             } )
 
                         }, 1000);
-
-                        if ( response.count > 0 ) {
-                            console.log($("textarea#comment"))
-                            $('#content-comment').empty()
-                            $('#count_comment').text(`(${response.count})`)
-                            console.log($('#replay-comment'))
-                            $('#replay-comment').show()
-
-                            editorComment = new RichTextEditor("textarea#comment")
-                        }
-
-                        $("#list-comment").scroll()
-                        $("#list-comment").animate({ scrollTop: 50000 }, 2000);
                     }, 1000);
                 } else {
                     $('#loading').empty()
@@ -93,10 +108,9 @@
             "is_from_bo"  : isFromBO
         }
 
-        console.log(editorComment, paramComment, editorComment.getHTMLCode())
+        // console.log(editorComment, paramComment, editorComment.getHTMLCode())
         // return false
 
-        console.log(paramComment)
         $.ajax({
             type: "POST", // send ajax with post
             url: "{{ route('comment.store.master') }}",
@@ -115,12 +129,12 @@
                 // reset data
                 editorComment.setHTMLCode("<p></p>")
 
-                console.log(response)
+                // console.log(response)
                 if ( response.status ) {
                     setTimeout(() => {
                         $('#loading').empty()
                         $('#content-comment').empty()
-                        $('#count_comment').text(`(${response.count})`)
+                        $('#count_comment').text(`${response.count}`)
 
                         $('#wrapper-list-comment').html(response.data)
                         // editorComment = new RichTextEditor("textarea#comment");
@@ -174,7 +188,7 @@
             "progress_id" : progressID,
         }
 
-        console.log(paramComment)
+        // console.log(paramComment)
         // return false
         $.ajax({
             type: "POST", // send ajax with post

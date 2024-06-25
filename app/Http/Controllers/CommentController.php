@@ -42,7 +42,7 @@ class CommentController extends Controller
             $id_list = [];
             $last_comment = 0;
 
-            $html_list_comment = '<div id="parent-list-comment"></div><div id="list-comment" style="height: 400px; width: 100%; overflow: scroll;">';
+            $html_list_comment = '<div id="parent-list-comment"></div><div id="list-comment" style="height: 600px; width: 100%; overflow: scroll;">';
             foreach ( $get_list_comment as $index => $comment ) :
                 # get created name
                 if ( $comment->commented_from == 'backoffice' ) :
@@ -76,10 +76,9 @@ class CommentController extends Controller
                                                     <div id="created_by-comment" class=""><b>' . $data_created->name . '</b></div>
                                                     <div id="crated_at-comment" class="pb-1" style="font-size: 10px;">'. $this->convertToTimeAgo($comment->created_at) .'</div>
                                                     <div id="desc-comment" class="pb-3">' . $comment->content . '</div>
-
-                                                    <div class="d-none">'. $this->getChildComment($comment->id, $index, $user_id_login)['html'] .'</div>
                                                 </div>
                                             </div>';
+                                            // <div class="d-none">'. $this->getChildComment($comment->id, $index, $user_id_login)['html'] .'</div>
 
                 if ( $is_right ) :
                 $html_list_comment .= '<div class="col-1">

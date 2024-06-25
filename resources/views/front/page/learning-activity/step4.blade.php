@@ -48,7 +48,11 @@
     // dd($detail_step);
     // dd(json_decode(json_decode($detail_step->answers)->value));
     if ( $detail_step != null ) :
-        $value_answers = json_decode($detail_step->answers)->value;
+        if ( json_decode($detail_step->answers) != null ) :
+            $value_answers = json_decode($detail_step->answers)->value;
+        else :
+            $value_answers = '{}';
+        endif ;
     endif
 @endphp
 <script>
@@ -59,12 +63,14 @@
         @endif
 
         @foreach (json_decode($value_answers) as $value)
-            @foreach ($value->value_html as $key => $val)
-                @if ( $val != '' )
-                    var imgTag = `<img src="{{ asset('assets/activity/step/') . '/' . $val }}" alt="image" width="400">`; //creating an img tag and passing user selected file source inside src attribute
-                    $('div#render-{{ $key }}').html(imgTag); //adding that created img tag inside dropArea container
-                @endif
-            @endforeach
+            @if ( is_array( $value ) )
+                @foreach ($value->value_html as $key => $val)
+                    @if ( $val != '' )
+                        var imgTag = `<img src="{{ asset('assets/activity/step/') . '/' . $val }}" alt="image" width="400">`; //creating an img tag and passing user selected file source inside src attribute
+                        $('div#render-{{ $key }}').html(imgTag); //adding that created img tag inside dropArea container
+                    @endif
+                @endforeach
+            @endif
         @endforeach
     @endif
 </script>
