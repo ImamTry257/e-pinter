@@ -47,7 +47,7 @@
                 {{ session('error') }}
             </div>
             @endif
-            <form action="{{ route('login') }}" method="POST" autocomplete="off">
+            <form action="{{ route('forgot-password-student.token') }}" method="POST" autocomplete="off">
                 @csrf
                 <div class="mb-3">
                     <label for="email" class="form-label text-dark">Email</label>

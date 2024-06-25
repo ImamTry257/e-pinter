@@ -79,6 +79,7 @@ Route::post('/login', [LoginController::class, 'login'])->name('login.login');
 
 # Forgot Password Front Page
 Route::get('/forgot-password-student', [ForgotPasswordController::class, 'index'])->name('forgot-password-student');
+Route::post('/forgot-password-student', [ForgotPasswordController::class, 'generate_token_link'])->name('forgot-password-student.token');
 Route::get('/send-link-password', [ForgotPasswordController::class, 'success_send_link'])->name('send-link-password');
 
 # Learning

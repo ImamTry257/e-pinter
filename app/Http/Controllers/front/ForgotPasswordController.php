@@ -18,6 +18,12 @@ class ForgotPasswordController extends Controller
 
     public function generate_token_link(Request $request)
     {
+        // check input email
+        if ( $request->email == null ) :
+            return redirect(route('forgot-password-student'))->with('error', 'Tolong isi email anda!');
+        endif ;
+
+        // check email is exists
 
     }
 
