@@ -15,9 +15,17 @@
             <ul class="links pt-4">
                 <li><a class="d-flex align-items-center" href="{{ url('beranda') }}">Home</a></li>
                 <li><a class="d-flex align-items-center" href="{{ url('about-us') }}">About Us</a></li>
+                <li>
+                    <a href="javascript:void(0);" class="" id="parent-menu">Web Guide</a>
+                    <i class='bx bxs-chevron-down htmlcss-arrow arrow d-flex align-items-center justify-content-center text-dark'></i>
+                    <ul class="htmlCss-sub-menu sub-menu ps-0" id="wrapper-sub-menu">
+                        <li><a href="{{ asset('assets/e-pinter/ebook/v2/Panduan E-PINTER.pdf') }}" class="" id="list-sub-menu">Buku Panduan</a></li>
+                        <li><a href="https://youtube.com" target="_blank" class="" id="list-sub-menu">Video Tutorial</a></li>
+                    </ul>
+                </li>
                 @if ( Auth::user() != null )
                 <li>
-                    <img src="{{ asset('assets/user-icon.svg') }}" id="profile-icon" class="bg-white profile-arrow" width="30" alt="" style="border-radius: 19px;padding: 5px 5px 5px 5px;">
+                    <img src="{{ asset('assets/user-icon.svg') }}" id="profile-icon" class="bg-white profile-arrow" width="30" alt="" style="border-radius: 19px;">
                     <ul class="profile-sub-menu sub-menu ps-0" id="wrapper-sub-menu" style="left: -60px;">
                         <li>
                             <span class="text-white d-flex align-items-center h-50">{{ Auth::user()->name; }}</span>
@@ -34,7 +42,6 @@
                     </ul>
                 </li>
                 @else
-                <li><a class="d-flex align-items-center" href="{{ asset('assets/e-pinter/ebook/v2/Panduan E-PINTER.pdf') }}">Web Guide</a></li>
                 <li><a href="{{ url('login') }}">Login</a></li>
                 <li><a href="{{ url('register') }}">Register</a></li>
                 @endif

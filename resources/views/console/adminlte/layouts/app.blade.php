@@ -371,6 +371,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					</a>
 				</li>
 
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <i class="nav-icon fas fa-circle"></i>
+                        <p style="color: #c2c7d0">Logout</p>
+                    </a>
+                    <form id="logout-form" action="{{ route('logout.admin') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </li>
+
 			</ul>
 		</nav>
       <!-- /.sidebar-menu -->
