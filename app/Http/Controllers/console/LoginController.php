@@ -62,7 +62,10 @@ class LoginController extends Controller
 
         } catch (\Throwable $th) {
             //throw $th;
-            dd($th->getMessage());
+            # dd($th->getMessage());
+            return back()->withErrors([
+                'email' => 'Please input email or password',
+            ])->onlyInput('email');
         }
     }
 
