@@ -58,7 +58,7 @@ class Controller extends BaseController
     public function selectContentStep($master_id, $step_id, $is_console)
     {
         if ( $master_id == 1 ) :
-            $content_step_one = 'Ilustrasi pada gambar tersebut merupakan Cheetah yang sedang berlari. Cheetah dapat mengalami perubahan kelajuan dari 0 km/jam menjadi 120 km/jam dalam waktu 3 detik. Kelajuan 120 km/jam, yang merupakan kelajuan maksimal, hanya dapat dipertahankan selama 30 detik. Secara fisika ada besaran fisika yang terlibat didalamnya. Bagaimana kita bisa mengetahui visualisasi materi fisika yang ada di gambar tersebut ya?';
+            $content_step_one = 'Pernahkan anda mengamati kereta api yang bergerak di atas rel? Kita bayangkan kereta api yang bergerak dengan kecepatan konstan di atas rel. Gambaran kereta api ini membawa kita untuk memahami konsep kinematika gerak lurus, di mana gerakan tersebut dapat dijelaskan dengan sederhana menggunakan konsep waktu, kecepatan, dan jarak yang ditempuh.';
             $title = 'gerak lurus';
         elseif ( $master_id == 2 ) :
             $content_step_one = 'Ilustrasi pada gambar tersebut merupakan tembakan kearah jaring olehseorang pemain basket. Akibatnya lintasan bola berbentuk parabolik. Secara fisika ada besaran fisika yang terlibat didalamnya. Bagaimana kita bisamengetahui visualisasi materi fisika yang ada di gambar tersebut ya?';
@@ -89,7 +89,7 @@ class Controller extends BaseController
 
                         <div class="question-a pb-3">
                             <div class="content-question-a desc-step">
-                                <p class="text-justify p-3">Pertanyaan 1. Dari ilustrasi tersebut, materi fisika dan besaran fisika apa yang terlibat dalam peristiwa tersebut!</p>
+                                <p class="text-justify p-3">Pertanyaan 1. Dari ilustrasi tersebut, apa yang dimaksud gerak lurus? serta sebutkan contoh '. $title .' pada kehidupan sehari-hari? </p>
                             </div>
                             <div>
                                 <textarea name="answer-a" id="step-' . $step_id . '" cols="30" rows="10"></textarea>
@@ -517,18 +517,17 @@ class Controller extends BaseController
                         </div>
 
                         <div class="col-lg-12 pb-1">
-                            <span>Pada kegiatan pembelajaran 1, kita akan:</span>
+                            <span class="fw-bold">Pada kegiatan pembelajaran 1, peserta didik mampu:</span>
                             <ol>
-                                <li>Materi Fisika yang akan dibahas adalah GLB dan GLBB</li>
-                                <li>Menggunakan model pembelajaran E-PINTER yang telah dikembangkan</li>
-                                <li>Menggunakan software Tracker untuk mendukung kegiatan pembelajaran</li>
-                                <li>Membuat proyek secara kelompok</li>
-                                <li>Membuat laporan kegiatan fisika</li>
+                                <li>Peserta didik dapat memahami konsep dan menguraikan besaran-besaran fisis pada gerak lurus melalui proyek fisika di dalam E-PINTER yang telah dikembangkan.</li>
+                                <li>Peserta didik dapat menganalisis gerak lurus melalui eksperimen fisika dengan menggunakan software Tracker.</li>
+                                <li>Peserta didik membuat laporan kegiatan fisika yang sudah dilakukan sesuai dengan panduan yang terdapat pada sintaks 5.</li>
+                                <li>Peserta didik mempresentasikan hasil laporan yang telah disusun.</li>
                             </ol>
                         </div>
 
                         <div class="col-lg-12">
-                            <span>Sehingga tagihan yang harus diunggah pada kegiatan ini adalah:</span>
+                            <span class="fw-bold">Sehingga tagihan yang harus diunggah pada kegiatan ini adalah:</span>
                             <ol>
                                 <li>Video proyek gerak lurus</li>
                                 <li>Foto langkah-langkah eksperimen menggunakan software Tracker beserta keterangannya</li>
@@ -544,18 +543,17 @@ class Controller extends BaseController
                 </div>
 
                 <div class="col-lg-12 pb-1">
-                    <span>Pada kegiatan pembelajaran 2, kita akan:</span>
+                    <span class="fw-bold">Pada kegiatan pembelajaran 2, peserta didik mampu:</span>
                     <ol>
-                        <li>Materi Fisika yang akan dibahas adalah Gerak Parabola</li>
-                        <li>Menggunakan model pembelajaran E-PINTER yang telah dikembangkan</li>
-                        <li>Menggunakan software Tracker untuk mendukung kegiatan pembelajaran</li>
-                        <li>Membuat proyek secara kelompok</li>
-                        <li>Membuat laporan kegiatan fisika</li>
+                        <li>Peserta didik dapat memahami konsep dan menguraikan besaran-besaran fisis pada gerak lurus melalui proyek fisika di dalam E-PINTER yang telah dikembangkan.</li>
+                        <li>Peserta didik dapat menganalisis gerak lurus melalui eksperimen fisika dengan menggunakan software Tracker.</li>
+                        <li>Peserta didik membuat laporan kegiatan fisika yang sudah dilakukan sesuai dengan panduan yang terdapat pada sintaks 5.</li>
+                        <li>Peserta didik mempresentasikan hasil laporan yang telah disusun.</li>
                     </ol>
                 </div>
 
                 <div class="col-lg-12">
-                    <span>Sehingga tagihan yang harus diunggah pada kegiatan ini adalah:</span>
+                    <span class="fw-bold">Sehingga tagihan yang harus diunggah pada kegiatan ini adalah:</span>
                     <ol>
                         <li>Video proyek gerak parabola</li>
                         <li>Foto langkah-langkah eksperimen menggunakan software Tracker beserta keterangannya</li>
@@ -571,18 +569,17 @@ class Controller extends BaseController
                 </div>
 
                 <div class="col-lg-12 pb-1">
-                    <span>Pada kegiatan pembelajaran 3, kita akan:</span>
+                    <span class="fw-bold">Pada kegiatan pembelajaran 3, peserta didik mampu:</span>
                     <ol>
-                        <li>Materi Fisika yang akan dibahas adalah Gerak Melingkar</li>
-                        <li>Menggunakan model pembelajaran E-PINTER yang telah dikembangkan</li>
-                        <li>Menggunakan software Tracker untuk mendukung kegiatan pembelajaran</li>
-                        <li>Membuat proyek secara kelompok</li>
-                        <li>Membuat laporan kegiatan fisika</li>
+                        <li>Peserta didik dapat memahami konsep dan menguraikan besaran-besaran fisis pada gerak lurus melalui proyek fisika di dalam E-PINTER yang telah dikembangkan.</li>
+                        <li>Peserta didik dapat menganalisis gerak lurus melalui eksperimen fisika dengan menggunakan software Tracker.</li>
+                        <li>Peserta didik membuat laporan kegiatan fisika yang sudah dilakukan sesuai dengan panduan yang terdapat pada sintaks 5.</li>
+                        <li>Peserta didik mempresentasikan hasil laporan yang telah disusun.</li>
                     </ol>
                 </div>
 
                 <div class="col-lg-12">
-                    <span>Sehingga tagihan yang harus diunggah pada kegiatan ini adalah:</span>
+                    <span class="fw-bold">Sehingga tagihan yang harus diunggah pada kegiatan ini adalah:</span>
                     <ol>
                         <li>Video proyek gerak melingkar</li>
                         <li>Foto langkah-langkah eksperimen menggunakan software Tracker beserta keterangannya</li>
