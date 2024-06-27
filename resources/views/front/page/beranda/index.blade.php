@@ -39,6 +39,14 @@
         a.btn-information {
             background-color: #004972;
         }
+
+        .bg-popup {
+            background-color: #004972;
+        }
+
+        #staticBackdropLabel{
+            font-size: 30px;
+        }
     </style>
 @endsection
 
@@ -53,6 +61,39 @@
     </div>
 </div>
 
+<!-- Button trigger modal -->
+<div class="d-none">
+    <button type="button" class="btn btn-primary" id="trigger_show" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        Launch static backdrop modal
+    </button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+        <div class="modal-header bg-popup">
+            <span class="modal-title text-white" id="staticBackdropLabel">Video Panduan</span>
+        </div>
+        <div class="modal-body text-center">
+            <iframe width="750" height="400" src="https://www.youtube.com/embed/CQhFcCbyv8o?si=jfVQErEVfptNTdGE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+            <button class="btn bg-popup text-white" data-bs-dismiss="modal">Kembali</button>
+        </div>
+        </div>
+    </div>
+</div>
+
 {{-- footer --}}
 {{-- @include('front.component.footer') --}}
+
+<script>
+    function showVideo(){
+        console.log('show', $('div#modal-yt-panduan'))
+        console.log($('button#trigger_show'))
+        $('button#trigger_show').click()
+    }
+</script>
 @endsection

@@ -19,8 +19,8 @@
                     <a href="javascript:void(0);" class="" id="parent-menu">Web Guide</a>
                     <i class='bx bxs-chevron-down htmlcss-arrow arrow d-flex align-items-center justify-content-center text-dark'></i>
                     <ul class="htmlCss-sub-menu sub-menu ps-0" id="wrapper-sub-menu">
-                        <li><a href="{{ asset('assets/e-pinter/ebook/v2/Panduan E-PINTER.pdf') }}" class="" id="list-sub-menu">Buku Panduan</a></li>
-                        <li><a href="https://youtube.com" target="_blank" class="" id="list-sub-menu">Video Tutorial</a></li>
+                        <li><a href="{{ asset('assets/e-pinter/ebook/v2/Panduan E-PINTER.pdf') }}" target="_blank" id="list-sub-menu">Buku Panduan</a></li>
+                        <li><a href="javascript:void(0);" class="" id="list-sub-menu" onclick="showVideo()">Video Tutorial</a></li>
                     </ul>
                 </li>
                 @if ( Auth::user() != null )
