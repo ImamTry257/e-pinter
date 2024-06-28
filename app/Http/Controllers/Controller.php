@@ -58,13 +58,13 @@ class Controller extends BaseController
     public function selectContentStep($master_id, $step_id, $is_console)
     {
         if ( $master_id == 1 ) :
-            $content_step_one = 'Ilustrasi pada gambar tersebut merupakan Cheetah yang sedang berlari. Cheetah dapat mengalami perubahan kelajuan dari 0 km/jam menjadi 120 km/jam dalam waktu 3 detik. Kelajuan 120 km/jam, yang merupakan kelajuan maksimal, hanya dapat dipertahankan selama 30 detik. Secara fisika ada besaran fisika yang terlibat didalamnya. Bagaimana kita bisa mengetahui visualisasi materi fisika yang ada di gambar tersebut ya?';
+            $content_step_one = 'Pernahkan anda mengamati kereta api yang bergerak di atas rel? Kita bayangkan kereta api yang bergerak dengan kecepatan konstan di atas rel. Gambaran kereta api ini membawa kita untuk memahami konsep kinematika gerak lurus, di mana gerakan tersebut dapat dijelaskan dengan sederhana menggunakan konsep waktu, kecepatan, dan jarak yang ditempuh.';
             $title = 'gerak lurus';
         elseif ( $master_id == 2 ) :
-            $content_step_one = 'Ilustrasi pada gambar tersebut merupakan tembakan kearah jaring olehseorang pemain basket. Akibatnya lintasan bola berbentuk parabolik. Secara fisika ada besaran fisika yang terlibat didalamnya. Bagaimana kita bisamengetahui visualisasi materi fisika yang ada di gambar tersebut ya?';
+            $content_step_one = 'Ilustrasi pada gambar tersebut merupakan tembakan kearah jaring oleh seorang pemain basket. Akibatnya lintasan bola berbentuk parabolik. Secara fisika ada besaran fisis yang terlibat didalamnya. Gambaran lemparan bola basket ke ring ini membawa kita untuk memahami konsep kinematika gerak parabola, di mana gerakan tersebut dapat dijelaskan dengan sederhana menggunakan konsep waktu, kecepatan, dan posisi.';
             $title = 'gerak parabola';
         else :
-            $content_step_one = 'Ilustrasi pada gambar tersebut merupakan bianglala di pasar malam. Gerakan bianglala tersebut lintasannya berbentuk lingkaran.  Bagaimana kita bisa mengetahui visualisasimateri fisika yang ada di gambar tersebut ya?';
+            $content_step_one = 'Ilustrasi pada gambar tersebut merupakan bianglala di pasar malam. Gerakan bianglala tersebut lintasannya berbentuk lingkaran. Gambaran bianglala ini membawa kita untuk memahami konsep kinematika gerak melingkar, di mana gerakan tersebut dapat dijelaskan dengan sederhana menggunakan konsep waktu, kecepatan, percepatan dan sudut.';
             $title = 'gerak melingkar';
         endif ;
 
@@ -76,7 +76,7 @@ class Controller extends BaseController
     public function contentByActivityMaster($title, $dynamic_content, $step_id, $master_id){
 
         if ( $step_id == 1 ) :
-            $img = asset('assets/pemb'. $master_id .'-question-img.svg');
+            $img = asset('assets/pemb'. $master_id .'-question-img-new.svg');
             $content = '<div class="alert-notif"></div>
                         <h5 class="pb-2 fw-bold">Langkah 1: Memberikan pertanyaan esensial dari fenomena sekitar</h5>
                         <h6>Mari Baca artikel dan amati gambar di bawah ini</h6>
@@ -89,7 +89,7 @@ class Controller extends BaseController
 
                         <div class="question-a pb-3">
                             <div class="content-question-a desc-step">
-                                <p class="text-justify p-3">Pertanyaan 1. Dari ilustrasi tersebut, materi fisika dan besaran fisika apa yang terlibat dalam peristiwa tersebut!</p>
+                                <p class="text-justify p-3">Pertanyaan 1. Dari ilustrasi tersebut, apa yang dimaksud '. $title .'? serta sebutkan contoh '. $title .' pada kehidupan sehari-hari? </p>
                             </div>
                             <div>
                                 <textarea name="answer-a" id="step-' . $step_id . '" cols="30" rows="10"></textarea>
@@ -131,14 +131,14 @@ class Controller extends BaseController
                                 <hr>
 
                                 <div class="py-3 row">
-                                    <label for="date" class="col-sm-2 col-form-label">Tanggal <span class="text-danger">*</span></label>
+                                    <span for="date" class="col-sm-2 col-form-label">Tanggal :<span class="text-danger">*</span></span>
                                     <div class="col-sm-4">
                                         <input type="date" name="date" class="form-control" id="step-' . $step_id . '">
                                     </div>
                                 </div>
 
                                 <div class="py-3 row">
-                                    <label for="hour" class="col-sm-2 col-form-label">Jam <span class="text-danger">*</span></label>
+                                    <span for="hour" class="col-sm-2 col-form-label">Jam :<span class="text-danger">*</span></span>
                                     <div class="col-sm-2">
                                         <input type="time" name="start_time" class="form-control" id="step-' . $step_id . '">
                                     </div>
@@ -148,14 +148,17 @@ class Controller extends BaseController
                                 </div>
 
                                 <div class="py-3 row">
-                                    <label for="title" class="col-sm-2 col-form-label">Judul <span class="text-danger">*</span></label>
+                                    <span for="title" class="col-sm-2 col-form-label">Judul Proyek :<span class="text-danger">*</span></span>
                                     <div class="col-sm-10">
                                         <input type="text" name="title" class="form-control" id="step-' . $step_id . '">
                                     </div>
                                 </div>
 
                                 <div class="py-3 row">
-                                    <label for="desc" class="col-sm-2 col-form-label">Descriptions <span class="text-danger">*</span></label>
+                                    <span for="desc" class="col-sm-2 col-form-label">
+                                        Description : <span class="text-danger">*</span><br>
+                                        <smal style="font-size: 10px;">(nama anggota kelompok, alat dan bahan)</small>
+                                    </span>
                                     <div class="col-sm-10">
                                         <textarea name="descriptions" id="step-' . $step_id . '" class="form-control" cols="30" rows="30"></textarea>
                                     </div>
@@ -192,7 +195,6 @@ class Controller extends BaseController
         elseif ( $step_id == 4 ) :
             $content = '<div class="alert-notif"></div>
                     <h5 class="pb-2 fw-bold">Langkah 4: Melakukan eksperimen menggunakan teknologi</h5>
-                    <h1>Upload foto tiap langkah eksperimen menggunakan software Tracker</h1>
                     <div id="step-tracker">
                         <div class="desc-step my-3 pb-2">
                             <p class="text-justify px-3 pt-3">Upload foto langkah eksperimen kelompok dengan tema “' . $title . '” meliputi</p>
@@ -207,22 +209,34 @@ class Controller extends BaseController
                         <div>
                             <ol>
                                 <li class="pb-3">
-                                    Foto saat import video di software Tracker
+                                    Foto saat import video
                                     <div class="render-file-p1" id="wrapper-render-file"></div>
                                     <input type="file" id="step-' . $step_id . '-1" class="upload-file" onChange="handleInput(this)" hidden name="file_1">
                                     <div id="render-file_1" class="wrapper-render-file"></div>
                                 </li>
                                 <li class="pb-3">
-                                    Foto Proses autotracker
+                                    Foto proses autotracker
                                     <div class="render-file-p2" id="wrapper-render-file"></div>
                                     <input type="file" id="step-' . $step_id . '-2" class="upload-file" onChange="handleInput(this)" hidden name="file_2">
                                     <div id="render-file_2" class="wrapper-render-file"></div>
                                 </li>
                                 <li class="pb-3">
-                                    Foto grafik analisis video
+                                    Foto grafik hubungan x terhadap t
                                     <div class="render-file-p3" id="wrapper-render-file"></div>
                                     <input type="file" id="step-' . $step_id . '-3" class="upload-file" onChange="handleInput(this)" hidden name="file_3">
                                     <div id="render-file_3" class="wrapper-render-file"></div>
+                                </li>
+                                <li class="pb-3">
+                                    Foto grafik hubungan y terhadap t
+                                    <div class="render-file-p4" id="wrapper-render-file"></div>
+                                    <input type="file" id="step-' . $step_id . '-4" class="upload-file" onChange="handleInput(this)" hidden name="file_4">
+                                    <div id="render-file_4" class="wrapper-render-file"></div>
+                                </li>
+                                <li class="pb-3">
+                                    Foto grafik hubungan v terhadap t
+                                    <div class="render-file-p5" id="wrapper-render-file"></div>
+                                    <input type="file" id="step-' . $step_id . '-5" class="upload-file" onChange="handleInput(this)" hidden name="file_5">
+                                    <div id="render-file_5" class="wrapper-render-file"></div>
                                 </li>
                             </ol>
                         </div>
@@ -266,11 +280,17 @@ class Controller extends BaseController
                             </div>
                         </div>';
         elseif ( $step_id == 6 ) :
+            $sub_content = 'Silahkan presentasikan hasil proyek dan laporanmu secara bergantian.Jadi, kesimpulannya bagaimana hubungan antara percepatan, kecepatan, dan waktu dalam gerak lurus beraturan maupun dalam gerak lurus berubah beraturan?';
+
+            if ( $master_id == 2 ) {
+                $sub_content = 'Silahkan presentasikan hasil proyek dan laporanmu secara bergantian. Jadi, Bagaimana hubungan antara waktu, kecepatan, dan posisi dalam gerak parabola?';
+            } else if ( $master_id == 3 ) {
+                $sub_content = 'Silahkan presentasikan hasil proyek dan laporanmu secara bergantian. Jadi, Bagaimana hubungan antara waktu, kecepatan, percepatan dan sudut dalam gerak melingkar?';
+            }
             $content = '<div class="alert-notif"></div>
                         <h5 class="pb-2 fw-bold">Langkah 6: Refleksi</h5>
                         <div class="desc-step mt-3">
-                            <p class="text-justify p-3">Silahkan presentasikan hasil proyek dan laporanmu secara bergantian.
-                                Jadi, kesimpulannya apakah anda dapat memvisulisasikan gambar 1 tersebut? dan Apakah teknologi yang digunakan bisa digunakan untuk memvisualisasi ' . $title . '?</p>
+                            <p class="text-justify p-3">' . $sub_content . '</p>
                         </div>
 
                         <div class="question-a pb-3">
@@ -517,18 +537,17 @@ class Controller extends BaseController
                         </div>
 
                         <div class="col-lg-12 pb-1">
-                            <span>Pada kegiatan pembelajaran 1, kita akan:</span>
+                            <span class="fw-bold">Pada kegiatan pembelajaran 1, peserta didik mampu:</span>
                             <ol>
-                                <li>Materi Fisika yang akan dibahas adalah GLB dan GLBB</li>
-                                <li>Menggunakan model pembelajaran E-PINTER yang telah dikembangkan</li>
-                                <li>Menggunakan software Tracker untuk mendukung kegiatan pembelajaran</li>
-                                <li>Membuat proyek secara kelompok</li>
-                                <li>Membuat laporan kegiatan fisika</li>
+                                <li>Peserta didik dapat memahami konsep dan menguraikan besaran-besaran fisis pada gerak lurus melalui proyek fisika di dalam E-PINTER yang telah dikembangkan.</li>
+                                <li>Peserta didik dapat menganalisis gerak lurus melalui eksperimen fisika dengan menggunakan software Tracker.</li>
+                                <li>Peserta didik membuat laporan kegiatan fisika yang sudah dilakukan sesuai dengan panduan yang terdapat pada sintaks 5.</li>
+                                <li>Peserta didik mempresentasikan hasil laporan yang telah disusun.</li>
                             </ol>
                         </div>
 
                         <div class="col-lg-12">
-                            <span>Sehingga tagihan yang harus diunggah pada kegiatan ini adalah:</span>
+                            <span class="fw-bold">Sehingga tagihan yang harus diunggah pada kegiatan ini adalah:</span>
                             <ol>
                                 <li>Video proyek gerak lurus</li>
                                 <li>Foto langkah-langkah eksperimen menggunakan software Tracker beserta keterangannya</li>
@@ -544,18 +563,17 @@ class Controller extends BaseController
                 </div>
 
                 <div class="col-lg-12 pb-1">
-                    <span>Pada kegiatan pembelajaran 2, kita akan:</span>
+                    <span class="fw-bold">Pada kegiatan pembelajaran 2, peserta didik mampu:</span>
                     <ol>
-                        <li>Materi Fisika yang akan dibahas adalah Gerak Parabola</li>
-                        <li>Menggunakan model pembelajaran E-PINTER yang telah dikembangkan</li>
-                        <li>Menggunakan software Tracker untuk mendukung kegiatan pembelajaran</li>
-                        <li>Membuat proyek secara kelompok</li>
-                        <li>Membuat laporan kegiatan fisika</li>
+                        <li>Peserta didik dapat memahami konsep dan menguraikan besaran-besaran fisis pada gerak lurus melalui proyek fisika di dalam E-PINTER yang telah dikembangkan.</li>
+                        <li>Peserta didik dapat menganalisis gerak lurus melalui eksperimen fisika dengan menggunakan software Tracker.</li>
+                        <li>Peserta didik membuat laporan kegiatan fisika yang sudah dilakukan sesuai dengan panduan yang terdapat pada sintaks 5.</li>
+                        <li>Peserta didik mempresentasikan hasil laporan yang telah disusun.</li>
                     </ol>
                 </div>
 
                 <div class="col-lg-12">
-                    <span>Sehingga tagihan yang harus diunggah pada kegiatan ini adalah:</span>
+                    <span class="fw-bold">Sehingga tagihan yang harus diunggah pada kegiatan ini adalah:</span>
                     <ol>
                         <li>Video proyek gerak parabola</li>
                         <li>Foto langkah-langkah eksperimen menggunakan software Tracker beserta keterangannya</li>
@@ -571,18 +589,17 @@ class Controller extends BaseController
                 </div>
 
                 <div class="col-lg-12 pb-1">
-                    <span>Pada kegiatan pembelajaran 3, kita akan:</span>
+                    <span class="fw-bold">Pada kegiatan pembelajaran 3, peserta didik mampu:</span>
                     <ol>
-                        <li>Materi Fisika yang akan dibahas adalah Gerak Melingkar</li>
-                        <li>Menggunakan model pembelajaran E-PINTER yang telah dikembangkan</li>
-                        <li>Menggunakan software Tracker untuk mendukung kegiatan pembelajaran</li>
-                        <li>Membuat proyek secara kelompok</li>
-                        <li>Membuat laporan kegiatan fisika</li>
+                        <li>Peserta didik dapat memahami konsep dan menguraikan besaran-besaran fisis pada gerak lurus melalui proyek fisika di dalam E-PINTER yang telah dikembangkan.</li>
+                        <li>Peserta didik dapat menganalisis gerak lurus melalui eksperimen fisika dengan menggunakan software Tracker.</li>
+                        <li>Peserta didik membuat laporan kegiatan fisika yang sudah dilakukan sesuai dengan panduan yang terdapat pada sintaks 5.</li>
+                        <li>Peserta didik mempresentasikan hasil laporan yang telah disusun.</li>
                     </ol>
                 </div>
 
                 <div class="col-lg-12">
-                    <span>Sehingga tagihan yang harus diunggah pada kegiatan ini adalah:</span>
+                    <span class="fw-bold">Sehingga tagihan yang harus diunggah pada kegiatan ini adalah:</span>
                     <ol>
                         <li>Video proyek gerak melingkar</li>
                         <li>Foto langkah-langkah eksperimen menggunakan software Tracker beserta keterangannya</li>
