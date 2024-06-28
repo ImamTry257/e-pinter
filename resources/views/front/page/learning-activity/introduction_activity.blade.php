@@ -10,7 +10,7 @@
 
 @section('content')
 
-<div class="wrapper-dahboard-page col-lg-10 col-md-12 col-sm-12 col-xl-10 row ps-4">
+<div class="wrapper-dahboard-page col-lg-10 col-md-12 col-sm-12 col-xl-10 row ps-4" style="height: 1000px;">
     {{-- banner main --}}
     <div class="main-banner ms-2 col-lg-11 d-none">
         <img src="{{ asset('assets/img-pemb1.svg') }}" alt="" style="width: 100%;">
@@ -20,7 +20,7 @@
         <div class="row p-2 px-5">
             {!! $content !!}
 
-            <div class="col-lg-12 text-end">
+            <div class="col-lg-12 text-end pt-5">
                 <a href="javascript:void(0);" onclick="nextProgress()" class="btn btn-information text-white">Selanjutnya Sintak 1.</a>
             </div>
         </div>
