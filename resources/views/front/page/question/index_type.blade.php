@@ -36,9 +36,9 @@
             <div class="col-lg-11">
                 <form action="{{ route('question.store.type', ['type' => $type_selected,'questionNo' => Crypt::encryptString($question_no_selected)]) . '-'.Session::get('current_duration') }}" method="POST">
                 @csrf
-                    <div class="wrapper-countdown text-center pt-3 fw-bold" style="font-size: 30px;">
+                    <div class="wrapper-countdown d-flex justify-content-center pt-3 fw-bold" style="font-size: 30px;color: black;">
                         {{-- <span style="font-size: 30px;" id="countdown" class="fw-bold">Sisa waktu: 00:30:00</span> --}}
-                        Sisa Waktu: <input type="text" name="countdown" id="overall_times" class="fw-bold col-2" value="--:--:--" style="font-size: 30px; border: none;" readonly>
+                        Sisa Waktu: <input type="text" name="countdown" id="overall_times" class="fw-bold col-3" value="--:--:--" style="font-size: 30px; border: none;" readonly>
                         <input type="hidden" name="countdown_str" id="overall_time" value="">
                     </div>
 
