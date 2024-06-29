@@ -52,7 +52,7 @@
                                         </div>
                                         <div class="col-10">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" name="number" value="{{ old('number') }}" id="" disabled readonly>
+                                                <input type="text" class="form-control" name="number" value="{{ old('number') }}" id="" readonly>
                                                 @error('number')
                                                     <span class="invalid-feedback d-inline" role="alert">
                                                         <strong>{{ $message }}</strong>
