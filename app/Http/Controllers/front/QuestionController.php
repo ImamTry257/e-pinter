@@ -537,28 +537,30 @@ class QuestionController extends Controller
     {
         # get answer key
         $key_ans = DB::table('question_answer_key')->where('question_master_id', $question_master_id)->first();
-        # dump($key_ans);
+        #dump($key_ans, $question_master_id);
 
+        $score = 1;
         if ( !empty ( $key_ans ) ) :
-
+            # dd($answer, $answer_reason);
             # compare answer by user with answer key
-            if ( $answer == '-' || $answer_reason == '-' ) :
-                if ( $answer == '-' && $answer_reason == '-' ) :
+            if ( $answer == 'Z' || $answer_reason == 'Z' ) :
+                if ( $answer == 'Z' && $answer_reason == 'Z' ) :
                     $score = 0;
 
                 else :
-                    if ( $answer == $key_ans->key_answer && $answer_reason == '-' ) :
+                    if ( $answer == $key_ans->key_answer && $answer_reason == 'Z' ) :
                         $score = 2;
 
-                    elseif ( $answer != $key_ans->key_answer && $answer_reason == '-' ) :
+                    elseif ( $answer != $key_ans->key_answer && $answer_reason == 'Z' ) :
                         $score = 1;
 
-                    elseif ( $answer == '-' && $answer_reason == $key_ans->key_answer_with_reason ) :
+                    elseif ( $answer == 'Z' && $answer_reason == $key_ans->key_answer_with_reason ) :
                         $score = 1;
 
-                    elseif ( $answer == '-' && $answer_reason != $key_ans->key_answer_with_reason ) :
+                    elseif ( $answer == 'Z' && $answer_reason != $key_ans->key_answer_with_reason ) :
                         $score = 0;
-
+                    else :
+                        $score = 1;
                     endif ;
 
                 endif ;
@@ -574,11 +576,13 @@ class QuestionController extends Controller
 
                 elseif ( $answer != $key_ans->key_answer && $answer_reason != $key_ans->key_answer_with_reason ) :
                     $score = 1;
+                else :
+                    $score = 1;
                 endif ;
             endif ;
-
-            return $score;
         endif ;
+
+        return $score;
     }
 
     public function introduction()
@@ -749,8 +753,10 @@ class QuestionController extends Controller
             $answer_by_u = $query_answer_by_u->first();
 
             # param to insert or update data
-            $answer = ( $request->answer == null ) ? '-' : $request->answer;
-            $answer_reason = ( $request->answer_reason == null ) ? '-' : $request->answer_reason;
+            $answer = ( $request->answer == null ) ? 'Z' : $request->answer;
+            $answer_reason = ( $request->answer_reason == null ) ? 'Z' : $request->answer_reason;
+            #dd($answer, $answer_reason);
+
             $param['answer']                = $answer;
             $param['answer_with_reason']    = $answer_reason;
             $param['is_answered']           = 1;
