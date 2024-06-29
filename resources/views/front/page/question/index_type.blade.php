@@ -49,7 +49,7 @@
                     <div class="border border-dark p-3">
                         <div class="wrapper-question-content">
                             <div class="question-content pb-3">
-                                <span class="text-justify d-block" style="">{!! $question_selected->description !!}.</span>
+                                <span class="text-justify d-block" style="">{!! $question_selected->description !!}</span>
                             </div>
                         </div>
 
