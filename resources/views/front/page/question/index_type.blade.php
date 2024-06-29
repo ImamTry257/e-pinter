@@ -17,6 +17,13 @@
         span {
             font-family: 'Poppins', sans-serif !important;
         }
+
+        .wrapper-answer-by-choose label p,
+        .wrapper-answer-by-choose label div,
+        .wrapper-answer-by-reason label p,
+        .wrapper-answer-by-reason label div {
+            display: contents;
+        }
     </style>
 @endsection
 
