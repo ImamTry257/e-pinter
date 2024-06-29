@@ -85,11 +85,11 @@
 
                         <div class="wrapper-answer-by-reason py-3">
                             @php
-                                $d_options = $question_selected->options_with_reason;
-                                $options_w_r = json_decode($d_options, true);
+                                $d_options_w_r = $question_selected->options_with_reason;
+                                $options_w_r = json_decode($d_options_w_r, true);
                             @endphp
 
-                            @foreach ( $options as $op)
+                            @foreach ( $options_w_r as $op)
                             <div class="d-flex justify-content-start pb-2">
                                 <div>
                                     @php

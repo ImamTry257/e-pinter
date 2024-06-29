@@ -133,7 +133,7 @@ class ManageController extends Controller
                     'updated_by'    => 0,
                     'created_at'    => now()
                 ];
-
+                # dd($paramAdd);
                 # dd($request->all(), $param_option, $param_option_w_r, $paramAdd);
                 $question_master_id_new = DB::table('question_master')->insertGetId($paramAdd);
 
@@ -260,6 +260,7 @@ class ManageController extends Controller
                     'updated_by'    => Session::get('data_user_login')->id,
                     'updated_at'    => now()
                 ];
+                #dd($parameter, $param_option, $param_option_w_r);
 
                 DB::table('question_master')
                     ->where('id', $questionId)
