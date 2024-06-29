@@ -193,7 +193,6 @@
     var editorOptionCWithReason = new RichTextEditor("#option_C_with_reason");
     var editorOptionDWithReason = new RichTextEditor("#option_D_with_reason");
     var editorOptionEWithReason = new RichTextEditor("#option_E_with_reason");
-    console.log('add content Potensial Gudeg Local');
 
     $('input#images').on('change', (e) => {
         if ( $(e.target).attr('id') == 'images' ) {
