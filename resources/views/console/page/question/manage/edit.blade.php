@@ -117,9 +117,10 @@
                                         <div class="col-10">
                                             @php
                                                 # dd($question);
-                                                $options = json_decode($question->options_with_reason, true);
+                                                $dec_options_w_r = json_decode($question->options_with_reason, true);
+                                                $options_w_r = ( $dec_options_w_r == null ) ? [] : $dec_options_w_r;
                                             @endphp
-                                            @foreach ( $options as $key => $opt )
+                                            @foreach ( $options_w_r as $key => $opt )
 
                                             <div class="form-group pt-2">
                                                 <span class="pe-3">{{ $opt['value_key'] }}.</span>
@@ -131,6 +132,57 @@
                                                 @enderror
                                             </div>
                                             @endforeach
+
+                                            @if ( count ( $options_w_r ) == 0 )
+                                                <div class="form-group pt-2">
+                                                    <span class="pe-3">A.</span>
+                                                    <textarea id="option_A_with_reason" class="form-control" name="A_with_reason" value="{{ old('A_with_reason') }}"></textarea>
+                                                    @error('A')
+                                                        <span class="invalid-feedback d-inline" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                                <div class="form-group pt-2">
+                                                    <span class="pe-3">B.</span>
+                                                    <textarea id="option_B_with_reason" class="form-control" name="B_with_reason" value="{{ old('B_with_reason') }}"></textarea>
+                                                    @error('A')
+                                                        <span class="invalid-feedback d-inline" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+
+                                                <div class="form-group pt-2">
+                                                    <span class="pe-3">C.</span>
+                                                    <textarea id="option_C_with_reason" class="form-control" name="C_with_reason" value="{{ old('C_with_reason') }}"></textarea>
+                                                    @error('A')
+                                                        <span class="invalid-feedback d-inline" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+
+                                                <div class="form-group pt-2">
+                                                    <span class="pe-3">D.</span>
+                                                    <textarea id="option_D_with_reason" class="form-control" name="D_with_reason" value="{{ old('D_with_reason') }}"></textarea>
+                                                    @error('A')
+                                                        <span class="invalid-feedback d-inline" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+
+                                                <div class="form-group pt-2">
+                                                    <span class="pe-3">E.</span>
+                                                    <textarea id="option_E_with_reason" class="form-control" name="E_with_reason" value="{{ old('E_with_reason') }}"></textarea>
+                                                    @error('A')
+                                                        <span class="invalid-feedback d-inline" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            @endif
                                         </div>
                                     </div>
 
