@@ -117,7 +117,7 @@
                                         <div class="col-10">
                                             @php
                                                 # dd($question);
-                                                $options = json_decode($question->options, true);
+                                                $options = json_decode($question->options_with_reason, true);
                                             @endphp
                                             @foreach ( $options as $key => $opt )
 
