@@ -56,7 +56,6 @@ class ManageController extends Controller
         if ($request->method() == 'POST') :
             //validate form
             $this->validate($request, [
-                'number'            => 'required',
                 'descriptions'      => 'required',
                 'A'      => 'required',
                 'B'      => 'required',
@@ -147,7 +146,11 @@ class ManageController extends Controller
                     'created_at'    => now()
                 ]);
 
-                return redirect()->route('admin.question.manage')->with('success', 'Soal berhasil ditambahkan');
+                if ( array_key_exists('create', $request->all()) ) :
+                    return redirect()->route('admin.question.manage')->with('success', 'Soal berhasil ditambahkan');
+                else :
+                    return redirect()->route('admin.question.manage.add')->with('success', 'Soal berhasil ditambahkan');
+                endif ;
             } catch (\Throwable $th) {
                 dd($th->getMessage());
                 return redirect()->route('admin.question.manage')->with('error', 'Soal gagal ditambahkan');
@@ -181,7 +184,6 @@ class ManageController extends Controller
 
             # validate form
             $this->validate($request, [
-                'number'            => 'required',
                 'descriptions'      => 'required',
                 'A'      => 'required',
                 'B'      => 'required',
@@ -364,5 +366,23 @@ class ManageController extends Controller
         endif ;
 
         return view('console.page.question.manage.time', $data);
+    }
+
+    public function getMaxNumber()
+    {
+        try {
+            $getMaxNumber = DB::table('question_master')->where('deleted_at', NULL)->max('number');
+
+            return response()->json([
+                'status'=> true,
+                'data'  => $getMaxNumber
+            ]);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json([
+                'status'=> false,
+                'data'  => 0
+            ]);
+        }
     }
 }

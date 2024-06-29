@@ -17,6 +17,25 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
+                <div class="col-md-12 pb-2">
+                    @if(Session::has('success'))
+                        <div class="alert alert-success">
+                            {{ Session::get('success') }}
+                            @php
+                                Session::forget('success');
+                            @endphp
+                        </div>
+                    @endif
+
+                    @if(Session::has('error'))
+                        <div class="alert alert-danger">
+                            {{ Session::get('error') }}
+                            @php
+                                Session::forget('error');
+                            @endphp
+                        </div>
+                    @endif
+                </div>
                 <div class="col-md-12">
                     <div class="card border-0">
                         <div class="card-header bg-console text-dark">
@@ -33,7 +52,7 @@
                                         </div>
                                         <div class="col-10">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" name="number" value="{{ old('number') }}" id="">
+                                                <input type="text" class="form-control" name="number" value="{{ old('number') }}" id="" disabled readonly>
                                                 @error('number')
                                                     <span class="invalid-feedback d-inline" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -214,7 +233,9 @@
                                         <div class="col-4">
                                             <div>
                                                 <a href="{{ route('admin.question.manage') }}" class="btn bg-danger text-dark">Kembali</a>
-                                                <button type="submit" class="btn bg-primary text-dark">Simpan</button>
+                                                <button type="submit" name="create" class="btn bg-primary text-dark">Simpan</button>
+                                                <button type="submit" name="create_again" class="btn bg-primary text-dark">Simpan dan buat kembali</button>
+
                                             </div>
                                         </div>
                                     </div>
@@ -258,5 +279,38 @@
             $('img#img-content').attr('src', URL.createObjectURL(e.target.files[0]))
         }
     })
+
+    $(document).ready(function() {
+        getMaxNumber()
+    })
+
+    function getMaxNumber() {
+        $.ajax({
+            type: "POST", // send ajax with post
+            url: "{{ route('admin.question.get.max_number') }}",
+            dataType: 'json',
+            timeout: 3000,
+            cache: false,
+            contentType: false,
+            processData: false,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                'Access-Control-Allow-Origin': '*'
+            },
+            beforeSend: function(xhr, obj) {
+
+            },
+            success: function(response) {
+                if ( response.status ) {
+                    $('input[name="number"]').val( ( response.data + 1 ) )
+                }
+                console.log(response)
+            },
+            error: function(error) {
+                if (error.statusText == 'timeout') {
+                }
+            }
+        })
+    }
 </script>
 @endsection
