@@ -26,9 +26,6 @@
     </div>
     <div class="col-4 mb-2 text-start">
         @foreach ($q_no_right as $key => $val )
-        @php
-            dump($val);
-        @endphp
         <div class="pb-2">
             <span class="d-none" id="question_url">{{ route('question.type', ['type' => $type_selected, 'questionNo' => Crypt::encryptString($val)]) }}</span>
             <a href="javascript:void(0);" onclick="
