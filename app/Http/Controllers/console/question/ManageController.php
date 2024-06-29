@@ -21,16 +21,24 @@ class ManageController extends Controller
     {
         if ($request->ajax()) :
             $data = DB::table('question_master as qm')
-                        ->join('question_answer_key as qak', 'qak.question_master_id', '=', 'qm.id')
-                        ->orderBy('qm.id', 'asc')->get();
+                        ->leftJoin('question_answer_key as qak', 'qak.question_master_id', '=', 'qm.id')
+                        ->where('qm.deleted_at', NULL)
+                        ->orderBy('qm.id', 'asc')
+                        ->get(['qm.id as question_id', 'qm.*', 'qak.*']);
 
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->editColumn('description', function($row) {
                     return '<div>' . $row->description . '</div>';
                 })
+                ->addColumn('key_answer', function($row) {
+                    return $row->key_answer;
+                })
+                ->addColumn('key_answer_w_r', function($row) {
+                    return $row->key_answer_with_reason;
+                })
                 ->addColumn('action', function ($row) {
-                    $actionBtn = '<a href="' . route('admin.question.manage.show', ['id' => Crypt::encryptString($row->id)]) . '" class="edit btn bg-console text-dark btn-sm">Ubah</a> <a href="" class="delete btn btn-danger btn-sm delete-user" id="' . $row->id . '">Hapus</a>';
+                    $actionBtn = '<a href="' . route('admin.question.manage.show', ['id' => Crypt::encryptString($row->question_id)]) . '" class="edit btn bg-console text-dark btn-sm">Ubah</a> <a href="" class="delete btn btn-danger btn-sm delete-user" id="' . $row->question_id . '">Hapus</a>';
                     return $actionBtn;
                 })
                 ->rawColumns(['action', 'description'])
@@ -156,7 +164,7 @@ class ManageController extends Controller
         $data['id'] = $id;
 
         $data['question'] = DB::table('question_master as u')
-            ->join('question_answer_key as qak', 'qak.question_master_id', '=', 'u.id')
+            ->leftJoin('question_answer_key as qak', 'qak.question_master_id', '=', 'u.id')
             ->where('u.id', '=', $dec_id)
             ->first();
 
@@ -268,12 +276,12 @@ class ManageController extends Controller
 
                 # dd($request->all(), $param_option, $param_option_w_r, $parameter);
 
-                return redirect()->route('admin.question.manage')->with('success', 'Soal berhasil ditambahkan');
+                return redirect()->route('admin.question.manage')->with('success', 'Soal berhasil diubah');
             } catch (\Throwable $th) {
 
                 DB::rollBack();
-                dd($th->getMessage());
-                return redirect()->route('admin.question.manage')->with('error', 'Soal gagal ditambahkan');
+                # dd($th->getMessage());
+                return redirect()->route('admin.question.manage')->with('error', 'Soal gagal diubah');
             }
         else :
             return redirect()->route('admin.question.manage');
@@ -282,13 +290,15 @@ class ManageController extends Controller
 
     public function destroy($id)
     {
-        DB::table('users as u')
-            ->where('u.id', '=', $id)
+        $clean_id = str_replace("del_", "", $id);
+
+        DB::table('question_master as u')
+            ->where('u.id', '=', $clean_id)
             ->update([
-                'u.status' => 0
+                'u.deleted_at' => now()
             ]);
 
-        $data = 'Data Siswa Berhasil dihapus';
+        $data = 'Data Soal Berhasil dihapus';
         $type_with = 'success';
 
         return redirect(route('admin.question.manage'))->with($type_with, $data);

@@ -2,9 +2,8 @@
  * @license Copyright (c) 2003-2024, richtexteditor - CuteSoft Components Inc. All rights reserved.
  * For licensing, see http://richtexteditor.com/license.aspx
  */
-
 if (!window.RTE_DefaultConfig) window.RTE_DefaultConfig = { };
-
+console.log('{{ env("APP_URL") }}')
 RTE_DefaultConfig.editablePaddingTop = 2;
 RTE_DefaultConfig.editablePaddingBottom = 2;
 RTE_DefaultConfig.editablePaddingLeft = 2;
@@ -58,11 +57,11 @@ RTE_DefaultConfig.pasteMode = "Auto"; // Specifies the manner in which the edito
 RTE_DefaultConfig.floatParagraphPos = "left";//left or right
 RTE_DefaultConfig.floatParagraphPosX = 0; //x offset
 RTE_DefaultConfig.floatParagraphPosY = 0; //y offset
-RTE_DefaultConfig.url_base = "http://localhost:8050/assets/richtexteditor"; // Specifies a base URL of richtexteditor
-RTE_DefaultConfig.contentCssUrl = "http://localhost:8050/assets/richtexteditor/runtime/richtexteditor_content.css"; // Specifies the location of the style sheet that will be used by the editable area.
-RTE_DefaultConfig.previewCssUrl = "http://localhost:8050/assets/richtexteditor/runtime/richtexteditor_preview.css"; // Specifies the location of the style sheet that will be used by the preview window.
-RTE_DefaultConfig.previewScriptUrl = "http://localhost:8050/assets/richtexteditor/runtime/richtexteditor_preview.js"; // Specifies the location of javascript file that will be used by the preview window.
-RTE_DefaultConfig.helpUrl = "http://localhost:8050/assets/richtexteditor/runtime/help.htm"
+RTE_DefaultConfig.url_base = ""; // Specifies a base URL of richtexteditor
+RTE_DefaultConfig.contentCssUrl = RTE_DefaultConfig.url_base+"/assets/richtexteditor/runtime/richtexteditor_content.css"; // Specifies the location of the style sheet that will be used by the editable area.
+RTE_DefaultConfig.previewCssUrl = RTE_DefaultConfig.url_base+"/assets/richtexteditor/runtime/richtexteditor_preview.css"; // Specifies the location of the style sheet that will be used by the preview window.
+RTE_DefaultConfig.previewScriptUrl = RTE_DefaultConfig.url_base+"/assets/richtexteditor/runtime/richtexteditor_preview.js"; // Specifies the location of javascript file that will be used by the preview window.
+RTE_DefaultConfig.helpUrl = RTE_DefaultConfig.url_base+"/assets/richtexteditor/runtime/help.htm"
 
 RTE_DefaultConfig.contentCssText = "";//"body{background-color:#eee}"; 	Gets or sets inline CSS text that will be used by the editable area. 	//TODO:add api example
 RTE_DefaultConfig.previewCssText = "";//"body{background-color:#eee}"; 	Gets or sets inline CSS text that will be used by the preview window. //TODO:add api example

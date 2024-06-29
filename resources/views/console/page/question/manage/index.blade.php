@@ -51,7 +51,9 @@
                                             <tr>
                                                 <th width="10%">No</th>
                                                 <th width="10%">Nomor Soal</th>
-                                                <th width="70%">Soal</th>
+                                                <th width="60%">Soal</th>
+                                                <th width="5%">Jawaban</th>
+                                                <th width="5%">Alasan</th>
                                                 <th width="10%">Action</th>
                                             </tr>
                                         </thead>
@@ -99,6 +101,8 @@
                     {data: 'DT_RowIndex', name: 'No'},
                     {data: 'number', name: 'No'},
                     {data: 'description', name: 'Soal'},
+                    {data: 'key_answer', name: 'Jawaban'},
+                    {data: 'key_answer_w_r', name: 'Alasan'},
                     {data: 'action', name: 'action', orderable: false, searchable: true},
               ]
           });
@@ -110,15 +114,14 @@
             e.preventDefault();
             let id = $(e.target).attr('id')
 
-            var ans = confirm('Apakah Anda yakin?')
-
+            let ans = confirm('Apakah Anda yakin?')
             if ( ans ) {
                 delete_user(id)
             }
         })
 
         function delete_user(id) {
-            window.location.href = '{{ url("admin/user/delete") }}'+'/'+id;
+            window.location.href = '{{ route("admin.question.manage.destroy", ["id" => "del_"]) }}'+id;
         }
     </script>
 
