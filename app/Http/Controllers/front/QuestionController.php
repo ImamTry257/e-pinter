@@ -630,6 +630,8 @@ class QuestionController extends Controller
     public function index_type($type, $questionNo)
     {
         # dd($questionNo);
+        # user_id login
+        $data['user_id'] = Auth::user()->id;
 
         # get question no and current duration
         $data_get = explode('-', $questionNo);
@@ -690,7 +692,8 @@ class QuestionController extends Controller
                             ->leftJoin('question_answer_user as qau', 'qau.question_master_id', '=', 'qm.id')
                             ->where('qm.number', '=', $question_no)
                             ->where('qau.type', '=', $type)
-                            ->first();
+                            ->where('qau.user_id', $data['user_id'])
+                            ->first(['qm.id as question_id', 'qm.*', 'qau.*']);
         # dd($data);
         if ( empty( $data['question_selected'] ) ) :
             return redirect(route('front.dashboard'));
@@ -762,7 +765,7 @@ class QuestionController extends Controller
             $param['is_answered']           = 1;
             $param['type']                  = $request->type_selected;
             $param['score']                 = $this->calculated_score($answer, $answer_reason, $question->id);
-            # dd($param, $answer, $answer_reason);
+            # dd($param, $answer, $answer_reason, $answer_by_u);
 
             if ( empty ( $answer_by_u ) ) :
                 $param['created_by']            = Auth::user()->id;
