@@ -539,7 +539,7 @@ class QuestionController extends Controller
         $key_ans = DB::table('question_answer_key')->where('question_master_id', $question_master_id)->first();
         #dump($key_ans, $question_master_id);
 
-        $score = 1;
+        $score = 0;
         if ( !empty ( $key_ans ) ) :
             # dd($answer, $answer_reason);
             # compare answer by user with answer key
