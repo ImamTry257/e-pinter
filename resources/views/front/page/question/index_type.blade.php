@@ -143,7 +143,7 @@
 
                 <div class="wrapper-list-question">
                     {{-- add question number --}}
-                    @include('front.page.question.includes.question_number')
+                    @include('front.page.question.includes.question_number_type')
                 </div>
             </div>
         </div>
