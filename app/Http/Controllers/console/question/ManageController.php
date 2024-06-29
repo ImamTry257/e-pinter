@@ -121,7 +121,7 @@ class ManageController extends Controller
                     ]
                 ];
 
-                dd(Session::get('data_user_login'));
+                # dd(Session::get('data_user_login'));
 
                 # param all
                 $paramAdd = [
