@@ -281,13 +281,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <li class="nav-item">
                                     <a href="{{ route('admin.question.result.type', ['type' => 'pre-test']) }}" class="nav-link">
                                         <i class="fas fa-table nav-icon"></i>
-                                        <p>Pre Test</p>
+                                        <p style="color: #c2c7d0">Pre Test</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('admin.question.result.type', ['type' => 'post-test']) }}" class="nav-link">
                                         <i class="fas fa-table nav-icon"></i>
-                                        <p>Post Test</p>
+                                        <p style="color: #c2c7d0">Post Test</p>
                                     </a>
                                 </li>
                             </ul>
@@ -333,23 +333,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <li class="nav-item">
                                     <a href="{{ route('admin.questionniare.result.type', ['type' => 'pre-test']) }}" class="nav-link">
                                         <i class="fas fa-table nav-icon"></i>
-                                        <p>Pre Test</p>
+                                        <p style="color: #c2c7d0">Pre Test</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('admin.questionniare.result.type', ['type' => 'post-test']) }}" class="nav-link">
                                         <i class="fas fa-table nav-icon"></i>
-                                        <p>Post Test</p>
+                                        <p style="color: #c2c7d0">Post Test</p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
                     </ul>
                 </li>
-
-				@php
-					# dd(Route::current()->uri);
-				@endphp
 				<li class="nav-item d-none">
 					<a href="{{ route('admin.sains-info') }}" class="nav-link text-white @if (Route::current()->uri == 'admin/sains-info') {{ 'active-menu' }} @endif">
 						<i class="nav-icon fas fa-info"></i>
